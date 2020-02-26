@@ -1,2 +1,2 @@
-# .bash
-.bash settings
+# Bash
+my bash config
