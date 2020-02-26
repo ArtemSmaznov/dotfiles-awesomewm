@@ -1,2 +1,2 @@
 # Bash
-my bash config
+My Bash Config
