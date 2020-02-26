@@ -2,4 +2,4 @@
 My Bash Config
 
 # Setup
-wget https://github.com/ChrisTitusTech/zsh/raw/master/.zshrc -O ~/.bashrc
+wget https://raw.githubusercontent.com/ArtemSmaznov/bash/master/.bashrc -O ~/.bashrc
