@@ -56,14 +56,39 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 #######################################################
 # Colors
 #######################################################
+
+# Define colors
+	BLACK="\033[1;30m"
+	RED="\033[1;31m"
+	GREEN="\033[1;32m"
+	YELLOW="\033[1;33m"
+	BLUE="\033[1;34m"
+	MAGENTA="\033[1;35m"
+	CYAN="\033[1;36m"
+	WHITE="\033[1;37m"
+
+	LIGHTGRAY="\033[0;30m"
+	LIGHTRED="\033[0;31m"
+	LIGHTGREEN="\033[0;32m"
+	LIGHTYELLOW="\033[0;33m"
+	LIGHTBLUE="\033[0;34m"
+	LIGHTMAGENTA="\033[0;35m"
+	LIGHTCYAN="\033[0;36m"
+	WHITE="\033[0;37m"
+
+	NOCOLOR="\033[0m"
+
 # Color bash prompt depending on user
-	if [[ ${EUID} == 0 ]] ; then
-#		non-root
-		PS1='\[\033[01;31m\][\h\[\033[01;33m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
+	if [[ ${EUID} == 0 ]] ; then # if user is root
+		MAIN_COLOR1=$RED
+		DIR_COLOR=$CYAN
 	else
-#		root
-		PS1='\[\033[1;32m\][\u@\h\[\033[1;33m\] \W\[\033[1;32m\]]\$\[\033[00m\] '
+		MAIN_COLOR1=$GREEN
+		DIR_COLOR=$YELLOW
+		USER_DISPLAY='\u@'
 	fi
+PS1="\[${MAIN_COLOR1}\][$USER_DISPLAY\h\[${DIR_COLOR}\] \W\[${MAIN_COLOR1}\]] "'\$'"\[${NOCOLOR}\] "
+
 
 #######################################################
 # MACHINE SPECIFIC ALIASES
