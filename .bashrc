@@ -40,7 +40,7 @@ if [[ $iatest > 0 ]]; then bind "set completion-ignore-case on"; fi
 
 # Set the default editor
 export EDITOR=nano
-export VISUAL=nano
+export VISUAL=xed
 alias nano='nano -c'
 alias snano='sudo nano'
 
@@ -82,6 +82,9 @@ alias asf='~/ASF/ArchiSteamFarm'
 
 # Reboot for Windows for 1 session
 alias winreboot='sudo grub-editenv /boot/grub/grubenv set next_entry="Windows 10"'
+
+# Turn on PC
+alias wakepc='wol 74:d4:35:eb:f6:7e'
 
 #######################################################
 # GENERAL ALIASES
@@ -249,4 +252,13 @@ up ()
 		d=..
 	fi
 	cd $d
+}
+
+editbash()
+{
+	if [[ -f /usr/bin/xed ]]; then
+		$VISUAL ~/.bashrc
+	else
+		$EDITOR ~/.bashrc
+	fi
 }
