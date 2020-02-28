@@ -58,36 +58,36 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 #######################################################
 
 # Define colors
-	BLACK="\033[1;30m"
-	RED="\033[1;31m"
-	GREEN="\033[1;32m"
-	YELLOW="\033[1;33m"
-	BLUE="\033[1;34m"
-	MAGENTA="\033[1;35m"
-	CYAN="\033[1;36m"
-	WHITE="\033[1;37m"
+	gray="\033[1;30m"
+	red="\033[1;31m"
+	green="\033[1;32m"
+	yellow="\033[1;33m"
+	blue="\033[1;34m"
+	magenta="\033[1;35m"
+	cyan="\033[1;36m"
+	white="\033[1;37m"
 
-	LIGHTGRAY="\033[0;30m"
-	LIGHTRED="\033[0;31m"
-	LIGHTGREEN="\033[0;32m"
-	LIGHTYELLOW="\033[0;33m"
-	LIGHTBLUE="\033[0;34m"
-	LIGHTMAGENTA="\033[0;35m"
-	LIGHTCYAN="\033[0;36m"
-	WHITE="\033[0;37m"
+	lightgray="\033[0;30m"
+	lightred="\033[0;31m"
+	lightgreen="\033[0;32m"
+	lightyellow="\033[0;33m"
+	lightblue="\033[0;34m"
+	lightmagenta="\033[0;35m"
+	lightcyan="\033[0;36m"
+	white="\033[0;37m"
 
-	NOCOLOR="\033[0m"
+	nocolor="\033[0m"
 
 # Color bash prompt depending on user
 	if [[ ${EUID} == 0 ]] ; then # if user is root
-		MAIN_COLOR1=$RED
-		DIR_COLOR=$CYAN
+		prompt_color=$red
+		directory_color=$cyan
 	else
-		MAIN_COLOR1=$GREEN
-		DIR_COLOR=$YELLOW
-		USER_DISPLAY='\u@'
+		prompt_color=$green
+		directory_color=$yellow
+		user_display='\u@'
 	fi
-PS1="\[${MAIN_COLOR1}\][$USER_DISPLAY\h\[${DIR_COLOR}\] \W\[${MAIN_COLOR1}\]] "'\$'"\[${NOCOLOR}\] "
+PS1="\[${prompt_color}\][$user_display\h\[${directory_color}\] \W\[${prompt_color}\]] "'\$'"\[${nocolor}\] "
 
 
 #######################################################
@@ -286,4 +286,9 @@ editbash()
 	else
 		$EDITOR ~/.bashrc
 	fi
+}
+
+getnewbash()
+{
+	wget https://raw.githubusercontent.com/ArtemSmaznov/bash/master/.bashrc -O ~/.bashrc
 }
