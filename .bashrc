@@ -80,15 +80,15 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Color bash prompt depending on user
 	if [[ ${EUID} == 0 ]] ; then # if user is root
-		prompt_color=$red
-		directory_color=$cyan
+		prompt_color=$lightred
+		directory_color=$lightcyan
 	else
-		prompt_color=$green
-		directory_color=$yellow
+		prompt_color=$lightgreen
+		directory_color=$lightyellow
 		user_display='\u@'
 	fi
-PS1="\[${prompt_color}\][$user_display\h\[${directory_color}\] \W\[${prompt_color}\]] "'\$'"\[${nocolor}\] "
-
+PS1="\[${prompt_color}\]$user_display\h\[${prompt_color}\] [\[${directory_color}\] \w \[${prompt_color}\]]: \n\[${prompt_color}\]"'\$'"\[${nocolor}\] "
+#PS1="\[${prompt_color}\][$user_display\h\[${directory_color}\] \W\[${prompt_color}\]] "'\$'"\[${nocolor}\] "
 
 #######################################################
 # MACHINE SPECIFIC ALIASES
@@ -199,7 +199,7 @@ alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' 
 #######################################################
 
 # Extracts any archive(s) (if unp isn't installed)
-extract () {
+ex () {
 	for archive in $*; do
 		if [ -f $archive ] ; then
 			case $archive in
