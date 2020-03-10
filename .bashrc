@@ -179,9 +179,11 @@ alias openports='netstat -nape --inet'
 #####   SYSTEM   #####
 ######################
 
-# Alias's for safe and forced reboots
-alias rebootsafe='sudo shutdown -r now'
-alias rebootforce='sudo shutdown -r -n now'
+# Alias's for power management
+alias reboot='sudo shutdown -r now'
+alias forcereboot='sudo shutdown -r -n now'
+alias shutdown='sudo shutdown -P'
+alias suspend='sudo systemctl suspend'
 
 # Alias's to show disk space and space used in a folder
 alias diskspace="du -S | sort -n -r |more"
