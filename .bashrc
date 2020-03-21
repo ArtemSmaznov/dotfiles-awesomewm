@@ -302,3 +302,8 @@ getnewbash()
 {
 	wget https://raw.githubusercontent.com/ArtemSmaznov/bash/master/.bashrc -O ~/.bashrc
 }
+
+getnewsshconfig()
+{
+	wget https://raw.githubusercontent.com/ArtemSmaznov/.ssh/master/config?token=AHSTYODWLUAPFS452MPAIXS6K36AW -O ~/.ssh/config
+}
