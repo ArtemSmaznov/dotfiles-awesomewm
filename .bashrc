@@ -305,5 +305,10 @@ getnewbash()
 
 getnewsshconfig()
 {
-	wget https://raw.githubusercontent.com/ArtemSmaznov/.ssh/master/config?token=AHSTYODWLUAPFS452MPAIXS6K36AW -O ~/.ssh/config
+	mkdir tmp
+	cd tmp
+	git clone git@github.com:ArtemSmaznov/.ssh.git
+	mv .ssh/config ~/.ssh/config
+	cd ../
+	rm -r tmp
 }
