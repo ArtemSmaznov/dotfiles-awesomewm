@@ -310,5 +310,5 @@ getnewsshconfig()
 	git clone git@github.com:ArtemSmaznov/.ssh.git
 	mv .ssh/config ~/.ssh/config
 	cd ../
-	rm -r tmp
+	yes | rm -r tmp
 }
