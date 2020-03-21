@@ -87,8 +87,15 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 		directory_color=$lightyellow
 		user_display='\u@'
 	fi
-PS1="\[${prompt_color}\]$user_display\h\[${prompt_color}\] [\[${directory_color}\] \w \[${prompt_color}\]]: \n\[${prompt_color}\]"'\$'"\[${nocolor}\] "
-#PS1="\[${prompt_color}\][$user_display\h\[${directory_color}\] \W\[${prompt_color}\]] "'\$'"\[${nocolor}\] "
+
+git_color=$lightcyan
+
+hostPart="\[${prompt_color}\]$user_display\h\[${prompt_color}\]"
+workingDirectoryPart="\[${directory_color}\]\w\[${prompt_color}\]"
+signPart="\[${prompt_color}\]"'\$'"\[${nocolor}\]"
+gitBranchPart="\[${git_color}\]\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\[${nocolor}\]"
+
+PS1="$hostPart [ $workingDirectoryPart ]: $gitBranchPart\n $signPart "
 
 #######################################################
 # MACHINE SPECIFIC ALIASES
