@@ -116,8 +116,8 @@ alias asf='~/ASF/ArchiSteamFarm'
 alias winreboot='sudo grub-editenv /boot/grub/grubenv set next_entry="Windows 10"'
 
 # Turn on PC
-alias wakepc='wol 74:d4:35:eb:f6:7e'
-alias wakelaptop='wol 20:89:84:67:8b:04'
+alias pcwake='wol 74:d4:35:eb:f6:7e'
+alias laptopwake='wol 20:89:84:67:8b:04'
 
 #######################################################
 # GENERAL ALIASES
