@@ -12,7 +12,7 @@ local tags = {
 		screen = 1
 	},
 	{
-		icon = icons.games,
+		icon = icons.controller,
 		type = 'game',
 		default_app = 'steam-runtime',
 		screen = 1
