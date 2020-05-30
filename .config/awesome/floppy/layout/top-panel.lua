@@ -291,6 +291,7 @@ local TopPanel = function(s, offset)
 
 
 	s.tray_toggler  = require('widget.tray-toggler')
+	s.keyboard_layout = require('widget.keyboard-layout')
 	s.updater 		= require('widget.package-updater')()
 	s.screen_rec 	= require('widget.screen-recorder')()
 	s.music       	= require('widget.music')()
@@ -318,6 +319,7 @@ local TopPanel = function(s, offset)
 				widget = wibox.container.margin
 			},
 			s.tray_toggler,
+			s.keyboard_layout,
 			s.updater,
 			s.screen_rec,
 			s.music,

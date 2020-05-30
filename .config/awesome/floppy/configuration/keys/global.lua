@@ -8,11 +8,25 @@ local hotkeys_popup = require('awful.hotkeys_popup').widget
 local modkey = require('configuration.keys.mod').modKey
 local altkey = require('configuration.keys.mod').altKey
 local apps = require('configuration.apps')
+local keyboard_layout = require("widget.keyboard-layout.kbdcfg")
 
 -- Key bindings
 local globalKeys = awful.util.table.join(
 
-    -- Hotkeys
+		-- Hotkeys
+
+		-- Shift-Alt to change keyboard layout
+    awful.key(
+				{"Shift"},
+				"Alt_L",
+				function () keyboard_layout.switch_next() end
+		),
+    -- Alt-Shift to change keyboard layout
+    awful.key(
+				{altkey},
+				"Shift_L",
+				function () keyboard_layout.switch_next() end
+		),
     awful.key(
         {modkey}, 
         'F1', 
