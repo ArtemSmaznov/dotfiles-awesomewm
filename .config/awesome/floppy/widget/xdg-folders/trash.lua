@@ -1,18 +1,15 @@
 local wibox = require('wibox')
 local awful = require('awful')
-local naughty = require('naughty')
 local gears = require('gears')
+local icon = require('theme.icons')
 
 local clickable_container = require('widget.clickable-container')
 local dpi = require('beautiful').xresources.apply_dpi
 
-local config_dir = gears.filesystem.get_configuration_dir()
-local widget_icon_dir = config_dir .. 'widget/xdg-folders/icons/'
-
 local trash_widget = wibox.widget {
 	{
 		id = 'trash_icon',
-		image = widget_icon_dir .. 'user-trash-empty' .. '.svg',
+		image = icon.trash,
 		resize = true,
 		widget = wibox.widget.imagebox
 	},
@@ -24,7 +21,7 @@ local trash_menu = awful.menu({
 		{
 			"Open trash",
 			function() awful.spawn.easy_async_with_shell("gio open trash:///", function(stdout) end, 1) end,
-			widget_icon_dir .. 'open-folder' .. '.svg'
+			icon.open_folder
 		},
 		{
 			"Delete forever", 
@@ -32,15 +29,15 @@ local trash_menu = awful.menu({
 				{
 					'Yes',
 					function() awful.spawn.easy_async_with_shell("gio trash --empty", function(stdout) end, 1) end,
-					widget_icon_dir .. 'yes' .. '.svg'
+					icon.yes
 				},
 				{
 					'No',
 					'',
-					widget_icon_dir .. 'no' .. '.svg'
+					icon.no
 				}
 			},
-			widget_icon_dir .. 'user-trash-empty' .. '.svg'
+			icon.trash
 		},
  
  }
@@ -96,7 +93,7 @@ trash_button:buttons(
 local check_trash_list = function()
 	awful.spawn.easy_async_with_shell('gio list trash:/// | wc -l', function(stdout) 
 		if tonumber(stdout) > 0 then
-			trash_widget.trash_icon:set_image(widget_icon_dir .. 'user-trash-full' .. '.svg')
+			trash_widget.trash_icon:set_image(icon.trash_full)
 
 			awful.spawn.easy_async_with_shell('gio list trash:///', function(stdout) 
 
@@ -106,7 +103,7 @@ local check_trash_list = function()
 
 
 		else
-			trash_widget.trash_icon:set_image(widget_icon_dir .. 'user-trash-empty' .. '.svg')
+			trash_widget.trash_icon:set_image(icon.trash)
 
 			trash_tooltip.markup = 'Trash empty'
 

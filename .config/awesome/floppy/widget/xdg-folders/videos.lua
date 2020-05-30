@@ -1,17 +1,15 @@
 local awful = require('awful')
 local wibox = require('wibox')
 local gears = require('gears')
+local icon = require('theme.icons')
 
 local clickable_container = require('widget.clickable-container')
 local dpi = require('beautiful').xresources.apply_dpi
 
-local config_dir = gears.filesystem.get_configuration_dir()
-local widget_icon_dir = config_dir .. 'widget/xdg-folders/icons/'
-
 local vid_widget =
 	wibox.widget {
 	{
-		image = widget_icon_dir .. 'folder-videos' .. '.svg',
+		image = icon.videos_folder,
 		widget = wibox.widget.imagebox,
 		resize = true
 	},
@@ -21,7 +19,7 @@ local vid_widget =
 local videos_button = wibox.widget {
 	{
 		vid_widget,
-		margins = dpi(10),
+		margins = dpi(5),
 		widget = wibox.container.margin
 	},
 	widget = clickable_container

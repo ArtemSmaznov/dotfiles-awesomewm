@@ -1,17 +1,15 @@
 local wibox = require('wibox')
 local awful = require('awful')
-local naughty = require('naughty')
 local gears = require('gears')
+local icon = require('theme.icons')
 
 local clickable_container = require('widget.clickable-container')
 local dpi = require('beautiful').xresources.apply_dpi
 
-local config_dir = gears.filesystem.get_configuration_dir()
-local widget_icon_dir = config_dir .. 'widget/xdg-folders/icons/'
 
 local dl_widget = wibox.widget {
 	{
-		image = widget_icon_dir .. 'folder-download' .. '.svg',
+		image = icon.downloads_folder,
 		resize = true,
 		widget = wibox.widget.imagebox
 	},
@@ -21,7 +19,7 @@ local dl_widget = wibox.widget {
 local downloads_button = wibox.widget {
 	{
 		dl_widget,
-		margins = dpi(10),
+		margins = dpi(5),
 		widget = wibox.container.margin
 	},
 	widget = clickable_container

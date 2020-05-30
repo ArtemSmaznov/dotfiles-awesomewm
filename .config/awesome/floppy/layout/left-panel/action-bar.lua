@@ -58,14 +58,24 @@ return function(s, panel, action_bar_width)
 		end
 	)
 
+	local separator =  wibox.widget {
+		orientation = 'horizontal',
+		forced_height = dpi(1),
+		span_ratio = 0.55,
+		widget = wibox.widget.separator
+	}
+
 	return wibox.widget {
 		id = 'action_bar',
 		layout = wibox.layout.align.vertical,
 		forced_width = action_bar_width,
 		{
 			require('widget.search-apps')(),
+			separator,
 			tag_list(s),
+			separator,
 			require("widget.xdg-folders"),
+			separator,
 			layout = wibox.layout.fixed.vertical,
 		},
 		nil,
