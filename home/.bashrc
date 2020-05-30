@@ -300,7 +300,7 @@ editbash()
 
 getnewbash()
 {
-	wget https://raw.githubusercontent.com/ArtemSmaznov/bash/master/.bashrc -O ~/.bashrc
+	wget https://raw.githubusercontent.com/ArtemSmaznov/dotfiles/master/home/.bashrc -O ~/.bashrc
 }
 
 getnewsshconfig()
