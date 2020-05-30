@@ -38,6 +38,7 @@ local locked_tag = nil
 local locker = function(s)
 
 	local lockscreen = wibox {
+		screen = s,
 		visible = false,
 		ontop = true,
 		type = "splash",
@@ -125,12 +126,12 @@ local locker = function(s)
 	)
 	
 	local time = wibox.widget.textclock(
-		'<span font="SF Pro Display Bold 56">%H:%M</span>',
+		'<span font="SF Pro Display Bold 56">%l:%M %p</span>',
 		1
 	)
 
 	local time_shadow = wibox.widget.textclock(
-		'<span foreground="#00000066" font="SF Pro Display Bold 56">%H:%M</span>',
+		'<span foreground="#00000066" font="SF Pro Display Bold 56">%l:%M %p</span>',
 		1
 	)
 
@@ -222,6 +223,7 @@ local locker = function(s)
 
 		local day = os.date('%d')
 		local month = os.date('%B')
+		local year = os.date('%Y')
 
 		local first_digit = string.sub(day, 0, 1) 
 		local last_digit = string.sub(day, -1) 
@@ -242,13 +244,14 @@ local locker = function(s)
 
 		date_val.day = day
 		date_val.month = month
+		date_val.year = year
 		date_val.ordinal= ordinal
 
 		return date_val
 	end
 
 	local date = wibox.widget {
-		markup = date_value().day .. date_value().ordinal .. ' of ' .. date_value().month,
+		markup = date_value().day .. date_value().ordinal .. ' of ' .. date_value().month .. ', ' .. date_value().year,
 		font = 'SF Pro Display Bold 20',
 		align = 'center',
 		valign = 'center',
@@ -257,7 +260,7 @@ local locker = function(s)
 
 	local date_shadow = wibox.widget {
 		markup = "<span foreground='#00000066'>" .. date_value().day .. date_value().ordinal .. " of " .. 
-			date_value().month .. "</span>",
+		date_value().month .. ', ' .. date_value().year .. "</span>",
 		font = 'SF Pro Display Bold 20',
 		align = 'center',
 		valign = 'center',
