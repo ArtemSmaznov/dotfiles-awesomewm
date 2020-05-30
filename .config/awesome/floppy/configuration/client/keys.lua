@@ -120,12 +120,29 @@ local clientKeys =
 
 	-- Screen management
 	awful.key(
+		{modkey, 'Shift'},
+		'Left',
+		function(c)
+			c:move_to_screen(2)
+		end,
+		{description = 'move window to left screen', group = 'client'}
+	),
+	awful.key(
+		{modkey, 'Shift'},
+		'Right',
+		function(c)
+			c:move_to_screen(1)
+		end,
+		{description = 'move window to right screen', group = 'client'}
+	),
+	awful.key(
 		{modkey},
 		'o',
-		awful.client.movetoscreen,
-		{description = 'move window to next screen', group = 'client'}
+		function(c)
+			c:move_to_screen()
+		end,
+		{description = 'move window to different screen', group = 'client'}
 	),
-	
 	-- move client position
 	awful.key(
 		{modkey},

@@ -6,7 +6,10 @@
 --]]
 local awful = require('awful')
 
-local kbdcfg = require("widget.keyboard-layout.kbdcfg")({type = "tui"})
+local kbdcfg = require("widget.keyboard-layout.kbdcfg")({
+	type = "tui",
+	remember_layout = true
+})
 
 -- local kbdcfg = keyboard_layout({type = "tui"})
 
