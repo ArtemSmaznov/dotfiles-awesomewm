@@ -1,5 +1,11 @@
-# Bash
+# Setup
 My Bash Config
 
-# Setup
-wget https://raw.githubusercontent.com/ArtemSmaznov/bash/master/.bashrc -O ~/.bashrc
+## Bash
+wget https://raw.githubusercontent.com/ArtemSmaznov/dotfiles/master/.bashrc -O ~/.bashrc
+
+## AwesomeWM
+
+### Dependancies
+
+### Setup
