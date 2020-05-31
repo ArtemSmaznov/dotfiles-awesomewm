@@ -714,6 +714,7 @@ end
 -- This lockscreen is for the extra/multi monitor
 local locker_ext = function(s)
 	local extended_lockscreen = wibox {
+		screen = s,
 		visible = false,
 		ontop = true,
 		ontype = 'true',
