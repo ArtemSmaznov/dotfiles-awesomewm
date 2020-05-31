@@ -65,15 +65,6 @@ return function(s, panel, action_bar_width)
 		widget = wibox.widget.separator
 	}
 
-	s.systray = wibox.widget {
-		visible = true,
-		base_size = dpi(30),
-		horizontal = false,
-		screen = 'primary',
-		widget = wibox.widget.systray
-	}
-	s.tray_toggler  = require('widget.tray-toggler')
-
 	return wibox.widget {
 
 		id = 'action_bar',
@@ -90,12 +81,7 @@ return function(s, panel, action_bar_width)
 		},
 		nil,
 		{
-			{
-				s.systray,
-				margins = dpi(5),
-				widget = wibox.container.margin
-			},
-			s.tray_toggler,
+			require('widget.system-tray')(s, action_bar_width),
 			separator,
 			home_button,
 			layout = wibox.layout.fixed.vertical,
