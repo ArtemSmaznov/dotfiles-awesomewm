@@ -18,8 +18,6 @@ return {
 	sandbox 				= themePath .. '64x64@2x/apps/' 			.. 'preferences-desktop-remote-desktop.svg',
 	development 		= dir .. 'tag-list/' .. 'development.svg',
 	social					= dir .. 'tag-list/' .. 'social.svg',
-	menu 						= dir .. 'tag-list/' .. 'menu.svg',
-	close_small 		= dir .. 'tag-list/' .. 'close-small.svg',
 
 	-- Places
 	home_folder 					= themePath .. '64x64@2x/places/' .. 'user-blue-home.svg',
@@ -56,6 +54,7 @@ return {
 	batt_discharging	= dir .. 'battery-discharge.svg',
 	toggled_on 				= dir .. 'toggled-on.svg',
 	toggled_off				= dir .. 'toggled-off.svg',
+	gear							= themePath .. '64x64@2x/categories/' .. 'utilities-tweak-tool.svg',
 	yes								= themePath .. '24x24@2x/actions/' .. 'dialog-yes.svg',
 	no								= themePath .. '24x24@2x/actions/' .. 'dialog-no.svg',
 	maximize					=	themePath .. '24x24@2x/actions/' .. 'window-new.svg',

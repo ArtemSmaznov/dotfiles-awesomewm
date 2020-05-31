@@ -17,7 +17,11 @@ return function(s, action_bar_width)
 		widget = wibox.container.margin
 	}
 
-	s.tray_toggler  = require('widget.tray-toggler')
+	s.tray_toggler  = wibox.widget {
+		require('widget.tray-toggler'),
+		direction = 'east',
+		widget = wibox.container.rotate
+	}
 
 	return wibox.widget {
 		id = 'system_tray',
