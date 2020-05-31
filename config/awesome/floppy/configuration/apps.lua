@@ -38,7 +38,7 @@ return {
 	-- auto-start.lua module will start these
 
 	run_on_start_up = {
-
+		
 		'picom -b --experimental-backends --dbus --config ' .. 
 		config_dir .. '/configuration/picom.conf',   																			-- Compositor
 
@@ -54,9 +54,16 @@ return {
 		[[
 		xidlehook --not-when-fullscreen --not-when-audio --timer 600 \
 		"awesome-client 'awesome.emit_signal(\"module::lockscreen_show\")'" ""
-		]]																														-- Auto lock timer 
+		]],																														-- Auto lock timer 
 
 		-- You can add more start-up applications here
+		'terminator',
+		'redshift-gtk',
+		'/opt/piavpn/bin/pia-client --quiet',
+		'ckb-next -b',
+		-- '/usr/bin/steam-runtime %U',
+		-- 'shutter',
+		'google-chrome-stable',
 	},
 
 	-- List of binaries/shell scripts that will execute a certain task
