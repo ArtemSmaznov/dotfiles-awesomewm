@@ -10,6 +10,7 @@ local titlebar_theme = "stoplight"
 local titlebar_icon_path = theme_dir .. "/icons/titlebar/" .. titlebar_theme .. '/'
 local tip = titlebar_icon_path
 
+local icon = require('theme.icons')
 
 local theme = {}
 theme.icons = theme_dir .. '/icons/'
@@ -52,7 +53,7 @@ local awesome_overrides = function(theme)
 	-- System tray
 
 	theme.bg_systray = theme.background
-	theme.systray_icon_spacing = dpi(16)
+	theme.systray_icon_spacing = dpi(12)
 
 	-- Titlebar
 	

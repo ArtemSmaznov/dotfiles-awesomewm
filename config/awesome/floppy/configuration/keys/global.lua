@@ -420,8 +420,8 @@ local globalKeys = awful.util.table.join(
         {description = "open system monitor", group = 'launcher'}
 		),	
     awful.key(
-        {altkey}, 
-        'space',
+        {modkey}, 
+        'r',
         function()
             local focused = awful.screen.focused()
 
@@ -438,8 +438,8 @@ local globalKeys = awful.util.table.join(
         {description = "open application drawer", group = 'launcher'}
     ),
     awful.key(
-        {modkey},
-        'r',
+        {altkey},
+        'space',
         function()
             local focused = awful.screen.focused()
 

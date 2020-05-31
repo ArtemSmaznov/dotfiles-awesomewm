@@ -1,47 +1,43 @@
 -- Icons directory
+local iconsTheme = 'Papirus-Dark'
+
+local themePath = '/usr/share/icons/' .. iconsTheme .. '/'
 local dir = os.getenv('HOME') .. '/.config/awesome/theme/icons/'
-
-local sysTheme = 'Papirus-Dark'
-
-local themePath = '/usr/share/icons/' .. sysTheme .. '/'
-local sysPath = themePath .. '64x64@2x/'
-local sysPath48 = '/usr/share/icons/' .. sysTheme .. '/48x48@2x/'
-local placesPath = sysPath .. 'places/'
 
 return {
 
 	-- Tags
-	web_browser 		= sysPath .. 'categories/' .. 'chrome.svg',
-	text_editor			= sysPath .. 'categories/' .. 'code.svg',
-	file_manager 		= sysPath .. 'categories/' .. 'system-file-manager.svg',
-	multimedia 			= sysPath .. 'categories/' .. 'applications-multimedia.svg',
-	music 					= sysPath .. 'categories/' .. 'multimedia-audio-player.svg',
-	controller 			= sysPath .. 'categories/' .. 'sc-controller.svg',
-	sandbox 				= sysPath .. 'apps/' .. 'preferences-desktop-remote-desktop.svg',
-	terminal 				= sysPath .. 'categories/' .. 'terminal.svg',
-	graphics 				= sysPath .. 'categories/' .. 'gpaint.svg',
+	web_browser 		= themePath .. '64x64@2x/categories/' .. 'chrome.svg',
+	text_editor			= themePath .. '64x64@2x/categories/' .. 'code.svg',
+	file_manager 		= themePath .. '64x64@2x/categories/' .. 'system-file-manager.svg',
+	multimedia 			= themePath .. '64x64@2x/categories/' .. 'applications-multimedia.svg',
+	music 					= themePath .. '64x64@2x/categories/' .. 'multimedia-audio-player.svg',
+	controller 			= themePath .. '64x64@2x/categories/' .. 'sc-controller.svg',
+	terminal 				= themePath .. '64x64@2x/categories/' .. 'terminal.svg',
+	graphics 				= themePath .. '64x64@2x/categories/' .. 'gpaint.svg',
+	sandbox 				= themePath .. '64x64@2x/apps/' 			.. 'preferences-desktop-remote-desktop.svg',
 	development 		= dir .. 'tag-list/' .. 'development.svg',
 	social					= dir .. 'tag-list/' .. 'social.svg',
 	menu 						= dir .. 'tag-list/' .. 'menu.svg',
 	close_small 		= dir .. 'tag-list/' .. 'close-small.svg',
 
 	-- Places
-	home_folder 					= placesPath .. 'user-blue-home.svg',
-	favorites_folder 			= placesPath .. 'folder-blue-favorites.svg',
-	documents_folder 			= placesPath .. 'folder-blue-documents.svg',
-	downloads_folder 			= placesPath .. 'folder-blue-download.svg',
-	pictures_folder 			= placesPath .. 'folder-blue-pictures.svg',
-	videos_folder 				= placesPath .. 'folder-blue-videos.svg',
-	music_folder 					= placesPath .. 'folder-blue-music.svg',
-	games_folder 					= placesPath .. 'folder-blue-games.svg',
-	google_drive_folder 	= placesPath .. 'folder-blue-google-drive.svg',
-	git_folder 						= placesPath .. 'folder-blue-git.svg',
-	open_folder 						= placesPath .. 'folder-blue-open.svg',
-	trash 								= sysPath48	..	'status/' .. 'user-trash.svg',
-	trash_full 								= sysPath48	..	'status/' .. 'user-trash-full.svg',
+	home_folder 					= themePath .. '64x64@2x/places/' .. 'user-blue-home.svg',
+	favorites_folder 			= themePath .. '64x64@2x/places/' .. 'folder-blue-favorites.svg',
+	documents_folder 			= themePath .. '64x64@2x/places/' .. 'folder-blue-documents.svg',
+	downloads_folder 			= themePath .. '64x64@2x/places/' .. 'folder-blue-download.svg',
+	pictures_folder 			= themePath .. '64x64@2x/places/' .. 'folder-blue-pictures.svg',
+	videos_folder 				= themePath .. '64x64@2x/places/' .. 'folder-blue-videos.svg',
+	music_folder 					= themePath .. '64x64@2x/places/' .. 'folder-blue-music.svg',
+	games_folder 					= themePath .. '64x64@2x/places/' .. 'folder-blue-games.svg',
+	google_drive_folder 	= themePath .. '64x64@2x/places/' .. 'folder-blue-google-drive.svg',
+	git_folder 						= themePath .. '64x64@2x/places/' .. 'folder-blue-git.svg',
+	open_folder 					= themePath .. '64x64@2x/places/' .. 'folder-blue-open.svg',
+	trash 								= themePath	.. '48x48@2x/status/' .. 'user-trash.svg',
+	trash_full 						= themePath	.. '48x48@2x/status/' .. 'user-trash-full.svg',
 
 	-- Others/System UI
-	close 						= dir .. 'close.svg',
+	close 						= themePath .. '24x24@2x/actions/' .. 'window-close.svg',
 	logout						= dir .. 'logout.svg',
 	sleep 						= dir .. 'power-sleep.svg',
 	power 						= dir .. 'power.svg',
@@ -55,12 +51,14 @@ return {
 	memory 						= dir .. 'memory.svg',
 	harddisk 					= dir .. 'harddisk.svg',
 	thermometer 			= dir .. 'thermometer.svg',
-	plus 							= dir .. 'plus.svg',
+	plus 							= themePath .. '24x24@2x/actions/' .. 'window-maximize.svg',
 	batt_charging 		= dir .. 'battery-charge.svg',
 	batt_discharging	= dir .. 'battery-discharge.svg',
 	toggled_on 				= dir .. 'toggled-on.svg',
 	toggled_off				= dir .. 'toggled-off.svg',
 	yes								= themePath .. '24x24@2x/actions/' .. 'dialog-yes.svg',
 	no								= themePath .. '24x24@2x/actions/' .. 'dialog-no.svg',
+	maximize					=	themePath .. '24x24@2x/actions/' .. 'window-new.svg',
+	minimize					=	themePath .. '24x24@2x/actions/' .. 'window-minimize.svg',
 
 }

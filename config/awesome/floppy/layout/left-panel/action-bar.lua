@@ -4,7 +4,7 @@ local wibox = require('wibox')
 local gears = require('gears')
 
 local dpi = beautiful.xresources.apply_dpi
-local icons = require('theme.icons')
+local icon = require('theme.icons')
 
 local tag_list = require('widget.tag-list')
 local clickable_container = require('widget.clickable-container')
@@ -14,7 +14,7 @@ return function(s, panel, action_bar_width)
 	local menu_icon = wibox.widget {
 		{
 			id = 'menu_btn',
-			image = icons.menu,
+			image = icon.menu,
 			resize = true,
 			widget = wibox.widget.imagebox
 		},
@@ -47,14 +47,14 @@ return function(s, panel, action_bar_width)
 	panel:connect_signal(
 		'opened',
 		function()
-			menu_icon.menu_btn:set_image(gears.surface(icons.close_small))
+			menu_icon.menu_btn:set_image(gears.surface(icon.close_small))
 		end
 	)
 
 	panel:connect_signal(
 		'closed',
 		function()
-			menu_icon.menu_btn:set_image(gears.surface(icons.menu))
+			menu_icon.menu_btn:set_image(gears.surface(icon.menu))
 		end
 	)
 
@@ -79,6 +79,10 @@ return function(s, panel, action_bar_width)
 			layout = wibox.layout.fixed.vertical,
 		},
 		nil,
-		home_button
+		{
+			separator,
+			home_button,
+			layout = wibox.layout.fixed.vertical,
+		}
 	}
 end
