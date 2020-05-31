@@ -14,7 +14,7 @@ local clientKeys =
 	-- toggle fullscreen
 	awful.key(
 		{modkey},
-		'f',
+		'F11',
 		function(c)
 			-- Toggle fullscreen
 			c.fullscreen = not c.fullscreen
@@ -93,8 +93,8 @@ local clientKeys =
     ),
 	-- move floating client to center
 	awful.key(
-		{ modkey, "Shift" }, 
-		"c", 
+		{ modkey, 'Shift' }, 
+		'c',
 		function(c)
 			local focused = awful.screen.focused()
 
@@ -107,8 +107,8 @@ local clientKeys =
 
 	-- toggle client floating mode
 	awful.key(
-		{modkey, 'Shift'},
-		'c',
+		{modkey},
+		'f',
 		function(c)
 			c.fullscreen = false
 			c.maximized = false

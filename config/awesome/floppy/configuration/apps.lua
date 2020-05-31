@@ -57,13 +57,13 @@ return {
 		]],																														-- Auto lock timer 
 
 		-- You can add more start-up applications here
-		'terminator',
-		'redshift-gtk',
 		'/opt/piavpn/bin/pia-client --quiet',
+		'redshift-gtk',
 		'ckb-next -b',
-		-- '/usr/bin/steam-runtime %U',
 		-- 'shutter',
+		'terminator',
 		'google-chrome-stable',
+		-- '/usr/bin/steam-runtime %U',
 	},
 
 	-- List of binaries/shell scripts that will execute a certain task
