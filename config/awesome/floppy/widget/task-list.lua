@@ -72,7 +72,7 @@ local function list_update(w, buttons, label, data, objects)
 						resize = true,
 						widget = wibox.widget.imagebox
 					},
-					margins = dpi(8),
+					-- margins = dpi(8),
 					widget = wibox.container.margin
 				},
 				widget = clickable_container

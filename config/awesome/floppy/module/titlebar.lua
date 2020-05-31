@@ -107,13 +107,7 @@ client.connect_signal("request::titlebars", function(c)
 			-- Creates top or bottom titlebars
 			awful.titlebar(c, {position = pos, bg = bg, size = size or titlebar_size}) : setup {
 				{
-					{
-						awful.titlebar.widget.closebutton(c),
-						awful.titlebar.widget.maximizedbutton(c),
-						awful.titlebar.widget.minimizebutton (c),
-						spacing = dpi(7),
-						layout  = wibox.layout.fixed.horizontal
-					},
+					awful.titlebar.widget.floatingbutton (c),
 					margins = dpi(10),
 					widget = wibox.container.margin
 				},
@@ -122,7 +116,13 @@ client.connect_signal("request::titlebars", function(c)
 					layout = wibox.layout.flex.horizontal
 				},
 				{
-					awful.titlebar.widget.floatingbutton (c),
+					{
+						awful.titlebar.widget.minimizebutton (c),
+						awful.titlebar.widget.maximizedbutton(c),
+						awful.titlebar.widget.closebutton(c),
+						spacing = dpi(7),
+						layout  = wibox.layout.fixed.horizontal
+					},
 					margins = dpi(10),
 					widget = wibox.container.margin
 				},
@@ -203,7 +203,7 @@ client.connect_signal("request::titlebars", function(c)
 	else
 
 		-- Default titlebar
-		decorate_titlebar(c, 'left', beautiful.background, titlebar_size)
+		decorate_titlebar(c, 'top', beautiful.background, titlebar_size)
 
 	end
 

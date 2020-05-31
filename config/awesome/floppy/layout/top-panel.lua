@@ -60,7 +60,7 @@ local TopPanel = function(s, offset)
 						resize = true,
 						widget = wibox.widget.imagebox
 					},
-					margins = dpi(4),
+					-- margins = dpi(4),
 					widget = wibox.container.margin
 				},
 				widget = clickable_container
@@ -283,7 +283,7 @@ local TopPanel = function(s, offset)
 
 	s.systray = wibox.widget {
 		visible = false,
-		base_size = dpi(20),
+		base_size = dpi(30),
 		horizontal = true,
 		screen = 'primary',
 		widget = wibox.widget.systray
@@ -314,6 +314,7 @@ local TopPanel = function(s, offset)
 			layout = wibox.layout.fixed.horizontal,
 			spacing = dpi(5),
 			{
+				s.systray,
 				s.systray,
 				margins = dpi(5),
 				widget = wibox.container.margin
