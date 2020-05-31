@@ -80,6 +80,8 @@ return function(s, panel, action_bar_width)
 		},
 		nil,
 		{
+			require('widget.system-tray'),
+			require('widget.tray-toggler'),
 			separator,
 			home_button,
 			layout = wibox.layout.fixed.vertical,

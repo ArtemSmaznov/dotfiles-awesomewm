@@ -281,16 +281,6 @@ local TopPanel = function(s, offset)
 	)
 
 
-	s.systray = wibox.widget {
-		visible = false,
-		base_size = dpi(30),
-		horizontal = true,
-		screen = 'primary',
-		widget = wibox.widget.systray
-	}
-
-
-	s.tray_toggler  = require('widget.tray-toggler')
 	s.keyboard_layout = require('widget.keyboard-layout')
 	s.updater 		= require('widget.package-updater')()
 	s.screen_rec 	= require('widget.screen-recorder')()
@@ -308,18 +298,11 @@ local TopPanel = function(s, offset)
 			layout = wibox.layout.fixed.horizontal,
 			task_list(s),
 			s.add_button
-		}, 
+		},
 		s.clock_widget,
 		{
 			layout = wibox.layout.fixed.horizontal,
 			spacing = dpi(5),
-			{
-				s.systray,
-				s.systray,
-				margins = dpi(5),
-				widget = wibox.container.margin
-			},
-			s.tray_toggler,
 			s.keyboard_layout,
 			s.updater,
 			s.screen_rec,
