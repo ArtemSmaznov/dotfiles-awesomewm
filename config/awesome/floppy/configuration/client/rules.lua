@@ -140,7 +140,7 @@ ruled.client.connect_signal(
 					"Citra",
 					"SuperTuxKart"
 				},
-			name = { "Steam" }
+				name = { "Steam" }
 			},
 			properties = { 
 				tag = '2',
@@ -224,13 +224,14 @@ ruled.client.connect_signal(
 					"vlc",
 					"Spotify",
 					"Celluloid",
-
-				}
+				},
+				name = { "Google Play Music" }
 			},
 			properties = { 
 				tag = '5',
 				screen = 1,
 				switchtotag = true,
+				floating = true,
 				draw_backdrop = false
 			}
 		}
