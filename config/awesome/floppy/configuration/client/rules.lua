@@ -122,8 +122,8 @@ ruled.client.connect_signal(
 				}
 			},
 			properties = { 
-				tag = '1',
-				screen = 1,
+				-- tag = '1',
+				-- screen = 1,
 				maximized = true
 			}
 		}
@@ -173,7 +173,8 @@ ruled.client.connect_signal(
 			},
 			properties = { 
 				tag = '3',
-				screen = 1
+				screen = 1,
+				switchtotag = true,
 			}
 		}
 
@@ -185,7 +186,14 @@ ruled.client.connect_signal(
 				},
 			},
 			properties = { 
-				screen = 1
+				screen = 1,
+				draw_backdrop = false,
+				skip_decoration = false,
+				maximized = false,
+				hide_titlebars = false,
+				floating = true,
+				ontop = true,
+				placement = awful.placement.centered
 			}
 		}
 
@@ -203,7 +211,8 @@ ruled.client.connect_signal(
 			properties = { 
 				tag = '4',
 				screen = 1,
-				switchtotag = true
+				switchtotag = true,
+				floating = true,
 			}
 		}
 
@@ -214,7 +223,8 @@ ruled.client.connect_signal(
 				class = {
 					"vlc",
 					"Spotify",
-					"Celluloid"
+					"Celluloid",
+
 				}
 			},
 			properties = { 
@@ -232,12 +242,15 @@ ruled.client.connect_signal(
 				class = {
 					"Gimp-2.10",
 					"Inkscape",
-					"Flowblade"
+					"Flowblade",
+					"digikam",
 				}
 			},
 			properties = { 
 				tag = '6',
-				screen = 1
+				screen = 1,
+				maximized = true,
+				switchtotag = true,
 			}
 		}
 

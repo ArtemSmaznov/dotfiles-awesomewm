@@ -70,8 +70,8 @@ local tags = {
 
 tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
-		awful.layout.suit.max,
 		awful.layout.suit.tile,
+		awful.layout.suit.max,
 		awful.layout.suit.spiral.dwindle,
     })
 end)
@@ -84,7 +84,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			{
 				icon = tag.icon,
 				icon_only = true,
-				layout = awful.layout.suit.max,
+				layout = awful.layout.suit.tile,
 				gap_single_client = false,
 				gap = beautiful.useless_gap,
 				screen = s,
