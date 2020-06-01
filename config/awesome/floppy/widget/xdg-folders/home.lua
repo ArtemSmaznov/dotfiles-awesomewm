@@ -1,7 +1,7 @@
 local wibox = require('wibox')
 local awful = require('awful')
 local gears = require('gears')
-local icon = require('theme.icons')
+local icons = require('theme.icons')
 
 local clickable_container = require('widget.clickable-container')
 local dpi = require('beautiful').xresources.apply_dpi
@@ -9,7 +9,7 @@ local dpi = require('beautiful').xresources.apply_dpi
 
 local home_widget =	wibox.widget {
 	{
-		image = icon.home_folder,
+		image = icons.home_folder,
 		resize = true,
 		widget = wibox.widget.imagebox,
 	},

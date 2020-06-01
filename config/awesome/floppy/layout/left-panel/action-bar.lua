@@ -4,7 +4,7 @@ local wibox = require('wibox')
 local gears = require('gears')
 
 local dpi = beautiful.xresources.apply_dpi
-local icon = require('theme.icons')
+local icons = require('theme.icons')
 
 local tag_list = require('widget.tag-list')
 local clickable_container = require('widget.clickable-container')
@@ -14,7 +14,7 @@ return function(s, panel, action_bar_width)
 	local menu_icon = wibox.widget {
 		{
 			id = 'menu_btn',
-			image = icon.gear,
+			image = icons.gear,
 			resize = true,
 			widget = wibox.widget.imagebox
 		},
@@ -47,23 +47,16 @@ return function(s, panel, action_bar_width)
 	panel:connect_signal(
 		'opened',
 		function()
-			menu_icon.menu_btn:set_image(gears.surface(icon.close))
+			menu_icon.menu_btn:set_image(gears.surface(icons.close))
 		end
 	)
 
 	panel:connect_signal(
 		'closed',
 		function()
-			menu_icon.menu_btn:set_image(gears.surface(icon.gear))
+			menu_icon.menu_btn:set_image(gears.surface(icons.gear))
 		end
 	)
-
-	local separator =  wibox.widget {
-		orientation = 'horizontal',
-		forced_height = dpi(1),
-		span_ratio = 0.55,
-		widget = wibox.widget.separator
-	}
 
 	return wibox.widget {
 
@@ -72,17 +65,17 @@ return function(s, panel, action_bar_width)
 		forced_width = action_bar_width,
 		{
 			require('widget.search-apps')(),
-			separator,
+			require('widget.separator'),
 			tag_list(s),
-			separator,
+			require('widget.separator'),
 			require("widget.xdg-folders"),
-			separator,
+			require('widget.separator'),
 			layout = wibox.layout.fixed.vertical,
 		},
 		nil,
 		{
 			require('widget.system-tray')(s, action_bar_width),
-			separator,
+			require('widget.separator'),
 			home_button,
 			layout = wibox.layout.fixed.vertical,
 		}
