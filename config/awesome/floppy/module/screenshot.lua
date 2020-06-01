@@ -1,24 +1,26 @@
 local naughty = require('naughty')
 local awful = require('awful')
 
-local snap = function(mode)
+return function(mode)
 	local screenshot_dir = os.getenv('HOME') .. '/Pictures/Screenshots/'
 	local notif_message = 'Screenshot Captured!'
-	local file_name = os.date("%Y-%m-%d_%T") .. '.png'
-	local file_loc = screenshot_dir .. file_name
+	local file_loc = screenshot_dir .. os.date("%Y-%m-%d_%T") .. '.png'
 
-	local maim_command
 	if (mode == 'full') then
-		maim_command = "-u -m 1"
+		awful.spawn('maim -u -m 1 '.. file_loc)
 		notif_message = "Full screenshot saved and copied to clipboard!"
-	elseif (mode == 'window') then
-		maim_command = "-u -B -i $(xdotool getactivewindow) -m 1"
-		notif_message = "Current window screenshot saved and copied to clipboard!"
-	elseif (mode == 'area') then
-		maim_command = "-u -s -n -m 1"
-		notif_message = "Area screenshot saved and copied to clipboard!"
-	end
 
+	elseif (mode == 'window') then
+		awful.spawn.with_shell('maim -u -B -i $(xdotool getactivewindow) -m 1 '.. file_loc)
+		notif_message = "Current window screenshot saved and copied to clipboard!"
+
+	elseif (mode == 'area') then
+		awful.spawn('maim -u -s -n -m 1 '.. file_loc)
+		notif_message = "Area screenshot saved and copied to clipboard!"
+
+	else
+		notif_message = "Wrong Argument Used!"
+	end
 
 	local open_image = naughty.action {
 		name = 'Open',
@@ -59,8 +61,4 @@ local snap = function(mode)
 		actions = { open_image, open_folder, delete_image }
 	})
 
-	return awful.spawn('maim ' .. maim_command .. ' '.. file_loc)
 end
-
-return snap
-
