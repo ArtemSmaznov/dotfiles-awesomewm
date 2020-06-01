@@ -203,7 +203,7 @@ client.connect_signal("request::titlebars", function(c)
 	else
 
 		-- Default titlebar
-		decorate_titlebar(c, 'top', beautiful.background, titlebar_size)
+		decorate_titlebar(c, 'left', beautiful.background, titlebar_size)
 
 	end
 
