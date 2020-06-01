@@ -12,6 +12,7 @@ return {
 		ide													= 'code',
 		geme												= 'steam-runtime',
 		web_browser 									= 'google-chrome-stable',                        	        						-- Web browser
+		incognito_browser 									= 'google-chrome-stable --incognito',                        	        						-- Web browser
 		file_manager 									= 'nemo',                            	  	 	 					-- GUI File manager
 		network_manager 								= 'nm-connection-editor',												-- Network manager
 		bluetooth_manager 								= 'blueman-manager',													-- Bluetooth manager
