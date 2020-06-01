@@ -413,7 +413,15 @@ local globalKeys = awful.util.table.join(
         end,
         {description = "open default web browser", group = 'launcher'}
 		),
-		    awful.key(
+    awful.key(
+        {modkey}, 
+        'i',
+        function()
+            awful.spawn(apps.default.incognito_browser)
+        end,
+        {description = "open default web browser in incognito mode", group = 'launcher'}
+		),
+		awful.key(
         {modkey}, 
         'c',
         function()
