@@ -10,7 +10,7 @@ return {
 		terminal 										= 'terminator',																-- Terminal Emulator
 		text_editor 									= 'xed',                      	            						-- GUI Text Editor
 		ide													= 'code',
-		geme												= 'steam-runtime',
+		game												= 'steam-runtime',
 		web_browser 									= 'google-chrome-stable',                        	        						-- Web browser
 		incognito_browser 									= 'google-chrome-stable --incognito',                        	        						-- Web browser
 		file_manager 									= 'nemo',                            	  	 	 					-- GUI File manager
