@@ -581,7 +581,7 @@ for i = 1, 9 do
                 end
             end,
             descr_move
-        ),
+				),
         -- Toggle tag on focused client.
         awful.key(
             {modkey, 'Control', 'Shift'},
