@@ -313,7 +313,6 @@ local globalKeys = awful.util.table.join(
         "Print",
 				function ()
 					require('module.screenshot')('full')
-          -- awful.spawn.easy_async_with_shell(apps.bins.full_screenshot,function() end)
         end,
         {description = "fullscreen screenshot", group = 'Utility'}
     ),
@@ -322,7 +321,6 @@ local globalKeys = awful.util.table.join(
         'Print',
         function ()
 					require('module.screenshot')('area')
-					-- awful.spawn.easy_async_with_shell(apps.bins.area_screenshot,function() end)
         end,
         {description = "area/selected screenshot", group = 'Utility'}
     ),
