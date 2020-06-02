@@ -4,7 +4,8 @@ local awful = require('awful')
 return function(mode)
 	local screenshot_dir = os.getenv('HOME') .. '/Pictures/Screenshots/'
 	local notif_message = 'Screenshot Captured!'
-	local file_loc = screenshot_dir .. os.date("%Y-%m-%d_%T") .. '.png'
+	local file_loc = screenshot_dir .. os.date("%Y-%m-%d_%H-%M-%S") .. '.png'
+	-- local file_loc = screenshot_dir .. os.date("%Y-%m-%d_%T") .. '.png'
 
 	if (mode == 'full') then
 		awful.spawn('maim -u -m 1 '.. file_loc)
@@ -21,6 +22,8 @@ return function(mode)
 	else
 		notif_message = "Wrong Argument Used!"
 	end
+
+	awful.spawn('xclip -selection clipboard -t image/png -i ' .. file_loc)
 
 	local open_image = naughty.action {
 		name = 'Open',
