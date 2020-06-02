@@ -69,9 +69,6 @@ return {
 	-- List of binaries/shell scripts that will execute a certain task
 
 	bins = {
-		full_screenshot = bin_dir .. 'snap full',              					                    							-- Full Screenshot
-		area_screenshot = bin_dir .. 'snap area',			                                        							-- Area Selected Screenshot
-		window_screenshot = bin_dir .. 'snap window',			                                        							-- Area Selected Screenshot
 		update_profile  = bin_dir .. 'profile-image'																			-- Update profile picture
 	}
 }
