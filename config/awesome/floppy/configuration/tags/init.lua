@@ -9,49 +9,57 @@ local tags = {
 		icon = icons.web_browser,
 		type = 'chrome',
 		default_app = 'google-chrome-stable',
+		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
 		icon = icons.controller,
 		type = 'game',
 		default_app = 'steam-runtime',
+		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
 		icon = icons.text_editor,
 		type = 'code',
 		default_app = 'code',
+		layout = awful.layout.suit.max,
 		screen = 1
 	},
 	{
 		icon = icons.file_manager,
 		type = 'files',
 		default_app = 'nemo',
+		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
 		icon = icons.multimedia,
 		type = 'music',
 		default_app = 'vlc',
+		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
 		icon = icons.graphics,
 		type = 'art',
 		default_app = 'gimp-2.10',
+		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
 		icon = icons.sandbox,
 		type = 'virtualbox',
 		default_app = 'virtualbox',
+		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
 		icon = icons.terminal,
 		type = 'terminal',
 		default_app = 'terminator',
-		screen = 1
+		layout = awful.layout.suit.max,
+		screen = 2
 	},
 -- {
 	-- 	icon = icons.development,
@@ -72,19 +80,20 @@ tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
 		awful.layout.suit.tile,
 		awful.layout.suit.max,
-		awful.layout.suit.spiral.dwindle,
+		-- awful.layout.suit.spiral.dwindle,
+		awful.layout.suit.tile.bottom
     })
 end)
 
 
 screen.connect_signal("request::desktop_decoration", function(s)
-	for i, tag in pairs(tags) do
-		awful.tag.add(
+	for i, tag in pairs(tags) do	
+	awful.tag.add(
 			i,
 			{
 				icon = tag.icon,
 				icon_only = true,
-				layout = awful.layout.suit.tile,
+				layout = tag.layout,
 				gap_single_client = false,
 				gap = beautiful.useless_gap,
 				screen = s,

@@ -176,6 +176,7 @@ local awesome_overrides = function(theme)
 
 	theme.layout_max = theme.icons .. 'layouts/max.svg'
 	theme.layout_tile = theme.icons .. 'layouts/tile.svg'
+	theme.layout_tilebottom = theme.icons .. 'layouts/tilebottomw.png'
 	theme.layout_dwindle = theme.icons .. 'layouts/dwindle.svg'
 	theme.layout_floating = theme.icons .. 'layouts/floating.svg'
 	
