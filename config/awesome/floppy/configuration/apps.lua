@@ -13,7 +13,7 @@ return {
 		game											= 'steam-runtime',
 		web_browser 							= 'google-chrome-stable',                        	        						-- Web browser
 		incognito_browser 				= 'google-chrome-stable --incognito',                        	        						-- Web browser
-		file_manager 							= 'nemo',                            	  	 	 					-- GUI File manager
+		file_manager 							= 'dolphin',                            	  	 	 					-- GUI File manager
 		network_manager 					= 'nm-connection-editor',												-- Network manager
 		bluetooth_manager 				= 'blueman-manager',													-- Bluetooth manager
 		power_manager 						= 'xfce4-power-manager',												-- Power manager
@@ -21,6 +21,7 @@ return {
 		lock 											= 'awesome-client "awesome.emit_signal(\'module::lockscreen_show\')"',	-- Lockscreen
 		quake 										= 'kitty --name QuakeTerminal',       			    					-- Quake-like Terminal
 		graphics_editor						= 'gimp-2.10',
+		vm												= 'virtualbox',
 		
 		rofiglobal								= 'rofi -dpi ' .. screen.primary.dpi ..
 																' -show "Global Search" -modi "Global Search":' .. config_dir ..

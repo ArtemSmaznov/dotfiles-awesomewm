@@ -287,7 +287,7 @@ local TopPanel = function(s, offset)
 	s.music       	= require('widget.music')()
 	s.bluetooth   	= require('widget.bluetooth')()
 	s.network       = require('widget.network')()
-	s.battery     	= require('widget.battery')()
+	-- s.battery     	= require('widget.battery')()
 	s.r_dashboard 	= require('layout.right-panel.right-panel-opener')()
 
 
@@ -299,18 +299,19 @@ local TopPanel = function(s, offset)
 			task_list(s),
 			s.add_button
 		},
-		s.clock_widget,
+		nil,
 		{
 			layout = wibox.layout.fixed.horizontal,
 			spacing = dpi(5),
 			s.keyboard_layout,
-			s.updater,
+			-- s.updater,
 			s.screen_rec,
 			s.music,
-			s.bluetooth,
+			-- s.bluetooth,
 			s.network,
-			s.battery,
+			-- s.battery,
 			layout_box(s),
+			s.clock_widget,
 			s.r_dashboard
 		}
 	}

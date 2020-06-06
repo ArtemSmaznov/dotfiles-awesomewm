@@ -1,6 +1,7 @@
 local awful = require('awful')
 local gears = require('gears')
 local beautiful = require('beautiful')
+local apps = require('configuration.apps')
 
 local icons = require('theme.icons')
 
@@ -8,28 +9,28 @@ local tags = {
 	{
 		icon = icons.web_browser,
 		type = 'chrome',
-		default_app = 'google-chrome-stable',
+		default_app = apps.default.web_browser,
 		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
 		icon = icons.controller,
 		type = 'game',
-		default_app = 'steam-runtime',
+		default_app = apps.default.game,
 		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
 		icon = icons.text_editor,
 		type = 'code',
-		default_app = 'code',
+		default_app = apps.default.ide,
 		layout = awful.layout.suit.max,
 		screen = 1
 	},
 	{
 		icon = icons.file_manager,
 		type = 'files',
-		default_app = 'nemo',
+		default_app = apps.default.file_manager,
 		layout = awful.layout.suit.tile,
 		screen = 1
 	},
@@ -43,21 +44,21 @@ local tags = {
 	{
 		icon = icons.graphics,
 		type = 'art',
-		default_app = 'gimp-2.10',
+		default_app = apps.default.graphics_editor,
 		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
 		icon = icons.sandbox,
 		type = 'virtualbox',
-		default_app = 'virtualbox',
+		default_app = apps.default.vm,
 		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
 		icon = icons.terminal,
 		type = 'terminal',
-		default_app = 'terminator',
+		default_app = apps.default.terminal,
 		layout = awful.layout.suit.max,
 		screen = 2
 	},
