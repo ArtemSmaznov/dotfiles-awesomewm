@@ -429,6 +429,14 @@ local globalKeys = awful.util.table.join(
 		),
 		awful.key(
 			{modkey},
+			'v',
+			function()
+					awful.spawn(apps.default.video_player)
+			end,
+			{description = "open default Video Player", group = 'launcher'}
+	),
+		awful.key(
+			{modkey},
 			'g',
 			function()
 					awful.spawn(apps.default.graphics_editor)

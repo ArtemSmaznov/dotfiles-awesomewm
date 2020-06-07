@@ -9,11 +9,7 @@ local menubar = require("menubar")
 
 local hotkeys_popup = require('awful.hotkeys_popup').widget
 
-local terminal = apps.default.terminal
-local web_browser = apps.default.web_browser
-local file_manager = apps.default.file_manager
-local text_editor = apps.default.text_editor
-local editor_cmd = terminal .. " -e " .. (os.getenv("EDITOR") or "nano")
+local editor_cmd = apps.default.terminal .. " -e " .. (os.getenv("EDITOR") or "nano")
 
 local function is_module_available(name)
 	if package.loaded[name] then
@@ -59,22 +55,22 @@ awesome_menu = {
 local default_app_menu = {
 	{
 		"Terminal",
-		terminal,
+		apps.default.terminal,
 		menubar.utils.lookup_icon("utilities-terminal")
 	},
 	{
 		"Web browser",
-		web_browser,
+		apps.default.web_browser,
 		menubar.utils.lookup_icon("webbrowser-app")
 	},
 	{
 		"File Manager",
-		file_manager,
+		apps.default.file_manager,
 		menubar.utils.lookup_icon("system-file-manager")
 	},
 	{
 		"Text Editor",
-		text_editor,
+		apps.default.text_editor,
 		menubar.utils.lookup_icon("accessories-text-editor")
 	}
 }
