@@ -9,8 +9,8 @@ local function render_client(client, mode)
 	end
 
 	client.rendering_mode = mode
-	client.floating = false
-	client.maximized = false
+	-- client.floating = false
+	-- client.maximized = false
 	client.above = false
 	client.below = false
 	client.ontop = false
