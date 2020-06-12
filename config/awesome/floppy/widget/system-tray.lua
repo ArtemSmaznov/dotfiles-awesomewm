@@ -6,7 +6,7 @@ local dpi = beautiful.xresources.apply_dpi
 return function(s, action_bar_width)
 	
 	s.systray = wibox.widget {
-		visible = false,
+		visible = true,
 		base_size = action_bar_width,
 		horizontal = false,
 		screen = 'primary',

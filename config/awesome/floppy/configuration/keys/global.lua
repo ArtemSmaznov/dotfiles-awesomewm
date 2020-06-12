@@ -298,16 +298,16 @@ local globalKeys = awful.util.table.join(
         end,
         {description = 'dropdown application', group = 'launcher'}
     ),
-    awful.key(
-        {modkey},
-        'm',
-        function()
-            if awful.screen.focused().musicpop then
-                awesome.emit_signal('widget::music', 'keyboard')
-            end
-        end,
-        {description = "toggle music widget", group = 'launcher'}
-    ),
+    -- awful.key(
+    --     {modkey},
+    --     'm',
+    --     function()
+    --         if awful.screen.focused().musicpop then
+    --             awesome.emit_signal('widget::music', 'keyboard')
+    --         end
+    --     end,
+    --     {description = "toggle music widget", group = 'launcher'}
+    -- ),
     awful.key(
         { },
         "Print",

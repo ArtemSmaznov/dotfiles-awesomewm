@@ -17,7 +17,7 @@ local tags = {
 		icon = icons.controller,
 		type = 'game',
 		default_app = apps.default.game,
-		layout = awful.layout.suit.tile,
+		layout = awful.layout.suit.floating,
 		screen = 1
 	},
 	{
