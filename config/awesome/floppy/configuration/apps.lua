@@ -22,7 +22,8 @@ return {
 		bluetooth_manager 				= 'blueman-manager',													-- Bluetooth manager
 		power_manager 						= 'xfce4-power-manager',											-- Power manager
 		package_manager 					= 'pamac-manager',														-- GUI Package manager
-		lock 											= 'awesome-client "awesome.emit_signal(\'module::lockscreen_show\')"',	-- Lockscreen
+		-- lock 											= 'awesome-client "awesome.emit_signal(\'module::lockscreen_show\')"',	-- Lockscreen
+		lock 						= 'cinnamon-screensaver-command -l',	-- Lockscreen
 		quake 										= 'kitty --name QuakeTerminal',       			    					-- Quake-like Terminal
 
 		rofiglobal								= 'rofi -dpi ' .. screen.primary.dpi ..

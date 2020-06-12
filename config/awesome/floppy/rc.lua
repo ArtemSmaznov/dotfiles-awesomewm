@@ -42,7 +42,7 @@ require('module.menu')
 require('module.volume-osd')
 require('module.brightness-osd')
 require('module.dynamic-wallpaper')
-require('module.battery-notifier')
+-- require('module.battery-notifier')
 require('module.lockscreen')
 
 --  ========================================

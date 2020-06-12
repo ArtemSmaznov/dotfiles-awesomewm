@@ -29,85 +29,9 @@ ruled.client.connect_signal(
 				keys = client_keys,
 				buttons = client_buttons,
 				screen    = awful.screen.preferred,
-				placement = awful.placement.no_overlap + awful.placement.no_offscreen
+				placement = awful.placement.no_overlap + awful.placement.no_offscreen + awful.placement.centered
 			}
 		}
-
-		-- Dialogs
-		ruled.client.append_rule {
-			id         = "dialog",
-			rule_any   = { 
-				type  = { "dialog" },
-				class = { "Wicd-client.py", "calendar.google.com" }
-			},
-			properties = { 
-				titlebars_enabled = true,
-				floating = true,
-				above = true,
-				draw_backdrop = true,
-				skip_decoration = true,
-				shape = function(cr, width, height)
-							gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
-						end,
-				placement = awful.placement.centered
-			}
-		}
-
-		-- Modals
-		ruled.client.append_rule {
-			id         = "dialog",
-			rule_any   = { 
-				type = { "modal" }
-			},
-			properties = { 
-				titlebars_enabled = true,
-				floating = true,
-				above = true,
-				draw_backdrop = true,
-				skip_decoration = true,
-				shape = function(cr, width, height)
-							gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
-						end,
-				placement = awful.placement.centered
-			}
-		}
-
-		-- Utilities
-		ruled.client.append_rule {
-			id         = "utility",
-			rule_any   = { 
-				type = { "utility" }
-			},
-			properties = { 
-				titlebars_enabled = false,
-				floating = true,
-				hide_titlebars = true,
-				draw_backdrop = false,
-				skip_decoration = true,
-				placement = awful.placement.centered
-			}
-		}
-
-		-- Splash
-		ruled.client.append_rule {
-			id         = "splash",
-			rule_any   = { 
-				type = { "splash" }
-			},
-			properties = { 
-				titlebars_enabled = false,
-				floating = true,
-				above = true,
-				hide_titlebars = true,
-				draw_backdrop = false,
-				skip_decoration = true,
-				shape = function(cr, width, height)
-							gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
-						end,
-				placement = awful.placement.centered
-			}
-		}
-
 
 		-- Browsers
 		ruled.client.append_rule {
@@ -121,6 +45,9 @@ ruled.client.connect_signal(
 					"Google-chrome"
 				}
 			},
+			except_any = {
+				name = { "Open File" }
+			},
 			properties = { 
 				-- tag = '1',
 				-- screen = 1,
@@ -130,12 +57,34 @@ ruled.client.connect_signal(
 
 		-- Gaming
 		ruled.client.append_rule {
+			id         = "steam_windows",
+			rule_any   = {  
+				class = {
+					"Steam",
+				},
+				name = {
+					"- Steam",
+					"News"
+				}
+			},
+			properties = { 
+				tag = '2',
+				screen = 1,
+				skip_decoration = true,
+				switchtotag = false,
+				floating = true,
+				hide_titlebars = true,
+				round_corners = false,
+				placement = awful.placement.centered
+			}
+		}
+
+		ruled.client.append_rule {
 			id         = "gaming",
 			rule_any   = {  
 				class = {
 					"Wine",
 					"dolphin-emu",
-					"Steam",
 					"Lutris",
 					"Citra",
 					"SuperTuxKart"
@@ -146,11 +95,11 @@ ruled.client.connect_signal(
 				tag = '2',
 				screen = 1,
 				skip_decoration = true,
-				draw_backdrop = false,
 				switchtotag = false,
-				floating = true,
-				maximized = true,
+				-- maximized = true,
+				floating = false,
 				hide_titlebars = true,
+				round_corners = false,
 				placement = awful.placement.centered
 			}
 		}
@@ -287,9 +236,9 @@ ruled.client.connect_signal(
 				instance = { "QuakeTerminal" }
 			},
 			properties = {
-				-- tag = '8',
-				-- switchtotag = true,
 				screen = 2,
+				floating = false,
+				maximized = true,
 				draw_backdrop = false,
 				size_hints_honor = false
 			}
@@ -328,6 +277,82 @@ ruled.client.connect_signal(
 				hide_titlebars = true,
 				floating = true,
 				ontop = true,
+				placement = awful.placement.centered
+			}
+		}
+
+		-- Dialogs
+		ruled.client.append_rule {
+			id         = "dialog",
+			rule_any   = { 
+				type  = { "dialog" },
+				class = { "Wicd-client.py", "calendar.google.com" }
+			},
+			properties = { 
+				titlebars_enabled = true,
+				floating = true,
+				above = true,
+				draw_backdrop = true,
+				skip_decoration = true,
+				shape = function(cr, width, height)
+							gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
+						end,
+				placement = awful.placement.centered
+			}
+		}
+
+		-- Modals
+		ruled.client.append_rule {
+			id         = "dialog",
+			rule_any   = {
+				type = { "modal" },
+				name = { "Open File" }
+			},
+			properties = { 
+				titlebars_enabled = true,
+				floating = true,
+				above = true,
+				draw_backdrop = true,
+				skip_decoration = true,
+				shape = function(cr, width, height)
+							gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
+						end,
+				placement = awful.placement.centered
+			}
+		}
+
+		-- Utilities
+		ruled.client.append_rule {
+			id         = "utility",
+			rule_any   = { 
+				type = { "utility" }
+			},
+			properties = { 
+				titlebars_enabled = false,
+				floating = true,
+				hide_titlebars = true,
+				draw_backdrop = false,
+				skip_decoration = true,
+				placement = awful.placement.centered
+			}
+		}
+
+		-- Splash
+		ruled.client.append_rule {
+			id         = "splash",
+			rule_any   = { 
+				type = { "splash" }
+			},
+			properties = { 
+				titlebars_enabled = false,
+				floating = true,
+				above = true,
+				hide_titlebars = true,
+				draw_backdrop = false,
+				skip_decoration = true,
+				shape = function(cr, width, height)
+							gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
+						end,
 				placement = awful.placement.centered
 			}
 		}

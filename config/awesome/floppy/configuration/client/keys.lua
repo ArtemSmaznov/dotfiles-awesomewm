@@ -118,6 +118,19 @@ local clientKeys =
 		{description = 'toggle floating', group = 'client'}
 	),
 
+	-- toggle client max mode
+	awful.key(
+		{modkey},
+		'm',
+		function(c)
+			c.fullscreen = false
+			c.floating = false
+			c.maximized = not c.maximized
+			c:raise()
+		end,
+		{description = 'toggle max', group = 'client'}
+	),
+
 	-- Screen management
 	awful.key(
 		{modkey, 'Shift'},
@@ -155,15 +168,15 @@ local clientKeys =
 			c:move_to_screen(1)
 		end,
 		{description = 'move window to right screen', group = 'client'}
-	),
-	awful.key(
-		{modkey},
-		'o',
-		function(c)
-			c:move_to_screen()
-		end,
-		{description = 'move window to different screen', group = 'client'}
 	)
+	-- awful.key(
+	-- 	{modkey},
+	-- 	'o',
+	-- 	function(c)
+	-- 		c:move_to_screen()
+	-- 	end,
+	-- 	{description = 'move window to different screen', group = 'client'}
+	-- )
 
 	-- move client position
 	-- awful.key(
