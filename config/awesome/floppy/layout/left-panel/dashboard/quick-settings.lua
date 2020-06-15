@@ -66,14 +66,14 @@ return wibox.widget {
 			widget = wibox.container.background
 		},
 
-		{
-			require('widget.bluetooth.bluetooth-toggle'),
-			bg = bar_color,
-			shape = function(cr, width, height)
-				 gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius) end,
-			forced_height = dpi(48),
-			widget = wibox.container.background
-		},
+		-- {
+		-- 	require('widget.bluetooth.bluetooth-toggle'),
+		-- 	bg = bar_color,
+		-- 	shape = function(cr, width, height)
+		-- 		 gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius) end,
+		-- 	forced_height = dpi(48),
+		-- 	widget = wibox.container.background
+		-- },
 		{
 			require('widget.blue-light'),
 			bg = bar_color,

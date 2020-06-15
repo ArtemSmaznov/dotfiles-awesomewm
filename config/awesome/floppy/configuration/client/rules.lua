@@ -57,29 +57,6 @@ ruled.client.connect_signal(
 
 		-- Gaming
 		ruled.client.append_rule {
-			id         = "steam_windows",
-			rule_any   = {  
-				class = {
-					"Steam",
-				},
-				name = {
-					"- Steam",
-					"News"
-				}
-			},
-			properties = { 
-				tag = '2',
-				screen = 1,
-				skip_decoration = true,
-				switchtotag = false,
-				floating = true,
-				hide_titlebars = true,
-				round_corners = false,
-				placement = awful.placement.centered
-			}
-		}
-
-		ruled.client.append_rule {
 			id         = "gaming",
 			rule_any   = {  
 				class = {
@@ -98,6 +75,29 @@ ruled.client.connect_signal(
 				switchtotag = false,
 				-- maximized = true,
 				floating = false,
+				hide_titlebars = true,
+				round_corners = false,
+				placement = awful.placement.centered
+			}
+		}
+
+		ruled.client.append_rule {
+			id         = "steam_windows",
+			rule_any   = {  
+				-- class = {
+				-- 	"Steam",
+				-- },
+				name = {
+					"- Steam",
+					"News"
+				}
+			},
+			properties = { 
+				tag = '2',
+				screen = 1,
+				skip_decoration = true,
+				switchtotag = false,
+				floating = true,
 				hide_titlebars = true,
 				round_corners = false,
 				placement = awful.placement.centered
