@@ -65,7 +65,6 @@ return {
 		-- You can add more start-up applications here
 		-- '/opt/piavpn/bin/pia-client --quiet',
 		'ckb-next -b',
-		-- 'shutter',
 		'terminator',
 		-- 'google-chrome-stable',
 		-- '/usr/bin/steam-runtime %U',
