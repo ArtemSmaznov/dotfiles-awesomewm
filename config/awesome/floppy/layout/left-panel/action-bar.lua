@@ -48,6 +48,7 @@ return function(s, panel, action_bar_width)
 		'opened',
 		function()
 			menu_icon.menu_btn:set_image(gears.surface(icons.close))
+			awesome.emit_signal('widget::compositor:update')
 		end
 	)
 
