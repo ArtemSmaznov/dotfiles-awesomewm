@@ -7,7 +7,7 @@ local icons = require('theme.icons')
 local dpi = beautiful.xresources.apply_dpi
 
 local clickable_container = require('widget.clickable-container')
-local task_list = require('widget.task-list')
+local task_list = require('widget.panel-widgets.task-list')
 
 local panelSize = dpi(40)
 
@@ -56,7 +56,7 @@ local TopPanel = function(s, offset)
 			{
 				{
 					{
-						image = icons.plus,
+						image = icons.ui.plus,
 						resize = true,
 						widget = wibox.widget.imagebox
 					},
@@ -281,16 +281,6 @@ local TopPanel = function(s, offset)
 	)
 
 
-	s.keyboard_layout = require('widget.keyboard-layout')
-	s.updater 		= require('widget.package-updater')()
-	s.screen_rec 	= require('widget.screen-recorder')()
-	s.music       	= require('widget.music')()
-	s.bluetooth   	= require('widget.bluetooth')()
-	s.network       = require('widget.network')()
-	-- s.battery     	= require('widget.battery')()
-	s.r_dashboard 	= require('layout.right-panel.right-panel-opener')()
-
-
 	panel : setup {
 		layout = wibox.layout.align.horizontal,
 		expand = "none",
@@ -303,16 +293,16 @@ local TopPanel = function(s, offset)
 		{
 			layout = wibox.layout.fixed.horizontal,
 			spacing = dpi(5),
-			s.keyboard_layout,
-			-- s.updater,
-			s.screen_rec,
-			s.music,
-			-- s.bluetooth,
-			s.network,
-			-- s.battery,
+			require('widget.panel-widgets.keyboard-layout'),
+			require('widget.panel-widgets.package-updater')(),
+			require('widget.panel-widgets.screen-recorder')(),
+			require('widget.panel-widgets.music')(),
+			-- require('widget.panel-widgets.bluetooth')(),
+			require('widget.panel-widgets.network')(),
+			-- require('widget.panel-widgets.battery')(),
 			layout_box(s),
 			s.clock_widget,
-			s.r_dashboard
+			require('widget.panel-widgets.right-panel-opener')()
 		}
 	}
 

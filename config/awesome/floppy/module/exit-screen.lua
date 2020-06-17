@@ -146,7 +146,7 @@ local reboot_command = function()
 	awesome.emit_signal("module::exit_screen_hide")
 end
 
-local poweroff = build_button(icons.power, 'Shutdown')
+local poweroff = build_button(icons.other.power, 'Shutdown')
 poweroff:connect_signal(
 	'button::release',
 	function()
@@ -154,7 +154,7 @@ poweroff:connect_signal(
 	end
 )
 
-local reboot = build_button(icons.restart, 'Restart')
+local reboot = build_button(icons.other.restart, 'Restart')
 reboot:connect_signal(
 	'button::release',
 	function()
@@ -162,7 +162,7 @@ reboot:connect_signal(
 	end
 )
 
-local suspend = build_button(icons.sleep, 'Sleep')
+local suspend = build_button(icons.other.sleep, 'Sleep')
 suspend:connect_signal(
 	'button::release',
 	function()
@@ -170,7 +170,7 @@ suspend:connect_signal(
 	end
 )
 
-local exit = build_button(icons.logout, 'Logout')
+local exit = build_button(icons.other.logout, 'Logout')
 exit:connect_signal(
 	'button::release',
 	function()
@@ -178,7 +178,7 @@ exit:connect_signal(
 	end
 )
 
-local lock = build_button(icons.lock, 'Lock')
+local lock = build_button(icons.other.lock, 'Lock')
 lock:connect_signal(
 	'button::release',
 	function()

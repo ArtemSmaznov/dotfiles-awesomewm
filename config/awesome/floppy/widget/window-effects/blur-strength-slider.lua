@@ -119,7 +119,7 @@ local blur_slider_setting = wibox.widget {
 	{
 		{
 			{
-				image = icons.effects,
+				image = icons.other.effects,
 				resize = true,
 				widget = wibox.widget.imagebox
 			},

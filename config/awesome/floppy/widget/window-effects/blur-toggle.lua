@@ -24,7 +24,7 @@ local action_name = wibox.widget {
 local button_widget = wibox.widget {
 	{
 		id = 'icon',
-		image = icons.toggled_off,
+		image = icons.ui.toggle_off,
 		widget = wibox.widget.imagebox,
 		resize = true
 	},
@@ -43,9 +43,9 @@ local widget_button = wibox.widget {
 
 local update_imagebox = function()
 	if action_status then
-		button_widget.icon:set_image(icons.toggled_on)
+		button_widget.icon:set_image(icons.ui.toggle_on)
 	else
-		button_widget.icon:set_image(icons.toggled_off)
+		button_widget.icon:set_image(icons.ui.toggle_off)
 	end
 end
 
