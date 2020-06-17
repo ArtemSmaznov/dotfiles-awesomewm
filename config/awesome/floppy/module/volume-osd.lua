@@ -106,12 +106,12 @@ screen.connect_signal("request::desktop_decoration", function(s)
 
 	local icon = wibox.widget {
 		{
-			image = icons.volume,
+			image = icons.symbolic.volume.high,
 			resize = true,
 			widget = wibox.widget.imagebox
 		},
-		top = dpi(12),
-		bottom = dpi(12),
+		top = dpi(4),
+		bottom = dpi(4),
 		widget = wibox.container.margin
 	}
 

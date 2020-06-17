@@ -7,73 +7,61 @@ local icons = require('theme.icons')
 
 local tags = {
 	{
-		icon = icons.web_browser,
+		icon = icons.tags.web_browser,
 		type = 'chrome',
 		default_app = apps.default.web_browser,
 		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
-		icon = icons.controller,
+		icon = icons.tags.controller,
 		type = 'game',
 		default_app = apps.default.game,
 		layout = awful.layout.suit.floating,
 		screen = 1
 	},
 	{
-		icon = icons.text_editor,
+		icon = icons.tags.text_editor,
 		type = 'code',
 		default_app = apps.default.ide,
 		layout = awful.layout.suit.max,
 		screen = 1
 	},
 	{
-		icon = icons.file_manager,
+		icon = icons.tags.file_manager,
 		type = 'files',
 		default_app = apps.default.file_manager,
 		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
-		icon = icons.multimedia,
+		icon = icons.tags.multimedia,
 		type = 'music',
 		default_app = 'vlc',
 		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
-		icon = icons.graphics,
+		icon = icons.tags.graphics,
 		type = 'art',
 		default_app = apps.default.graphics_editor,
 		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
-		icon = icons.sandbox,
+		icon = icons.tags.sandbox,
 		type = 'virtualbox',
 		default_app = apps.default.vm,
 		layout = awful.layout.suit.tile,
 		screen = 1
 	},
 	{
-		icon = icons.terminal,
+		icon = icons.tags.terminal,
 		type = 'terminal',
 		default_app = apps.default.terminal,
 		layout = awful.layout.suit.max,
 		screen = 2
 	},
--- {
-	-- 	icon = icons.development,
-	-- 	type = 'any',
-	-- 	default_app = '',
-	-- 	screen = 1
-	-- }
-	-- {
-	--   icon = icons.social,
-	--   type = 'social',
-	--   default_app = 'discord',
-	--   screen = 1
-	-- }
 }
 
 

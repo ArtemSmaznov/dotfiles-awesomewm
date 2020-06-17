@@ -92,7 +92,7 @@ awesome.connect_signal("module::battery", function(battery)
 	local timeout
 	if not charger_plugged then
 
-		icon = icons.batt_discharging
+		icon = icons.other.batt_discharging
 
 		if battery < 6 and not battery_critical_already_notified then
 			battery_critical_already_notified = true
@@ -107,7 +107,7 @@ awesome.connect_signal("module::battery", function(battery)
 		end
 
 	else
-		icon = icons.batt_charging
+		icon = icons.other.batt_charging
 		if battery ~= nil then
 			if battery > 99 and not battery_full_already_notified then
 				battery_full_already_notified = true
@@ -138,12 +138,12 @@ awesome.connect_signal("module::charger", function(plugged)
 		battery_critical_already_notified = false
 		battery_low_already_notified = false
 		text = "Plugged"
-		icon = icons.batt_charging
+		icon = icons.other.batt_charging
 		urgency = 'normal'
 	else
 		battery_full_already_notified = false
 		text = "Unplugged"
-		icon = icons.batt_discharging
+		icon = icons.other.batt_discharging
 		urgency = 'normal'
 	end
 

@@ -8,7 +8,7 @@ local hotkeys_popup = require('awful.hotkeys_popup').widget
 local modkey = require('configuration.keys.mod').modKey
 local altkey = require('configuration.keys.mod').altKey
 local apps = require('configuration.apps')
-local keyboard_layout = require("widget.keyboard-layout.kbdcfg")
+local keyboard_layout = require("widget.panel-widgets.keyboard-layout.kbdcfg")
 
 -- Key bindings
 local globalKeys = awful.util.table.join(
