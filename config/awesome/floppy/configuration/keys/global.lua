@@ -229,7 +229,8 @@ local globalKeys = awful.util.table.join(
         {},
         'XF86AudioMute',
         function()
-            awful.spawn('amixer -D pulse set Master 1+ toggle', false)
+						awful.spawn('amixer -D pulse set Master 1+ toggle', false)
+						awesome.emit_signal('module::volume_osd:show', true)
         end,
         {description = 'toggle mute', group = 'hotkeys'}
     ),

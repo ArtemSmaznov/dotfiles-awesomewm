@@ -16,6 +16,7 @@ local config_dir = gears.filesystem.get_configuration_dir()
 local widget_icon_dir = config_dir .. 'widget/panel-widgets/music/icons/'
 
 local clickable_container = require('widget.clickable-container')
+local icons = require('theme.icons')
 
 local music_box = require('widget.panel-widgets.music.music-box')
 local toggle_music_box = music_box.toggle_music_box

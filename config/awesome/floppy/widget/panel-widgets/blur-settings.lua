@@ -20,7 +20,7 @@ return wibox.widget {
 			widget = wibox.container.background
 		},
 		{
-			require('widget.window-effects.blur-strength-slider'),
+			require('widget.sliders.blur-strength-slider'),
 			bg = bar_color,
 			shape = function(cr, width, height)
 				gears.shape.partially_rounded_rect(cr, width, height, false, false, true, true, beautiful.groups_radius) end,

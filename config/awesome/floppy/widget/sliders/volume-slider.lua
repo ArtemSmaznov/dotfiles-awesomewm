@@ -6,25 +6,18 @@ local beautiful = require('beautiful')
 local watch = awful.widget.watch
 local spawn = awful.spawn
 
+local volume_icon = require('widget.system_elements.volume_icon')
+
 local dpi = beautiful.xresources.apply_dpi
 
+local system_slider = require('widget.system.slider')
 local icons = require('theme.icons')
 
 local slider = wibox.widget {
 	nil,
 	{
 		id 					= 'vol_slider',
-		bar_shape           = gears.shape.rounded_rect,
-		bar_height          = dpi(2),
-		bar_color           = '#ffffff20',
-		bar_active_color	= '#f2f2f2EE',
-		handle_color        = '#ffffff',
-		handle_shape        = gears.shape.circle,
-		handle_width        = dpi(15),
-		handle_border_color = '#00000012',
-		handle_border_width = dpi(1),
-		maximum				= 100,
-		widget              = wibox.widget.slider,
+		widget = system_slider
 	},
 	nil,
 	expand = 'none',
@@ -33,10 +26,10 @@ local slider = wibox.widget {
 
 local volume_slider = slider.vol_slider
 
+
 volume_slider:connect_signal(
 	'property::value',
 	function()
-
 		local volume_level = volume_slider:get_value()
 		
 		spawn('amixer -D pulse sset Master ' .. 
@@ -111,18 +104,37 @@ awesome.connect_signal(
 awesome.connect_signal(
 	'widget::volume:update',
 	function(value)
-		 volume_slider:set_value(tonumber(value))
+		volume_slider:set_value(tonumber(value))
+		if value >= 80 then
+			volume_slider.bar_active_color = "#ED4337"
+			volume_slider.handle_color = "#ED4337"
+		elseif value <= 0 then
+			volume_slider.bar_active_color = "#ffffff20"
+			volume_slider.handle_color = "#ffffff00"	
+
+		else
+			volume_slider.bar_active_color = "#f2f2f2"
+			volume_slider.handle_color = "#f2f2f2"
+		end
+
+		-- if value >= 70 then
+		-- 	volume_icon.image = icons.symbolic.volume.high
+		-- elseif value >= 30 and value < 70 then
+		-- 	volume_icon.image = icons.symbolic.volume.medium
+		-- elseif value > 0 and value < 30 then
+		-- 	volume_icon.image = icons.symbolic.volume.low
+		-- elseif value <= 0 then
+		-- 	volume_icon.image = icons.symbolic.volume.muted
+		-- 	volume_slider.bar_active_color = "#ffffff20"
+		-- 	volume_slider.handle_color = "#ffffff00"
+		-- end
 	end
 )
 
 local volume_setting = wibox.widget {
 	{
 		{
-			{
-				image = icons.symbolic.volume.high,
-				resize = true,
-				widget = wibox.widget.imagebox
-			},
+			volume_icon,
 			top = dpi(10),
 			bottom = dpi(10),
 			widget = wibox.container.margin

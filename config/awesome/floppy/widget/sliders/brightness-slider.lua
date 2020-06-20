@@ -7,29 +7,19 @@ local spawn = awful.spawn
 
 local dpi = beautiful.xresources.apply_dpi
 
+local system_slider = require('widget.system.slider')
 local icons = require('theme.icons')
 
 local slider = wibox.widget {
 	nil,
 	{
 		id 					= 'brightness_slider',
-		bar_shape           = gears.shape.rounded_rect,
-		bar_height          = dpi(2),
-		bar_color           = '#ffffff20',
-		bar_active_color	= '#f2f2f2EE',
-		handle_color        = '#ffffff',
-		handle_shape        = gears.shape.circle,
-		handle_width        = dpi(15),
-		handle_border_color = '#00000012',
-		handle_border_width = dpi(1),
-		maximum				= 100,
-		widget              = wibox.widget.slider,
+		widget = system_slider
 	},
 	nil,
 	expand = 'none',
 	layout = wibox.layout.align.vertical
 }
-
 
 local brightness_slider = slider.brightness_slider
 
