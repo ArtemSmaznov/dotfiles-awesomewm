@@ -11,76 +11,40 @@ local icons = require('theme.icons')
 local spawn = require('awful.spawn')
 
 local volume_icon = require('widget.system_elements.volume_icon')
+local volume_slider = require('widget.system_elements.volume_slider')
 
 screen.connect_signal("request::desktop_decoration", function(s)
 
 	s.show_vol_osd = false
 
-	local slider_osd = wibox.widget {
-		id 					= 'vol_osd_slider',
-		widget = system_slider
-	}
-
-	local vol_osd_slider = slider_osd
-
-	-- Update volume level using slider value
-	vol_osd_slider:connect_signal(
+	volume_slider:connect_signal(
 		'property::value',
 		function()
-
-			local volume_level = vol_osd_slider:get_value()
-
-			spawn('amixer -D pulse sset Master ' .. volume_level .. '%', false)
-
-			-- Update the volume slider if values here change
-			awesome.emit_signal('widget::volume:update', volume_level)
-
 			if s.show_vol_osd then
 				awesome.emit_signal(
-					'module::volume_osd:show', 
+					'module::volume_osd:show',
 					true
 				)
 			end
-			
 		end
 	)
 
-	vol_osd_slider:connect_signal(
+	volume_slider:connect_signal(
 		'button::press',
 		function()
 			s.show_vol_osd = true
 		end
 	)
-	vol_osd_slider:connect_signal(
+	volume_slider:connect_signal(
 		'button::release',
 		function()
 			s.show_vol_osd = false
 		end
 	)
-	vol_osd_slider:connect_signal(
+	volume_slider:connect_signal(
 		'mouse::enter',
 		function()
 			s.show_vol_osd = true
-		end
-	)
-
-	-- The emit will come from the volume-slider
-	awesome.connect_signal(
-		'module::volume_osd',
-		function(volume)
-			vol_osd_slider:set_value(volume)
-
-			if volume >= 80 then
-				vol_osd_slider.bar_active_color = "#ED4337"
-				vol_osd_slider.handle_color = "#ED4337"
-			elseif volume <= 0 then
-				vol_osd_slider.bar_active_color = "#ffffff20"
-				vol_osd_slider.handle_color = "#ffffff00"	
-			else
-				vol_osd_slider.bar_active_color = "#f2f2f2"
-				vol_osd_slider.handle_color = "#f2f2f2"
-			end
-
 		end
 	)
 
@@ -105,7 +69,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			layout = wibox.layout.fixed.vertical,
 			spacing = dpi(20),
 			osd_icon,
-			slider_osd,
+			volume_slider,
 		},
 		margins = dpi(20),
 		widget = wibox.container.margin
@@ -188,7 +152,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			if bool then
 				timer_rerun()
 				awesome.emit_signal(
-					'module::brightness_osd:show', 
+					'module::brightness_osd:show',
 					false
 				)
 			else

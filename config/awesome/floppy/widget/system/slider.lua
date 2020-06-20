@@ -10,6 +10,7 @@ function Build()
 		bar_color           = '#ffffff20',
 		bar_active_color		= '#f2f2f2',
 		handle_color        = '#f2f2f2',
+		critical_color			= '#ED4337',
 		handle_shape        = gears.shape.circle,
 		handle_width        = dpi(10),
 		-- handle_border_color = '#f2f2f2',
