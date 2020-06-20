@@ -8,6 +8,7 @@ local dpi = beautiful.xresources.apply_dpi
 
 local config_dir = gears.filesystem.get_configuration_dir()
 local widget_icon_dir = config_dir .. 'widget/panel-widgets/screen-recorder/icons/'
+local icons = require('theme.icons')
 
 -- The screen-recorders scripting 
 local screen_rec_backend = require('widget.panel-widgets.screen-recorder.screen-recorder-scripts')

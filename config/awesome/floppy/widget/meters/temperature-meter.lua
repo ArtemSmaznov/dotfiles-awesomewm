@@ -3,6 +3,8 @@ local gears = require('gears')
 local beautiful = require('beautiful')
 
 local watch = require('awful.widget.watch')
+
+local system_meter = require('widget.system.meter')
 local icons = require('theme.icons')
 
 local dpi = beautiful.xresources.apply_dpi
@@ -11,13 +13,7 @@ local slider = wibox.widget {
 	nil,
 	{
 		id 				 = 'temp_status',
-		max_value     	 = 100,
-		value         	 = 29,
-		forced_height 	 = dpi(2),
-		color 			 = beautiful.fg_normal,
-		background_color = beautiful.groups_bg,
-		shape 			 = gears.shape.rounded_rect,
-		widget        	 = wibox.widget.progressbar
+		widget        	 = system_meter
 	},
 	nil,
 	expand = 'none',
