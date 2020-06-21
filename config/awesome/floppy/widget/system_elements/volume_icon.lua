@@ -3,34 +3,36 @@ local wibox = require('wibox')
 local icons = require('theme.icons')
 
 local mute_state = false
+local current_icon = icons.symbolic.volume.medium
 
 local volume_icon = wibox.widget{
-	image = icons.symbolic.volume.medium,
+	image = current_icon,
 	resize = true,
 	widget = wibox.widget.imagebox
 }
 
 awesome.connect_signal(
-	'module::volume_icon:update',
+	'widget::volume_icon:update',
 	function(value)
 		if value >= 70 then
-			volume_icon.image = icons.symbolic.volume.high
+			current_icon = icons.symbolic.volume.high
 		elseif value >= 30 and value < 70 then
-			volume_icon.image = icons.symbolic.volume.medium
+			current_icon = icons.symbolic.volume.medium
 		elseif value > 0 and value < 30 then
-			volume_icon.image = icons.symbolic.volume.low
+			current_icon = icons.symbolic.volume.low
 		elseif value <= 0 then
-			volume_icon.image = icons.symbolic.volume.muted
+			current_icon = icons.symbolic.volume.muted
 		end
-	end
+		volume_icon.image = current_icon
+end
 )
 
 awesome.connect_signal(
-	'module::volume:mute',
+	'widget::volume_icon:mute',
 	function(state)
 		if state == nil then
 			if mute_state then
-				awesome.emit_signal('widget::volume')
+				volume_icon.image = current_icon
 				mute_state = false
 			else
 				volume_icon.image = icons.symbolic.volume.muted
@@ -40,7 +42,7 @@ awesome.connect_signal(
 			volume_icon.image = icons.symbolic.volume.muted
 			mute_state = true
 		elseif state == false then
-			awesome.emit_signal('widget::volume')
+			volume_icon.image = current_icon
 			mute_state = false
 		end
 	end

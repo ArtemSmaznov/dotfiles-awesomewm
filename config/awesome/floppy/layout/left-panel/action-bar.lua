@@ -58,6 +58,7 @@ return function(s, panel, action_bar_width)
 		function()
 			menu_icon.menu_btn:set_image(gears.surface(icons.other.gear))
 			awesome.emit_signal('widget::toggles:update')
+			awesome.emit_signal('widget::sliders:update')
 		end
 	)
 

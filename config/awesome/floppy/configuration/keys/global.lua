@@ -209,10 +209,8 @@ local globalKeys = awful.util.table.join(
         {},
         'XF86AudioRaiseVolume',
         function()
-            awful.spawn('amixer -D pulse sset Master 5%+ unmute', false)
-						awesome.emit_signal('module::volume:mute', false)
-						awesome.emit_signal('widget::volume')
-            awesome.emit_signal('module::volume_osd:show', true)
+					awesome.emit_signal('widget::volume:increase')
+					awesome.emit_signal('module::volume_osd:show', true)
         end,
         {description = 'increase volume up by 5%', group = 'hotkeys'}
     ),
@@ -220,10 +218,8 @@ local globalKeys = awful.util.table.join(
         {},
         'XF86AudioLowerVolume',
         function()
-            awful.spawn('amixer -D pulse sset Master 5%- unmute', false)
-						awesome.emit_signal('module::volume:mute', false)
-						awesome.emit_signal('widget::volume')
-            awesome.emit_signal('module::volume_osd:show', true)
+					awesome.emit_signal('widget::volume:decrease')
+					awesome.emit_signal('module::volume_osd:show', true)
         end,
         {description = 'decrease volume up by 5%', group = 'hotkeys'}
     ),
@@ -231,9 +227,8 @@ local globalKeys = awful.util.table.join(
         {},
         'XF86AudioMute',
         function()
-						awful.spawn('amixer -D pulse set Master 1+ toggle', false)
-            awesome.emit_signal('module::volume:mute', nil)
-						awesome.emit_signal('module::volume_osd:show', true)
+					awesome.emit_signal('widget::volume:mute', nil)
+					awesome.emit_signal('module::volume_osd:show', true)
         end,
         {description = 'toggle mute', group = 'hotkeys'}
     ),
