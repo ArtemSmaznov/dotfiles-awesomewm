@@ -1,15 +1,26 @@
-local wibox = require('wibox')
+local awful = require("awful")
+local gears = require("gears")
+local wibox = require("wibox")
 
+local clickable_container = require('widget.clickable-container')
 local icons = require('theme.icons')
 
 local mute_state = false
 local current_icon = icons.symbolic.volume.medium
 
 local volume_icon = wibox.widget{
+	id = "icon",
 	image = current_icon,
 	resize = true,
 	widget = wibox.widget.imagebox
 }
+
+volume_icon:connect_signal(
+	'button::press',
+	function()
+		awesome.emit_signal('widget::volume:mute', nil)
+	end
+)
 
 awesome.connect_signal(
 	'widget::volume_icon:update',

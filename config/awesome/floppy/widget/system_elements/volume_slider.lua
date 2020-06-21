@@ -2,7 +2,6 @@ local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
 
-local clickable_container = require('widget.clickable-container')
 local system_slider = require('widget.system.slider')
 
 local volume_slider = wibox.widget {
