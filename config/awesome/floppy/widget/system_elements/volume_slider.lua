@@ -1,13 +1,9 @@
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
-local beautiful = require('beautiful')
-
-local dpi = require('beautiful').xresources.apply_dpi
 
 local clickable_container = require('widget.clickable-container')
 local system_slider = require('widget.system.slider')
-local spawn = require('awful.spawn')
 
 local volume_slider = wibox.widget {
 	id 					= 'vol_osd_slider',
@@ -18,7 +14,7 @@ local slider_color_high = volume_slider.critical_color
 local slider_color_default = volume_slider.bar_active_color
 local slider_color_muted = volume_slider.bar_color
 
-local dynamic_updates = function(volume)
+local colorize_slider = function(volume)
 	if volume >= 80 then
 		volume_slider.bar_active_color = slider_color_high
 		volume_slider.handle_color = slider_color_high
@@ -30,20 +26,49 @@ local dynamic_updates = function(volume)
 		volume_slider.handle_color = slider_color_default
 	end
 
-	awesome.emit_signal('module::volume_icon:update', volume)
+	awesome.emit_signal('widget::volume_icon:update', volume)
 end
 
 local update_slider = function()
 	awful.spawn.easy_async_with_shell(
 		[[bash -c "amixer -D pulse sget Master"]],
 		function(stdout)
-
 			local volume = tonumber(string.match(stdout, '(%d?%d?%d)%%'))
-
 			volume_slider:set_value(volume)
-			dynamic_updates(volume)
+			colorize_slider(volume)
 		end
 	)
+end
+
+-- Volume controll functions
+
+local mute_volume = function (state)
+	if state == nil then
+		awful.spawn('amixer -D pulse set Master 1+ toggle', false)
+	elseif state == false then
+		awful.spawn('amixer -D pulse set Master 1+ on', false)
+	elseif state == true then
+		awful.spawn('amixer -D pulse set Master 1+ off', false)
+	end
+	awesome.emit_signal('widget::volume_icon:mute', state)
+end
+
+local increase_volume = function ()
+	awful.spawn('amixer -D pulse sset Master 5%+', false)
+	mute_volume(false)
+	update_slider()
+end
+
+local decrease_volume = function ()
+	awful.spawn('amixer -D pulse sset Master 5%-', false)
+	mute_volume(false)
+	update_slider()
+end
+
+local set_volume = function (volume)
+	awful.spawn('amixer -D pulse sset Master ' .. volume .. '%', false)
+	colorize_slider(volume)
+	mute_volume(false)
 end
 
 -- Controll the slider with direct clicking
@@ -51,10 +76,7 @@ volume_slider:connect_signal(
 	'property::value',
 	function()
 		local volume = volume_slider:get_value()
-		spawn('amixer -D pulse sset Master ' .. volume .. '% unmute', false)
-		-- awesome.emit_signal('module::volume:mute', false)
-		awesome.emit_signal('module::volume_icon:update', volume)
-		dynamic_updates(volume)
+		set_volume(volume)
 	end
 )
 
@@ -72,8 +94,6 @@ volume_slider:buttons(
 					return
 				end
 				volume_slider:set_value(volume + 5)
-				dynamic_updates(volume)
-				awesome.emit_signal('module::volume:mute', false)
 			end
 		),
 		awful.button(
@@ -87,18 +107,38 @@ volume_slider:buttons(
 					return
 				end
 				volume_slider:set_value(volume - 5)
-				dynamic_updates(volume)
-				awesome.emit_signal('module::volume:mute', false)
 			end
 		)
 	)
 )
 
--- Controll the slider with keyboard shortcuts
+-- Calls for volume change from external functions
+
 awesome.connect_signal(
-	'widget::volume',
+	'widget::volume:increase',
 	function()
-		update_slider()
+		increase_volume()
+	end
+)
+
+awesome.connect_signal(
+	'widget::volume:decrease',
+	function()
+		decrease_volume()
+	end
+)
+
+awesome.connect_signal(
+	'widget::volume:set',
+	function(value)
+		set_volume(value)
+	end
+)
+
+awesome.connect_signal(
+	'widget::volume:mute',
+	function(state)
+		mute_volume(state)
 	end
 )
 
