@@ -66,11 +66,11 @@ return {
 		-- 'paplay ' .. sounds.startup,
 	
 		-- You can add more start-up applications here
-		-- '/opt/piavpn/bin/pia-client --quiet',
+		'/opt/piavpn/bin/pia-client --quiet',
 		'ckb-next -b',
-		'terminator',
+		'terminator -e bashtop',
 		-- 'google-chrome-stable',
-		-- '/usr/bin/steam-runtime %U',
+		'/usr/bin/steam-runtime %U',
 	},
 
 	-- List of binaries/shell scripts that will execute a certain task
