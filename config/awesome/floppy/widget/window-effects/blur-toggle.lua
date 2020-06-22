@@ -2,7 +2,7 @@ local awful = require('awful')
 local wibox = require('wibox')
 local gears = require('gears')
 
-local clickable_container = require('widget.window-effects.clickable-container')
+local clickable_container = require('widget.clickable-container.no-background')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local filesystem = gears.filesystem

@@ -4,7 +4,7 @@ local gears = require('gears')
 local beautiful = require('beautiful')
 
 local dpi = require('beautiful').xresources.apply_dpi
-local clickable_container = require('widget.clickable-container')
+local clickable_container = require('widget.clickable-container.with-background')
 
 -- Variable used for switching panel modes
 right_panel_mode = 'today_mode'

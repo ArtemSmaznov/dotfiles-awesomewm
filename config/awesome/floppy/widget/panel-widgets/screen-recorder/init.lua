@@ -2,7 +2,7 @@ local wibox = require('wibox')
 local awful = require('awful')
 local gears = require('gears')
 
-local clickable_container = require('widget.clickable-container')
+local clickable_container = require('widget.clickable-container.with-background')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local HOME = os.getenv('HOME')

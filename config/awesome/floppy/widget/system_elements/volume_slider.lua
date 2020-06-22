@@ -2,6 +2,7 @@ local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
 
+local sounds = require('theme.sounds')
 local system_slider = require('widget.system.slider')
 
 local volume_slider = wibox.widget {
@@ -54,18 +55,21 @@ end
 
 local increase_volume = function ()
 	awful.spawn('amixer -D pulse sset Master 5%+', false)
+	awful.spawn('paplay ' .. sounds.volume, false)
 	mute_volume(false)
 	update_slider()
 end
 
 local decrease_volume = function ()
 	awful.spawn('amixer -D pulse sset Master 5%-', false)
+	awful.spawn('paplay ' .. sounds.volume, false)
 	mute_volume(false)
 	update_slider()
 end
 
 local set_volume = function (volume)
 	awful.spawn('amixer -D pulse sset Master ' .. volume .. '%', false)
+	-- awful.spawn('paplay ' .. sounds.volume, false)
 	colorize_slider(volume)
 	mute_volume(false)
 end

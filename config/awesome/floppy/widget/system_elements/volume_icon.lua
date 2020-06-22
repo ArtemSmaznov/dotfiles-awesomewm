@@ -1,21 +1,23 @@
-local awful = require("awful")
-local gears = require("gears")
 local wibox = require("wibox")
 
-local clickable_container = require('widget.clickable-container')
+local clickable_container = require('widget.clickable-container.no-background')
 local icons = require('theme.icons')
 
 local mute_state = false
 local current_icon = icons.symbolic.volume.medium
 
 local volume_icon = wibox.widget{
-	id = "icon",
-	image = current_icon,
-	resize = true,
-	widget = wibox.widget.imagebox
+	{
+		id = "icon",
+		image = current_icon,
+		resize = true,
+		widget = wibox.widget.imagebox
+	},
+	widget = clickable_container
 }
 
-volume_icon:connect_signal(
+
+volume_icon.icon:connect_signal(
 	'button::press',
 	function()
 		awesome.emit_signal('widget::volume:mute', nil)
@@ -34,7 +36,7 @@ awesome.connect_signal(
 		elseif value <= 0 then
 			current_icon = icons.symbolic.volume.muted
 		end
-		volume_icon.image = current_icon
+		volume_icon.icon.image = current_icon
 end
 )
 
@@ -43,17 +45,17 @@ awesome.connect_signal(
 	function(state)
 		if state == nil then
 			if mute_state then
-				volume_icon.image = current_icon
+				volume_icon.icon.image = current_icon
 				mute_state = false
-			else
-				volume_icon.image = icons.symbolic.volume.muted
+				else
+					volume_icon.icon.image = icons.symbolic.volume.muted
 				mute_state = true
-			end
+				end
 		elseif state == true then
-			volume_icon.image = icons.symbolic.volume.muted
+			volume_icon.icon.image = icons.symbolic.volume.muted
 			mute_state = true
 		elseif state == false then
-			volume_icon.image = current_icon
+			volume_icon.icon.image = current_icon
 			mute_state = false
 		end
 	end
