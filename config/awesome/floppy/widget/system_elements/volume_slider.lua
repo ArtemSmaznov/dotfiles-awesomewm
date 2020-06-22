@@ -3,27 +3,31 @@ local gears = require("gears")
 local wibox = require("wibox")
 
 local sounds = require('theme.sounds')
+local clickable_container = require('widget.clickable-container.no-background')
 local system_slider = require('widget.system.slider')
 
 local volume_slider = wibox.widget {
-	id 					= 'vol_osd_slider',
-	widget = system_slider
+	{
+		id 					= 'slider',
+		widget = system_slider
+	},
+	widget = clickable_container
 }
 
-local slider_color_high = volume_slider.critical_color
-local slider_color_default = volume_slider.bar_active_color
-local slider_color_muted = volume_slider.bar_color
+local slider_color_high = volume_slider.slider.critical_color
+local slider_color_default = volume_slider.slider.bar_active_color
+local slider_color_muted = volume_slider.slider.bar_color
 
 local colorize_slider = function(volume)
 	if volume >= 80 then
-		volume_slider.bar_active_color = slider_color_high
-		volume_slider.handle_color = slider_color_high
+		volume_slider.slider.bar_active_color = slider_color_high
+		volume_slider.slider.handle_color = slider_color_high
 	elseif volume <= 0 then
-		volume_slider.bar_active_color = slider_color_muted
-		volume_slider.handle_color = '#00000000'
+		volume_slider.slider.bar_active_color = slider_color_muted
+		volume_slider.slider.handle_color = '#00000000'
 	else
-		volume_slider.bar_active_color = slider_color_default
-		volume_slider.handle_color = slider_color_default
+		volume_slider.slider.bar_active_color = slider_color_default
+		volume_slider.slider.handle_color = slider_color_default
 	end
 
 	awesome.emit_signal('widget::volume_icon:update', volume)
@@ -34,7 +38,7 @@ local update_slider = function()
 		[[bash -c "amixer -D pulse sget Master"]],
 		function(stdout)
 			local volume = tonumber(string.match(stdout, '(%d?%d?%d)%%'))
-			volume_slider:set_value(volume)
+			volume_slider.slider:set_value(volume)
 			colorize_slider(volume)
 		end
 	)
@@ -75,28 +79,28 @@ local set_volume = function (volume)
 end
 
 -- Controll the slider with direct clicking
-volume_slider:connect_signal(
+volume_slider.slider:connect_signal(
 	'property::value',
 	function()
-		local volume = volume_slider:get_value()
+		local volume = volume_slider.slider:get_value()
 		set_volume(volume)
 	end
 )
 
 -- Controll the slider with the scroll wheel
-volume_slider:buttons(
+volume_slider.slider:buttons(
 	gears.table.join(
 		awful.button(
 			{},
 			4,
 			nil,
 			function()
-				local volume = volume_slider:get_value()
+				local volume = volume_slider.slider:get_value()
 				if volume > 100 then
-					volume_slider:set_value(100)
+					volume_slider.slider:set_value(100)
 					return
 				end
-				volume_slider:set_value(volume + 5)
+				volume_slider.slider:set_value(volume + 5)
 			end
 		),
 		awful.button(
@@ -104,12 +108,12 @@ volume_slider:buttons(
 			5,
 			nil,
 			function()
-				local volume = volume_slider:get_value()
+				local volume = volume_slider.slider:get_value()
 				if volume < 0 then
-					volume_slider:set_value(0)
+					volume_slider.slider:set_value(0)
 					return
 				end
-				volume_slider:set_value(volume - 5)
+				volume_slider.slider:set_value(volume - 5)
 			end
 		)
 	)
