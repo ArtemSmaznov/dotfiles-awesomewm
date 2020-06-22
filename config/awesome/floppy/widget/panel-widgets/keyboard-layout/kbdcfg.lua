@@ -7,6 +7,8 @@
 
 local awful = require("awful")
 local wibox = require("wibox")
+
+local flags_path = '/usr/share/iso-flag-png/'
 local kbdcfg = {}
 
 -- Function to change current layout to the next available layout
@@ -44,7 +46,7 @@ function kbdcfg.switch(layout)
     if kbdcfg.type == "tui" then
         kbdcfg.widget:set_text(" " .. layout.label .. " ")
     else
-        kbdcfg.widget.image = layout.label
+        kbdcfg.widget.image = flags_path .. layout.label .. '.png'
     end
 
     os.execute(kbdcfg.cmd .. " " .. layout.subcmd)

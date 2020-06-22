@@ -5,19 +5,24 @@
 
 --]]
 local awful = require('awful')
+local wibox = require('wibox')
+local beautiful = require('beautiful')
+
+local dpi = beautiful.xresources.apply_dpi
+
+local clickable_container = require('widget.clickable-container.with-background')
 
 local kbdcfg = require("widget.panel-widgets.keyboard-layout.kbdcfg")({
-	type = "tui",
+	type = "gui",
 	remember_layout = true
 })
 
--- local kbdcfg = keyboard_layout({type = "tui"})
 
-kbdcfg.add_primary_layout("English", "US", "us")
-kbdcfg.add_primary_layout("Русский", "RU", "ru")
+kbdcfg.add_primary_layout("English", "us", "us")
+kbdcfg.add_primary_layout("Русский", "ru", "ru")
 
-kbdcfg.add_additional_layout("Deutsch",  "DE", "de")
-kbdcfg.add_additional_layout("Lithuanian", "LT", "lt")
+kbdcfg.add_additional_layout("Deutsch",  "de", "de")
+kbdcfg.add_additional_layout("Lithuanian", "lt", "lt")
 
 kbdcfg.bind()
 
@@ -28,4 +33,13 @@ kbdcfg.widget:buttons(
 		awful.button({ }, 3, function () kbdcfg.switch_next() end))
 )
 
-return awful.widget.only_on_screen(kbdcfg.widget, 'primary')
+local widget_button = wibox.widget {
+	{
+		kbdcfg.widget,
+		margins = dpi(7),
+		widget = wibox.container.margin
+	},
+	widget = clickable_container
+}
+
+return awful.widget.only_on_screen(widget_button, 'primary')
