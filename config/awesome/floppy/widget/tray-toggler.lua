@@ -64,13 +64,13 @@ end)
 
 -- Update icon on start-up
 if screen.primary.systray then
-	
+
 	if screen.primary.systray.visible then
-		
+
 		widget.icon:set_image(icons.ui.right_arrow)
-		
+
 	end
-	
+
 end
 
 -- Show only the tray button in the primary screen

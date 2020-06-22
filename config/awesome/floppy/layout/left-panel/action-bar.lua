@@ -69,17 +69,16 @@ return function(s, panel, action_bar_width)
 		forced_width = action_bar_width,
 		{
 			require('widget.panel-widgets.start')(),
-			require('widget.separator'),
+			require('widget.separator')('h'),
 			tag_list(s),
-			require('widget.separator'),
+			require('widget.separator')('h'),
 			require("widget.panel-widgets.xdg-folders"),
-			require('widget.separator'),
+			require('widget.separator')('h'),
 			layout = wibox.layout.fixed.vertical,
 		},
 		nil,
 		{
 			require('widget.panel-widgets.system-tray')(s, action_bar_width),
-			require('widget.separator'),
 			home_button,
 			layout = wibox.layout.fixed.vertical,
 		}
