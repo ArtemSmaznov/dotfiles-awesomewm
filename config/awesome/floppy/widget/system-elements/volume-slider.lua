@@ -4,7 +4,7 @@ local wibox = require("wibox")
 
 local sounds = require('theme.sounds')
 local clickable_container = require('widget.clickable-container.no-background')
-local system_slider = require('widget.system.slider')
+local system_slider = require('theme.system.slider')
 
 local volume_slider = wibox.widget {
 	{

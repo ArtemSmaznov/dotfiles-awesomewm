@@ -290,8 +290,9 @@ ruled.client.connect_signal(
 			},
 			properties = { 
 				titlebars_enabled = true,
+				maximized = false,
 				floating = true,
-				above = true,
+				-- above = true,
 				draw_backdrop = true,
 				skip_decoration = true,
 				shape = function(cr, width, height)

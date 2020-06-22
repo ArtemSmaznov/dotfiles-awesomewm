@@ -7,7 +7,7 @@ local spawn = awful.spawn
 
 local dpi = beautiful.xresources.apply_dpi
 
-local system_slider = require('widget.system.slider')
+local system_slider = require('theme.system.slider')
 local icons = require('theme.icons')
 
 local slider = wibox.widget {
