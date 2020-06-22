@@ -4,7 +4,7 @@ local beautiful = require('beautiful')
 
 local watch = require('awful.widget.watch')
 
-local system_meter = require('widget.system.meter')
+local system_meter = require('theme.system.meter')
 local icons = require('theme.icons')
 
 local dpi = beautiful.xresources.apply_dpi

@@ -6,7 +6,7 @@ local beautiful = require('beautiful')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local clickable_container = require('widget.clickable-container.with-background')
-local system_slider = require('widget.system.slider')
+local system_slider = require('theme.system.slider')
 local icons = require('theme.icons')
 local spawn = require('awful.spawn')
 

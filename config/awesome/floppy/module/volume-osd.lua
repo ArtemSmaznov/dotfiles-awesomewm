@@ -5,8 +5,8 @@ local beautiful = require('beautiful')
 
 local dpi = require('beautiful').xresources.apply_dpi
 
-local volume_icon = require('widget.system_elements.volume_icon')
-local volume_slider = require('widget.system_elements.volume_slider')
+local volume_icon = require('widget.system-elements.volume-icon')
+local volume_slider = require('widget.system-elements.volume-slider')
 
 screen.connect_signal("request::desktop_decoration", function(s)
 

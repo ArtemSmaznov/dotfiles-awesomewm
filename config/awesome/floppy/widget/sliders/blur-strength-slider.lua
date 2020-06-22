@@ -7,7 +7,7 @@ local dpi = beautiful.xresources.apply_dpi
 
 local start_up = true
 
-local system_slider = require('widget.system.slider')
+local system_slider = require('theme.system.slider')
 local icons = require('theme.icons')
 
 local slider = wibox.widget {
