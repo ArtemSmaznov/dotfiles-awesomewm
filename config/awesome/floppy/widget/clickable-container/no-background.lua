@@ -1,12 +1,13 @@
 local wibox = require('wibox')
+local beautiful = require('beautiful')
 
 function build(widget)
-	local container =
-		wibox.widget {
+	local container =	wibox.widget {
 		widget,
-		widget = wibox.container.background,
+		widget = wibox.container.background
 	}
 	local old_cursor, old_wibox
+
 	container:connect_signal(
 		'mouse::enter',
 		function()

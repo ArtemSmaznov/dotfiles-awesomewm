@@ -19,7 +19,7 @@ local naughty = require('naughty')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local apps = require('configuration.apps')
-local clickable_container = require('widget.clickable-container')
+local clickable_container = require('widget.clickable-container.with-background')
 
 local icons = require('theme.icons')
 

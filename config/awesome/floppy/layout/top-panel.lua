@@ -6,7 +6,7 @@ local gears = require('gears')
 local icons = require('theme.icons')
 local dpi = beautiful.xresources.apply_dpi
 
-local clickable_container = require('widget.clickable-container')
+local clickable_container = require('widget.clickable-container.with-background')
 local task_list = require('widget.panel-widgets.task-list')
 
 local panelSize = dpi(40)

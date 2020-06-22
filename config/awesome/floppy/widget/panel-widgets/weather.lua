@@ -7,7 +7,7 @@ local dpi = beautiful.xresources.apply_dpi
 
 local icons = require('theme.icons')
 
-local clickable_container = require('widget.clickable-container')
+local clickable_container = require('widget.clickable-container.with-background')
 
 local secrets = require('configuration.secrets')
 

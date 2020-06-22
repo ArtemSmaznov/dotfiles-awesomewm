@@ -7,7 +7,7 @@ local dpi = beautiful.xresources.apply_dpi
 local icons = require('theme.icons')
 
 local tag_list = require('widget.panel-widgets.tag-list')
-local clickable_container = require('widget.clickable-container')
+local clickable_container = require('widget.clickable-container.with-background')
 
 return function(s, panel, action_bar_width)
 

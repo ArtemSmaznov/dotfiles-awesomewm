@@ -3,6 +3,8 @@ local filesystem = require('gears.filesystem')
 local config_dir = filesystem.get_configuration_dir()
 local bin_dir = config_dir .. 'binaries/'
 
+local sounds = require('theme.sounds')
+
 return {
 
 	-- The default applications that we will use in keybindings and widgets
@@ -61,7 +63,8 @@ return {
 		xidlehook --not-when-fullscreen --not-when-audio --timer 600 \
 		"awesome-client 'awesome.emit_signal(\"module::lockscreen_show\")'" ""
 		]],																														-- Auto lock timer 
-
+		-- 'paplay ' .. sounds.startup,
+	
 		-- You can add more start-up applications here
 		-- '/opt/piavpn/bin/pia-client --quiet',
 		'ckb-next -b',

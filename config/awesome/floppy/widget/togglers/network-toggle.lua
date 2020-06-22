@@ -5,7 +5,7 @@ local gears = require('gears')
 local watch = awful.widget.watch
 local dpi = require('beautiful').xresources.apply_dpi
 
-local clickable_container = require('widget.panel-widgets.network.clickable-container')
+local clickable_container = require('widget.clickable-container.no-background')
 
 local config_dir = gears.filesystem.get_configuration_dir()
 local widget_dir = config_dir .. 'widget/panel-widgets/network/'
