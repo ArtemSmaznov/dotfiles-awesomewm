@@ -280,7 +280,6 @@ local TopPanel = function(s, offset)
 		}
 	)
 
-
 	panel : setup {
 		layout = wibox.layout.align.horizontal,
 		expand = "none",
@@ -302,6 +301,12 @@ local TopPanel = function(s, offset)
 			require('widget.panel-widgets.network')(),
 			-- require('widget.panel-widgets.battery')(),
 			layout_box(s),
+			{
+				require('widget.system-elements.volume-icon'),
+				margins = dpi(7),
+				widget = wibox.container.margin
+			},
+
 			s.clock_widget,
 			require('widget.panel-widgets.right-panel-opener')()
 		}
