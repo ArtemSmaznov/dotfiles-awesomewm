@@ -11,7 +11,8 @@ local tags = {
 		type = 'chrome',
 		default_app = apps.default.web_browser,
 		layout = awful.layout.suit.tile,
-		screen = 1
+		screen = 1,
+		selected = true
 	},
 	{
 		icon = icons.tags.controller,
@@ -59,24 +60,25 @@ local tags = {
 		icon = icons.tags.terminal,
 		type = 'terminal',
 		default_app = apps.default.terminal,
-		layout = awful.layout.suit.max,
-		screen = 2
+		layout = awful.layout.suit.tile.bottom,
+		screen = 2,
+		selected = true
 	},
 }
 
 
 tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
-		awful.layout.suit.tile,
-		awful.layout.suit.max,
-		-- awful.layout.suit.spiral.dwindle,
-		awful.layout.suit.tile.bottom
+			awful.layout.suit.tile,
+			awful.layout.suit.max,
+			-- awful.layout.suit.spiral.dwindle,
+			awful.layout.suit.tile.bottom
     })
 end)
 
 
-screen.connect_signal("request::desktop_decoration", function(s)
-	for i, tag in pairs(tags) do	
+-- Use this if you want to control which tags go to which screens
+for i, tag in pairs(tags) do
 	awful.tag.add(
 			i,
 			{
@@ -85,13 +87,31 @@ screen.connect_signal("request::desktop_decoration", function(s)
 				layout = tag.layout,
 				gap_single_client = false,
 				gap = beautiful.useless_gap,
-				screen = s,
+				screen = tag.screen,
 				default_app = tag.default_app,
-				selected = i == 1
+				selected = tag.selected
 			}
 		)
-	end
-end)
+end
+
+-- Use this if you want all screens to have the same tags
+-- screen.connect_signal("request::desktop_decoration", function(s)
+-- 	for i, tag in pairs(tags) do
+--  	awful.tag.add(
+--  			i,
+--  			{
+--  				icon = tag.icon,
+--  				icon_only = true,
+--  				layout = tag.layout,
+--  				gap_single_client = false,
+--  				gap = beautiful.useless_gap,
+--  				screen = s,
+--  				default_app = tag.default_app,
+--  				selected = i == 1
+--  			}
+--  		)
+--  	end
+--  end)
 
 
 tag.connect_signal(

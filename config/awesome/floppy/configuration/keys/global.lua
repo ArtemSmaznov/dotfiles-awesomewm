@@ -172,6 +172,16 @@ local globalKeys = awful.util.table.join(
         { description = "focus the next screen", group = "screen"}
     ),
     awful.key(
+        {modkey},
+        'd',
+        function()
+					for _, c in ipairs(mouse.screen.selected_tag:clients())	do
+						c.minimized = true
+					end
+        end,
+        {description = 'minimize all', group = 'screen'}
+    ),
+    awful.key(
         {modkey, 'Control'},
         'n',
         function()
