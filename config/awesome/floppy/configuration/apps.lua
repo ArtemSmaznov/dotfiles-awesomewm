@@ -17,6 +17,7 @@ return {
 		incognito_browser 				= 'google-chrome-stable --incognito',         -- Web browser
 		file_manager 							= 'dolphin',																	-- GUI File manager
 		graphics_editor						= 'gimp-2.10',
+		photos_library						= 'digikam',
 		vm												= 'virtualbox',
 		video_player							= 'celluloid',
 

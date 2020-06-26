@@ -7,6 +7,16 @@ local icons = require('theme.icons')
 
 local tags = {
 	{
+		name = 'terminal',
+		icon = icons.tags.terminal,
+		type = 'terminal',
+		default_app = apps.default.terminal,
+		layout = awful.layout.suit.tile.bottom,
+		screen = 2,
+		selected = true
+	},
+	{
+		name = 'internet',
 		icon = icons.tags.web_browser,
 		type = 'chrome',
 		default_app = apps.default.web_browser,
@@ -15,6 +25,7 @@ local tags = {
 		selected = true
 	},
 	{
+		name = 'gaming',
 		icon = icons.tags.controller,
 		type = 'game',
 		default_app = apps.default.game,
@@ -22,6 +33,7 @@ local tags = {
 		screen = 1
 	},
 	{
+		name = 'coding',
 		icon = icons.tags.text_editor,
 		type = 'code',
 		default_app = apps.default.ide,
@@ -29,6 +41,7 @@ local tags = {
 		screen = 1
 	},
 	{
+		name = 'computer',
 		icon = icons.tags.file_manager,
 		type = 'files',
 		default_app = apps.default.file_manager,
@@ -36,6 +49,7 @@ local tags = {
 		screen = 1
 	},
 	{
+		name = 'multimedia',
 		icon = icons.tags.multimedia,
 		type = 'music',
 		default_app = 'vlc',
@@ -43,6 +57,7 @@ local tags = {
 		screen = 1
 	},
 	{
+		name = 'graphics',
 		icon = icons.tags.graphics,
 		type = 'art',
 		default_app = apps.default.graphics_editor,
@@ -50,19 +65,12 @@ local tags = {
 		screen = 1
 	},
 	{
+		name = 'sandbox',
 		icon = icons.tags.sandbox,
 		type = 'virtualbox',
 		default_app = apps.default.vm,
 		layout = awful.layout.suit.tile,
 		screen = 1
-	},
-	{
-		icon = icons.tags.terminal,
-		type = 'terminal',
-		default_app = apps.default.terminal,
-		layout = awful.layout.suit.tile.bottom,
-		screen = 2,
-		selected = true
 	},
 }
 
@@ -80,7 +88,7 @@ end)
 -- Use this if you want to control which tags go to which screens
 for i, tag in pairs(tags) do
 	awful.tag.add(
-			i,
+			tag.name,
 			{
 				icon = tag.icon,
 				icon_only = true,
