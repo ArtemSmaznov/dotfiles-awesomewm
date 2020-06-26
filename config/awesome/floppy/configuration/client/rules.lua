@@ -51,7 +51,8 @@ ruled.client.connect_signal(
 			properties = { 
 				-- tag = '1',
 				-- screen = 1,
-				maximized = true
+				maximized = true,
+				hide_titlebars = true,
 			}
 		}
 
@@ -66,14 +67,21 @@ ruled.client.connect_signal(
 					"Citra",
 					"SuperTuxKart"
 				},
-				name = { "Steam" }
+				name = { "Steam" },
+				except_any = {
+					name = {
+						"- Steam",
+						"Settings",
+						"News"
+					}
+				}
 			},
 			properties = { 
 				tag = '2',
 				screen = 1,
 				skip_decoration = true,
+				maximized = true,
 				switchtotag = false,
-				-- maximized = true,
 				floating = false,
 				hide_titlebars = true,
 				round_corners = false,
@@ -84,11 +92,9 @@ ruled.client.connect_signal(
 		ruled.client.append_rule {
 			id         = "steam_windows",
 			rule_any   = {  
-				-- class = {
-				-- 	"Steam",
-				-- },
 				name = {
 					"- Steam",
+					"Settings",
 					"News"
 				}
 			},
@@ -96,8 +102,7 @@ ruled.client.connect_signal(
 				tag = '2',
 				screen = 1,
 				skip_decoration = true,
-				switchtotag = false,
-				floating = true,
+				maximized = false,
 				hide_titlebars = true,
 				round_corners = false,
 				placement = awful.placement.centered
@@ -136,13 +141,6 @@ ruled.client.connect_signal(
 			},
 			properties = { 
 				screen = 1,
-				draw_backdrop = false,
-				skip_decoration = false,
-				maximized = false,
-				hide_titlebars = false,
-				floating = true,
-				ontop = true,
-				placement = awful.placement.centered
 			}
 		}
 
@@ -161,7 +159,7 @@ ruled.client.connect_signal(
 				tag = '4',
 				screen = 1,
 				switchtotag = true,
-				floating = true,
+				-- floating = true,
 			}
 		}
 
@@ -236,10 +234,7 @@ ruled.client.connect_signal(
 				instance = { "QuakeTerminal" }
 			},
 			properties = {
-				screen = 2,
-				floating = false,
-				maximized = true,
-				draw_backdrop = false,
+				screen = screen:instances(),
 				size_hints_honor = false
 			}
 		}
@@ -285,14 +280,14 @@ ruled.client.connect_signal(
 		ruled.client.append_rule {
 			id         = "dialog",
 			rule_any   = { 
-				type  = { "dialog" },
+				type  = { "dialog",  },
 				class = { "Wicd-client.py", "calendar.google.com" }
 			},
 			properties = { 
 				titlebars_enabled = true,
 				maximized = false,
 				floating = true,
-				-- above = true,
+				above = true,
 				draw_backdrop = true,
 				skip_decoration = true,
 				shape = function(cr, width, height)
@@ -306,15 +301,21 @@ ruled.client.connect_signal(
 		ruled.client.append_rule {
 			id         = "dialog",
 			rule_any   = {
-				type = { "modal" },
-				name = { "Open File" }
+				type = { 
+					"modal",
+					"dialog"
+				},
+				name = {
+					"Open File",
+					"Save File"
+				}
 			},
 			properties = { 
 				titlebars_enabled = true,
 				floating = true,
 				above = true,
 				draw_backdrop = true,
-				skip_decoration = true,
+				-- skip_decoration = true,
 				shape = function(cr, width, height)
 							gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
 						end,

@@ -292,7 +292,7 @@ local TopPanel = function(s, offset)
 		nil,
 		{
 			layout = wibox.layout.fixed.horizontal,
-			spacing = dpi(5),
+			spacing = dpi(2),
 			-- require('widget.panel-widgets.system-tray')(s, panelSize),
 			require('widget.panel-widgets.keyboard-layout'),
 			require('widget.panel-widgets.package-updater')(),
