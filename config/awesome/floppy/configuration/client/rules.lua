@@ -50,7 +50,7 @@ ruled.client.connect_signal(
 			},
 			properties = { 
 				-- tag = '1',
-				-- screen = 1,
+				screen = 1,
 				maximized = true,
 				hide_titlebars = true,
 			}
@@ -77,7 +77,7 @@ ruled.client.connect_signal(
 				}
 			},
 			properties = { 
-				tag = '2',
+				tag = 'gaming',
 				screen = 1,
 				skip_decoration = true,
 				maximized = true,
@@ -99,7 +99,7 @@ ruled.client.connect_signal(
 				}
 			},
 			properties = { 
-				tag = '2',
+				tag = 'gaming',
 				screen = 1,
 				skip_decoration = true,
 				maximized = false,
@@ -126,7 +126,7 @@ ruled.client.connect_signal(
 				}
 			},
 			properties = { 
-				tag = '3',
+				tag = 'coding',
 				screen = 1,
 				switchtotag = true,
 			}
@@ -156,7 +156,7 @@ ruled.client.connect_signal(
 				}
 			},
 			properties = { 
-				tag = '4',
+				tag = 'computer',
 				screen = 1,
 				switchtotag = true,
 				-- floating = true,
@@ -175,7 +175,7 @@ ruled.client.connect_signal(
 				name = { "Google Play Music" }
 			},
 			properties = { 
-				tag = '5',
+				tag = 'multimedia',
 				screen = 1,
 				switchtotag = true,
 				floating = true,
@@ -195,7 +195,7 @@ ruled.client.connect_signal(
 				}
 			},
 			properties = { 
-				tag = '6',
+				tag = 'graphics',
 				screen = 1,
 				maximized = true,
 				switchtotag = true,
@@ -212,7 +212,7 @@ ruled.client.connect_signal(
 				}
 			},
 			properties = { 
-				tag = '7',
+				tag = 'sandbox',
 				screen = 1
 			}
 		}
