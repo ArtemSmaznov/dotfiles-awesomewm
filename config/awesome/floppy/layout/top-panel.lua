@@ -287,11 +287,10 @@ local TopPanel = function(s, offset)
 			-- require('widget.panel-widgets.system-tray')(s, panelSize),
 			require('widget.panel-widgets.keyboard-layout'),
 			require('widget.panel-widgets.package-updater')(),
-			require('widget.panel-widgets.screen-recorder')(),
-			require('widget.panel-widgets.music')(),
 			require('widget.panel-widgets.network')(),
 			-- require('widget.panel-widgets.bluetooth')(),
 			-- require('widget.panel-widgets.battery')(),
+			-- require('widget.panel-widgets.music')(),
 			layout_box(s),
 			{
 				{

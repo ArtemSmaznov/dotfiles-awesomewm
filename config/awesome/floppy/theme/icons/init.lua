@@ -49,6 +49,7 @@ return {
 		lock							= themePath .. '64x64@2x/categories/' .. 'system-lock-screen.svg',
 		restart						= themePath .. '64x64@2x/categories/' .. 'system-reboot.svg',
 		gear							= themePath .. '64x64@2x/categories/' .. 'utilities-tweak-tool.svg',
+		screen_recorder		= themePath .. '64x64@2x/categories/' .. 'deepin-screen-recorder.svg',
 
 		keyboard_on				= themePath .. '24x24@2x/panel/' .. 'input-keyboard-virtual-on.svg',
 		keyboard_off			= themePath .. '24x24@2x/panel/' .. 'input-keyboard-virtual-off.svg',
@@ -89,12 +90,13 @@ return {
 		network_transmit	= themePath .. 'symbolic/status/' .. 'network-transmit-symbolic.svg',
 		bluetooth_on			= themePath .. 'symbolic/status/' .. 'bluetooth-active-symbolic.svg',
 		bluetooth_off			= themePath .. 'symbolic/status/' .. 'bluetooth-disabled-symbolic.svg',
+		music							= themePath .. 'symbolic/places/' .. 'folder-music-symbolic.svg',
 
 		volume = {
 			high				= themePath .. 'symbolic/status/' .. 'audio-volume-high-symbolic.svg',
 			medium			= themePath .. 'symbolic/status/' .. 'audio-volume-medium-symbolic.svg',
 			low					= themePath .. 'symbolic/status/' .. 'audio-volume-low-symbolic.svg',
-			muted				= themePath .. 'symbolic/status/' .. 'audio-volume-muted-symbolic.svg',	
+			muted				= themePath .. 'symbolic/status/' .. 'audio-volume-muted-symbolic.svg',
 		},
 
 		brightness = {

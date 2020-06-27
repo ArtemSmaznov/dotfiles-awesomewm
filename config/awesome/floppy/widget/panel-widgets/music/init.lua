@@ -28,7 +28,7 @@ local return_button = function()
 	local widget = wibox.widget {
 		{
 			id = 'icon',
-			image = widget_icon_dir .. 'music' .. '.svg',
+			image = icons.symbolic.music,
 			widget = wibox.widget.imagebox,
 			resize = true
 		},
