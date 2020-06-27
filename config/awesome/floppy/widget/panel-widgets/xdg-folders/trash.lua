@@ -6,6 +6,8 @@ local icons = require('theme.icons')
 local clickable_container = require('widget.clickable-container.with-background')
 local dpi = require('beautiful').xresources.apply_dpi
 
+local sounds = require('theme.sounds')
+
 local trash_widget = wibox.widget {
 	{
 		id = 'trash_icon',
@@ -20,7 +22,9 @@ local trash_menu = awful.menu({
 	items = {
 		{
 			"Open trash",
-			function() awful.spawn.easy_async_with_shell("gio open trash:///", function(stdout) end, 1) end,
+			function()
+				awful.spawn.easy_async_with_shell("gio open trash:///", function(stdout) end, 1)
+			end,
 			icons.places.open_folder
 		},
 		{
@@ -28,7 +32,10 @@ local trash_menu = awful.menu({
 			{
 				{
 					'Yes',
-					function() awful.spawn.easy_async_with_shell("gio trash --empty", function(stdout) end, 1) end,
+					function()
+						awful.spawn.easy_async_with_shell("gio trash --empty", function(stdout) end, 1)
+						awful.spawn('paplay ' .. sounds.trash, false)
+					end,
 					icons.ui.yes
 				},
 				{

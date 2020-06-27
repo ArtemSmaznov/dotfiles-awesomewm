@@ -145,6 +145,7 @@ local right_panel = function(s)
 						require('widget.panel-widgets.user-profile'),
 						require('widget.panel-widgets.weather'),
 						require('widget.panel-widgets.social-media'),
+						require('widget.panel-widgets.tools'),
 						require('widget.panel-widgets.calculator')
 					},
 
