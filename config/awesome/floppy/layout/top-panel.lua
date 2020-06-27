@@ -280,6 +280,33 @@ local TopPanel = function(s, offset)
 		}
 	)
 
+	local tray_widgets = wibox.widget {
+		{
+			layout = wibox.layout.fixed.horizontal,
+			spacing = dpi(2),
+			-- require('widget.panel-widgets.system-tray')(s, panelSize),
+			require('widget.panel-widgets.keyboard-layout'),
+			require('widget.panel-widgets.package-updater')(),
+			require('widget.panel-widgets.screen-recorder')(),
+			require('widget.panel-widgets.music')(),
+			require('widget.panel-widgets.network')(),
+			-- require('widget.panel-widgets.bluetooth')(),
+			-- require('widget.panel-widgets.battery')(),
+			layout_box(s),
+			{
+				{
+				require('widget.system-elements.volume-icon'),
+				margins = dpi(7),
+				widget = wibox.container.margin
+				},
+				widget = clickable_container
+			},
+
+		},
+		margins = dpi(0),
+		widget = wibox.container.margin
+	}
+
 	panel : setup {
 		layout = wibox.layout.align.horizontal,
 		expand = "none",
@@ -292,21 +319,7 @@ local TopPanel = function(s, offset)
 		{
 			layout = wibox.layout.fixed.horizontal,
 			spacing = dpi(2),
-			-- require('widget.panel-widgets.system-tray')(s, panelSize),
-			require('widget.panel-widgets.keyboard-layout'),
-			require('widget.panel-widgets.package-updater')(),
-			require('widget.panel-widgets.screen-recorder')(),
-			require('widget.panel-widgets.music')(),
-			-- require('widget.panel-widgets.bluetooth')(),
-			require('widget.panel-widgets.network')(),
-			-- require('widget.panel-widgets.battery')(),
-			layout_box(s),
-			{
-				require('widget.system-elements.volume-icon'),
-				margins = dpi(7),
-				widget = wibox.container.margin
-			},
-
+			tray_widgets,
 			s.clock_widget,
 			require('widget.panel-widgets.right-panel-opener')()
 		}
