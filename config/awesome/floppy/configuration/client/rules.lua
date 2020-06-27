@@ -77,8 +77,8 @@ ruled.client.connect_signal(
 				}
 			},
 			properties = { 
-				-- tag = 'gaming',
-				-- screen = 1,
+				tag = 'gaming',
+				screen = 1,
 				skip_decoration = true,
 				maximized = true,
 				switchtotag = false,
@@ -99,8 +99,8 @@ ruled.client.connect_signal(
 				}
 			},
 			properties = { 
-				tag = 'gaming',
-				screen = 1,
+				-- tag = 'gaming',
+				-- screen = 1,
 				skip_decoration = true,
 				maximized = false,
 				hide_titlebars = true,
