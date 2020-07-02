@@ -9,6 +9,8 @@ local menubar = require("menubar")
 
 local hotkeys_popup = require('awful.hotkeys_popup').widget
 
+local icons = require('theme.icons')
+
 local editor_cmd = apps.default.terminal .. " -e " .. (os.getenv("EDITOR") or "nano")
 
 local function is_module_available(name)
@@ -27,7 +29,33 @@ local function is_module_available(name)
 end
 
 -- Create a launcher widget and a main menu
-awesome_menu = {
+local default_app_menu = {
+	{
+		"Terminal",
+		apps.default.terminal,
+		menubar.utils.lookup_icon("utilities-terminal")
+	},
+	{
+		"Web browser",
+		apps.default.web_browser,
+		menubar.utils.lookup_icon("webbrowser-app")
+	},
+	{
+		"File Manager",
+		apps.default.file_manager,
+		menubar.utils.lookup_icon("system-file-manager")
+	},
+	{
+		"Text Editor",
+		apps.default.text_editor,
+		menubar.utils.lookup_icon("accessories-text-editor")
+	},
+	{
+		"---------------"
+	}
+}
+
+local awesome_menu = {
 	{ 
 		"Hotkeys",
 		function()
@@ -49,29 +77,6 @@ awesome_menu = {
 		"Quit",
 		function() awesome.quit() end,
 		menubar.utils.lookup_icon("system-log-out")
-	}
-}
-
-local default_app_menu = {
-	{
-		"Terminal",
-		apps.default.terminal,
-		menubar.utils.lookup_icon("utilities-terminal")
-	},
-	{
-		"Web browser",
-		apps.default.web_browser,
-		menubar.utils.lookup_icon("webbrowser-app")
-	},
-	{
-		"File Manager",
-		apps.default.file_manager,
-		menubar.utils.lookup_icon("system-file-manager")
-	},
-	{
-		"Text Editor",
-		apps.default.text_editor,
-		menubar.utils.lookup_icon("accessories-text-editor")
 	}
 }
 
@@ -106,6 +111,9 @@ local screenshot_menu = {
 
 local tools_menu = {
 	{
+		"---------------"
+	},
+	{
 		"Awesome",
 		awesome_menu,
 		beautiful.awesome_icon
@@ -120,7 +128,7 @@ local tools_menu = {
 		function()
 			awesome.emit_signal("module::exit_screen_show")
 		end,
-		menubar.utils.lookup_icon("system-shutdown") 
+		icons.other.shutdown
 	}
 }
 
@@ -128,19 +136,25 @@ local tools_menu = {
 -- https://github.com/lcpz/awesome-freedesktop
 
 if is_module_available("freedesktop") then
-
 	local freedesktop = require("freedesktop")
-		
-	mymainmenu = freedesktop.menu.build({
-		-- Not actually the size, but the quality of the icon
-		icon_size = 48,
 
-		before = default_app_menu,
-		after = tools_menu
-	})
-	mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
+	mymainmenu = freedesktop.menu.build(
+		{
+			-- Not actually the size, but the quality of the icon
+			icon_size = 48,
+
+			before = default_app_menu,
+			after = tools_menu
+		}
+	)
+	mylauncher = awful.widget.launcher(
+		{
+			image = beautiful.awesome_icon,
+			menu = mymainmenu
+		}
+	)
+
 else
-
 	mymainmenu = awful.menu({
 
 		items = {

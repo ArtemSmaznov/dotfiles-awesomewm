@@ -66,18 +66,16 @@ root.buttons(
 			{'Control'},
 			4,
 		 	function()
-	            awful.spawn('amixer -D pulse sset Master 5%+',false)
-	            awesome.emit_signal('widget::volume')
-	            awesome.emit_signal('module::volume_osd:show',true)
+				awesome.emit_signal('widget::volume:increase')
+				awesome.emit_signal('module::volume_osd:show',true)
 		 	end
 		),
 		awful.button(
 			{'Control'},
 			5,
 		 	function()
-	            awful.spawn('amixer -D pulse sset Master 5%-',false)
-	            awesome.emit_signal('widget::volume')
-	            awesome.emit_signal('module::volume_osd:show',true)
+				awesome.emit_signal('widget::volume:decrease')
+				awesome.emit_signal('module::volume_osd:show',true)
 		 	end
 		)
 	)

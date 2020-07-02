@@ -67,7 +67,10 @@ ruled.client.connect_signal(
 					"Citra",
 					"SuperTuxKart"
 				},
-				name = { "Steam" },
+				name = {
+					"Steam",
+					"GOG Galaxy"
+				},
 				except_any = {
 					name = {
 						"- Steam",
@@ -80,9 +83,9 @@ ruled.client.connect_signal(
 				tag = 'gaming',
 				screen = 1,
 				skip_decoration = true,
-				maximized = true,
-				switchtotag = false,
-				floating = false,
+				-- maximized = true,
+				-- switchtotag = false,
+				-- floating = false,
 				hide_titlebars = true,
 				round_corners = false,
 				placement = awful.placement.centered
@@ -91,7 +94,7 @@ ruled.client.connect_signal(
 
 		ruled.client.append_rule {
 			id         = "steam_windows",
-			rule_any   = {  
+			rule_any   = {
 				name = {
 					"- Steam",
 					"Settings",

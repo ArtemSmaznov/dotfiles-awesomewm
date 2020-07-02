@@ -1,6 +1,4 @@
 -- Icons directory
-local menubar = require("menubar")
-
 local iconsTheme = 'Papirus-Dark'
 
 local themePath = '/usr/share/icons/' .. iconsTheme .. '/'
@@ -10,15 +8,15 @@ return {
 
 	-- Tags / Virtual Desktops
 	tags = {
-		web_browser 			= menubar.utils.lookup_icon("chrome"),
-		text_editor				= menubar.utils.lookup_icon("code"),
-		file_manager 			= menubar.utils.lookup_icon("system-file-manager"),
-		multimedia 				= menubar.utils.lookup_icon("multimedia"),
-		music 						= menubar.utils.lookup_icon("multimedia-audio-player"),
-		controller 				= menubar.utils.lookup_icon("sc-controller"),
-		terminal 					= menubar.utils.lookup_icon("utilities-terminal"),
-		graphics 					= menubar.utils.lookup_icon("gpaint"),
-		sandbox 					= menubar.utils.lookup_icon("preferences-desktop-remote-desktop"),
+		web_browser 			= themePath .. '64x64@2x/categories/' .. 'chrome.svg',
+		text_editor				= themePath .. '64x64@2x/categories/' .. 'code.svg',
+		file_manager 			= themePath .. '64x64@2x/categories/' .. 'system-file-manager.svg',
+		multimedia 				= themePath .. '64x64@2x/categories/' .. 'applications-multimedia.svg',
+		music 						= themePath .. '64x64@2x/categories/' .. 'multimedia-audio-player.svg',
+		controller 				= themePath .. '64x64@2x/categories/' .. 'sc-controller.svg',
+		terminal 					= themePath .. '64x64@2x/categories/' .. 'terminal.svg',
+		graphics 					= themePath .. '64x64@2x/categories/' .. 'gpaint.svg',
+		sandbox 					= themePath .. '64x64@2x/apps/' 			.. 'preferences-desktop-remote-desktop.svg',
 	},
 
 	-- Places / Folders
@@ -40,17 +38,17 @@ return {
 
 	other = {
 		-- Tags
-		distributor_logo	= menubar.utils.lookup_icon("distributor-logo-archlinux"),
+		distributor_logo	= themePath .. '64x64@2x/categories/' .. 'distributor-logo-archlinux.svg',
 
 
 		-- Others/System UI
-		logout						= menubar.utils.lookup_icon("system-log-out"),
-		sleep							= menubar.utils.lookup_icon("system-suspend"),
-		hibernate					= menubar.utils.lookup_icon("system-hibernate"),
-		shutdown					= menubar.utils.lookup_icon("system-shutdown"),
-		lock							= menubar.utils.lookup_icon("system-lock-screen"),
-		restart						= menubar.utils.lookup_icon("system-reboot"),
-		gear							= menubar.utils.lookup_icon("utilities-tweak-tool"),
+		logout						= themePath .. '64x64@2x/categories/' .. 'system-log-out.svg',
+		sleep							= themePath .. '64x64@2x/categories/' .. 'system-suspend.svg',
+		hibernate					= themePath .. '64x64@2x/categories/' .. 'system-hibernate.svg',
+		power							= themePath .. '64x64@2x/categories/' .. 'system-shutdown.svg',
+		lock							= themePath .. '64x64@2x/categories/' .. 'system-lock-screen.svg',
+		restart						= themePath .. '64x64@2x/categories/' .. 'system-reboot.svg',
+		gear							= themePath .. '64x64@2x/categories/' .. 'utilities-tweak-tool.svg',
 		screen_recorder		= themePath .. '64x64@2x/categories/' .. 'deepin-screen-recorder.svg',
 
 		keyboard_on				= themePath .. '24x24@2x/panel/' .. 'input-keyboard-virtual-on.svg',

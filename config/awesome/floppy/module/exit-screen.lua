@@ -146,7 +146,7 @@ local reboot_command = function()
 	awesome.emit_signal("module::exit_screen_hide")
 end
 
-local poweroff = build_button(icons.other.power, 'Shutdown')
+local poweroff = build_button(icons.other.shutdown, 'Shutdown')
 poweroff:connect_signal(
 	'button::release',
 	function()
