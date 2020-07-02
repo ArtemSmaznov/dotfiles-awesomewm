@@ -19,7 +19,8 @@ theme.font_bold = 'SF Pro Text Bold 10'
 
 
 -- Menu icon theme
-theme.icon_theme = 'Tela-blue-dark'
+theme.icon_theme = 'breeze'
+-- theme.icon_theme = 'Papirus-Dark'
 
 
 local awesome_overrides = function(theme)

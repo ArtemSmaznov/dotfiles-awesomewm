@@ -65,7 +65,7 @@ return function(_, panel)
 		{
 			{
 				{
-					image = icons.other.logout,
+					image = icons.other.shutdown,
 					resize = true,
 					widget = wibox.widget.imagebox
 				},

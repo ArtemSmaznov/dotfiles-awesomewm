@@ -7,6 +7,7 @@ theme.icons = theme_dir .. '/icons/'
 theme.font = 'SF Pro Text Regular 10'
 theme.font_bold = 'SF Pro Text Bold 10'
 
+theme.icon_theme = 'Papirus-Dark'
 
 -- Colorscheme
 theme.system_black_dark = '#3D4C5F'
