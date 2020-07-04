@@ -45,6 +45,14 @@ awful.key({modkey, 'Control'},
 		awesome.quit,
 		{description = 'quit awesome', group = 'awesome'}
 ),
+awful.key({modkey, 'Control', 'Shift'},
+		'd',
+		function()
+			awesome.emit_signal('debug')
+	end,
+		{description = 'debug', group = 'awesome'}
+),
+
 
 -- Brightness Keys
 awful.key(
