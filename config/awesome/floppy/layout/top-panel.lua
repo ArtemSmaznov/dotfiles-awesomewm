@@ -280,6 +280,28 @@ local TopPanel = function(s, offset)
 		}
 	)
 
+	s.volume_widget = wibox.widget {
+		{
+		require('widget.system-elements.volume-icon'),
+		margins = dpi(7),
+		widget = wibox.container.margin
+		},
+		widget = clickable_container
+	}
+
+	s.volume_widget:buttons(
+		gears.table.join(
+			awful.button(
+				{},
+				3,
+				nil,
+				function()
+					awful.spawn('cinnamon-settings sound')
+				end
+			)
+		)
+	)
+
 	local tray_widgets = wibox.widget {
 		{
 			layout = wibox.layout.fixed.horizontal,
@@ -287,19 +309,12 @@ local TopPanel = function(s, offset)
 			-- require('widget.panel-widgets.system-tray')(s, panelSize),
 			require('widget.panel-widgets.keyboard-layout'),
 			require('widget.panel-widgets.package-updater')(),
-			require('widget.panel-widgets.network')(),
+			s.volume_widget,
 			-- require('widget.panel-widgets.bluetooth')(),
 			require('widget.panel-widgets.battery'),
 			-- require('widget.panel-widgets.music')(),
 			layout_box(s),
-			{
-				{
-				require('widget.system-elements.volume-icon'),
-				margins = dpi(7),
-				widget = wibox.container.margin
-				},
-				widget = clickable_container
-			},
+			require('widget.panel-widgets.network')(),
 
 		},
 		margins = dpi(0),
