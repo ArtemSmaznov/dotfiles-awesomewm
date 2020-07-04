@@ -67,15 +67,16 @@ local update_widget_icon = function(widget, device)
 	awful.spawn.easy_async_with_shell(check_status_cmd, function(stdout)
 		local charging_status = stdout
 		awful.spawn.easy_async_with_shell(check_percentage_cmd, function(stdout)
-			local battery_percentage = tonumber(stdout)
-			
-			widget.image = get_icon(battery_percentage, charging_status)
+			if stdout ~= nil or stdout ~= '' then
+				local battery_percentage = tonumber(stdout)
+				widget.image = get_icon(battery_percentage, charging_status)
+			end
 		end)
 	end)
 
 end
 
-local build_widget = function()
+Build_widget = function()
 	widget:reset()
 
 	awful.spawn.with_line_callback('upower -e',{
@@ -87,7 +88,7 @@ local build_widget = function()
 
 					local ib = wibox.widget.imagebox()
 					ib.image = icons.symbolic.battery.battery_unknown				
-					
+
 					local button_widget = wibox.widget {
 						{
 							ib,
@@ -116,9 +117,11 @@ local build_widget = function()
 
 					widget:add(button_widget)
 
-					watch('upower -e', 5, function(w, stdout)
+					watch('upower -i ' ..device, 5, function(w, stdout)
 						if stdout == nil or stdout == '' then
 							naughty.notify { text = 'output of upower -e is empty' }
+						elseif stdout:match('(null)') then
+							Build_widget()
 						else
 							update_widget_icon(ib, device)
 						end
@@ -140,19 +143,19 @@ end
 
 
 
-build_widget()
+Build_widget()
 
 awesome.connect_signal(
 	'widgets:update',
 	function()
-		build_widget()
+		Build_widget()
 	end
 )
 
 awesome.connect_signal(
-	'widgets:debug',
+	'debug',
 	function()
-		build_widget()
+		Build_widget()
 	end
 )
 

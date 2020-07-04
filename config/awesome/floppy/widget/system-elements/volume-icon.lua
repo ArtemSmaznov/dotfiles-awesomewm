@@ -18,26 +18,7 @@ local volume_icon = wibox.widget{
 	widget = clickable_container
 }
 
-volume_icon:buttons(
-	gears.table.join(
-		awful.button(
-			{},
-			1,
-			nil,
-			function()
-				awesome.emit_signal('widget::volume:mute', nil)
-			end
-		),
-		awful.button(
-			{},
-			3,
-			nil,
-			function()
-				awful.spawn('cinnamon-settings sound')
-			end
-		)
-	)
-)
+
 
 awesome.connect_signal(
 	'widget::volume_icon:update',

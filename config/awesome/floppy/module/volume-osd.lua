@@ -53,6 +53,19 @@ screen.connect_signal("request::desktop_decoration", function(s)
 		widget = wibox.container.constraint
 	}
 	
+	osd_icon:buttons(
+	gears.table.join(
+		awful.button(
+			{},
+			1,
+			nil,
+			function()
+				awesome.emit_signal('widget::volume:mute', nil)
+			end
+		)
+	)
+)
+
 	-- Create the box
 	local osd_height = dpi(300)
 	local osd_width = dpi(300)
