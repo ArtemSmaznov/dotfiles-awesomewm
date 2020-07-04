@@ -23,7 +23,7 @@ return {
 
 		network_manager 					= 'nm-connection-editor',											-- Network manager
 		bluetooth_manager 				= 'blueman-manager',													-- Bluetooth manager
-		power_manager 						= 'xfce4-power-manager',											-- Power manager
+		power_manager 						= 'xfce4-power-manager-settings',											-- Power manager
 		package_manager 					= 'pamac-manager',														-- GUI Package manager
 		-- lock 											= 'awesome-client "awesome.emit_signal(\'module::lockscreen_show\')"',	-- Lockscreen
 		lock 						= 'cinnamon-screensaver-command -l',	-- Lockscreen
@@ -67,7 +67,7 @@ return {
 		-- 'paplay ' .. sounds.startup,
 	
 		-- You can add more start-up applications here
-		'/opt/piavpn/bin/pia-client --quiet',
+		-- '/opt/piavpn/bin/pia-client --quiet',
 		'ckb-next -b',
 		'terminator',
 		-- 'google-chrome-stable',

@@ -1,4 +1,6 @@
 local wibox = require("wibox")
+local awful = require('awful')
+local gears = require('gears')
 
 local clickable_container = require('widget.clickable-container.no-background')
 local icons = require('theme.icons')
@@ -16,12 +18,25 @@ local volume_icon = wibox.widget{
 	widget = clickable_container
 }
 
-
-volume_icon.icon:connect_signal(
-	'button::press',
-	function()
-		awesome.emit_signal('widget::volume:mute', nil)
-	end
+volume_icon:buttons(
+	gears.table.join(
+		awful.button(
+			{},
+			1,
+			nil,
+			function()
+				awesome.emit_signal('widget::volume:mute', nil)
+			end
+		),
+		awful.button(
+			{},
+			3,
+			nil,
+			function()
+				awful.spawn('cinnamon-settings sound')
+			end
+		)
+	)
 )
 
 awesome.connect_signal(
