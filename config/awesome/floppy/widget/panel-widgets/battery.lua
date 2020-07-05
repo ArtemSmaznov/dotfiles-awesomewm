@@ -13,6 +13,7 @@ local dpi = require('beautiful').xresources.apply_dpi
 local icons = require('theme.icons')
 
 local widget = wibox.layout.fixed.horizontal()
+local cache = {}
 
 local battery_tooltip = function(el, content)
 	return awful.tooltip{
@@ -76,86 +77,105 @@ local update_widget_icon = function(widget, device)
 
 end
 
-Build_widget = function()
-	widget:reset()
+local compare_tables = function(table1, table2)
+	for i, device in pairs(table2) do
+		if device ~= table1[i] then
+			return false
+		end
+	end
 
-	awful.spawn.with_line_callback('upower -e',{
-		stdout = function(device)
-			local check_statistics_cmd = "upower -i " .. device ..  " | grep statistics | awk '{print $3}'"
-	
-			awful.spawn.easy_async_with_shell(check_statistics_cmd, function(stdout)
-				if stdout:match('yes') then
-
-					local ib = wibox.widget.imagebox()
-					ib.image = icons.symbolic.battery.battery_unknown				
-
-					local button_widget = wibox.widget {
-						{
-							ib,
-							margins = dpi(7),
-							widget = wibox.container.margin
-						},
-						widget = clickable_container
-					}
-
-					button_widget:buttons(
-						gears.table.join(
-							awful.button(
-								{},
-								1,
-								nil,
-								function()
-									awful.spawn(apps.default.power_manager , false)
-								end
-							)
-						)
-					)
-				
-					widget:connect_signal('mouse::enter', function()
-						get_battery_info(device, button_widget)
-					end)
-
-					widget:add(button_widget)
-
-					watch('upower -i ' ..device, 5, function(w, stdout)
-						if stdout == nil or stdout == '' then
-							naughty.notify { text = 'output of upower -e is empty' }
-						elseif stdout:match('(null)') then
-							Build_widget()
-						else
-							update_widget_icon(ib, device)
-						end
-					end)
-				end
-			end)
-		end,
-		stderr = function(line)
-			naughty.notify { text = "Error: "..line}
-		end,
-	})
-
-
+	return true
 end
 
+local update_widget = function(w)
+	w.image = icons.symbolic.battery.battery_charging_50
+end
 
+local rebuild_widget = function (cached_devices)
+	widget:reset()
+	for i, device in pairs(cached_devices) do
+		local check_statistics_cmd = "upower -i " .. device ..  " | grep statistics | awk '{print $3}'"
 
+		awful.spawn.easy_async_with_shell(check_statistics_cmd, function(stdout)
+			if stdout:match('yes') then
+				local ib = wibox.widget {
+					id = 'art',
+					image = icons.symbolic.battery.battery_unknown,
+					widget = wibox.widget.imagebox
+				}
 
+				local button_widget = wibox.widget {
+					{
+						ib,
+						margins = dpi(7),
+						widget = wibox.container.margin
+					},
+					widget = clickable_container
+				}
 
+				button_widget:buttons(
+					gears.table.join(
+						awful.button(
+							{},
+							1,
+							nil,
+							function()
+								awful.spawn(apps.default.power_manager , false)
+							end
+						)
+					)
+				)
+			
+				get_battery_info(device, button_widget)
+				button_widget:connect_signal('mouse::enter', function()
+					get_battery_info(device, button_widget)
+				end)
 
+				widget:add(button_widget)
+				update_widget_icon(ib, device)
+			end
+		end)
+	end
+end
 
-Build_widget()
+gears.timer {
+	timeout   = 5,
+	call_now  = true,
+	autostart = true,
+	callback  = function()
+		local devices_list = {}
+		awful.spawn.with_line_callback('upower -e', {
+			stdout = function(device)
+				-- This is where the each device is added to list
+				table.insert(devices_list, device)
+			end,
+			output_done = function()
+				-- This is what happens after the list of devices is updated
+				if compare_tables(cache, devices_list) then
+					-- logic to update the widget icon
+					-- update_widget(cache)
+
+				else
+					cache = devices_list
+					-- logic to rebuild
+					rebuild_widget(cache)
+				end
+			end
+		})
+	end
+}
 
 awesome.connect_signal(
 	'widgets:update',
 	function()
-		Build_widget()
+		rebuild_widget(cache)	
 	end
 )
 
 awesome.connect_signal(
 	'debug',
 	function()
-		Build_widget()
+		rebuild_widget(cache)		
 	end
 )
 

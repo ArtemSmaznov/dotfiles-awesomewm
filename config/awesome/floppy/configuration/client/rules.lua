@@ -49,9 +49,9 @@ ruled.client.connect_signal(
 				name = { "Open File" }
 			},
 			properties = { 
-				-- tag = '1',
+				tag = '1',
 				screen = 1,
-				maximized = true,
+				-- maximized = true,
 				hide_titlebars = true,
 			}
 		}
