@@ -1,9 +1,12 @@
+-- Dependancy: upower
+-- will show a battery status icon for each device that has battery statistics
+-- Icons keep updating every 5 seconds and are dynamically added/removed based on hardware changes
+-- Tooltips might be a big buggy though
+
 local wibox = require('wibox')
 local awful = require('awful')
-local gears = require('gears')
 local naughty = require('naughty')
-
-local watch = awful.widget.watch
+local gears = require('gears')
 
 local apps = require('configuration.apps')
 
@@ -11,7 +14,6 @@ local clickable_container = require('widget.clickable-container.with-background'
 local dpi = require('beautiful').xresources.apply_dpi
 
 local icons = require('theme.icons')
-
 local widget = wibox.layout.fixed.horizontal()
 local cache = {}
 
@@ -27,11 +29,9 @@ local battery_tooltip = function(el, content)
 	}
 end
 
-local get_battery_info = function(device, widget)
+local spawn_tooltip = function(device, widget)
 	awful.spawn.easy_async_with_shell('upower -i ' .. device, function(stdout)
-
 		battery_tooltip(widget, stdout)
-
 	end)
 end
 
@@ -60,7 +60,6 @@ local get_icon = function(charge, status)
 	return icons.symbolic.battery[icon]
 end
 
-
 local update_widget_icon = function(widget, device)
 	local check_percentage_cmd = "upower -i " .. device ..  " | grep percentage | awk '{print $2}' | tr -d '\n%'"
 	local check_status_cmd = "upower -i " .. device ..  " | grep state | awk '{print $2}' | tr -d '\n'"
@@ -74,7 +73,6 @@ local update_widget_icon = function(widget, device)
 			end
 		end)
 	end)
-
 end
 
 local compare_tables = function(table1, table2)
@@ -85,10 +83,6 @@ local compare_tables = function(table1, table2)
 	end
 
 	return true
-end
-
-local update_widget = function(w)
-	w.image = icons.symbolic.battery.battery_charging_50
 end
 
 local rebuild_widget = function (cached_devices)
@@ -126,13 +120,20 @@ local rebuild_widget = function (cached_devices)
 					)
 				)
 			
-				get_battery_info(device, button_widget)
+				spawn_tooltip(device, button_widget)
 				button_widget:connect_signal('mouse::enter', function()
-					get_battery_info(device, button_widget)
+					spawn_tooltip(device, button_widget)
 				end)
 
-				widget:add(button_widget)
+				awesome.connect_signal(
+					'widget::battery:update',
+					function ()
+						update_widget_icon(ib, device)
+					end
+				)
+
 				update_widget_icon(ib, device)
+				widget:add(button_widget)
 			end
 		end)
 	end
@@ -146,37 +147,24 @@ gears.timer {
 		local devices_list = {}
 		awful.spawn.with_line_callback('upower -e', {
 			stdout = function(device)
-				-- This is where the each device is added to list
+				-- Build aa list of current devices that will later be compared to the cached list
 				table.insert(devices_list, device)
 			end,
+			stderr = function(output)
+				naughty.notify { text = "Error getting upower devices: "..output}
+			end,
 			output_done = function()
-				-- This is what happens after the list of devices is updated
 				if compare_tables(cache, devices_list) then
-					-- logic to update the widget icon
-					-- update_widget(cache)
-
+					-- if no changes in hardware detected, keep updating the icons
+					awesome.emit_signal('widget::battery:update')
 				else
+					-- if hardware was changed, update the list of devices and rebuild the whole widget
 					cache = devices_list
-					-- logic to rebuild
 					rebuild_widget(cache)
 				end
 			end
 		})
 	end
 }
-
-awesome.connect_signal(
-	'widgets:update',
-	function()
-		rebuild_widget(cache)	
-	end
-)
-
-awesome.connect_signal(
-	'debug',
-	function()
-		rebuild_widget(cache)		
-	end
-)
 
 return widget
