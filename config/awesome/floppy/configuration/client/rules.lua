@@ -49,7 +49,7 @@ ruled.client.connect_signal(
 				name = { "Open File" }
 			},
 			properties = { 
-				tag = '1',
+				tag = 'internet',
 				screen = 1,
 				-- maximized = true,
 				hide_titlebars = true,

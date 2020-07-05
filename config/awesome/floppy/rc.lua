@@ -45,6 +45,7 @@ require('module.dynamic-wallpaper')
 -- require('module.battery-notifier')
 require('module.lockscreen')
 
+require('playground')
 --  ========================================
 -- 				Configuration
 --	     	Load your prefrences

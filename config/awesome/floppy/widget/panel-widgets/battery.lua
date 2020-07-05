@@ -37,7 +37,7 @@ end
 
 local get_icon = function(charge, status)
 	local icon
-	if status:match('charging') then
+	if status:match('charging') and not status:match('discharging') then
 		icon = 'battery_charging_'
 	else
 		icon = 'battery_'

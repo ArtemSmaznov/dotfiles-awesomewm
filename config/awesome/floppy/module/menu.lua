@@ -7,7 +7,7 @@ local beautiful = require("beautiful")
 local apps = require('configuration.apps')
 local menubar = require("menubar")
 
-local hotkeys_popup = require('awful.hotkeys_popup').widget
+local hotkeys_popup = require('module.hotkeys_popup').widget
 
 local icons = require('theme.icons')
 
