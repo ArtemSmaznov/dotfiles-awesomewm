@@ -34,27 +34,19 @@ awful.key(
 -- Default client focus
 awful.key(
 	{modkey},
-	'd',
-	function()
-		awful.client.focus.byidx(1)
-	end,
-	{description = 'focus next by index', group = 'client'}
-),
-awful.key(
-	{modkey},
 	'a',
 	function()
 		awful.client.focus.byidx(-1)
 	end,
-	{description = 'focus previous by index', group = 'client'}
+	{description = 'focus prev/next by index', group = 'client'}
 ),
 awful.key(
-	{ modkey, "Shift"  },
-	"d",
-	function ()
-		awful.client.swap.byidx(1)
+	{modkey},
+	'd',
+	function()
+		awful.client.focus.byidx(1)
 	end,
-	{description = "swap with next client by index", group = "client"}
+	{description = 'focus prev/next by index', group = 'client'}
 ),
 awful.key(
 	{ modkey, "Shift" },
@@ -62,7 +54,15 @@ awful.key(
 	function ()
 		awful.client.swap.byidx(-1)
 	end,
-	{description = "swap with next client by index", group = "client"}
+	{description = "swap with prev/next client by index", group = "client"}
+),
+awful.key(
+	{ modkey, "Shift"  },
+	"d",
+	function ()
+		awful.client.swap.byidx(1)
+	end,
+	{description = "swap with prev/next client by index", group = "client"}
 ),
 
 awful.key(
@@ -142,7 +142,7 @@ awful.key(
 		-- 	end
 		-- end
 	end,
-	{description = 'move window to previous tag', group = 'client'}
+	{description = 'move window to tag', group = 'client'}
 ),
 awful.key(
 	{modkey, 'Shift'},
@@ -150,7 +150,7 @@ awful.key(
 	function(c)
 
 	end,
-	{description = 'move window to next tag', group = 'client'}
+	{description = 'move window to tag', group = 'client'}
 ),
 awful.key(
 	{modkey, 'Shift'},
@@ -158,7 +158,7 @@ awful.key(
 	function(c)
 		c:move_to_screen(2)
 	end,
-	{description = 'move window to left screen', group = 'client'}
+	{description = 'move window to screen', group = 'client'}
 ),
 awful.key(
 	{modkey, 'Shift'},
@@ -166,7 +166,7 @@ awful.key(
 	function(c)
 		c:move_to_screen(1)
 	end,
-	{description = 'move window to right screen', group = 'client'}
+	{description = 'move window to screen', group = 'client'}
 )
 -- awful.key(
 -- 	{modkey},

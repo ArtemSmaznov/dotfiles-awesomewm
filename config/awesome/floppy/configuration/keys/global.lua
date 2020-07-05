@@ -3,7 +3,7 @@ local beautiful = require('beautiful')
 
 require('awful.autofocus')
 
-local hotkeys_popup = require('awful.hotkeys_popup').widget
+local hotkeys_popup = require('module.hotkeys_popup').widget
 
 local modkey = require('configuration.keys.mod').modKey
 local altkey = require('configuration.keys.mod').altKey
@@ -17,11 +17,11 @@ local globalKeys = awful.util.table.join(
 -------------- System --------------
 ------------------------------------
 -- keyboard layout
-awful.key(
-		{"Shift"},
-		"Alt_L",
-		function () keyboard_layout.switch_next() end
-),
+-- awful.key(
+-- 		{"Shift"},
+-- 		"Alt_L",
+-- 		function () keyboard_layout.switch_next() end
+-- ),
 awful.key(
 		{altkey},
 		"Shift_L",
@@ -56,16 +56,6 @@ awful.key({modkey, 'Control', 'Shift'},
 
 -- Brightness Keys
 awful.key(
-	{},
-	'XF86MonBrightnessUp',
-	function()
-			awful.spawn('light -A 10', false)
-			awesome.emit_signal('widget::brightness')
-			awesome.emit_signal('module::brightness_osd:show', true)
-	end,
-	{description = 'increase brightness by 10%', group = 'hotkeys'}
-),
-awful.key(
 		{},
 		'XF86MonBrightnessDown',
 		function()
@@ -75,17 +65,18 @@ awful.key(
 		end,
 		{description = 'decrease brightness by 10%', group = 'hotkeys'}
 ),
+awful.key(
+	{},
+	'XF86MonBrightnessUp',
+	function()
+			awful.spawn('light -A 10', false)
+			awesome.emit_signal('widget::brightness')
+			awesome.emit_signal('module::brightness_osd:show', true)
+	end,
+	{description = 'increase brightness by 10%', group = 'hotkeys'}
+),
 
 -- Media Keys
-awful.key(
-		{},
-		'XF86AudioRaiseVolume',
-		function()
-			awesome.emit_signal('widget::volume:increase')
-			awesome.emit_signal('module::volume_osd:show', true)
-		end,
-		{description = 'increase volume up by 5%', group = 'hotkeys'}
-),
 awful.key(
 		{},
 		'XF86AudioLowerVolume',
@@ -93,7 +84,16 @@ awful.key(
 			awesome.emit_signal('widget::volume:decrease')
 			awesome.emit_signal('module::volume_osd:show', true)
 		end,
-		{description = 'decrease volume up by 5%', group = 'hotkeys'}
+		{description = 'change volume up by 5%', group = 'hotkeys'}
+),
+awful.key(
+		{},
+		'XF86AudioRaiseVolume',
+		function()
+			awesome.emit_signal('widget::volume:increase')
+			awesome.emit_signal('module::volume_osd:show', true)
+		end,
+		{description = 'change volume up by 5%', group = 'hotkeys'}
 ),
 awful.key(
 		{},
@@ -106,19 +106,19 @@ awful.key(
 ),
 awful.key(
 		{},
-		'XF86AudioNext',
-		function()
-				awful.spawn('mpc next', false)
-		end,
-		{description = 'next music', group = 'hotkeys'}
-),
-awful.key(
-		{},
 		'XF86AudioPrev',
 		function()
 				awful.spawn('mpc prev', false)
 		end,
-		{description = 'previous music', group = 'hotkeys'}
+		{description = 'switch music track', group = 'hotkeys'}
+),
+awful.key(
+		{},
+		'XF86AudioNext',
+		function()
+				awful.spawn('mpc next', false)
+		end,
+		{description = 'switch music track', group = 'hotkeys'}
 ),
 awful.key(
 		{},
@@ -181,7 +181,7 @@ awful.key(
 		function ()
 			require('module.screenshot')('full')
 		end,
-		{description = "fullscreen screenshot", group = 'Utility'}
+		{description = "fullscreen screenshot", group = 'Screenshots'}
 ),
 awful.key(
 		{modkey, "Shift"},
@@ -189,7 +189,7 @@ awful.key(
 		function ()
 			require('module.screenshot')('area')
 		end,
-		{description = "area/selected screenshot", group = 'Utility'}
+		{description = "area/selected screenshot", group = 'Screenshots'}
 ),
 awful.key(
 		{altkey},
@@ -197,7 +197,7 @@ awful.key(
 		function ()
 			require('module.screenshot')('window')
 		end,
-		{description = "current window screenshot", group = 'Utility'}
+		{description = "current window screenshot", group = 'Screenshots'}
 ),
 
 -- awful.key(
@@ -245,52 +245,52 @@ awful.key(
 -------------- Layout --------------
 ------------------------------------
 awful.key(
-		{altkey, 'Shift'},
-		'l',
-		function()
-				awful.tag.incmwfact(0.05)
-		end,
-		{description = 'increase master width factor', group = 'layout'}
-),
-awful.key(
-		{altkey, 'Shift'},
-		'h',
+		{modkey, altkey},
+		'Left',
 		function()
 				awful.tag.incmwfact(-0.05)
 		end,
-		{description = 'decrease master width factor', group = 'layout'}
+		{description = 'increase/decrease master width factor', group = 'layout'}
 ),
 awful.key(
-		{modkey, 'Shift'},
-		'h',
+		{modkey, altkey},
+		'Right',
 		function()
-				awful.tag.incnmaster(1, nil, true)
+				awful.tag.incmwfact(0.05)
 		end,
-		{description = 'increase the number of master clients', group = 'layout'}
+		{description = 'increase/decrease master width factor', group = 'layout'}
 ),
 awful.key(
-		{modkey, 'Shift'},
-		'l',
+		{modkey, altkey},
+		'KP_Subtract',
 		function()
 				awful.tag.incnmaster(-1, nil, true)
 		end,
-		{description = 'decrease the number of master clients', group = 'layout'}
+		{description = 'increase/decrease the number of master clients', group = 'layout'}
 ),
 awful.key(
-		{modkey, 'Control'},
-		'h',
+		{modkey, altkey},
+		'KP_Add',
+		function()
+				awful.tag.incnmaster(1, nil, true)
+		end,
+		{description = 'increase/decrease the number of master clients', group = 'layout'}
+),
+awful.key(
+		{modkey, altkey},
+		'Up',
 		function()
 				awful.tag.incncol(1, nil, true)
 		end,
-		{description = 'increase the number of columns', group = 'layout'}
+		{description = 'increase/decrease the number of columns', group = 'layout'}
 ),
 awful.key(
-		{modkey, 'Control'},
-		'l',
+		{modkey, altkey},
+		'Down',
 		function()
 				awful.tag.incncol(-1, nil, true)
 		end,
-		{description = 'decrease the number of columns', group = 'layout'}
+		{description = 'increase/decrease the number of columns', group = 'layout'}
 ),
 awful.key(
 		{modkey},
@@ -312,14 +312,14 @@ awful.key(
 		{modkey},
 		'Page_Up',
 		awful.tag.viewprev,
-		{description = 'view previous tag', group = 'tag'}
+		{description = 'view prev/next tag', group = 'tag'}
 ),
 
 awful.key(
 		{modkey},
 		'Page_Down',
 		awful.tag.viewnext,
-		{description = 'view next tag', group = 'tag'}
+		{description = 'view prev/next tag', group = 'tag'}
 ),
 awful.key(
 		{modkey},
@@ -361,7 +361,7 @@ awful.key(
 		function()
 				awful.screen.focus_relative(-1)
 		end,
-		{ description = "focus the previous screen", group = "screen"}
+		{ description = "focus other screen", group = "screen"}
 ),
 awful.key(
 		{modkey, 'Shift'},
@@ -369,17 +369,7 @@ awful.key(
 		function()
 				awful.screen.focus_relative(1)
 		end,
-		{ description = "focus the next screen", group = "screen"}
-),
-awful.key(
-		{modkey},
-		'd',
-		function()
-			for _, c in ipairs(mouse.screen.selected_tag:clients())	do
-				c.minimized = true
-			end
-		end,
-		{description = 'minimize all', group = 'screen'}
+		{ description = "focus other screen", group = "screen"}
 ),
 awful.key(
 		{modkey, 'Control'},
