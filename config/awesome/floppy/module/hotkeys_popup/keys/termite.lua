@@ -6,7 +6,7 @@
 -- @submodule awful.hotkeys_popup
 ---------------------------------------------------------------------------
 
-local hotkeys_popup = require("awful.hotkeys_popup.widget")
+local hotkeys_popup = require("module.hotkeys_popup.widget")
 
 local termite_rule = { class = "Termite" }
 for group_name, group_data in pairs({

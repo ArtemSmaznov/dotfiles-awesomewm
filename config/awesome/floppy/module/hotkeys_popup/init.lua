@@ -5,6 +5,7 @@
 -- @copyright 2014-2015 Yauheni Kirylau
 -- @module awful.hotkeys_popup
 ---------------------------------------------------------------------------
+require('module.hotkeys_popup.keys')
 
 local hotkeys_popup = {
   widget = require("module.hotkeys_popup.widget"),
