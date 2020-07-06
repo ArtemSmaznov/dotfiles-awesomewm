@@ -37,26 +37,31 @@ end
 
 local get_icon = function(charge, status)
 	local icon
+
 	if status:match('charging') and not status:match('discharging') then
 		icon = 'battery_charging_'
 	else
 		icon = 'battery_'
 	end
 
-	if charge >= 0 and charge < 10 then icon = icon .. '0'
-	elseif charge >= 10 and charge < 20 then icon = icon .. '10'
-	elseif charge >= 20 and charge < 30 then icon = icon .. '20'
-	elseif charge >= 30 and charge < 40 then icon = icon .. '30'
-	elseif charge >= 40 and charge < 50 then icon = icon .. '40'
-	elseif charge >= 50 and charge < 60 then icon = icon .. '50'
-	elseif charge >= 60 and charge < 70 then icon = icon .. '60'
-	elseif charge >= 70 and charge < 80 then icon = icon .. '70'
-	elseif charge >= 80 and charge < 90 then icon = icon .. '80'
-	elseif charge >= 90 and charge < 100 then icon = icon .. '90'
-	elseif charge >= 100 then icon = icon .. '100'
-	else icon = 'battery_unknown'
+	if charge == nil or charge == '' then
+		naughty.notify { text = 'passed charge value is empty' }
+		icon = 'battery_unknown'
+	else
+		if charge >= 0 and charge < 10 then icon = icon .. '0'
+		elseif charge >= 10 and charge < 20 then icon = icon .. '10'
+		elseif charge >= 20 and charge < 30 then icon = icon .. '20'
+		elseif charge >= 30 and charge < 40 then icon = icon .. '30'
+		elseif charge >= 40 and charge < 50 then icon = icon .. '40'
+		elseif charge >= 50 and charge < 60 then icon = icon .. '50'
+		elseif charge >= 60 and charge < 70 then icon = icon .. '60'
+		elseif charge >= 70 and charge < 80 then icon = icon .. '70'
+		elseif charge >= 80 and charge < 90 then icon = icon .. '80'
+		elseif charge >= 90 and charge < 100 then icon = icon .. '90'
+		elseif charge >= 100 then icon = icon .. '100'
+		else icon = 'battery_unknown'
+		end
 	end
-
 	return icons.symbolic.battery[icon]
 end
 
