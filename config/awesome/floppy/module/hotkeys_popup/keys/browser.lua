@@ -6,36 +6,33 @@
 -- @submodule awful.hotkeys_popup
 ---------------------------------------------------------------------------
 
-local hotkeys_popup = require("awful.hotkeys_popup.widget")
-local fire_rule = { class = { "Firefox" } }
+local hotkeys_popup = require("module.hotkeys_popup.widget")
+local fire_rule = { class = { "Firefox", "Google-chrome", "Chromium" } }
 for group_name, group_data in pairs({
-    ["Firefox: tabs"] = { color = "#009F00", rule_any = fire_rule }
+    ["Browser: tabs"] = { color = "#009F00", rule_any = fire_rule }
 }) do
     hotkeys_popup.add_group_rules(group_name, group_data)
 end
 
-local firefox_keys = {
+local browser_keys = {
 
-    ["Firefox: tabs"] = {{
-        modifiers = { "Mod1" },
-        keys = {
-            ["1..9"] = "go to tab"
-        }
-    }, {
+    ["Browser: tabs"] = {{
         modifiers = { "Ctrl" },
         keys = {
             t = "new tab",
             w = 'close tab',
-            ['Tab'] = "next tab"
+						['Tab'] = "next tab",
+						["1..9"] = "go to tab"
         }
     }, {
         modifiers = { "Ctrl", "Shift" },
         keys = {
-          ['Tab'] = "previous tab"
+					['Tab'] = "previous tab",
+					t = 'reopen last closed tab'
         }
     }}
 }
 
-hotkeys_popup.add_hotkeys(firefox_keys)
+hotkeys_popup.add_hotkeys(browser_keys)
 
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
