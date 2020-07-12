@@ -36,7 +36,7 @@ theme.system_white_light = '#F8F8F2'
 
 
 -- Accent color
-theme.accent = theme.system_blue_dark
+theme.accent = theme.system_red_dark
 
 -- Background color
 theme.background = '#000000' .. '66'

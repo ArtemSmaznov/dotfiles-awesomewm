@@ -1,7 +1,7 @@
-local wibox = require('wibox')
 local awful = require('awful')
-local naughty = require('naughty')
 local gears = require('gears')
+local wibox = require('wibox')
+local naughty = require('naughty')
 
 local clickable_container = require('widget.clickable-container.with-background')
 local dpi = require('beautiful').xresources.apply_dpi

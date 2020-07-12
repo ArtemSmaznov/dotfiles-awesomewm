@@ -1501,9 +1501,6 @@
   <resource identifier="Corbel Light Italic" checksum="(null)">
   </resource>
 
-  <resource identifier="Courier" checksum="(null)">
-  </resource>
-
   <resource identifier="Courier New" checksum="(null)">
   </resource>
 
@@ -1748,15 +1745,6 @@
   </resource>
 
   <resource identifier="Monospace Italic" checksum="(null)">
-  </resource>
-
-  <resource identifier="MS Sans Serif" checksum="(null)">
-  </resource>
-
-  <resource identifier="MS Serif" checksum="(null)">
-  </resource>
-
-  <resource identifier="mtx" checksum="(null)">
   </resource>
 
   <resource identifier="Nimbus Mono PS" checksum="(null)">
@@ -3542,9 +3530,6 @@
   </resource>
 
   <resource identifier="Sitka Text Italic" checksum="(null)">
-  </resource>
-
-  <resource identifier="Small Fonts" checksum="(null)">
   </resource>
 
   <resource identifier="Source Code Pro" checksum="(null)">

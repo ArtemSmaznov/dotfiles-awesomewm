@@ -1,11 +1,9 @@
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
-local beautiful = require('beautiful')
 
 local dpi = require('beautiful').xresources.apply_dpi
 
-local clickable_container = require('widget.clickable-container.with-background')
 local system_slider = require('theme.system.slider')
 local icons = require('theme.icons')
 local spawn = require('awful.spawn')
@@ -85,9 +83,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
 	}
 
 	-- Create the box
-	local osd_height = dpi(300)
-	local osd_width = dpi(300)
-
 	local osd_margin = dpi(10)
 
 	local osd_content = wibox.widget {
@@ -101,29 +96,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 		widget = wibox.container.margin
 	}
 
-	s.brightness_osd_overlay = awful.popup {
-		widget = {
-			{
-				osd_content,
-				margins = dpi(20),
-				widget = wibox.container.margin
-			},
-			forced_height = osd_height,
-			forced_width = osd_width,
-			bg = beautiful.background,
-			shape = gears.shape.rounded_rect,
-			widget = wibox.container.background()
-		},
-		ontop = true,
-		visible = false,
-		type = 'notification',
-		screen = s,
-		maximum_height = osd_height,
-		maximum_width = osd_width,
-		offset = dpi(5),
-		shape = gears.shape.rectangle,
-		bg = beautiful.transparent,
-	}
+	s.brightness_osd_overlay = require('module.osd_overlay')(s, osd_content)
 
 	local hide_osd = gears.timer {
 		timeout = 2,
