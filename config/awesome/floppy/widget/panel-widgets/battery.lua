@@ -45,7 +45,7 @@ local get_icon = function(charge, status)
 	end
 
 	if charge == nil or charge == '' then
-		naughty.notify { text = 'passed charge value is empty' }
+		-- naughty.notify { text = 'passed charge value is empty' }
 		icon = 'battery_unknown'
 	else
 		if charge >= 0 and charge < 10 then icon = icon .. '0'
@@ -65,6 +65,56 @@ local get_icon = function(charge, status)
 	return icons.symbolic.battery[icon]
 end
 
+local get_mouse_icon = function(charge, status)
+	local icon
+
+	if status:match('charging') and not status:match('discharging') then
+		icon = 'battery_charging_'
+	else
+		icon = 'mouse_battery_'
+	end
+
+	if charge == nil or charge == '' then
+		-- naughty.notify { text = 'passed charge value is empty' }
+		icon = 'battery_unknown'
+	else
+		if charge >= 0 and charge < 20 then icon = icon .. '0'
+		elseif charge >= 20 and charge < 40 then icon = icon .. '20'
+		elseif charge >= 40 and charge < 60 then icon = icon .. '40'
+		elseif charge >= 60 and charge < 80 then icon = icon .. '60'
+		elseif charge >= 80 and charge < 100 then icon = icon .. '80'
+		elseif charge >= 100 then icon = icon .. '100'
+		else icon = 'battery_unknown'
+		end
+	end
+	return icons.symbolic.battery[icon]
+end
+
+local get_keyboard_icon = function(charge, status)
+	local icon
+
+	if status:match('charging') and not status:match('discharging') then
+		icon = 'battery_charging_'
+	else
+		icon = 'keyboard_battery_'
+	end
+
+	if charge == nil or charge == '' then
+		-- naughty.notify { text = 'passed charge value is empty' }
+		icon = 'battery_unknown'
+	else
+		if charge >= 0 and charge < 20 then icon = icon .. '0'
+		elseif charge >= 20 and charge < 40 then icon = icon .. '20'
+		elseif charge >= 40 and charge < 60 then icon = icon .. '40'
+		elseif charge >= 60 and charge < 80 then icon = icon .. '60'
+		elseif charge >= 80 and charge < 100 then icon = icon .. '80'
+		elseif charge >= 100 then icon = icon .. '100'
+		else icon = 'battery_unknown'
+		end
+	end
+	return icons.symbolic.battery[icon]
+end
+
 local update_widget_icon = function(widget, device)
 	local check_percentage_cmd = "upower -i " .. device ..  " | grep percentage | awk '{print $2}' | tr -d '\n%'"
 	local check_status_cmd = "upower -i " .. device ..  " | grep state | awk '{print $2}' | tr -d '\n'"
@@ -74,7 +124,14 @@ local update_widget_icon = function(widget, device)
 		awful.spawn.easy_async_with_shell(check_percentage_cmd, function(stdout)
 			if stdout ~= nil or stdout ~= '' then
 				local battery_percentage = tonumber(stdout)
-				widget.image = get_icon(battery_percentage, charging_status)
+
+				if device:match('mouse') then
+					widget.image = get_mouse_icon(battery_percentage, charging_status)
+				elseif device:match('keyboard') then
+					widget.image = get_keyboard_icon(battery_percentage, charging_status)
+				else
+					widget.image = get_icon(battery_percentage, charging_status)
+				end
 			end
 		end)
 	end)

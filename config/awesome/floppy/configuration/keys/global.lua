@@ -508,6 +508,20 @@ awful.key(
 		{description = 'dropdown application', group = 'launcher'}
 ),
 awful.key(
+		{modkey},
+		'Return',
+		function()
+			awful.spawn(
+				awful.screen.focused().selected_tag.default_app,
+				{
+					tag = mouse.screen.selected_tag,
+					placement = awful.placement.bottom_right
+				}
+			)
+		end,
+		{description = 'dropdown application', group = 'launcher'}
+),
+awful.key(
 		{"Control", "Shift"},
 		'Escape',
 		function()

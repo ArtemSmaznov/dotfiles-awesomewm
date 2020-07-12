@@ -46,7 +46,10 @@ ruled.client.connect_signal(
 				}
 			},
 			except_any = {
-				name = { "Open File" }
+				name = {
+					"Open File",
+					"Save File"
+				},
 			},
 			properties = { 
 				tag = 'internet',
