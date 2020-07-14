@@ -37,8 +37,8 @@ return {
 
 	weather = {
 
-		key           = '',
-		city_id       = '',
+		key           = 'f7816ded6f1aa761eb32c74989e43813',
+		city_id       = '3042225',
 		units         = 'metric'
 
 	}
