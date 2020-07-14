@@ -164,10 +164,10 @@ local awesome_overrides = function(theme)
 	theme.tooltip_bg = theme.background
 	theme.tooltip_border_color = theme.transparent
 	theme.tooltip_border_width = 0
-	theme.tooltip_gaps = dpi(5)
-	theme.tooltip_shape = function(cr, w, h)
-		gears.shape.rounded_rect(cr, w, h, dpi(6))
-	end
+	theme.tooltip_gaps = dpi(15)
+	-- theme.tooltip_shape = function(cr, w, h)
+	-- 	gears.shape.rounded_rect(cr, w, h, dpi(6))
+	-- end
 
 	-- Separators
 

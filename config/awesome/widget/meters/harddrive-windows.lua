@@ -21,7 +21,7 @@ local slider = wibox.widget {
 }
 
 watch(
-	[[bash -c "df -h /home|grep '^/' | awk '{print $5}'"]],
+	[[bash -c "df -h /home/Windows|grep '^/' | awk '{print $5}'"]],
 	10,
 	function(_, stdout)
 		local space_consumed = stdout:match('(%d+)')
@@ -42,6 +42,12 @@ local harddrive_meter = wibox.widget {
 			top = dpi(12),
 			bottom = dpi(12),
 			widget = wibox.container.margin
+		},
+		{
+			text = 'win',
+			forced_width = dpi(38),
+			align = 'left',
+			widget = wibox.widget.textbox
 		},
 		slider,
 		spacing = dpi(24),

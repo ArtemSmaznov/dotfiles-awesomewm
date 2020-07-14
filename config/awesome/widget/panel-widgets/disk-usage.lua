@@ -7,7 +7,7 @@ local dpi = require('beautiful').xresources.apply_dpi
 local hardware_header = wibox.widget
 {
 
-	text = 'Hardware Monitor',
+	text = 'Disk Usage',
 	font = 'SF Pro Text Regular 12',
 	align = 'left',
 	valign = 'center',
@@ -33,7 +33,7 @@ return wibox.widget {
 		
 	},
 	{
-		require('widget.meters.cpu-meter'),
+		require('widget.meters.harddrive-root'),
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)
 			gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius) 
@@ -42,7 +42,7 @@ return wibox.widget {
 		widget = wibox.container.background
 	},
 	{
-		require('widget.meters.ram-meter'),
+		require('widget.meters.harddrive-home'),
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)
 			gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius) 
@@ -51,13 +51,12 @@ return wibox.widget {
 		widget = wibox.container.background
 	},
 	{
-		require('widget.meters.temperature-meter'),
+		require('widget.meters.harddrive-windows'),
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)
 			gears.shape.partially_rounded_rect(cr, width, height, false, false, true, true, beautiful.groups_radius) 
 		end,
 		forced_height = dpi(48),
 		widget = wibox.container.background
-
 	},
 }
