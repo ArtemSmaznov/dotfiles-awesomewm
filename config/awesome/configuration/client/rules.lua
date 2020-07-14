@@ -48,7 +48,8 @@ ruled.client.connect_signal(
 			except_any = {
 				name = {
 					"Open File",
-					"Save File"
+					"Save File",
+					"cypress",
 				},
 			},
 			properties = { 
@@ -116,6 +117,25 @@ ruled.client.connect_signal(
 			}
 		}
 
+		ruled.client.append_rule {
+			id         = "games",
+			rule_any   = {
+				class = {
+					"steam_app",
+				}
+			},
+			properties = { 
+				tag = 'gaming',
+				screen = 1,
+				skip_decoration = true,
+				maximized = false,
+				fullscreen = true,
+				hide_titlebars = true,
+				round_corners = false,
+				placement = awful.placement.centered
+			}
+		}
+
 		-- text editors
 		ruled.client.append_rule {
 			id         = "text_editors",
@@ -125,11 +145,13 @@ ruled.client.connect_signal(
 					"Geany",
 					"Atom",
 					"Subl3",
-					"code-oss"
+					"code-oss",
+					"Cypress"
 				},
 				name  = {
 					"LibreOffice",
-					"libreoffice"
+					"libreoffice",
+					"cypress"
 				}
 			},
 			properties = { 

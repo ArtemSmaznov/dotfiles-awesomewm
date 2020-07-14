@@ -75,7 +75,7 @@ return wibox.widget {
 		-- 	widget = wibox.container.background
 		-- },
 		{
-			require('widget.togglers.blue-light'),
+			require('widget.togglers.redshift'),
 			bg = bar_color,
 			shape = function(cr, width, height)
 				gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius) end,

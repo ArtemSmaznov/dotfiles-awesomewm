@@ -238,7 +238,8 @@ screen.connect_signal(
 	function(s)
 		for _, c in pairs(s.clients) do
 
-			if (#s.tiled_clients > 1 or c.floating) and c.first_tag.layout.name ~= 'max' then
+			if (#s.tiled_clients > 1 or c.floating) then
+			-- if (#s.tiled_clients > 1 or c.floating) and c.first_tag.layout.name ~= 'max' then -- removing tag~=max to allow floating windows to have titlebars on max layouts
 
 				if not c.hide_titlebars then
 					awful.titlebar.show(c, c.titlebar_position or 'left')
