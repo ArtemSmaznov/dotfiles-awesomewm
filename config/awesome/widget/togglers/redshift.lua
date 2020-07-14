@@ -69,40 +69,6 @@ local getState = function ()
 	)
 end
 
--- local getState = function ()
--- 	awful.spawn.easy_async_with_shell(
--- 		[[
--- 		if [ -z $(pgrep redshift) ];
--- 		then
--- 			echo 'OFF'
--- 		else
--- 			echo 'ON'
--- 		fi
--- 		]],
--- 		function(stdout)
--- 			if stdout:match('ON') then
--- 				awful.spawn.easy_async_with_shell(
--- 					[[
--- 						redshift -p 2> cat | grep Period | awk '{print $2}'
--- 					]],
--- 					function(stdout)
--- 						if stdout:match('Night') then
--- 							toggle_state = true
--- 						elseif stdout:match('Transition') then
--- 							toggle_state = true
--- 						else
--- 							toggle_state = false
--- 						end
--- 					end
--- 				)
--- 			else
--- 				toggle_state = false
--- 			end
--- 			update_imagebox()
--- 		end
--- 	)
--- end
-
 local toggle_action = function()
 	if toggle_state then
 		awful.spawn.easy_async_with_shell(
