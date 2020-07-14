@@ -2,11 +2,13 @@ local awful = require('awful')
 local wibox = require('wibox')
 local gears = require('gears')
 
+local filesystem = require('gears.filesystem')
+
 local dpi = require('beautiful').xresources.apply_dpi
 local clickable_container = require('widget.clickable-container.no-background')
-local compositor = require('module.compositor')
 
 local icons = require('theme.icons')
+local config_dir = filesystem.get_configuration_dir()
 
 local toggle_state = nil
 
@@ -69,10 +71,20 @@ end
 
 local toggle_action = function()
 	if toggle_state then
-		compositor.stop()
+		awful.spawn.easy_async_with_shell(
+			'killall picom',
+			function(stdout)
+				return
+			end
+		)
 		toggle_state = false
 	else
-		compositor.start()
+		awful.spawn.easy_async_with_shell(
+			'picom -b --experimental-backends --dbus --config ' .. config_dir .. '/configuration/picom.conf',
+			function(stdout)
+				return
+			end
+		)
 		toggle_state = true
 	end
 
