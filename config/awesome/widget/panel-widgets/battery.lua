@@ -17,17 +17,27 @@ local icons = require('theme.icons')
 local widget = wibox.layout.fixed.horizontal()
 local cache = {}
 
-local battery_tooltip = function(el, content)
-	return awful.tooltip{
+local battery_tooltip = function(el)
+	local tooltip = awful.tooltip{
 		objects = {el},
-		text = content,
 		mode = 'outside',
 		align = 'right',
 		margin_leftright = dpi(8),
 		margin_topbottom = dpi(8),
 		preferred_positions = {'right', 'left', 'top', 'bottom'}
 	}
+
+	awesome.connect_signal(
+		'widget::update:battery_tooltip',
+		function (content)
+			tooltip.text = content
+		end
+	)
+
+	return tooltip
 end
+
+
 
 local spawn_tooltip = function(device, widget)
 	awful.spawn.easy_async_with_shell('upower -i ' .. device, function(stdout)
@@ -182,11 +192,13 @@ local rebuild_widget = function (cached_devices)
 					)
 				)
 			
-				spawn_tooltip(device, button_widget)
+				battery_tooltip(button_widget)
 				button_widget:connect_signal('mouse::enter', function()
-					spawn_tooltip(device, button_widget)
+					awful.spawn.easy_async_with_shell('upower -i ' .. device, function(stdout)
+						awesome.emit_signal('widget::update:battery_tooltip', stdout)
+					end)
 				end)
-
+								
 				awesome.connect_signal(
 					'widget::battery:update',
 					function ()

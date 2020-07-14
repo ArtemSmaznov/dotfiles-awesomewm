@@ -123,6 +123,7 @@ return function(_, panel)
 				spacing = dpi(7),
 				search_button,
 				require('widget.panel-widgets.hardware-monitor'),
+				require('widget.panel-widgets.disk-usage'),
 				require('widget.panel-widgets.quick-settings'),
 				require('widget.panel-widgets.blur-settings'),
 			},
