@@ -216,7 +216,7 @@ local TopPanel = function(s, offset)
 			require('widget.panel-widgets.keyboard-layout'),
 			require('widget.panel-widgets.package-updater')(),
 			s.volume_widget,
-			-- require('widget.panel-widgets.bluetooth')(),
+			require('widget.panel-widgets.bluetooth')(),
 			require('widget.panel-widgets.battery'),
 			-- require('widget.panel-widgets.music')(),
 			layout_box(s),
