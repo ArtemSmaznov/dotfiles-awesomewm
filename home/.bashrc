@@ -102,9 +102,10 @@ PS1="$hostPart [ $workingDirectoryPart ]: $gitBranchPart\n $signPart "
 #######################################################
 
 # pacman for Arch based systems
-alias pacman-update='sudo pacman-mirrors --geoip'
-alias pacman-clean='sudo pacman -Rs $(pacman -Qtdq)'
-alias pacman-fullclean='sudo pacman -Rns $(pacman -Qtdq)'
+alias pacman-upgrade='sudo pacman -Suy'
+alias pacman-update-mirrors='sudo pacman-mirrors --geoip'
+alias pacman-clean-orphans='sudo pacman -Rs $(pacman -Qtdq)'
+alias pacman-fullclean-orphans='sudo pacman -Rns $(pacman -Qtdq)'
 
 # build from AUR 
 alias makepkg='makepkg -si'
@@ -112,8 +113,11 @@ alias makepkg='makepkg -si'
 # Start ArchiSteamFarm
 alias asf='~/ASF/ArchiSteamFarm'
 
+# Update Proton
+alias update-proton='development/cproton.sh'
+
 # Reboot for Windows for 1 session
-alias winreboot='sudo grub-editenv /boot/grub/grubenv set next_entry="Windows 10"'
+alias win-reboot='sudo grub-editenv /boot/grub/grubenv set next_entry="Windows 10"'
 
 # Turn on PC
 alias pcwake='wol 74:d4:35:eb:f6:7e'
