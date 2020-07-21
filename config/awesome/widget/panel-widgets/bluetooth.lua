@@ -69,7 +69,10 @@ local return_button = function()
 			if stdout:match('Soft blocked: no') then
 				widget_icon_name = 'bluetooth_on'
 				bluetooth_tooltip.markup = 'Bluetooth is on'
-			else
+      elseif not stdout:match('Soft blocked') then
+          widget_icon_name = 'bluetooth_off'
+          bluetooth_tooltip.markup = 'Bluetooth is unavailable'
+      else
 				widget_icon_name = 'bluetooth_off'
 				bluetooth_tooltip.markup = 'Bluetooth is off'
 			end
