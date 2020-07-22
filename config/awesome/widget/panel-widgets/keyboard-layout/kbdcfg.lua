@@ -82,7 +82,8 @@ function kbdcfg.bind()
                          layout.name,
                          function () kbdcfg.switch(layout) end,
                          -- show a fancy image in gui mode
-                         kbdcfg.type == "gui" and layout.label or nil
+                        flags_path .. layout.label .. '.png' -- added this instead of nex tline to show images
+                        --  kbdcfg.type == "gui" and layout.label or nil
         })
     end
 

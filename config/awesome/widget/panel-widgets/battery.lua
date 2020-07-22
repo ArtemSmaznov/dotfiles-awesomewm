@@ -194,9 +194,14 @@ local rebuild_widget = function (cached_devices)
 			
 				battery_tooltip(button_widget)
 				button_widget:connect_signal('mouse::enter', function()
-					awful.spawn.easy_async_with_shell('upower -i ' .. device, function(stdout)
-						awesome.emit_signal('widget::update:battery_tooltip', stdout)
-					end)
+					awful.spawn.easy_async_with_shell(
+            'upower -i ' .. device ..
+            ' | grep -e "model" -e "state" -e "percentage" -e "level"' .. 
+            ' | awk -F: \'{print $2}\' | tr -s " "',
+            function(stdout)
+						  awesome.emit_signal('widget::update:battery_tooltip', stdout)
+            end
+          )
 				end)
 								
 				awesome.connect_signal(

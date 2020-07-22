@@ -92,52 +92,6 @@ local TopPanel = function(s, offset)
 		)
 	)
 
-
-	local layout_box = function(s)
-		local layoutbox = wibox.widget {
-			{
-				awful.widget.layoutbox(s),
-				margins = dpi(7),
-				widget = wibox.container.margin
-			},
-			widget = clickable_container
-		}
-		layoutbox:buttons(
-			awful.util.table.join(
-				awful.button(
-					{},
-					1,
-					function()
-						awful.layout.inc(1)
-					end
-				),
-				awful.button(
-					{},
-					3,
-					function()
-						awful.layout.inc(-1)
-					end
-				),
-				awful.button(
-					{},
-					4,
-					function()
-						awful.layout.inc(1)
-					end
-				),
-				awful.button(
-					{},
-					5,
-					function()
-						awful.layout.inc(-1)
-					end
-				)
-			)
-		)
-		return layoutbox
-	end
-
-
 	s.clock_widget = wibox.widget.textclock(
 		'<span font="SF Pro Text Bold 11">%l:%M %p</span>',
 		1
@@ -188,9 +142,9 @@ local TopPanel = function(s, offset)
 
 	s.volume_widget = wibox.widget {
 		{
-		require('widget.system-elements.volume-icon'),
-		margins = dpi(7),
-		widget = wibox.container.margin
+      require('widget.system-elements.volume-icon'),
+      margins = dpi(7),
+      widget = wibox.container.margin
 		},
 		widget = clickable_container
 	}
@@ -220,7 +174,6 @@ local TopPanel = function(s, offset)
 			require('widget.panel-widgets.battery'),
 			require('widget.panel-widgets.bluetooth')(),
 			require('widget.panel-widgets.network')(),
-			layout_box(s),
 
 		},
 		margins = dpi(0),
@@ -232,7 +185,8 @@ local TopPanel = function(s, offset)
 		expand = "none",
 		{
 			layout = wibox.layout.fixed.horizontal,
-			task_list(s),
+      require('widget.panel-widgets.layouts')(s),
+      task_list(s),
 			s.add_button
 		},
 		nil,
