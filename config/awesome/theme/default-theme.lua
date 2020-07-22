@@ -5,6 +5,7 @@ local filesystem = require('gears.filesystem')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local theme_dir = filesystem.get_configuration_dir() .. '/theme'
+local system_dir = '/usr/share/awesome/themes/default/layouts/'
 
 local titlebar_theme = "stoplight"
 local titlebar_icon_path = theme_dir .. "/icons/titlebar/" .. titlebar_theme .. '/'
@@ -12,6 +13,7 @@ local tip = titlebar_icon_path
 
 local theme = {}
 theme.icons = theme_dir .. '/icons/'
+
 
 -- Font
 theme.font = 'SF Pro Text Regular 10'
@@ -175,12 +177,29 @@ local awesome_overrides = function(theme)
 
 	-- Layoutbox icons
 
-	theme.layout_max = theme.icons .. 'layouts/max.svg'
-	theme.layout_tile = theme.icons .. 'layouts/tile.svg'
-	theme.layout_tilebottom = theme.icons .. 'layouts/tilebottomw.png'
-	theme.layout_dwindle = theme.icons .. 'layouts/dwindle.svg'
-	theme.layout_floating = theme.icons .. 'layouts/floating.svg'
-	
+	-- theme.layout_max = theme.icons .. 'layouts/max.svg'
+	-- theme.layout_tile = theme.icons .. 'layouts/tile.svg'
+	-- theme.layout_dwindle = theme.icons .. 'layouts/dwindle.svg'
+  -- theme.layout_floating = theme.icons .. 'layouts/floating.svg'
+  -- theme.layout_fullscreen = theme.icons .. 'fullscreen.svg'
+  theme.layout_max = system_dir .. 'maxw.png'
+	theme.layout_tile = system_dir .. 'tilew.png'
+	theme.layout_dwindle = system_dir .. 'dwindlew.png'
+	theme.layout_floating = system_dir .. 'floatingw.png'
+  theme.layout_fullscreen = system_dir .. 'fullscreenw.png'
+
+  theme.layout_tilebottom = system_dir .. 'tilebottomw.png'
+  theme.layout_tileleft = system_dir .. 'tileleftw.png'
+  theme.layout_tiletop = system_dir .. 'tiletopw.png'
+  theme.layout_fairv = system_dir .. 'fairvw.png'
+  theme.layout_fairh = system_dir .. 'fairhw.png'
+  theme.layout_spiral = system_dir .. 'spiralw.png'
+  theme.layout_magnifier = system_dir .. 'magnifierw.png'
+  theme.layout_cornernw = system_dir .. 'cornernww.png'
+  theme.layout_cornerne = system_dir .. 'cornernew.png'
+  theme.layout_cornersw = system_dir .. 'cornersww.png'
+  theme.layout_cornerse = system_dir .. 'cornersew.png'
+
 	-- Taglist
 
 	theme.taglist_bg_empty = theme.background .. '99'
