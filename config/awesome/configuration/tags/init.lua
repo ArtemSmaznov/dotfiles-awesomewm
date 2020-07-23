@@ -92,7 +92,8 @@ for i, tag in pairs(tags) do
 			{
 				icon = tag.icon,
 				icon_only = true,
-				layout = tag.layout,
+        layout = tag.layout,
+        default_layout = tag.layout,
 				gap_single_client = false,
 				gap = beautiful.useless_gap,
 				screen = tag.screen,
