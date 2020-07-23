@@ -72,9 +72,9 @@ function Build(s)
       ),
       awful.button(
         {},
-        3,
+        3, -- Reset to Tag's default layout on right click
         function()
-          awful.layout.set(default_layout)
+          awful.layout.set(awful.screen.focused().selected_tag.default_layout)
         end
       ),
       awful.button(
