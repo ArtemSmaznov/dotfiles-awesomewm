@@ -59,7 +59,7 @@ local right_panel = function(s)
 
 		focused.right_panel.visible = false
 		focused.backdrop_rdb.visible = false
-		
+  
 		panel:emit_signal('closed')
 	end
 
@@ -145,7 +145,6 @@ local right_panel = function(s)
 						require('widget.panel-widgets.user-profile'),
 						require('widget.panel-widgets.weather'),
 						require('widget.panel-widgets.social-media'),
-						require('widget.panel-widgets.tools'),
 						require('widget.panel-widgets.calculator')
 					},
 

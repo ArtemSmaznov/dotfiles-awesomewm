@@ -110,12 +110,12 @@ local blur_slider_setting = wibox.widget {
 	{
 		{
 			{
-				image = icons.other.effects,
+				image = icons.symbolic.blur_on,
 				resize = true,
 				widget = wibox.widget.imagebox
 			},
-			top = dpi(12),
-			bottom = dpi(12),
+			top = dpi(10),
+			bottom = dpi(10),
 			widget = wibox.container.margin
 		},
 		slider,

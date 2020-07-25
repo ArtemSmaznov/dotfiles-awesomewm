@@ -71,20 +71,10 @@ end
 
 local toggle_action = function()
 	if toggle_state then
-		awful.spawn.easy_async_with_shell(
-			'killall picom',
-			function(stdout)
-				return
-			end
-		)
+    awesome.emit_signal('module::compositor:disable')
 		toggle_state = false
 	else
-		awful.spawn.easy_async_with_shell(
-			'picom -b --experimental-backends --dbus --config ' .. config_dir .. '/configuration/picom.conf',
-			function(stdout)
-				return
-			end
-		)
+    awesome.emit_signal('module::compositor:enable')
 		toggle_state = true
 	end
 

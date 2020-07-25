@@ -112,6 +112,7 @@ end
 --  				icon = tag.icon,
 --  				icon_only = true,
 --  				layout = tag.layout,
+--          default_layout = tag.layout,
 --  				gap_single_client = false,
 --  				gap = beautiful.useless_gap,
 --  				screen = s,
