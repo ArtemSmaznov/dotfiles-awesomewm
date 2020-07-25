@@ -9,7 +9,7 @@ local widget_icon_dir = config_dir .. 'widget/notif-center/icons/'
 
 local empty_notifbox = wibox.widget {
 	{
-		layout = wibox.layout.fixed.vertical,
+    layout = wibox.layout.fixed.vertical,
 		spacing = dpi(5),
 		{
 			expand = 'none',
@@ -25,14 +25,14 @@ local empty_notifbox = wibox.widget {
 			nil
 		},
 		{
-			text = 'Wow, such empty.',
+			text = 'No notifications',
 			font = 'SF Pro Text Bold 14',
 			align = 'center',
 			valign = 'center',
 			widget = wibox.widget.textbox
 		},
 		{
-			text = 'Come back later.',
+			text = 'Wow, such empty...',
 			font = 'SF Pro Text Regular 10',
 			align = 'center',
 			valign = 'center',
@@ -43,7 +43,6 @@ local empty_notifbox = wibox.widget {
 	widget = wibox.container.margin
 
 }
-
 
 local separator_for_empty_msg =  wibox.widget
 {
@@ -56,9 +55,9 @@ local separator_for_empty_msg =  wibox.widget
 local centered_empty_notifbox = wibox.widget {
 	expand = 'none',
 	layout = wibox.layout.align.vertical,
-	separator_for_empty_msg,
+	-- separator_for_empty_msg,
 	empty_notifbox,
-	separator_for_empty_msg
+	-- separator_for_empty_msg
 }
 
 return centered_empty_notifbox

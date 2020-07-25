@@ -68,7 +68,7 @@ local build = function(s)
         margins = dpi(16),
 		    widget = wibox.container.margin
       },
-      -- forced_width = panel_width,
+			bg = beautiful.background,
       widget = wibox.container.background()
     },
     ontop = true,

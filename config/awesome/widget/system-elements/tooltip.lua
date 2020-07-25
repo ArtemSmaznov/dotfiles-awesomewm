@@ -6,7 +6,7 @@ local tooltip = function(widget, content)
   return awful.tooltip{
     objects = {widget},
     text = content,
-    mode = 'outside',
+    mode = 'mouse',
     align = 'bottom',
     margin_leftright = dpi(8),
     margin_topbottom = dpi(8),
