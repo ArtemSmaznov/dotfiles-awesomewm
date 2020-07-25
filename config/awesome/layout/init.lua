@@ -2,6 +2,7 @@ local awful = require('awful')
 local left_panel = require('layout.left-panel')
 local top_panel = require('layout.top-panel')
 local right_panel = require('layout.right-panel')
+local notif_tray = require('layout.notification_tray')
 
 -- Create a wibox panel for each screen and add it
 screen.connect_signal("request::desktop_decoration", function(s)
@@ -10,14 +11,17 @@ screen.connect_signal("request::desktop_decoration", function(s)
 		-- Create the left_panel
 		s.left_panel = left_panel(s)
 		-- Create the Top bar
-		s.top_panel = top_panel(s, true)
+    s.top_panel = top_panel(s, true)
 	else
 		-- Create the Top bar
 		s.top_panel = top_panel(s, false)
 	end
 	s.right_panel = right_panel(s)
 	s.right_panel_show_again = false
+    -- Create the Notification Tray
+    s.notif_tray = notif_tray(s)
 end)
+
 
 
 -- Hide bars when app go fullscreen

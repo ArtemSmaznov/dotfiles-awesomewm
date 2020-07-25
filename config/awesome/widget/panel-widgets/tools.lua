@@ -5,10 +5,16 @@ local beautiful = require('beautiful')
 
 local dpi = beautiful.xresources.apply_dpi
 
+
 local items = wibox.widget {
 	layout = wibox.layout.fixed.horizontal,
-	spacing = dpi(5),
-	require('widget.panel-widgets.screen-recorder')(),
+	spacing = dpi(7),
+  require('widget.togglers.qs-wifi'),
+  require('widget.togglers.qs-bluetooth'),
+  require('widget.togglers.qs-redshift'),
+  require('widget.togglers.qs-compositor'),
+  require('widget.togglers.qs-blur'),
+  -- require('widget.panel-widgets.screen-recorder')(),
 }
 
 local panel = wibox.widget {

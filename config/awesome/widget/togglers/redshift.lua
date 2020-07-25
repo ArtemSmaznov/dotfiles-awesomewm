@@ -53,7 +53,7 @@ local getState = function ()
 			then
 				echo 'OFF'
 			else
-				redshift -p 2> cat | grep Period | awk '{print $2}'
+				redshift -p 2> /dev/null | grep Period | awk '{print $2}'
 			fi
 		]],
 		function(stdout)

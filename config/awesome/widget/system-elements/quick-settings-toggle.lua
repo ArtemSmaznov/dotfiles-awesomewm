@@ -1,0 +1,29 @@
+local awful = require('awful')
+local gears = require('gears')
+local wibox = require('wibox')
+local beautiful = require('beautiful')
+
+local clickable_container = require('widget.clickable-container.with-background')
+local dpi = require('beautiful').xresources.apply_dpi
+
+local qs_toggle = function(widget)
+
+  local widget_button = wibox.widget {
+    {
+      {
+        widget,
+        margins = dpi(14),
+        widget = wibox.container.margin
+      },
+      widget = clickable_container
+    },
+    bg = beautiful.transparent,
+    shape = gears.shape.circle,
+    widget = wibox.container.background
+  }
+
+  return widget_button
+
+end
+
+return qs_toggle

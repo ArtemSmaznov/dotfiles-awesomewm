@@ -93,6 +93,10 @@ return {
 		bluetooth_on			= themePath .. 'symbolic/status/' .. 'bluetooth-active-symbolic.svg',
 		bluetooth_off			= themePath .. 'symbolic/status/' .. 'bluetooth-disabled-symbolic.svg',
 		music							= themePath .. 'symbolic/places/' .. 'folder-music-symbolic.svg',
+    redshift_on				= themePath .. '24x24@2x/panel/' .. 'redshift-status-on.svg',
+    redshift_off			= themePath .. '24x24@2x/panel/' .. 'redshift-status-off.svg',
+    blur_on     			= themePath .. '24x24@2x/actions/' .. 'blurfx.svg',
+    blur_off     			= themePath .. '24x24@2x/actions/' .. 'blurimage.svg',
 
 		volume = {
 			high				= themePath .. 'symbolic/status/' .. 'audio-volume-high-symbolic.svg',
@@ -112,7 +116,7 @@ return {
 			uptodate		= themePath .. 'symbolic/status/' .. 'arch-uptodate-symbolic.svg',
 			available		= themePath .. 'symbolic/status/' .. 'arch-updates-symbolic.svg',
 			urgent			= themePath .. 'symbolic/status/' .. 'software-update-urgent-symbolic.svg',
-		},
+    },
 
 		-- Network
 		network = {

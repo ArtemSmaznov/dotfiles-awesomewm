@@ -407,14 +407,10 @@ awful.key(
 		{altkey},
 		'space',
 		function()
-				local focused = awful.screen.focused()
-
-				if focused.right_panel and focused.right_panel.visible then
-						focused.right_panel.visible = false
-				end
-				screen.primary.left_panel:toggle()
-		end,
-		{description = 'open sidebar', group = 'launcher'}
+      local focused = awful.screen.focused()
+      focused.notif_tray:toggle()
+    end,
+		{description = 'open notification tray', group = 'launcher'}
 ),
 awful.key(
 		{modkey},
@@ -453,6 +449,16 @@ awful.key(
 		function()
 				local focused = awful.screen.focused()
 
+						focused.left_panel:toggle()
+		end,
+		{description = "open today pane", group = 'launcher'}
+),
+awful.key(
+		{modkey},
+		'F3',
+		function()
+				local focused = awful.screen.focused()
+
 				if focused.left_panel and focused.left_panel.opened then
 						focused.left_panel:toggle()
 				end
@@ -469,29 +475,6 @@ awful.key(
 				end
 		end,
 		{description = "open notification center", group = 'launcher'}
-),
-awful.key(
-		{modkey},
-		'F3',
-		function()
-				local focused = awful.screen.focused()
-
-				if focused.left_panel and focused.left_panel.opened then
-						focused.left_panel:toggle()
-				end
-
-				if focused.right_panel then
-						if _G.right_panel_mode == 'notif_mode' or not focused.right_panel.visible then
-								focused.right_panel:toggle()
-								switch_rdb_pane('notif_mode')
-						else
-								switch_rdb_pane('notif_mode')
-						end
-
-						_G.right_panel_mode = 'notif_mode'
-				end
-		end,
-		{description = "open today pane", group = 'launcher'}
 ),
 
 

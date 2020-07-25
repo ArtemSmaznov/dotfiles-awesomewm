@@ -38,7 +38,10 @@ return function(s, panel, action_bar_width)
 				1,
 				nil,
 				function()
-					panel:toggle()
+					local focused = awful.screen.focused()
+          if focused.notif_tray then
+            focused.notif_tray:toggle()
+          end
 				end
 			)
 		)
