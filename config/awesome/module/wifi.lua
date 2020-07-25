@@ -1,7 +1,7 @@
 local awful = require('awful')
 
--- local wlan_interface = 'wlp0s20u10'
-local wlan_interface
+local wlan_interface = 'wlp0s20u10'
+
 awful.spawn.easy_async_with_shell(
   "iw dev | grep Interface | awk '{print $2}'",
   function(stdout)
