@@ -263,6 +263,7 @@ ruled.client.connect_signal(
 				instance = { "QuakeTerminal" }
 			},
 			properties = {
+        tag = 'terminal',
 				screen = screen:instances(),
 				size_hints_honor = false
 			}
