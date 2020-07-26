@@ -11,36 +11,35 @@ local icons = require('theme.icons')
 local sampleText = "Hello World!"
 local screen = 'primary'
 
-local my_widget = wibox.widget {
-	text = sampleText,
-	widget = wibox.widget.textbox
-}
+-- local new_shape = gears.shape.rounded_bar(cr, 70, 70)
 
 local my_box = awful.popup {
   widget = {
-    my_widget,
-    forced_height = dpi(300),
-    forced_width = dpi(300),
-    widget = wibox.container.background()
+    {
+      bg = beautiful.fg_normal,
+      forced_width = dpi(120),
+      forced_height = dpi(5),
+      shape = gears.shape.rounded_bar,
+      widget = wibox.container.background
+    },
+    margins = dpi(5),
+    widget = wibox.container.margin
   },
   ontop = true,
   height = dpi(300),
   bg = beautiful.transparent,
-  screen = screen,
+  screen = 1,
   visible = false,
+  -- type = 'utility',
+  cursor = 'hand1',
   placement = awful.placement.centered
 }
 
-local do_the_thing = function()
-	-- naughty.notify { text = sampleText}
 
-	my_box.visible = not my_box.visible
-
-end
 
 awesome.connect_signal(
 	'debug',
 	function ()
-		-- do_the_thing()	
+		-- my_box.visible = not my_box.visible
 	end
 )

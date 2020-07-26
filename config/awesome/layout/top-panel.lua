@@ -162,6 +162,21 @@ local TopPanel = function(s, offset)
 		)
 	)
 
+  s.notif_launcher = require('widget.system-elements.launcher-line')(120)
+
+  s.notif_launcher:buttons(
+    gears.table.join(
+      awful.button(
+        {},
+        1,
+        function()
+          local focused = awful.screen.focused()
+          focused.notif_tray:toggle()
+        end
+      )
+    )
+  )
+
 	local tray_widgets = wibox.widget {
 		{
 			layout = wibox.layout.fixed.horizontal,
@@ -181,26 +196,42 @@ local TopPanel = function(s, offset)
 	}
 
 	panel : setup {
-		layout = wibox.layout.align.horizontal,
-		expand = "none",
-		{
-			layout = wibox.layout.fixed.horizontal,
-      require('widget.panel-widgets.layouts')(s),
-      task_list(s),
-			s.add_button
-		},
-		nil,
-		{
-			layout = wibox.layout.fixed.horizontal,
-			spacing = dpi(2),
-			tray_widgets,
-			s.clock_widget,
-			require('widget.panel-widgets.right-panel-opener')()
-		}
+    {    
+      layout = wibox.layout.align.horizontal,
+      expand = "none",
+      {
+        layout = wibox.layout.fixed.horizontal,
+        require('widget.panel-widgets.layouts')(s),
+        task_list(s),
+        
+        s.add_button
+      },
+      nil,
+      {
+        layout = wibox.layout.fixed.horizontal,
+        spacing = dpi(2),
+        tray_widgets,
+        s.clock_widget,
+        require('widget.panel-widgets.right-panel-opener')()
+      }
+    },
+    {
+      {
+        nil,
+        s.notif_launcher,
+        nil,
+        expand = "none",
+        layout = wibox.layout.align.horizontal,
+      },
+      nil,
+      nil,
+      expand = "none",
+      layout = wibox.layout.align.vertical,
+    },
+    layout = wibox.layout.stack
 	}
 
 	return panel
 end
-
 
 return TopPanel
