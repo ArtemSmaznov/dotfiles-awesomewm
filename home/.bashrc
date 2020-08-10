@@ -9,7 +9,7 @@ iatest=$(expr index "$-" i)
 #######################################################
 
 # Disable the bell
- if [[ $iatest > 0 ]]; then bind "set bell-style visible"; fi
+if [[ $iatest > 0 ]]; then bind "set bell-style visible"; fi
 
 # Expand the history size
 export HISTFILESIZE=10000
@@ -58,35 +58,35 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 #######################################################
 
 # Define colors
-	gray="\033[1;30m"
-	red="\033[1;31m"
-	green="\033[1;32m"
-	yellow="\033[1;33m"
-	blue="\033[1;34m"
-	magenta="\033[1;35m"
-	cyan="\033[1;36m"
-	white="\033[1;37m"
+gray="\033[1;30m"
+red="\033[1;31m"
+green="\033[1;32m"
+yellow="\033[1;33m"
+blue="\033[1;34m"
+magenta="\033[1;35m"
+cyan="\033[1;36m"
+white="\033[1;37m"
 
-	lightgray="\033[0;30m"
-	lightred="\033[0;31m"
-	lightgreen="\033[0;32m"
-	lightyellow="\033[0;33m"
-	lightblue="\033[0;34m"
-	lightmagenta="\033[0;35m"
-	lightcyan="\033[0;36m"
-	white="\033[0;37m"
+lightgray="\033[0;30m"
+lightred="\033[0;31m"
+lightgreen="\033[0;32m"
+lightyellow="\033[0;33m"
+lightblue="\033[0;34m"
+lightmagenta="\033[0;35m"
+lightcyan="\033[0;36m"
+white="\033[0;37m"
 
-	nocolor="\033[0m"
+nocolor="\033[0m"
 
 # Color bash prompt depending on user
-	if [[ ${EUID} == 0 ]] ; then # if user is root
-		prompt_color=$lightred
-		directory_color=$lightcyan
-	else
-		prompt_color=$lightgreen
-		directory_color=$lightyellow
-		user_display='\u@'
-	fi
+if [[ ${EUID} == 0 ]]; then # if user is root
+  prompt_color=$lightred
+  directory_color=$lightcyan
+else
+  prompt_color=$lightgreen
+  directory_color=$lightyellow
+  user_display='\u@'
+fi
 
 git_color=$lightcyan
 
@@ -107,9 +107,6 @@ alias pacman-update-mirrors='sudo pacman-mirrors --geoip'
 alias pacman-clean-orphans='sudo pacman -Rs $(pacman -Qtdq)'
 alias pacman-fullclean-orphans='sudo pacman -Rns $(pacman -Qtdq)'
 
-# build from AUR 
-alias makepkg='makepkg -si'
-
 # Start ArchiSteamFarm
 alias asf='~/ASF/ArchiSteamFarm'
 
@@ -117,7 +114,8 @@ alias asf='~/ASF/ArchiSteamFarm'
 alias update-proton='development/cproton.sh'
 
 # Reboot for Windows for 1 session
-alias win-reboot='sudo grub-editenv /boot/grub/grubenv set next_entry="Windows 10"'
+alias winreboot='sudo grub-editenv /boot/grub/grubenv set next_entry="Windows 10"'
+alias winrebootnow='sudo grub-editenv /boot/grub/grubenv set next_entry="Windows 10" && reboot'
 
 # Turn on PC
 alias pcwake='wol 74:d4:35:eb:f6:7e'
@@ -136,6 +134,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # Aliases to modified commands
 alias mkdir='mkdir -p'
 alias less='less -R'
+alias makepkg='makepkg -si'
 
 # Change directory aliases
 alias home='cd ~'
@@ -149,11 +148,11 @@ alias .....='cd ../../../..'
 alias bd='cd "$OLDPWD"'
 
 # Aliases for multiple directory listing commands
-alias ls='ls -Fh --color=always' # add colors and file type extensions
-alias la='ls -Ah' # show hidden files
-alias ll='ls -als' # long listing format
+alias ls='ls -Fh --color=always'  # add colors and file type extensions
+alias la='ls -Ah'                 # show hidden files
+alias ll='ls -als'                # long listing format
 alias llf="ls -l | egrep -v '^d'" # long list files only
-alias lld="ls -l | egrep '^d'" # long list directories only
+alias lld="ls -l | egrep '^d'"    # long list directories only
 
 # Grep
 alias grep='grep --colour=auto'
@@ -213,48 +212,46 @@ alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' 
 #######################################################
 
 # Extracts any archive(s) (if unp isn't installed)
-ex () {
-	for archive in $*; do
-		if [ -f $archive ] ; then
-			case $archive in
-				*.tar.bz2)   tar xvjf $archive    ;;
-				*.tar.gz)    tar xvzf $archive    ;;
-				*.bz2)       bunzip2 $archive     ;;
-				*.rar)       rar x $archive       ;;
-				*.gz)        gunzip $archive      ;;
-				*.tar)       tar xvf $archive     ;;
-				*.tbz2)      tar xvjf $archive    ;;
-				*.tgz)       tar xvzf $archive    ;;
-				*.zip)       unzip $archive       ;;
-				*.Z)         uncompress $archive  ;;
-				*.7z)        7z x $archive        ;;
-				*)           echo "don't know how to extract '$archive'..." ;;
-			esac
-		else
-			echo "'$archive' is not a valid file!"
-		fi
-	done
+ex() {
+  for archive in $*; do
+    if [ -f $archive ]; then
+      case $archive in
+      *.tar.bz2) tar xvjf $archive ;;
+      *.tar.gz) tar xvzf $archive ;;
+      *.bz2) bunzip2 $archive ;;
+      *.rar) rar x $archive ;;
+      *.gz) gunzip $archive ;;
+      *.tar) tar xvf $archive ;;
+      *.tbz2) tar xvjf $archive ;;
+      *.tgz) tar xvzf $archive ;;
+      *.zip) unzip $archive ;;
+      *.Z) uncompress $archive ;;
+      *.7z) 7z x $archive ;;
+      *) echo "don't know how to extract '$archive'..." ;;
+      esac
+    else
+      echo "'$archive' is not a valid file!"
+    fi
+  done
 }
 
 # Searches for text in all files in the current folder
-ftext ()
-{
-	# -i case-insensitive
-	# -I ignore binary files
-	# -H causes filename to be printed
-	# -r recursive search
-	# -n causes line number to be printed
-	# optional: -F treat search term as a literal, not a regular expression
-	# optional: -l only print filenames and not the matching lines ex. grep -irl "$1" *
-	grep -iIHrn --color=always "$1" . | less -r
+ftext() {
+  # -i case-insensitive
+  # -I ignore binary files
+  # -H causes filename to be printed
+  # -r recursive search
+  # -n causes line number to be printed
+  # optional: -F treat search term as a literal, not a regular expression
+  # optional: -l only print filenames and not the matching lines ex. grep -irl "$1" *
+  grep -iIHrn --color=always "$1" . | less -r
 }
 
 # Copy file with a progress bar
-cpp()
-{
-	set -e
-	strace -q -ewrite cp -- "${1}" "${2}" 2>&1 \
-	| awk '{
+cpp() {
+  set -e
+  strace -q -ewrite cp -- "${1}" "${2}" 2>&1 |
+    awk '{
 	count += $NF
 	if (count % 10 == 0) {
 		percent = count / total_size * 100
@@ -271,48 +268,42 @@ cpp()
 }
 
 # Create and go to the directory
-mkdirg ()
-{
-	mkdir -p $1
-	cd $1
+mkdirg() {
+  mkdir -p $1
+  cd $1
 }
 
 # Goes up a specified number of directories  (i.e. up 4)
-up ()
-{
-	local d=""
-	limit=$1
-	for ((i=1 ; i <= limit ; i++))
-		do
-			d=$d/..
-		done
-	d=$(echo $d | sed 's/^\///')
-	if [ -z "$d" ]; then
-		d=..
-	fi
-	cd $d
+up() {
+  local d=""
+  limit=$1
+  for ((i = 1; i <= limit; i++)); do
+    d=$d/..
+  done
+  d=$(echo $d | sed 's/^\///')
+  if [ -z "$d" ]; then
+    d=..
+  fi
+  cd $d
 }
 
-editbash()
-{
-	if [[ -f /usr/bin/xed ]]; then
-		$VISUAL ~/.bashrc
-	else
-		$EDITOR ~/.bashrc
-	fi
+editbash() {
+  if [[ -f /usr/bin/xed ]]; then
+    $VISUAL ~/development/ArtemSmaznov/dotfiles/home/.bashrc
+  else
+    $EDITOR ~/development/ArtemSmaznov/dotfiles/home/.bashrc
+  fi
 }
 
-getnewbash()
-{
-	wget https://raw.githubusercontent.com/ArtemSmaznov/dotfiles/master/home/.bashrc -O ~/.bashrc
+getnewbash() {
+  wget https://raw.githubusercontent.com/ArtemSmaznov/dotfiles/master/home/.bashrc -O ~/.bashrc
 }
 
-getnewsshconfig()
-{
-	mkdir tmp
-	cd tmp
-	git clone git@github.com:ArtemSmaznov/.ssh.git
-	mv .ssh/config ~/.ssh/config
-	cd ../
-	yes | rm -r tmp
+getsshconfig() {
+  mkdir tmp
+  cd tmp
+  git clone git@github.com:ArtemSmaznov/.ssh.git
+  mv .ssh/config ~/.ssh/config
+  cd ../
+  yes | rm -r tmp
 }

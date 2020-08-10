@@ -15,6 +15,7 @@ local qs_toggle = function(widget)
         margins = dpi(14),
         widget = wibox.container.margin
       },
+      -- forced_height = dpi(72),
       widget = clickable_container
     },
     bg = beautiful.transparent,
