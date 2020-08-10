@@ -23,22 +23,22 @@ return {
 
 		network_manager 					= 'nm-connection-editor',											-- Network manager
 		bluetooth_manager 				= 'blueman-manager',													-- Bluetooth manager
-		power_manager 						= 'xfce4-power-manager-settings',											-- Power manager
+		power_manager 						= 'xfce4-power-manager-settings',							-- Power manager
 		package_manager 					= 'pamac-manager',														-- GUI Package manager
 		-- lock 											= 'awesome-client "awesome.emit_signal(\'module::lockscreen_show\')"',	-- Lockscreen
 		lock 						= 'cinnamon-screensaver-command -l',	-- Lockscreen
-		quake 										= 'kitty --name QuakeTerminal',       			    					-- Quake-like Terminal
+		quake 										= 'kitty --name QuakeTerminal',       			    		-- Quake-like Terminal
 
 		rofiglobal								= 'rofi -dpi ' .. screen.primary.dpi ..
 																' -show "Global Search" -modi "Global Search":' .. config_dir ..
 																'/configuration/rofi/sidebar/rofi-spotlight.sh' ..
 																' -theme ' .. config_dir ..
-																'/configuration/rofi/sidebar/rofi.rasi',			 				-- Rofi Web Search
+																'/configuration/rofi/sidebar/rofi.rasi',			 		-- Rofi Web Search
 
 
 		rofiappmenu 							= 'rofi -dpi ' .. screen.primary.dpi ..
 																' -show drun -theme ' .. config_dir ..
-																'/configuration/rofi/appmenu/rofi.rasi'					  			-- Application Menu
+																'/configuration/rofi/appmenu/rofi.rasi'					  -- Application Menu
 
 		-- You can add more default applications here
 	},
@@ -49,36 +49,38 @@ return {
 	run_on_start_up = {
 		
 		'picom -b --experimental-backends --dbus --config ' .. 
-		config_dir .. '/configuration/picom.conf',   																			-- Compositor
+		config_dir .. '/configuration/picom.conf',   																	-- Compositor
 
-		'blueman-applet',                                           	      								                    -- Bluetooth tray icon
-		'mpd',                                                          	          										    -- Music Server
-		'xfce4-power-manager',                                              	                    					    	-- Power manager
+		'blueman-applet',                                           	      					-- Bluetooth tray icon
+		'mpd',                                                          	          	-- Music Server
+		'xfce4-power-manager',                                              	        -- Power manager
 		'/usr/lib/polkit-kde-authentication-agent-1 &' .. 
-		' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', 	          									-- Credential manager
+		' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', 	    -- Credential manager
 		
-		'xrdb $HOME/.Xresources',                                                   	                						-- Load X Colors
-		'nm-applet',                                                                    	            						-- NetworkManager Applet
-		'pulseeffects --gapplication-service',                                              	        						-- Sound Equalizer
+		'xrdb $HOME/.Xresources',                                                   	-- Load X Colors
+		'nm-applet',                                                                  -- NetworkManager Applet
+		'pulseeffects --gapplication-service',                                        -- Sound Equalizer
 		[[
 		xidlehook --not-when-fullscreen --not-when-audio --timer 600 \
 		"awesome-client 'awesome.emit_signal(\"module::lockscreen_show\")'" ""
-		]],																												-- Auto lock timer 		
+		]],																												                    -- Auto lock timer 		
     'redshift-gtk',
-    'solaar -w hide',
-		-- 'paplay ' .. sounds.startup,
-	
+    -- 'solaar -w hide',
 		-- You can add more start-up applications here
-		-- '/opt/piavpn/bin/pia-client --quiet',
 		'ckb-next -b',
 		'terminator',
-		-- 'google-chrome-stable',
-		'/usr/bin/steam-runtime %U',
+    
+    -- Comment out when debugging
+    'paplay ' .. sounds.startup,
+
+    'google-chrome-stable',
+    '/usr/bin/steam-runtime %U',
+    '/opt/piavpn/bin/pia-client --quiet',
 	},
 
 	-- List of binaries/shell scripts that will execute a certain task
 
 	bins = {
-		update_profile  = bin_dir .. 'profile-image'																			-- Update profile picture
+		update_profile  = bin_dir .. 'profile-image'																		-- Update profile picture
 	}
 }
