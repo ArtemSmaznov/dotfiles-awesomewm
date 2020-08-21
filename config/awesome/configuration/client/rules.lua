@@ -207,7 +207,6 @@ ruled.client.connect_signal(
 				tag = 'multimedia',
 				screen = 1,
 				switchtotag = true,
-				floating = true,
 				draw_backdrop = false
 			}
 		}

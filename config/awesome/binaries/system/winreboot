@@ -1,0 +1,2 @@
+#!/bin/bash
+grub-editenv /boot/grub/grubenv set next_entry="Windows 10" && reboot
