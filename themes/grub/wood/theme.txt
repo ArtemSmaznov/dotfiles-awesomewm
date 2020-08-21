@@ -1,0 +1,66 @@
+# GRUB2 gfxmenu Linux theme
+# Designed for any resolution
+
+# Global Property
+title-text: ""
+title-font: "DejaVu Sans Regular 48"
+title-color: "#cccccc"
+
+desktop-image: "background.jpg"
+desktop-color: "#000000"
+
+terminal-font: "Terminus Regular 14"
+terminal-box: "terminal_box_*.png"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
+
+# Show the boot menu
++ boot_menu {
+  top = 25%
+  left = 25%
+  width = 50%
+  height = 60%
+
+  item_padding = 20
+
+  item_height = 70
+  item_spacing = 5
+
+  icon_width = 64
+  icon_height = 64
+  item_icon_space = 30
+
+  item_font = "DejaVu Sans Mono Regular 24"
+  item_color = "#ffffff"
+  selected_item_color = "#cccccc"
+  selected_item_pixmap_style = "select_*.png"
+}
+
+# Show a countdown message using the label component
++ label {
+  top = 85%
+  left = 30%
+  width = 35%
+  align = "center"
+
+  id = "__timeout__"
+  text = "Booting in %d seconds"
+  font = "DejaVu Sans Regular 16"
+  color = "#ffffff"
+}
+
+# Show keyboard shortcuts
++ label {
+  top = 95%
+  left = 30%
+  width = 35%
+  height = 30
+  align = "center"
+
+  text = "@KEYMAP_SHORT@"
+  font = "DejaVu Sans Regular 12"
+  color = "#888888"      
+}
