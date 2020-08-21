@@ -113,13 +113,10 @@ alias asf='~/ASF/ArchiSteamFarm'
 # Update Proton
 alias update-proton='development/cproton.sh'
 
-# Reboot for Windows for 1 session
-alias winreboot='sudo grub-editenv /boot/grub/grubenv set next_entry="Windows 10"'
-alias winrebootnow='sudo grub-editenv /boot/grub/grubenv set next_entry="Windows 10" && reboot'
-
-# Turn on PC
-alias pcwake='wol 74:d4:35:eb:f6:7e'
-alias laptopwake='wol 20:89:84:67:8b:04'
+# Wake Commands
+if [[ -f ~/.bash_wake ]]; then
+  . ~/.bash_wake
+fi
 
 #######################################################
 # GENERAL ALIASES

@@ -12,6 +12,7 @@ local clickable_container = require('widget.clickable-container.with-background'
 local filesystem = gears.filesystem
 local config_dir = filesystem.get_configuration_dir()
 local widget_icon_dir = config_dir .. 'configuration/user-profile/'
+local sbin_dir = config_dir .. 'binaries/system/'
 
 
 local greeter_message = wibox.widget {
@@ -146,6 +147,11 @@ local reboot_command = function()
 	awesome.emit_signal("module::exit_screen_hide")
 end
 
+local windows_command = function()
+	awful.spawn.with_shell(sbin_dir .. 'winreboot')
+	awesome.emit_signal("module::exit_screen_hide")
+end
+
 local poweroff = build_button(icons.other.shutdown, 'Shutdown')
 poweroff:connect_signal(
 	'button::release',
@@ -183,6 +189,14 @@ lock:connect_signal(
 	'button::release',
 	function()
 		lock_command()
+	end
+)
+
+local windows = build_button(icons.other.windows, 'Windows')
+lock:connect_signal(
+	'button::release',
+	function()
+		windows_command()
 	end
 )
 
@@ -230,6 +244,9 @@ screen.connect_signal(
 
 				elseif key == 'r' then
 					reboot_command()
+
+				elseif key == 'w' then
+          windows_command()
 
 				elseif key == 'Escape' or key == 'q' or key == 'x' then
 					awesome.emit_signal("module::exit_screen_hide")
@@ -325,7 +342,8 @@ screen.connect_signal(
 									reboot,
 									suspend,
 									exit,
-									lock,
+                  lock,
+                  windows,
 									layout = wibox.layout.fixed.horizontal
 								},
 								spacing = dpi(30),

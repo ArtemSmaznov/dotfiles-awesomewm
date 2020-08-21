@@ -52,6 +52,7 @@ return {
 		restart						= menubar.utils.lookup_icon("system-reboot"),
 		gear							= menubar.utils.lookup_icon("utilities-tweak-tool"),
 		screen_recorder		= themePath .. '64x64@2x/categories/' .. 'deepin-screen-recorder.svg',
+		windows 					= themePath .. '64x64@2x/categories/' .. 'windows95.svg',
 
 		keyboard_on				= themePath .. '24x24@2x/panel/' .. 'input-keyboard-virtual-on.svg',
 		keyboard_off			= themePath .. '24x24@2x/panel/' .. 'input-keyboard-virtual-off.svg',
