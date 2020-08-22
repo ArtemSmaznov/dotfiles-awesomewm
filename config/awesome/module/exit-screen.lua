@@ -12,8 +12,7 @@ local clickable_container = require('widget.clickable-container.with-background'
 local filesystem = gears.filesystem
 local config_dir = filesystem.get_configuration_dir()
 local widget_icon_dir = config_dir .. 'configuration/user-profile/'
-local sbin_dir = config_dir .. 'binaries/system/'
-
+local bin_dir = '${HOME}/.local/bin/'
 
 local greeter_message = wibox.widget {
 	markup = 'Till Next Time!',
@@ -148,7 +147,7 @@ local reboot_command = function()
 end
 
 local windows_command = function()
-	awful.spawn.with_shell(sbin_dir .. 'winreboot')
+  awful.spawn.with_shell('sudo ' .. bin_dir .. 'winreboot')
 	awesome.emit_signal("module::exit_screen_hide")
 end
 
@@ -193,9 +192,9 @@ lock:connect_signal(
 )
 
 local windows = build_button(icons.other.windows, 'Windows')
-lock:connect_signal(
+windows:connect_signal(
 	'button::release',
-	function()
+  function()
 		windows_command()
 	end
 )
@@ -338,10 +337,10 @@ screen.connect_signal(
 							{
 								greeter_message,
 								{
-									poweroff,
-									reboot,
-									suspend,
 									exit,
+									suspend,
+									reboot,
+                  poweroff,
                   lock,
                   windows,
 									layout = wibox.layout.fixed.horizontal
