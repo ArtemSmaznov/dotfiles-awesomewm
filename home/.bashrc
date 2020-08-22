@@ -38,6 +38,9 @@ if [[ $iatest > 0 ]]; then bind "set completion-ignore-case on"; fi
 # Show auto-completion list automatically, without double tab
 # if [[ $iatest > 0 ]]; then bind "set show-all-if-ambiguous On"; fi
 
+# Enable aliases for Sudo commands
+alias sudo='sudo '
+
 # Set the default editor
 export EDITOR=nano
 export VISUAL=xed
@@ -262,6 +265,13 @@ cpp() {
 			}
 		}
 	END { print "" }' total_size=$(stat -c '%s' "${1}") count=0
+}
+
+# Create a git commit of all the changes and push to repository
+gp() {
+  git add .
+  git commit -m "${1}"
+  git push
 }
 
 # Create and go to the directory

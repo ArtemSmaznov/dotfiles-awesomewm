@@ -72,7 +72,6 @@ return {
     
     -- Comment out when debugging
     'paplay ' .. sounds.startup,
-
     'google-chrome-stable',
     '/usr/bin/steam-runtime %U',
     '/opt/piavpn/bin/pia-client --quiet',
