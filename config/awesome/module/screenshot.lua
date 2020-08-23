@@ -22,7 +22,7 @@ return function(mode)
 				notif_message = "Current window screenshot saved and copied to clipboard!"
 
 			elseif (mode == 'area') then
-				maim_command = 'maim -u -s -n -m 1 '
+				maim_command = 'maim -u -B -s -n -m 1 '
 				notif_message = "Area screenshot saved and copied to clipboard!"
 
 			else
