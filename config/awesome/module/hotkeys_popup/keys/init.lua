@@ -13,7 +13,8 @@ local keys = {
   tmux 				= require("module.hotkeys_popup.keys.tmux"),
   qutebrowser = require("module.hotkeys_popup.keys.qutebrowser"),
 	termite 		= require("module.hotkeys_popup.keys.termite"),
-	bash 				= require('module.hotkeys_popup.keys.bash')
+	bash 				= require('module.hotkeys_popup.keys.bash'),
+	git 				= require('module.hotkeys_popup.keys.git')
 }
 return keys
 
