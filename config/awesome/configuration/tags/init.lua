@@ -4,6 +4,7 @@ local beautiful = require('beautiful')
 local apps = require('configuration.apps')
 
 local icons = require('theme.icons')
+local default_layout = awful.layout.suit.spiral
 
 local tags = {
 	{
@@ -20,7 +21,7 @@ local tags = {
 		icon = icons.tags.web_browser,
 		type = 'chrome',
 		default_app = apps.default.web_browser,
-		layout = awful.layout.suit.tile,
+		layout = default_layout,
 		screen = 1,
 		selected = true
 	},
@@ -45,7 +46,7 @@ local tags = {
 		icon = icons.tags.file_manager,
 		type = 'files',
 		default_app = apps.default.file_manager,
-		layout = awful.layout.suit.tile,
+		layout = default_layout,
 		screen = 1
 	},
 	{
@@ -53,7 +54,7 @@ local tags = {
 		icon = icons.tags.multimedia,
 		type = 'music',
 		default_app = 'vlc',
-		layout = awful.layout.suit.tile,
+		layout = default_layout,
 		screen = 1
 	},
 	{
@@ -61,7 +62,7 @@ local tags = {
 		icon = icons.tags.graphics,
 		type = 'art',
 		default_app = apps.default.graphics_editor,
-		layout = awful.layout.suit.tile,
+		layout = default_layout,
 		screen = 1
 	},
 	{
@@ -69,7 +70,7 @@ local tags = {
 		icon = icons.tags.sandbox,
 		type = 'virtualbox',
 		default_app = apps.default.vm,
-		layout = awful.layout.suit.tile,
+		layout = default_layout,
 		screen = 1
 	},
 }

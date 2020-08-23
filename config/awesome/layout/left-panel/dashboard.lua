@@ -121,7 +121,8 @@ return function(_, panel)
 			{
 				layout = wibox.layout.fixed.vertical,
 				spacing = dpi(7),
-				search_button,
+        search_button,
+        require('widget.favorites')
 			},
 			nil,
 			exit_button,
