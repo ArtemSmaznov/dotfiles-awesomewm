@@ -1,11 +1,11 @@
 # GIMP action-history
 
+(history-item "file-export-as" 1)
 (history-item "dialogs-preferences" 1)
 (history-item "image-new" 1)
 (history-item "file-quit" 2)
 (history-item "edit-clear" 2)
-(history-item "layers-delete" 1)
-(history-item "file-export-as" 1)
+(history-item "layers-delete" 2)
 (history-item "edit-paste" 2)
 (history-item "tools-paintbrush" 1)
 (history-item "file-save" 1)
