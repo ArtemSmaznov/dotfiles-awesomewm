@@ -10,12 +10,12 @@ awful.spawn.easy_async_with_shell(
   end
 )
 
-awesome.connect_signal(
-  'debug',
-  function ()
-    naughty.notify { text = wlan_interface }
-  end
-)
+-- awesome.connect_signal(
+--   'debug',
+--   function ()
+--     naughty.notify { text = wlan_interface }
+--   end
+-- )
 
 awful.spawn.easy_async_with_shell(
   "iw dev | grep Interface | awk '{print $2}'",

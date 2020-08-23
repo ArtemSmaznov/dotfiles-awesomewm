@@ -51,6 +51,7 @@ return {
 		lock							= menubar.utils.lookup_icon("system-lock-screen"),
 		restart						= menubar.utils.lookup_icon("system-reboot"),
 		gear							= menubar.utils.lookup_icon("utilities-tweak-tool"),
+		star							= menubar.utils.lookup_icon("package_favorite"),
 		screen_recorder		= themePath .. '64x64@2x/categories/' .. 'deepin-screen-recorder.svg',
 		windows 					= themePath .. '64x64@2x/categories/' .. 'windows95.svg',
 

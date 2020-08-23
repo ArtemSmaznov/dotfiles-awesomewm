@@ -7,10 +7,10 @@ local tooltip = function(widget, content)
     objects = {widget},
     text = content,
     mode = 'mouse',
-    align = 'bottom',
+    align = 'top_right',
     margin_leftright = dpi(8),
     margin_topbottom = dpi(8),
-    preferred_positions = {'bottom', 'left', 'right', 'top'}
+    preferred_positions = {'bottom', 'left', 'right', 'top'},
   }
 end
 

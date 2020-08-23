@@ -14,7 +14,7 @@ return function(s, panel, action_bar_width)
 	local menu_icon = wibox.widget {
 		{
 			id = 'menu_btn',
-			image = icons.other.gear,
+			image = icons.other.star,
 			resize = true,
 			widget = wibox.widget.imagebox
 		},
@@ -56,7 +56,7 @@ return function(s, panel, action_bar_width)
 	panel:connect_signal(
 		'closed',
 		function()
-			menu_icon.menu_btn:set_image(gears.surface(icons.other.gear))
+			menu_icon.menu_btn:set_image(gears.surface(icons.other.star))
 			awesome.emit_signal('widget::toggles:update')
 			awesome.emit_signal('widget::sliders:update')
 		end

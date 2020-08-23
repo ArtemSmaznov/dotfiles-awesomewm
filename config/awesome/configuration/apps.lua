@@ -6,7 +6,6 @@ local bin_dir = config_dir .. 'binaries/'
 local sounds = require('theme.sounds')
 
 return {
-
 	-- The default applications that we will use in keybindings and widgets
 	default = {
 		terminal 									= 'terminator',																-- Terminal Emulator
@@ -42,7 +41,59 @@ return {
 
 		-- You can add more default applications here
 	},
-	
+  
+  -- Apps for the Favorites Widget
+  favorites = {
+    {
+      category = 'Generic',
+      apps = {
+        {command = 'google-chrome-stable', icon = 'chrome'},
+        {command = 'google-calendar-dark', icon = 'google-agenda'},
+        {command = 'google-keep', icon = 'keep'},
+        {command = 'youtubemusic-nativefier', icon = 'google-play-music-desktop-player'},
+        {command = 'GoogleDocs', icon = 'google-docs'},
+      }
+    },{
+      category = 'Gaming',
+      apps = {
+        {command = 'obs', icon = 'obs'},
+        {command = 'lutris', icon = 'lutris'},
+        {command = 'steam-runtime', icon = 'steam'},
+      }
+    },{
+      category = 'Development',
+      apps = {
+        {command = 'terminator', icon = 'terminator'},
+        {command = 'xed', icon = 'xed'},
+        {command = 'code', icon = 'code'},
+      }
+    },{
+      category = 'Social',
+      apps = {
+        {command = 'slack', icon = 'slack'},
+        {command = 'whatsapp-nativefier-dark', icon = 'whatsapp'},
+      }
+    },{
+      category = 'Multimedia',
+      apps = {
+        {command = 'vlc', icon = 'vlc'},
+        {command = 'celluloid', icon = 'gnome-mpv'},
+      }
+    },{
+      category = 'Graphics',
+      apps = {
+        {command = 'gimp-2.10', icon = 'gimp'},
+        {command = 'digikam', icon = 'digikam'},
+        {command = 'kdenlive', icon = 'kdenlive'},
+      }
+    },{
+      category = 'System',
+      apps = {
+        {command = 'cinnamon-settings', icon = 'utilities-tweak-tool'},
+      }
+    }
+},
+
 	-- List of apps to start once on start-up
 	-- auto-start.lua module will start these
 
@@ -71,10 +122,10 @@ return {
 		'terminator',
     
     -- Comment out when debugging
-    'paplay ' .. sounds.startup,
-    'google-chrome-stable',
-    '/usr/bin/steam-runtime %U',
-    '/opt/piavpn/bin/pia-client --quiet',
+    -- 'paplay ' .. sounds.startup,
+    -- 'google-chrome-stable',
+    -- '/usr/bin/steam-runtime %U',
+    -- '/opt/piavpn/bin/pia-client --quiet',
 	},
 
 	-- List of binaries/shell scripts that will execute a certain task

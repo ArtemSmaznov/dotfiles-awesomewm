@@ -54,9 +54,9 @@ ruled.client.connect_signal(
 			},
 			properties = { 
 				tag = 'internet',
-				screen = 1,
+        screen = 1,
+        switchtotag = true,
 				skip_decoration = true,
-				-- maximized = true,
 				hide_titlebars = true,
 			}
 		}
@@ -88,9 +88,6 @@ ruled.client.connect_signal(
 				tag = 'gaming',
 				screen = 1,
 				skip_decoration = true,
-				-- maximized = true,
-				-- switchtotag = false,
-				-- floating = false,
 				hide_titlebars = true,
 				round_corners = false,
 				placement = awful.placement.centered
@@ -260,6 +257,37 @@ ruled.client.connect_signal(
 			},
 			except_any = {
 				instance = { "QuakeTerminal" }
+			},
+			properties = {
+        tag = 'terminal',
+				screen = screen:instances(),
+				size_hints_honor = false
+			}
+		}
+
+    -- Social
+		ruled.client.append_rule {
+			id         = "social",
+			rule_any   = { 
+				class = { 
+          "whatsapp",
+          "Slack"
+				}
+			},
+			properties = {
+        tag = 'terminal',
+				screen = screen:instances(),
+				size_hints_honor = false
+			}
+		}
+
+    -- OBS
+		ruled.client.append_rule {
+			id         = "recorder",
+			rule_any   = { 
+				class = { 
+					"obs",
+				}
 			},
 			properties = {
         tag = 'terminal',

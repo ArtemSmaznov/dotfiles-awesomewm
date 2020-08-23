@@ -37,9 +37,9 @@ local my_box = awful.popup {
 
 
 
-awesome.connect_signal(
-	'debug',
-	function ()
-		-- my_box.visible = not my_box.visible
-	end
-)
+-- awesome.connect_signal(
+-- 	'debug',
+-- 	function ()
+-- 		require('naughty').notify { text = 'debug test' }
+-- 	end
+-- )
