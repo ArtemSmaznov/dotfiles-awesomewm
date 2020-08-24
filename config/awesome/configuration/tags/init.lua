@@ -1,9 +1,8 @@
 local awful = require('awful')
-local gears = require('gears')
 local beautiful = require('beautiful')
 local apps = require('configuration.apps')
-
 local icons = require('theme.icons')
+
 local default_layout = awful.layout.suit.spiral
 
 local tags = {
