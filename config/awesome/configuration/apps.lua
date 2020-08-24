@@ -122,10 +122,10 @@ return {
 		'terminator',
     
     -- Comment out when debugging
-    -- 'paplay ' .. sounds.startup,
-    -- 'google-chrome-stable',
-    -- '/usr/bin/steam-runtime %U',
-    -- '/opt/piavpn/bin/pia-client --quiet',
+    'paplay ' .. sounds.startup,
+    'google-chrome-stable',
+    '/usr/bin/steam-runtime %U',
+    '/opt/piavpn/bin/pia-client --quiet',
 	},
 
 	-- List of binaries/shell scripts that will execute a certain task

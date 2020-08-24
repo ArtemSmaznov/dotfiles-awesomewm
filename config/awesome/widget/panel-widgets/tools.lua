@@ -15,7 +15,8 @@ local items = wibox.widget {
   require('widget.togglers.qs-airplane-mode'),
   -- require('widget.panel-widgets.screen-recorder')(),
   spacing = dpi(7),
-  layout = wibox.layout.fixed.horizontal,
+  forced_num_cols = 6,
+  layout = wibox.layout.grid.vertical,
 }
 
 local panel = wibox.widget {
@@ -30,7 +31,6 @@ local panel = wibox.widget {
 		margins = dpi(10),
 		widget = wibox.container.margin,
 	},
-	forced_height = dpi(92),
 	bg = beautiful.groups_bg,
 	shape = function(cr, width, height)
 		gears.shape.partially_rounded_rect(cr, width, height, true, true, true, true, beautiful.groups_radius)
