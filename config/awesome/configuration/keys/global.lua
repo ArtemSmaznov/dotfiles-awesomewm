@@ -3,12 +3,12 @@ local beautiful = require('beautiful')
 
 require('awful.autofocus')
 
-local hotkeys_popup = require('module.hotkeys_popup').widget
+local hotkeys_popup = require('modules.hotkeys_popup').widget
 
 local modkey = require('configuration.keys.mod').modKey
 local altkey = require('configuration.keys.mod').altKey
 local apps = require('configuration.apps')
-local keyboard_layout = require("widget.panel-widgets.keyboard-layout.kbdcfg")
+local keyboard_layout = require("widgets.panel-widgets.keyboard-layout.kbdcfg")
 
 -- Key bindings
 local globalKeys = awful.util.table.join(
@@ -179,7 +179,7 @@ awful.key(
 		{ },
 		"Print",
 		function ()
-			require('module.screenshot')('full')
+			require('modules.screenshot')('full')
 		end,
 		{description = "fullscreen screenshot", group = 'Screenshots'}
 ),
@@ -187,7 +187,7 @@ awful.key(
 		{modkey, "Shift"},
 		'Print',
 		function ()
-			require('module.screenshot')('area')
+			require('modules.screenshot')('area')
 		end,
 		{description = "area/selected screenshot", group = 'Screenshots'}
 ),
@@ -195,7 +195,7 @@ awful.key(
 		{altkey},
 		"Print",
 		function ()
-			require('module.screenshot')('window')
+			require('modules.screenshot')('window')
 		end,
 		{description = "current window screenshot", group = 'Screenshots'}
 ),
