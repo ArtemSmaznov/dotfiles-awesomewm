@@ -3,13 +3,23 @@
 [[ $- != *i* ]] && return
 
 iatest=$(expr index "$-" i)
-
-#######################################################
-# EXPORTS
-#######################################################
+distribution=$(cat /etc/os-release | awk 'NR==3' | awk -F '=' '{print $2}')
 
 # Disable the bell
 if [[ $iatest > 0 ]]; then bind "set bell-style visible"; fi
+
+# ░█▀▀░█░█░█▀█░█▀█░█▀▄░▀█▀░█▀▀
+# ░█▀▀░▄▀▄░█▀▀░█░█░█▀▄░░█░░▀▀█
+# ░▀▀▀░▀░▀░▀░░░▀▀▀░▀░▀░░▀░░▀▀▀
+
+# Make local bin files usable
+export PATH=$PATH:~/.local/bin
+
+# Git Indicators
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWSTASHSTATE=true
+export GIT_PS1_SHOWUNTRACKEDFILES=true
+export GIT_PS1_SHOWUPSTREAM=auto
 
 # Expand the history size
 export HISTFILESIZE=10000
@@ -18,12 +28,6 @@ export HISTSIZE=500
 # Don't put duplicate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoreboth
 
-# Make local bin files usable
-export PATH=$PATH:~/.local/bin
-
-# Check the window size after each command and, if necessary, update the values of LINES and COLUMNS
-shopt -s checkwinsize
-
 # Causes bash to append to history instead of overwriting it so if you start a new terminal, you have old session history
 shopt -s histappend
 PROMPT_COMMAND='history -a'
@@ -31,15 +35,15 @@ PROMPT_COMMAND='history -a'
 # Allow ctrl-S for history navigation (with ctrl-R)
 stty -ixon
 
+# Check the window size after each command and, if necessary, update the values of LINES and COLUMNS
+shopt -s checkwinsize
+
 # Ignore case on auto-completion
 # Note: bind used instead of sticking these in .inputrc
 if [[ $iatest > 0 ]]; then bind "set completion-ignore-case on"; fi
 
 # Show auto-completion list automatically, without double tab
 # if [[ $iatest > 0 ]]; then bind "set show-all-if-ambiguous On"; fi
-
-# Enable aliases for Sudo commands
-alias sudo='sudo '
 
 # Set the default editor
 export EDITOR=nano
@@ -56,9 +60,9 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-#######################################################
-# Colors
-#######################################################
+# ░█▀█░█▀▄░█▀█░█▄█░█▀█░▀█▀
+# ░█▀▀░█▀▄░█░█░█░█░█▀▀░░█░
+# ░▀░░░▀░▀░▀▀▀░▀░▀░▀░░░░▀░
 
 # Define colors
 gray="\033[1;30m"
@@ -93,39 +97,55 @@ fi
 
 git_color=$lightcyan
 
+if [[ -f /usr/share/git/completion/git-prompt.sh ]]; then
+  . /usr/share/git/completion/git-prompt.sh
+fi
+
 hostPart="\[${prompt_color}\]$user_display\h\[${prompt_color}\]"
 workingDirectoryPart="\[${directory_color}\]\w\[${prompt_color}\]"
 signPart="\[${prompt_color}\]"'\$'"\[${nocolor}\]"
-gitBranchPart="\[${git_color}\]\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\[${nocolor}\]"
+gitBranchPart="\[${git_color}\]\$(__git_ps1 ' %s')\[${nocolor}\]"
 
 PS1="$hostPart [ $workingDirectoryPart ]: $gitBranchPart\n $signPart "
 
-#######################################################
-# MACHINE SPECIFIC ALIASES
-#######################################################
+# ░█▀█░█░░░▀█▀░█▀█░█▀▀░█▀▀░█▀▀
+# ░█▀█░█░░░░█░░█▀█░▀▀█░█▀▀░▀▀█
+# ░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
 
-# pacman for Arch based systems
-alias pacman-upgrade='sudo pacman -Suy'
-alias pacman-update-mirrors='sudo pacman-mirrors --geoip'
-alias pacman-clean-orphans='sudo pacman -Rs $(pacman -Qtdq)'
-alias pacman-fullclean-orphans='sudo pacman -Rns $(pacman -Qtdq)'
-
-# Start ArchiSteamFarm
-alias asf='~/ASF/ArchiSteamFarm'
-
-# Update Proton
-alias update-proton='development/cproton.sh'
+###############################
+# MACHINE SPECIFIC
+###############################
 
 # Wake Commands
 if [[ -f ~/.bash_wake ]]; then
   . ~/.bash_wake
 fi
 
-#######################################################
-# GENERAL ALIASES
-#######################################################
+# pacman for Arch based systems
+if [[ $distribution = 'arch' ]]; then
+  alias pacman-upgrade='sudo pacman -Suy'
+  alias pacman-update-mirrors='sudo pacman-mirrors --geoip'
+  alias pacman-clean-orphans='sudo pacman -Rs $(pacman -Qtdq)'
+  alias pacman-fullclean-orphans='sudo pacman -Rns $(pacman -Qtdq)'
+fi
+
+# Start ArchiSteamFarm
+if [[ -d ~/ASF ]]; then
+  alias asf='~/ASF/ArchiSteamFarm'
+fi
+
+# Update Proton
+alias update-proton='development/cproton.sh'
+
+###############################
+# GENERAL
+###############################
+
 # To temporarily bypass an alias, we preceed the command with a \
 # EG: the ls command is aliased, but to use the normal ls command you would type \ls
+
+# Enable aliases for Sudo commands
+alias sudo='sudo '
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -173,9 +193,9 @@ alias fd='find . -type d -name'
 # Count all files (recursively) in the current folder
 alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
 
-######################
-##### NETWORKING #####
-######################
+###############################
+# NETWORKING
+###############################
 
 # Show used DNS addresses
 alias dnsview='cat /etc/resolv.conf'
@@ -186,9 +206,9 @@ alias ipview="netstat -anpl | grep :80 | awk {'print \$5'} | cut -d\":\" -f1 | s
 # Show open ports
 alias openports='netstat -nape --inet'
 
-######################
-#####   SYSTEM   #####
-######################
+###############################
+# SYSTEM
+###############################
 
 # Alias's for power management
 alias reboot='sudo shutdown -r now'
@@ -207,9 +227,9 @@ alias mountedinfo='df -hT'
 # Show all logs in /var/log
 alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 
-#######################################################
-# SPECIAL FUNCTIONS
-#######################################################
+# ░█▀▀░█░█░█▀█░█▀▀░▀█▀░▀█▀░█▀█░█▀█░█▀▀
+# ░█▀▀░█░█░█░█░█░░░░█░░░█░░█░█░█░█░▀▀█
+# ░▀░░░▀▀▀░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
 # Extracts any archive(s) (if unp isn't installed)
 ex() {
