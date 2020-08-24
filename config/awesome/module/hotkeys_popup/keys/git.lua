@@ -9,7 +9,7 @@
 local hotkeys_popup = require("module.hotkeys_popup.widget")
 local fire_rule = { class = { "code" } }
 for group_name, group_data in pairs({
-    ["git"] = { color = "#009F00", rule_any = fire_rule }
+    ["git"] = { color = "#f34f29", rule_any = fire_rule }
 }) do
     hotkeys_popup.add_group_rules(group_name, group_data)
 end

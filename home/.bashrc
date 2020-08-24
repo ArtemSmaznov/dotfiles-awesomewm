@@ -267,6 +267,12 @@ cpp() {
 	END { print "" }' total_size=$(stat -c '%s' "${1}") count=0
 }
 
+# Create a git commit of all the changes
+gc() {
+  git add .
+  git commit -m "${1}"
+}
+
 # Create a git commit of all the changes and push to repository
 gp() {
   git add .

@@ -103,8 +103,7 @@
     (size 900 743))
 (session-info "toplevel"
     (factory-entry "gimp-toolbox-color-dialog")
-    (position 295 221)
-    (monitor 0))
+    (position 651 144))
 (session-info "toplevel"
     (factory-entry "gimp-file-open-dialog")
     (position 231 225)

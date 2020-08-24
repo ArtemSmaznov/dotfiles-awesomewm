@@ -2,7 +2,7 @@
 
 (tool "gimp-color-picker-tool")
 (paint-info "gimp-paintbrush")
-(foreground (color-rgb 0.28679245283018873 0.21911176160508408 0.16553121438520962))
+(foreground (color-rgb 0.95294123888015747 0.30980393290519714 0.16078431904315948))
 (brush "2. Hardness 075")
 (dynamics "Size")
 (mybrush "Standard")
