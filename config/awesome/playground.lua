@@ -4,7 +4,7 @@ local wibox = require('wibox')
 local naughty = require('naughty')
 local beautiful = require('beautiful')
 
-local clickable_container = require('widget.clickable-container.with-background')
+local clickable_container = require('widgets.system-elements.clickable-container.with-background')
 local dpi = require('beautiful').xresources.apply_dpi
 local icons = require('theme.icons')
 
