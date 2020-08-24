@@ -123,11 +123,11 @@ return {
     -- 'solaar -w hide',                         -- Logitech Unifying Receiver
     
     -- User
-    -- 'terminator',                             -- Terminal
-    -- 'paplay ' .. sounds.startup,              -- Startup Sound
-    -- 'google-chrome-stable',                   -- Browser
-    -- '/usr/bin/steam-runtime %U',              -- Steam
-    -- '/opt/piavpn/bin/pia-client --quiet',     -- VPN
+    'terminator',                             -- Terminal
+    'paplay ' .. sounds.startup,              -- Startup Sound
+    'google-chrome-stable',                   -- Browser
+    '/usr/bin/steam-runtime %U',              -- Steam
+    '/opt/piavpn/bin/pia-client --quiet',     -- VPN
 	},
 
 	-- List of binaries/shell scripts that will execute a certain task
