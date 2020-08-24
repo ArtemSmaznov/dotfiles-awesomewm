@@ -1,5 +1,4 @@
 local filesystem = require('gears.filesystem')
-
 local config_dir = filesystem.get_configuration_dir()
 local bin_dir = config_dir .. 'binaries/'
 
@@ -98,39 +97,42 @@ return {
 	-- auto-start.lua module will start these
 
 	run_on_start_up = {
-		
+		-- Compositor
 		'picom -b --experimental-backends --dbus --config ' .. 
-		config_dir .. '/configuration/picom.conf',   																	-- Compositor
-
-		'blueman-applet',                                           	      					-- Bluetooth tray icon
-		'mpd',                                                          	          	-- Music Server
-		'xfce4-power-manager',                                              	        -- Power manager
+    config_dir .. '/configuration/picom.conf',   	
+    															
+    -- Credential manager
 		'/usr/lib/polkit-kde-authentication-agent-1 &' .. 
-		' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', 	    -- Credential manager
-		
-		'xrdb $HOME/.Xresources',                                                   	-- Load X Colors
-		'nm-applet',                                                                  -- NetworkManager Applet
-		'pulseeffects --gapplication-service',                                        -- Sound Equalizer
+		' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', 	    
+
+    -- Auto lock timer 	
 		[[
 		xidlehook --not-when-fullscreen --not-when-audio --timer 600 \
 		"awesome-client 'awesome.emit_signal(\"module::lockscreen_show\")'" ""
-		]],																												                    -- Auto lock timer 		
-    'redshift-gtk',
-    -- 'solaar -w hide',
-		-- You can add more start-up applications here
-		'ckb-next -b',
-		'terminator',
+		]],	
+
+    -- System
+		'blueman-applet',                         -- Bluetooth tray icon
+		'mpd',                                    -- Music Server
+    'xfce4-power-manager',                    -- Power manager	
+		'xrdb $HOME/.Xresources',                 -- Load X Colors
+		'nm-applet',                              -- NetworkManager Applet
+		'pulseeffects --gapplication-service',    -- Sound Equalizer
+    'redshift-gtk',                           -- Blue light Filter
+    'ckb-next -b',                            -- Corsair Keyboard Utility
+    -- 'solaar -w hide',                         -- Logitech Unifying Receiver
     
-    -- Comment out when debugging
-    'paplay ' .. sounds.startup,
-    'google-chrome-stable',
-    '/usr/bin/steam-runtime %U',
-    '/opt/piavpn/bin/pia-client --quiet',
+    -- User
+    'terminator',                             -- Terminal
+    'paplay ' .. sounds.startup,              -- Startup Sound
+    'google-chrome-stable',                   -- Browser
+    '/usr/bin/steam-runtime %U',              -- Steam
+    '/opt/piavpn/bin/pia-client --quiet',     -- VPN
 	},
 
 	-- List of binaries/shell scripts that will execute a certain task
 
 	bins = {
-		update_profile  = bin_dir .. 'profile-image'																		-- Update profile picture
+		update_profile  = bin_dir .. 'profile-image'	-- Update profile picture
 	}
 }
