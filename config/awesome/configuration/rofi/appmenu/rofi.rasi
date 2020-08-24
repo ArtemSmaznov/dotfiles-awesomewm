@@ -4,7 +4,7 @@ configuration {
     drun-display-format:            "{name}";
     fullscreen:                     false;
     threads:                        0;
-    matching:                      "fuzzy";
+    matching:                      "normal";
     scroll-method:                  0;
     disable-history:                false;
     monitor:                        "primary";
