@@ -4,7 +4,7 @@ local wibox = require('wibox')
 local naughty = require('naughty')
 local beautiful = require('beautiful')
 
-local clickable_container = require('widget.clickable-container.with-background')
+local clickable_container = require('widgets.system-elements.clickable-container.with-background')
 local dpi = require('beautiful').xresources.apply_dpi
 local icons = require('theme.icons')
 
@@ -15,7 +15,7 @@ local build = function(s)
   local blur_slider_visible = false
   local panel_visible = false
 
-  s.blur_slider = require('widget.sliders.blur-strength-slider')
+  s.blur_slider = require('widgets.sliders.blur-strength-slider')
   s.blur_slider.visible = blur_slider_visible
 
   awesome.connect_signal(
@@ -32,23 +32,23 @@ local build = function(s)
   )
 
   local first_column = wibox.widget {
-    require('widget.sliders.brightness-slider'),
-    require('widget.panel-widgets.tools'),
+    require('widgets.sliders.brightness-slider'),
+    require('widgets.quick-settings'),
     s.blur_slider,
-    require('widget.sliders.volume-slider'),
-    require('widget.panel-widgets.weather'),
-    require('widget.notif-center')(s),
+    require('widgets.sliders.volume-slider'),
+    require('widgets.weather'),
+    require('widgets.notif-center')(s),
     spacing = dpi(7),
     forced_width = dpi(500),
     layout = wibox.layout.fixed.vertical
   }
 
   local second_column = wibox.widget {
-    require('widget.panel-widgets.user-profile'),
-    require('widget.panel-widgets.hardware-monitor'),
-    require('widget.panel-widgets.disk-usage'),
-    -- require('widget.panel-widgets.social-media'),
-    -- require('widget.panel-widgets.calculator'),
+    require('widgets.user-profile'),
+    require('widgets.hardware-monitor'),
+    require('widgets.disk-usage'),
+    -- require('widgets.social-media'),
+    -- require('widgets.calculator'),
     spacing = dpi(7),
     forced_width = dpi(300),
     layout = wibox.layout.fixed.vertical
