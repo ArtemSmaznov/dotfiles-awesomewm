@@ -328,10 +328,6 @@ editbash() {
   fi
 }
 
-getnewbash() {
-  wget https://raw.githubusercontent.com/ArtemSmaznov/dotfiles/master/home/.bashrc -O ~/.bashrc
-}
-
 getsshconfig() {
   mkdir tmp
   cd tmp
