@@ -126,7 +126,7 @@ local right_panel = function(s)
 				layout = wibox.layout.align.horizontal,
 				expand = 'none',
 				nil,
-				require('widget.panel-widgets.panel-mode-switcher'),
+				require('layout.panel-mode-switcher'),
 				nil
 			},
 			separator,
@@ -142,10 +142,10 @@ local right_panel = function(s)
 					{
 						layout = wibox.layout.fixed.vertical,
 						spacing = dpi(7),
-						require('widget.panel-widgets.user-profile'),
-						require('widget.panel-widgets.weather'),
-						require('widget.panel-widgets.social-media'),
-						require('widget.panel-widgets.calculator')
+						require('widgets.user-profile'),
+						require('widgets.weather'),
+						require('widgets.social-media'),
+						require('widgets.calculator')
 					},
 
 				},
@@ -154,7 +154,7 @@ local right_panel = function(s)
 				{
 					id = 'notif_id',
 					visible = false,
-					require('widget.notif-center')(s),
+					require('widgets.notif-center')(s),
 					layout = wibox.layout.fixed.vertical,
 				}
 

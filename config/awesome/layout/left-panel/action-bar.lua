@@ -6,8 +6,8 @@ local gears = require('gears')
 local dpi = beautiful.xresources.apply_dpi
 local icons = require('theme.icons')
 
-local tag_list = require('widget.panel-widgets.tag-list')
-local clickable_container = require('widget.clickable-container.with-background')
+local tag_list = require('widgets.panel-widgets.tag-list')
+local clickable_container = require('widgets.system-elements.clickable-container.with-background')
 
 return function(s, panel, action_bar_width)
 
@@ -68,17 +68,17 @@ return function(s, panel, action_bar_width)
 		layout = wibox.layout.align.vertical,
 		forced_width = action_bar_width,
 		{
-			require('widget.panel-widgets.start')(),
-			require('widget.separator')('h'),
+			require('widgets.panel-widgets.start')(),
+			require('widgets.system-elements.separator')('h'),
 			tag_list(s),
-			require('widget.separator')('h'),
-			require("widget.panel-widgets.xdg-folders"),
-			require('widget.separator')('h'),
+			require('widgets.system-elements.separator')('h'),
+			require("widgets.panel-widgets.xdg-folders"),
+			require('widgets.system-elements.separator')('h'),
 			layout = wibox.layout.fixed.vertical,
 		},
 		nil,
 		{
-			require('widget.panel-widgets.system-tray')(s, action_bar_width),
+			require('widgets.panel-widgets.system-tray')(s, action_bar_width),
 			home_button,
 			layout = wibox.layout.fixed.vertical,
 		}

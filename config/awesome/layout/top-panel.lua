@@ -6,8 +6,8 @@ local gears = require('gears')
 local icons = require('theme.icons')
 local dpi = beautiful.xresources.apply_dpi
 
-local clickable_container = require('widget.clickable-container.with-background')
-local task_list = require('widget.panel-widgets.task-list')
+local clickable_container = require('widgets.system-elements.clickable-container.with-background')
+local task_list = require('widgets.panel-widgets.task-list')
 
 local panelSize = dpi(40)
 
@@ -129,7 +129,7 @@ local TopPanel = function(s, offset)
 		end
 	)
 
-	s.month_calendar = require('module.calendar')(s)
+	s.month_calendar = require('modules.calendar')(s)
 
 	s.month_calendar:attach(
 		s.clock_widget, 
@@ -142,7 +142,7 @@ local TopPanel = function(s, offset)
 
 	s.volume_widget = wibox.widget {
 		{
-      require('widget.system-elements.volume-icon'),
+      require('widgets.system-elements.volume-icon'),
       margins = dpi(7),
       widget = wibox.container.margin
 		},
@@ -162,7 +162,7 @@ local TopPanel = function(s, offset)
 		)
 	)
 
-  s.notif_launcher = require('widget.system-elements.launcher-line')(120)
+  s.notif_launcher = require('widgets.system-elements.launcher-line')(120)
 
   s.notif_launcher:buttons(
     gears.table.join(
@@ -181,14 +181,14 @@ local TopPanel = function(s, offset)
 		{
 			layout = wibox.layout.fixed.horizontal,
 			spacing = dpi(2),
-			-- require('widget.panel-widgets.system-tray')(s, panelSize),
-			require('widget.panel-widgets.keyboard-layout'),
-			-- require('widget.panel-widgets.music')(),
-			require('widget.panel-widgets.package-updater')(),
+			-- require('widgets.panel-widgets.system-tray')(s, panelSize),
+			require('widgets.panel-widgets.keyboard-layout'),
+			-- require('widgets.panel-widgets.music')(),
+			require('widgets.panel-widgets.package-updater')(),
 			s.volume_widget,
-			require('widget.panel-widgets.battery'),
-			require('widget.panel-widgets.bluetooth')(),
-			require('widget.panel-widgets.network')(),
+			require('widgets.panel-widgets.battery'),
+			require('widgets.panel-widgets.bluetooth')(),
+			require('widgets.panel-widgets.network')(),
 
 		},
 		margins = dpi(0),
@@ -201,7 +201,7 @@ local TopPanel = function(s, offset)
       expand = "none",
       {
         layout = wibox.layout.fixed.horizontal,
-        require('widget.panel-widgets.layouts')(s),
+        require('widgets.panel-widgets.layouts')(s),
         task_list(s),
         
         s.add_button
@@ -212,7 +212,7 @@ local TopPanel = function(s, offset)
         spacing = dpi(2),
         tray_widgets,
         s.clock_widget,
-        require('widget.panel-widgets.right-panel-opener')()
+        require('widgets.panel-widgets.right-panel-opener')()
       }
     },
     {
