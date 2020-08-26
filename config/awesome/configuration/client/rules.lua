@@ -6,6 +6,8 @@ local beautiful = require('beautiful')
 local client_keys = require('configuration.client.keys')
 local client_buttons = require('configuration.client.buttons')
 
+local current_tag
+
 ruled.client.connect_signal(
 	"request::rules",
 	function()
@@ -46,16 +48,10 @@ ruled.client.connect_signal(
 					"Google-chrome"
 				}
 			},
-			except_any = {
-				name = {
-					"Open File",
-					"Save File",
-					"cypress",
-				},
-			},
 			properties = { 
-				skip_decoration = true,
-				hide_titlebars = true,
+        hide_titlebars = true,
+        round_corners = false,
+        skip_decoration = true
 			}
 		}
 
@@ -74,17 +70,10 @@ ruled.client.connect_signal(
 					"Steam",
 					"GOG Galaxy"
 				},
-				except_any = {
-					name = {
-						"- Steam",
-						"Settings",
-						"News"
-					}
-				}
 			},
 			properties = { 
-        -- maximized_horizontal = true,
-				-- maximized_vertical = true,
+        maximized_horizontal = true,
+				maximized_vertical = true,
         skip_decoration = true,
 				hide_titlebars = true,
 				round_corners = false,
@@ -97,16 +86,13 @@ ruled.client.connect_signal(
 			rule_any   = {
 				name = {
 					"- Steam",
-					"Settings",
-					"News"
+          -- "Settings",
+          -- "Properties",
+          "News"
 				}
 			},
 			properties = { 
-				skip_decoration = true,
 				maximized = false,
-				hide_titlebars = true,
-				round_corners = false,
-				placement = awful.placement.centered
 			}
 		}
 
@@ -139,22 +125,7 @@ ruled.client.connect_signal(
 			}
 		}
 
-		-- Multimedia
-		ruled.client.append_rule {
-			id         = "multimedia",
-			rule_any   = {  
-				class = {
-					"vlc",
-					"Spotify",
-					"Celluloid",
-				},
-			},
-			properties = { 
-				draw_backdrop = false
-			}
-		}
-
-		-- terminal emulators
+    -- terminal emulators
 		ruled.client.append_rule {
 			id         = "terminals",
 			rule_any   = { 
@@ -171,6 +142,7 @@ ruled.client.connect_signal(
 				instance = { "QuakeTerminal" }
 			},
 			properties = {
+        screen = screen:instances(),
 				size_hints_honor = false
 			}
 		}
@@ -203,17 +175,19 @@ ruled.client.connect_signal(
 				class = { "Wicd-client.py", "calendar.google.com" }
 			},
 			properties = { 
-				titlebars_enabled = true,
+        titlebars_enabled = true,
 				maximized = false,
 				floating = true,
 				above = true,
 				draw_backdrop = true,
 				skip_decoration = true,
-				shape = function(cr, width, height)
-							gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
-						end,
+        hide_titlebars = false,
+        round_corners = true,
 				placement = awful.placement.centered
-			}
+      },
+      callback = function (c)
+        c:move_to_tag(awful.screen.focused().selected_tag)
+      end,
 		}
 
 		-- Modals

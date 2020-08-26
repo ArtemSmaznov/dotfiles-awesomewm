@@ -45,9 +45,9 @@ require('playground')
 -- ░█░░░█░█░█░█░█▀▀░░█░░█░█░█░█░█▀▄░█▀█░░█░░░█░░█░█░█░█░▀▀█
 -- ░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
+require('configuration.tags')
 require('configuration.client')
 require('configuration.root')
-require('configuration.tags')
 root.keys(require('configuration.keys.global'))
 
 -- ░█░█░█▀█░█░░░█░░░█▀█░█▀█░█▀█░█▀▀░█▀▄
