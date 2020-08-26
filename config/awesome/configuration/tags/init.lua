@@ -45,7 +45,7 @@ local tags = {
         "Chromium",
         "Google-chrome"
       }
-    }
+    } --- Add exceptions for file openers <<<<<<<<<<
 	},
 	{
 		name = 'gaming',
@@ -172,11 +172,11 @@ tag.connect_signal("request::default_layouts", function()
     })
 end)
 
-
--- Use this if you want to control which tags go to which screens
+-- Tag Creation
 for i, tag in pairs(tags) do
 	awful.tag.add(
-    tag.name,
+    tag.name,     -- independant tags for each screen
+    -- i,            -- screens have the same tags
     {
       icon = tag.icon,
       icon_only = true,
@@ -186,7 +186,8 @@ for i, tag in pairs(tags) do
       gap = beautiful.useless_gap,
       screen = tag.screen,
       default_app = tag.default_app,
-      selected = tag.selected
+      selected = tag.selected,      -- independant tags for each screen
+      -- selected = i == 1,            -- screens have the same tags
     }
   )
 
@@ -197,37 +198,13 @@ for i, tag in pairs(tags) do
         rule_any = tag.apps,
         properties = { 
           tag = tag.name,
-          screen = tag.screen,
+          -- screen = tag.screen, -- doesn't work for some reason
         }
       }
     end
   )
 
 end
-
-
-
-
--- Use this if you want all screens to have the same tags
--- screen.connect_signal("request::desktop_decoration", function(s)
--- 	for i, tag in pairs(tags) do
---  	awful.tag.add(
---  			i,
---  			{
---  				icon = tag.icon,
---  				icon_only = true,
---  				layout = tag.layout,
---          default_layout = tag.layout,
---  				gap_single_client = false,
---  				gap = beautiful.useless_gap,
---  				screen = s,
---  				default_app = tag.default_app,
---  				selected = i == 1
---  			}
---  		)
---  	end
---  end)
-
 
 tag.connect_signal(
 	'property::layout',
