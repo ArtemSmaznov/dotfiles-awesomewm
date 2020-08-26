@@ -1,5 +1,6 @@
 local awful = require('awful')
 local beautiful = require('beautiful')
+local ruled = require("ruled")
 local apps = require('configuration.apps')
 local icons = require('theme.icons')
 
@@ -13,7 +14,20 @@ local tags = {
 		default_app = apps.default.terminal,
 		layout = awful.layout.suit.tile.bottom,
 		screen = 2,
-		selected = true
+		selected = true,
+    apps = {
+      class = { 
+        "URxvt",
+        "XTerm",
+        "UXTerm",
+        "kitty",
+        "K3rmit",
+        "Terminator",
+        "whatsapp",
+        "Slack",
+        "obs",
+      }
+    }
 	},
 	{
 		name = 'internet',
@@ -22,7 +36,16 @@ local tags = {
 		default_app = apps.default.web_browser,
 		layout = default_layout,
 		screen = 1,
-		selected = true
+		selected = true,
+    apps = {
+      class = {
+        "firefox",
+        "Tor Browser",
+        "discord",
+        "Chromium",
+        "Google-chrome"
+      }
+    }
 	},
 	{
 		name = 'gaming',
@@ -30,7 +53,21 @@ local tags = {
 		type = 'game',
 		default_app = apps.default.game,
 		layout = awful.layout.suit.floating,
-		screen = 1
+		screen = 1,
+    apps = {
+      class = {
+        "Wine",
+        "dolphin-emu",
+        "Lutris",
+        "Citra",
+        "SuperTuxKart",
+        "steam_app",
+      },
+      name = {
+        "Steam",
+        "GOG Galaxy"
+      },
+    }
 	},
 	{
 		name = 'coding',
@@ -38,7 +75,25 @@ local tags = {
 		type = 'code',
 		default_app = apps.default.ide,
 		layout = awful.layout.suit.max,
-		screen = 1
+		screen = 1,
+    apps = {
+      class = {
+        "Geany",
+        "Atom",
+        "Subl3",
+        "code-oss",
+        "Cypress",
+        "Oomox",
+        "Unity",
+        "UnityHub",
+        "jetbrains-studio"
+    },
+      name  = {
+        "LibreOffice",
+        "libreoffice",
+        "cypress"
+      }
+    }
 	},
 	{
 		name = 'computer',
@@ -46,7 +101,18 @@ local tags = {
 		type = 'files',
 		default_app = apps.default.file_manager,
 		layout = default_layout,
-		screen = 1
+		screen = 1,
+    apps = {
+      class = {
+        "dolphin",
+        "ark",
+        "Nemo",
+        "File-roller",
+        "googledocs",
+        "keep",
+        "calendar"
+      }
+    }
 	},
 	{
 		name = 'multimedia',
@@ -54,7 +120,16 @@ local tags = {
 		type = 'music',
 		default_app = 'vlc',
 		layout = default_layout,
-		screen = 1
+		screen = 1,
+    apps = {
+      class = {
+        "vlc",
+        "Spotify",
+        "Celluloid",
+        "youtubemusic"
+      },
+      name = { "Google Play Music" }
+    }
 	},
 	{
 		name = 'graphics',
@@ -62,7 +137,15 @@ local tags = {
 		type = 'art',
 		default_app = apps.default.graphics_editor,
 		layout = default_layout,
-		screen = 1
+    screen = 1,
+    apps = {
+      class = {
+        "Gimp-2.10",
+        "Inkscape",
+        "Flowblade",
+        "digikam",
+      }
+    }
 	},
 	{
 		name = 'sandbox',
@@ -70,7 +153,13 @@ local tags = {
 		type = 'virtualbox',
 		default_app = apps.default.vm,
 		layout = default_layout,
-		screen = 1
+    screen = 1,
+    apps = {
+      class = {
+        "VirtualBox Manage",
+        "VirtualBox Machine"
+      }
+    }
 	},
 }
 
@@ -79,7 +168,6 @@ tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
 			awful.layout.suit.tile,
 			awful.layout.suit.max,
-			-- awful.layout.suit.spiral.dwindle,
 			awful.layout.suit.tile.bottom
     })
 end)
@@ -88,20 +176,37 @@ end)
 -- Use this if you want to control which tags go to which screens
 for i, tag in pairs(tags) do
 	awful.tag.add(
-			tag.name,
-			{
-				icon = tag.icon,
-				icon_only = true,
-        layout = tag.layout,
-        default_layout = tag.layout,
-				gap_single_client = false,
-				gap = beautiful.useless_gap,
-				screen = tag.screen,
-				default_app = tag.default_app,
-				selected = tag.selected
-			}
-		)
+    tag.name,
+    {
+      icon = tag.icon,
+      icon_only = true,
+      layout = tag.layout,
+      default_layout = tag.layout,
+      gap_single_client = false,
+      gap = beautiful.useless_gap,
+      screen = tag.screen,
+      default_app = tag.default_app,
+      selected = tag.selected
+    }
+  )
+
+  ruled.client.connect_signal(
+    "request::rules",
+    function()
+      ruled.client.append_rule {
+        rule_any = tag.apps,
+        properties = { 
+          tag = tag.name,
+          screen = tag.screen,
+        }
+      }
+    end
+  )
+
 end
+
+
+
 
 -- Use this if you want all screens to have the same tags
 -- screen.connect_signal("request::desktop_decoration", function(s)
