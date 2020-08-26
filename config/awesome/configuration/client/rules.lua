@@ -15,7 +15,8 @@ ruled.client.connect_signal(
 			id         = "global",
 			rule       = { },
 			properties = {
-				focus     = awful.client.focus.filter,
+        focus     = awful.client.focus.filter,
+        switchtotag = true,
 				raise     = true,
 				floating = false,
 				maximized = false,
@@ -53,9 +54,6 @@ ruled.client.connect_signal(
 				},
 			},
 			properties = { 
-				tag = 'internet',
-        screen = 1,
-        switchtotag = true,
 				skip_decoration = true,
 				hide_titlebars = true,
 			}
@@ -85,9 +83,9 @@ ruled.client.connect_signal(
 				}
 			},
 			properties = { 
-				tag = 'gaming',
-				screen = 1,
-				skip_decoration = true,
+        -- maximized_horizontal = true,
+				-- maximized_vertical = true,
+        skip_decoration = true,
 				hide_titlebars = true,
 				round_corners = false,
 				placement = awful.placement.centered
@@ -104,8 +102,6 @@ ruled.client.connect_signal(
 				}
 			},
 			properties = { 
-				-- tag = 'gaming',
-				-- screen = 1,
 				skip_decoration = true,
 				maximized = false,
 				hide_titlebars = true,
@@ -122,39 +118,12 @@ ruled.client.connect_signal(
 				}
 			},
 			properties = { 
-				tag = 'gaming',
-				screen = 1,
 				skip_decoration = true,
 				maximized = false,
 				fullscreen = true,
 				hide_titlebars = true,
 				round_corners = false,
 				placement = awful.placement.centered
-			}
-		}
-
-		-- text editors
-		ruled.client.append_rule {
-			id         = "text_editors",
-			rule_any   = {  
-				class = {
-					-- "Xed",
-					"Geany",
-					"Atom",
-					"Subl3",
-					"code-oss",
-					"Cypress"
-				},
-				name  = {
-					"LibreOffice",
-					"libreoffice",
-					"cypress"
-				}
-			},
-			properties = { 
-				tag = 'coding',
-				screen = 1,
-				switchtotag = true,
 			}
 		}
 
@@ -170,25 +139,6 @@ ruled.client.connect_signal(
 			}
 		}
 
-		-- File managers
-		ruled.client.append_rule {
-			id         = "file_managers",
-			rule_any   = {  
-				class = {
-					"dolphin",
-					"ark",
-					"Nemo",
-					"File-roller"
-				}
-			},
-			properties = { 
-				tag = 'computer',
-				screen = 1,
-				switchtotag = true,
-				-- floating = true,
-			}
-		}
-
 		-- Multimedia
 		ruled.client.append_rule {
 			id         = "multimedia",
@@ -198,47 +148,9 @@ ruled.client.connect_signal(
 					"Spotify",
 					"Celluloid",
 				},
-				name = { "Google Play Music" }
 			},
 			properties = { 
-				tag = 'multimedia',
-				screen = 1,
-				switchtotag = true,
 				draw_backdrop = false
-			}
-		}
-
-		-- Graphics Editing
-		ruled.client.append_rule {
-			id         = "graphics_editors",
-			rule_any   = {  
-				class = {
-					"Gimp-2.10",
-					"Inkscape",
-					"Flowblade",
-					"digikam",
-				}
-			},
-			properties = { 
-				tag = 'graphics',
-				screen = 1,
-				-- maximized = true,
-				switchtotag = true,
-			}
-		}
-
-		-- Sandboxes and VMs
-		ruled.client.append_rule {
-			id         = "sandbox",
-			rule_any   = {  
-				class = {
-					"VirtualBox Manage",
-					"VirtualBox Machine"
-				}
-			},
-			properties = { 
-				tag = 'sandbox',
-				screen = 1
 			}
 		}
 
@@ -259,61 +171,11 @@ ruled.client.connect_signal(
 				instance = { "QuakeTerminal" }
 			},
 			properties = {
-        tag = 'terminal',
-				screen = screen:instances(),
 				size_hints_honor = false
 			}
 		}
 
-    -- Social
-		ruled.client.append_rule {
-			id         = "social",
-			rule_any   = { 
-				class = { 
-          "whatsapp",
-          "Slack"
-				}
-			},
-			properties = {
-        tag = 'terminal',
-				screen = screen:instances(),
-				size_hints_honor = false
-			}
-		}
-
-    -- OBS
-		ruled.client.append_rule {
-			id         = "recorder",
-			rule_any   = { 
-				class = { 
-					"obs",
-				}
-			},
-			properties = {
-        tag = 'terminal',
-				screen = screen:instances(),
-				size_hints_honor = false
-			}
-		}
-
-		-- IDEs and Tools
-		ruled.client.append_rule {
-			id         = "ide",
-			rule_any   = {  
-				class = {
-					"Oomox",
-					"Unity",
-					"UnityHub",
-					"jetbrains-studio"
-				}
-			},
-			properties = { 
-				tag = '9',
-				skip_decoration = true
-			}
-		}
-
-		-- Image viewers with splash-like behaviour
+    -- Image viewers with splash-like behaviour
 		ruled.client.append_rule {
 			id        = "splash_like",
 			rule_any  = {
