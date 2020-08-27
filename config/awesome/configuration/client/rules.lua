@@ -288,6 +288,9 @@ ruled.client.connect_signal(
 			properties = { 
         tag = 'graphics',
         screen = 1,
+        round_corners = false,
+        hide_titlebars = true,
+        skip_decoration = true
 			}
 		}
     

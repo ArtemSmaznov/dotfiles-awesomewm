@@ -8,6 +8,9 @@ distribution=$(cat /etc/os-release | awk 'NR==3' | awk -F '=' '{print $2}')
 # Disable the bell
 if [[ $iatest > 0 ]]; then bind "set bell-style visible"; fi
 
+# ** to mean reclusive
+shopt -s globstar
+
 # ░█▀▀░█░█░█▀█░█▀█░█▀▄░▀█▀░█▀▀
 # ░█▀▀░▄▀▄░█▀▀░█░█░█▀▄░░█░░▀▀█
 # ░▀▀▀░▀░▀░▀░░░▀▀▀░▀░▀░░▀░░▀▀▀
