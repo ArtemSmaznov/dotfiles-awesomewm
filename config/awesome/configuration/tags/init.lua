@@ -15,19 +15,6 @@ local tags = {
 		layout = awful.layout.suit.tile.bottom,
 		screen = 2,
 		selected = true,
-    apps = {
-      class = { 
-        "URxvt",
-        "XTerm",
-        "UXTerm",
-        "kitty",
-        "K3rmit",
-        "Terminator",
-        "whatsapp",
-        "Slack",
-        "obs",
-      }
-    }
 	},
 	{
 		name = 'internet',
@@ -37,15 +24,6 @@ local tags = {
 		layout = default_layout,
 		screen = 1,
 		selected = true,
-    apps = {
-      class = {
-        "firefox",
-        "Tor Browser",
-        "discord",
-        "Chromium",
-        "Google-chrome"
-      }
-    } --- Add exceptions for file openers <<<<<<<<<<
 	},
 	{
 		name = 'gaming',
@@ -54,20 +32,6 @@ local tags = {
 		default_app = apps.default.game,
 		layout = awful.layout.suit.floating,
 		screen = 1,
-    apps = {
-      class = {
-        "Wine",
-        "dolphin-emu",
-        "Lutris",
-        "Citra",
-        "SuperTuxKart",
-        "steam_app",
-      },
-      name = {
-        "Steam",
-        "GOG Galaxy"
-      },
-    }
 	},
 	{
 		name = 'coding',
@@ -76,24 +40,6 @@ local tags = {
 		default_app = apps.default.ide,
 		layout = awful.layout.suit.max,
 		screen = 1,
-    apps = {
-      class = {
-        "Geany",
-        "Atom",
-        "Subl3",
-        "code-oss",
-        "Cypress",
-        "Oomox",
-        "Unity",
-        "UnityHub",
-        "jetbrains-studio"
-    },
-      name  = {
-        "LibreOffice",
-        "libreoffice",
-        "cypress"
-      }
-    }
 	},
 	{
 		name = 'computer',
@@ -102,17 +48,6 @@ local tags = {
 		default_app = apps.default.file_manager,
 		layout = default_layout,
 		screen = 1,
-    apps = {
-      class = {
-        "dolphin",
-        "ark",
-        "Nemo",
-        "File-roller",
-        "googledocs",
-        "keep",
-        "calendar"
-      }
-    }
 	},
 	{
 		name = 'multimedia',
@@ -121,15 +56,6 @@ local tags = {
 		default_app = 'vlc',
 		layout = default_layout,
 		screen = 1,
-    apps = {
-      class = {
-        "vlc",
-        "Spotify",
-        "Celluloid",
-        "youtubemusic"
-      },
-      name = { "Google Play Music" }
-    }
 	},
 	{
 		name = 'graphics',
@@ -138,14 +64,6 @@ local tags = {
 		default_app = apps.default.graphics_editor,
 		layout = default_layout,
     screen = 1,
-    apps = {
-      class = {
-        "Gimp-2.10",
-        "Inkscape",
-        "Flowblade",
-        "digikam",
-      }
-    }
 	},
 	{
 		name = 'sandbox',
@@ -154,12 +72,6 @@ local tags = {
 		default_app = apps.default.vm,
 		layout = default_layout,
     screen = 1,
-    apps = {
-      class = {
-        "VirtualBox Manage",
-        "VirtualBox Machine"
-      }
-    }
 	},
 }
 
@@ -190,20 +102,6 @@ for i, tag in pairs(tags) do
       -- selected = i == 1,            -- screens have the same tags
     }
   )
-
-  ruled.client.connect_signal(
-    "request::rules",
-    function()
-      ruled.client.append_rule {
-        rule_any = tag.apps,
-        properties = { 
-          tag = tag.name,
-          -- screen = tag.screen, -- doesn't work for some reason
-        }
-      }
-    end
-  )
-
 end
 
 tag.connect_signal(
