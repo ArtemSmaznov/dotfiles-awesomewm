@@ -10,9 +10,13 @@ local current_tag
 
 ruled.client.connect_signal(
 	"request::rules",
-	function()
+  function()
+    
+    -- ░█▀▀░█▀▀░█▀█░█▀▀░█▀▄░█▀█░█░░
+    -- ░█░█░█▀▀░█░█░█▀▀░█▀▄░█▀█░█░░
+    -- ░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀
+    -- All clients will match this rule.
 
-		-- All clients will match this rule.
 		ruled.client.append_rule {
 			id         = "global",
 			rule       = { },
@@ -36,85 +40,12 @@ ruled.client.connect_signal(
 			}
 		}
 
-		-- Browsers
-		ruled.client.append_rule {
-			id         = "web_browsers",
-			rule_any   = { 
-				class = {
-					"firefox",
-					"Tor Browser",
-					"discord",
-					"Chromium",
-					"Google-chrome"
-				}
-			},
-			properties = { 
-        hide_titlebars = true,
-        round_corners = false,
-        skip_decoration = true
-			}
-		}
-
-		-- Gaming
-		ruled.client.append_rule {
-			id         = "gaming",
-			rule_any   = {  
-				class = {
-					"Wine",
-					"dolphin-emu",
-					"Lutris",
-					"Citra",
-					"SuperTuxKart"
-				},
-				name = {
-					"Steam",
-					"GOG Galaxy"
-				},
-			},
-			properties = { 
-        maximized_horizontal = true,
-				maximized_vertical = true,
-        skip_decoration = true,
-				hide_titlebars = true,
-				round_corners = false,
-				placement = awful.placement.centered
-			}
-		}
-
-		ruled.client.append_rule {
-			id         = "steam_windows",
-			rule_any   = {
-				name = {
-					"- Steam",
-          -- "Settings",
-          -- "Properties",
-          "News"
-				}
-			},
-			properties = { 
-				maximized = false,
-			}
-		}
-
-		ruled.client.append_rule {
-			id         = "games",
-			rule_any   = {
-				class = {
-					"steam_app",
-				}
-			},
-			properties = { 
-				skip_decoration = true,
-				maximized = false,
-				fullscreen = true,
-				hide_titlebars = true,
-				round_corners = false,
-				placement = awful.placement.centered
-			}
-		}
-
-		ruled.client.append_rule {
-			id         = "text_editors",
+    -- ░█▀█░█▀█░░░▀█▀░█▀█░█▀▀
+    -- ░█░█░█░█░░░░█░░█▀█░█░█
+    -- ░▀░▀░▀▀▀░░░░▀░░▀░▀░▀▀▀
+        
+    ruled.client.append_rule {
+			id         = "no_tag",
 			rule_any   = {
 				class = {
 					"Xed"
@@ -125,7 +56,10 @@ ruled.client.connect_signal(
 			}
 		}
 
-    -- terminal emulators
+    -- ░▀█▀░█▀▀░█▀▄░█▄█░▀█▀░█▀█░█▀█░█░░░░░▀█▀░█▀█░█▀▀
+    -- ░░█░░█▀▀░█▀▄░█░█░░█░░█░█░█▀█░█░░░░░░█░░█▀█░█░█
+    -- ░░▀░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀░░░░▀░░▀░▀░▀▀▀
+                
 		ruled.client.append_rule {
 			id         = "terminals",
 			rule_any   = { 
@@ -142,11 +76,243 @@ ruled.client.connect_signal(
 				instance = { "QuakeTerminal" }
 			},
 			properties = {
+        tag = 'terminal',
         screen = screen:instances(),
 				size_hints_honor = false
 			}
 		}
 
+		ruled.client.append_rule {
+			id         = "sides",
+			rule_any   = { 
+				class = { 
+          "whatsapp",
+          "Slack",
+          "obs",
+          }
+			},
+			properties = {
+        tag = 'terminal',
+        screen = screen:instances(),
+			}
+		}
+
+    -- ░▀█▀░█▀█░▀█▀░█▀▀░█▀▄░█▀█░█▀▀░▀█▀░░░▀█▀░█▀█░█▀▀
+    -- ░░█░░█░█░░█░░█▀▀░█▀▄░█░█░█▀▀░░█░░░░░█░░█▀█░█░█
+    -- ░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀░▀░▀░▀▀▀░░▀░░░░░▀░░▀░▀░▀▀▀
+
+    ruled.client.append_rule {
+			id         = "web_browsers",
+			rule_any   = { 
+				class = {
+					"firefox",
+					"Tor Browser",
+					"discord",
+					"Chromium",
+					"Google-chrome"
+				}
+			},
+			properties = { 
+        tag = 'internet',
+        screen = 1,
+        hide_titlebars = true,
+        round_corners = false,
+        skip_decoration = true
+			}
+		}
+
+    -- ░█▀▀░█▀█░█▄█░▀█▀░█▀█░█▀▀░░░▀█▀░█▀█░█▀▀
+    -- ░█░█░█▀█░█░█░░█░░█░█░█░█░░░░█░░█▀█░█░█
+    -- ░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░░░░▀░░▀░▀░▀▀▀
+    
+    ruled.client.append_rule {
+			id         = "gaming",
+			rule_any   = {  
+				class = {
+					"Wine",
+					"dolphin-emu",
+					"Lutris",
+					"Citra",
+					"SuperTuxKart",
+				},
+				name = {
+					"GOG Galaxy",
+					"Steam",
+				},
+      },
+      except_any = {
+        name = {
+					"- Steam",
+          "Steam Guard"
+				}
+      },
+			properties = { 
+        tag = 'gaming',
+        screen = 1,
+        switchtotag = false,
+        skip_decoration = true,
+				hide_titlebars = true,
+				round_corners = false,
+				placement = awful.placement.centered
+			}
+		}
+
+		-- ruled.client.append_rule {
+		-- 	id         = "steam_dialogs",
+		-- 	rule_any   = {
+		-- 		name = {
+		-- 			"- Steam",
+    --       -- "Settings",
+    --       -- "Properties",
+    --       -- "News",
+    --       -- "Login",
+    --       "Steam Guard"
+		-- 		}
+		-- 	},
+		-- 	properties = { 
+    --     tag = 'gaming',
+    --     screen = 1,
+    --     maximized = false,
+    --     floating = true,
+    --     hide_titlebars = false,
+		-- 	}
+		-- }
+
+		ruled.client.append_rule {
+			id         = "games",
+			rule_any   = {
+				class = {
+					"steam_app",
+				}
+			},
+			properties = { 
+        tag = 'gaming',
+        screen = 1,
+				skip_decoration = true,
+				maximized = false,
+				fullscreen = true,
+				hide_titlebars = true,
+				round_corners = false,
+				placement = awful.placement.centered
+			}
+		}
+
+    -- ░█▀▄░█▀▀░█░█░░░▀█▀░█▀█░█▀▀
+    -- ░█░█░█▀▀░▀▄▀░░░░█░░█▀█░█░█
+    -- ░▀▀░░▀▀▀░░▀░░░░░▀░░▀░▀░▀▀▀
+      
+		ruled.client.append_rule {
+			id         = "dev",
+			rule_any   = {
+        class = {
+          "Geany",
+          "Atom",
+          "Subl3",
+          "code-oss",
+          "Cypress",
+          "Oomox",
+          "Unity",
+          "UnityHub",
+          "jetbrains-studio"
+        },
+        name  = {
+          "LibreOffice",
+          "libreoffice",
+          "cypress"
+        }
+      },
+			properties = { 
+        tag = 'coding',
+        screen = 1,
+			}
+		}
+
+    -- ░█▀▀░█▀█░█▄█░█▀█░█░█░▀█▀░█▀▀░█▀▄░░░▀█▀░█▀█░█▀▀
+    -- ░█░░░█░█░█░█░█▀▀░█░█░░█░░█▀▀░█▀▄░░░░█░░█▀█░█░█
+    -- ░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░░▀░░▀▀▀░▀░▀░░░░▀░░▀░▀░▀▀▀
+          
+		ruled.client.append_rule {
+			id         = "computer",
+			rule_any   = {
+        class = {
+          "dolphin",
+          "ark",
+          "Nemo",
+          "File-roller",
+          "googledocs",
+          "keep",
+          "calendar"
+        }
+      },
+			properties = { 
+        tag = 'computer',
+        screen = 1,
+			}
+		}
+
+    -- ░█▄█░█░█░█░░░▀█▀░▀█▀░█▄█░█▀▀░█▀▄░▀█▀░█▀█░░░▀█▀░█▀█░█▀▀
+    -- ░█░█░█░█░█░░░░█░░░█░░█░█░█▀▀░█░█░░█░░█▀█░░░░█░░█▀█░█░█
+    -- ░▀░▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░▀░░░░▀░░▀░▀░▀▀▀
+              
+		ruled.client.append_rule {
+			id         = "multimedia",
+			rule_any   = {
+        class = {
+          "vlc",
+          "Spotify",
+          "Celluloid",
+          "youtubemusic"
+        },
+        name = { "Google Play Music" }
+      },
+			properties = { 
+        tag = 'multimedia',
+        screen = 1,
+			}
+		}
+
+    -- ░█▀▀░█▀▄░█▀█░█▀█░█░█░▀█▀░█▀▀░█▀▀░░░▀█▀░█▀█░█▀▀
+    -- ░█░█░█▀▄░█▀█░█▀▀░█▀█░░█░░█░░░▀▀█░░░░█░░█▀█░█░█
+    -- ░▀▀▀░▀░▀░▀░▀░▀░░░▀░▀░▀▀▀░▀▀▀░▀▀▀░░░░▀░░▀░▀░▀▀▀
+                  
+		ruled.client.append_rule {
+			id         = "graphics",
+			rule_any   = {
+        class = {
+          "Gimp-2.10",
+          "Inkscape",
+          "Flowblade",
+          "digikam",
+        }
+      },
+			properties = { 
+        tag = 'graphics',
+        screen = 1,
+			}
+		}
+    
+    -- ░█▀▀░█▀█░█▀█░█▀▄░█▀▄░█▀█░█░█░░░▀█▀░█▀█░█▀▀
+    -- ░▀▀█░█▀█░█░█░█░█░█▀▄░█░█░▄▀▄░░░░█░░█▀█░█░█
+    -- ░▀▀▀░▀░▀░▀░▀░▀▀░░▀▀░░▀▀▀░▀░▀░░░░▀░░▀░▀░▀▀▀
+                      
+		ruled.client.append_rule {
+			id         = "sandbox",
+			rule_any   = {
+        class = {
+          "VirtualBox Manage",
+          "VirtualBox Machine"
+        }
+      },
+			properties = { 
+        tag = 'sandbox',
+        screen = 1,
+			}
+		}
+    
+    -- ░█▀▀░█░█░█▀▀░▀█▀░█▀▀░█▄█
+    -- ░▀▀█░░█░░▀▀█░░█░░█▀▀░█░█
+    -- ░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀
+    
     -- Image viewers with splash-like behaviour
 		ruled.client.append_rule {
 			id        = "splash_like",
