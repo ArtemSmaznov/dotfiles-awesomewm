@@ -157,6 +157,36 @@ ruled.client.connect_signal(
 			}
 		}
 
+    ruled.client.append_rule {
+			id         = "steam",
+			rule_any   = {
+				instance = {
+					"Steam",
+				}
+			},
+			properties = { 
+        tag = 'gaming',
+        screen = 1,
+        round_corners = false,
+        hide_titlebars = true,
+        placement = awful.placement.centered
+			}
+		}
+
+    ruled.client.append_rule {
+			id         = "steam_friends",
+			rule_any   = {
+				name = {
+					"Friends List",
+				}
+			},
+			properties = { 
+        width = 400,
+        maximized_vertical = true,
+        placement = awful.placement.right
+			}
+		}
+
 		-- ruled.client.append_rule {
 		-- 	id         = "steam_dialogs",
 		-- 	rule_any   = {

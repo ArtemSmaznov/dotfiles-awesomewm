@@ -5,6 +5,7 @@ local iconsTheme = 'Papirus-Dark'
 
 local themePath = '/usr/share/icons/' .. iconsTheme .. '/'
 local dir = os.getenv('HOME') .. '/.config/awesome/theme/icons/'
+local folder_color = 'teal'
 
 return {
 
@@ -23,17 +24,17 @@ return {
 
 	-- Places / Folders
 	places = {
-		home_folder 					= themePath .. '64x64@2x/places/' .. 'user-blue-home.svg',
-		favorites_folder 			= themePath .. '64x64@2x/places/' .. 'folder-blue-favorites.svg',
-		documents_folder 			= themePath .. '64x64@2x/places/' .. 'folder-blue-documents.svg',
-		downloads_folder 			= themePath .. '64x64@2x/places/' .. 'folder-blue-download.svg',
-		pictures_folder 			= themePath .. '64x64@2x/places/' .. 'folder-blue-pictures.svg',
-		videos_folder 				= themePath .. '64x64@2x/places/' .. 'folder-blue-videos.svg',
-		music_folder 					= themePath .. '64x64@2x/places/' .. 'folder-blue-music.svg',
-		games_folder 					= themePath .. '64x64@2x/places/' .. 'folder-blue-games.svg',
-		google_drive_folder 	= themePath .. '64x64@2x/places/' .. 'folder-blue-google-drive.svg',
-		git_folder 						= themePath .. '64x64@2x/places/' .. 'folder-blue-git.svg',
-		open_folder 					= themePath .. '64x64@2x/places/' .. 'folder-blue-open.svg',
+    home_folder 					= themePath .. '64x64@2x/places/' .. 'user-' .. folder_color .. '-home.svg',
+		favorites_folder 			= themePath .. '64x64@2x/places/' .. 'folder-' .. folder_color .. '-favorites.svg',
+		documents_folder 			= themePath .. '64x64@2x/places/' .. 'folder-' .. folder_color .. '-documents.svg',
+		downloads_folder 			= themePath .. '64x64@2x/places/' .. 'folder-' .. folder_color .. '-download.svg',
+		pictures_folder 			= themePath .. '64x64@2x/places/' .. 'folder-' .. folder_color .. '-pictures.svg',
+		videos_folder 				= themePath .. '64x64@2x/places/' .. 'folder-' .. folder_color .. '-videos.svg',
+		music_folder 					= themePath .. '64x64@2x/places/' .. 'folder-' .. folder_color .. '-music.svg',
+		games_folder 					= themePath .. '64x64@2x/places/' .. 'folder-' .. folder_color .. '-games.svg',
+		google_drive_folder 	= themePath .. '64x64@2x/places/' .. 'folder-' .. folder_color .. '-google-drive.svg',
+		git_folder 						= themePath .. '64x64@2x/places/' .. 'folder-' .. folder_color .. '-git.svg',
+		open_folder 					= themePath .. '64x64@2x/places/' .. 'folder-' .. folder_color .. '-open.svg',
 		trash 								= themePath	.. '48x48@2x/status/' .. 'user-trash.svg',
 		trash_full 						= themePath	.. '48x48@2x/status/' .. 'user-trash-full.svg',
 	},
