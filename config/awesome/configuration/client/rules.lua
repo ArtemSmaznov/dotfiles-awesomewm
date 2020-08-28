@@ -6,16 +6,23 @@ local beautiful = require('beautiful')
 local client_keys = require('configuration.client.keys')
 local client_buttons = require('configuration.client.buttons')
 
+local current_tag
+
 ruled.client.connect_signal(
 	"request::rules",
-	function()
+  function()
+    
+    -- ░█▀▀░█▀▀░█▀█░█▀▀░█▀▄░█▀█░█░░
+    -- ░█░█░█▀▀░█░█░█▀▀░█▀▄░█▀█░█░░
+    -- ░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀
+    -- All clients will match this rule.
 
-		-- All clients will match this rule.
 		ruled.client.append_rule {
 			id         = "global",
 			rule       = { },
 			properties = {
-				focus     = awful.client.focus.filter,
+        focus     = awful.client.focus.filter,
+        switchtotag = true,
 				raise     = true,
 				floating = false,
 				maximized = false,
@@ -33,133 +40,12 @@ ruled.client.connect_signal(
 			}
 		}
 
-		-- Browsers
-		ruled.client.append_rule {
-			id         = "web_browsers",
-			rule_any   = { 
-				class = {
-					"firefox",
-					"Tor Browser",
-					"discord",
-					"Chromium",
-					"Google-chrome"
-				}
-			},
-			except_any = {
-				name = {
-					"Open File",
-					"Save File",
-					"cypress",
-				},
-			},
-			properties = { 
-				tag = 'internet',
-        screen = 1,
-        switchtotag = true,
-				skip_decoration = true,
-				hide_titlebars = true,
-			}
-		}
-
-		-- Gaming
-		ruled.client.append_rule {
-			id         = "gaming",
-			rule_any   = {  
-				class = {
-					"Wine",
-					"dolphin-emu",
-					"Lutris",
-					"Citra",
-					"SuperTuxKart"
-				},
-				name = {
-					"Steam",
-					"GOG Galaxy"
-				},
-				except_any = {
-					name = {
-						"- Steam",
-						"Settings",
-						"News"
-					}
-				}
-			},
-			properties = { 
-				tag = 'gaming',
-				screen = 1,
-				skip_decoration = true,
-				hide_titlebars = true,
-				round_corners = false,
-				placement = awful.placement.centered
-			}
-		}
-
-		ruled.client.append_rule {
-			id         = "steam_windows",
-			rule_any   = {
-				name = {
-					"- Steam",
-					"Settings",
-					"News"
-				}
-			},
-			properties = { 
-				-- tag = 'gaming',
-				-- screen = 1,
-				skip_decoration = true,
-				maximized = false,
-				hide_titlebars = true,
-				round_corners = false,
-				placement = awful.placement.centered
-			}
-		}
-
-		ruled.client.append_rule {
-			id         = "games",
-			rule_any   = {
-				class = {
-					"steam_app",
-				}
-			},
-			properties = { 
-				tag = 'gaming',
-				screen = 1,
-				skip_decoration = true,
-				maximized = false,
-				fullscreen = true,
-				hide_titlebars = true,
-				round_corners = false,
-				placement = awful.placement.centered
-			}
-		}
-
-		-- text editors
-		ruled.client.append_rule {
-			id         = "text_editors",
-			rule_any   = {  
-				class = {
-					-- "Xed",
-					"Geany",
-					"Atom",
-					"Subl3",
-					"code-oss",
-					"Cypress"
-				},
-				name  = {
-					"LibreOffice",
-					"libreoffice",
-					"cypress"
-				}
-			},
-			properties = { 
-				tag = 'coding',
-				screen = 1,
-				switchtotag = true,
-			}
-		}
-
-		ruled.client.append_rule {
-			id         = "text_editors",
+    -- ░█▀█░█▀█░░░▀█▀░█▀█░█▀▀
+    -- ░█░█░█░█░░░░█░░█▀█░█░█
+    -- ░▀░▀░▀▀▀░░░░▀░░▀░▀░▀▀▀
+        
+    ruled.client.append_rule {
+			id         = "no_tag",
 			rule_any   = {
 				class = {
 					"Xed"
@@ -170,79 +56,10 @@ ruled.client.connect_signal(
 			}
 		}
 
-		-- File managers
-		ruled.client.append_rule {
-			id         = "file_managers",
-			rule_any   = {  
-				class = {
-					"dolphin",
-					"ark",
-					"Nemo",
-					"File-roller"
-				}
-			},
-			properties = { 
-				tag = 'computer',
-				screen = 1,
-				switchtotag = true,
-				-- floating = true,
-			}
-		}
-
-		-- Multimedia
-		ruled.client.append_rule {
-			id         = "multimedia",
-			rule_any   = {  
-				class = {
-					"vlc",
-					"Spotify",
-					"Celluloid",
-				},
-				name = { "Google Play Music" }
-			},
-			properties = { 
-				tag = 'multimedia',
-				screen = 1,
-				switchtotag = true,
-				draw_backdrop = false
-			}
-		}
-
-		-- Graphics Editing
-		ruled.client.append_rule {
-			id         = "graphics_editors",
-			rule_any   = {  
-				class = {
-					"Gimp-2.10",
-					"Inkscape",
-					"Flowblade",
-					"digikam",
-				}
-			},
-			properties = { 
-				tag = 'graphics',
-				screen = 1,
-				-- maximized = true,
-				switchtotag = true,
-			}
-		}
-
-		-- Sandboxes and VMs
-		ruled.client.append_rule {
-			id         = "sandbox",
-			rule_any   = {  
-				class = {
-					"VirtualBox Manage",
-					"VirtualBox Machine"
-				}
-			},
-			properties = { 
-				tag = 'sandbox',
-				screen = 1
-			}
-		}
-
-		-- terminal emulators
+    -- ░▀█▀░█▀▀░█▀▄░█▄█░▀█▀░█▀█░█▀█░█░░░░░▀█▀░█▀█░█▀▀
+    -- ░░█░░█▀▀░█▀▄░█░█░░█░░█░█░█▀█░█░░░░░░█░░█▀█░█░█
+    -- ░░▀░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀░░░░▀░░▀░▀░▀▀▀
+                
 		ruled.client.append_rule {
 			id         = "terminals",
 			rule_any   = { 
@@ -260,60 +77,276 @@ ruled.client.connect_signal(
 			},
 			properties = {
         tag = 'terminal',
-				screen = screen:instances(),
+        screen = screen:instances(),
 				size_hints_honor = false
 			}
 		}
 
-    -- Social
 		ruled.client.append_rule {
-			id         = "social",
+			id         = "sides",
 			rule_any   = { 
 				class = { 
           "whatsapp",
-          "Slack"
-				}
+          "Slack",
+          "obs",
+          }
 			},
 			properties = {
         tag = 'terminal',
-				screen = screen:instances(),
-				size_hints_honor = false
+        screen = screen:instances(),
 			}
 		}
 
-    -- OBS
-		ruled.client.append_rule {
-			id         = "recorder",
+    -- ░▀█▀░█▀█░▀█▀░█▀▀░█▀▄░█▀█░█▀▀░▀█▀░░░▀█▀░█▀█░█▀▀
+    -- ░░█░░█░█░░█░░█▀▀░█▀▄░█░█░█▀▀░░█░░░░░█░░█▀█░█░█
+    -- ░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀░▀░▀░▀▀▀░░▀░░░░░▀░░▀░▀░▀▀▀
+
+    ruled.client.append_rule {
+			id         = "web_browsers",
 			rule_any   = { 
-				class = { 
-					"obs",
-				}
-			},
-			properties = {
-        tag = 'terminal',
-				screen = screen:instances(),
-				size_hints_honor = false
-			}
-		}
-
-		-- IDEs and Tools
-		ruled.client.append_rule {
-			id         = "ide",
-			rule_any   = {  
 				class = {
-					"Oomox",
-					"Unity",
-					"UnityHub",
-					"jetbrains-studio"
+					"firefox",
+					"Tor Browser",
+					"discord",
+					"Chromium",
+					"Google-chrome"
 				}
 			},
 			properties = { 
-				tag = '9',
-				skip_decoration = true
+        tag = 'internet',
+        screen = 1,
+        hide_titlebars = true,
+        round_corners = false,
+        skip_decoration = true
 			}
 		}
 
-		-- Image viewers with splash-like behaviour
+    -- ░█▀▀░█▀█░█▄█░▀█▀░█▀█░█▀▀░░░▀█▀░█▀█░█▀▀
+    -- ░█░█░█▀█░█░█░░█░░█░█░█░█░░░░█░░█▀█░█░█
+    -- ░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░░░░▀░░▀░▀░▀▀▀
+    
+    ruled.client.append_rule {
+			id         = "gaming",
+			rule_any   = {  
+				class = {
+					"Wine",
+					"dolphin-emu",
+					"Lutris",
+					"Citra",
+					"SuperTuxKart",
+				},
+				name = {
+					"GOG Galaxy",
+					"Steam",
+				},
+      },
+      except_any = {
+        name = {
+					"- Steam",
+          "Steam Guard"
+				}
+      },
+			properties = { 
+        tag = 'gaming',
+        screen = 1,
+        switchtotag = false,
+        skip_decoration = true,
+				hide_titlebars = true,
+				round_corners = false,
+				placement = awful.placement.centered
+			}
+		}
+
+    ruled.client.append_rule {
+			id         = "steam",
+			rule_any   = {
+				instance = {
+					"Steam",
+				}
+			},
+			properties = { 
+        tag = 'gaming',
+        screen = 1,
+        round_corners = false,
+        hide_titlebars = true,
+        placement = awful.placement.centered
+			}
+		}
+
+    ruled.client.append_rule {
+			id         = "steam_friends",
+			rule_any   = {
+				name = {
+					"Friends List",
+				}
+			},
+			properties = { 
+        width = 400,
+        maximized_vertical = true,
+        placement = awful.placement.right
+			}
+		}
+
+		-- ruled.client.append_rule {
+		-- 	id         = "steam_dialogs",
+		-- 	rule_any   = {
+		-- 		name = {
+		-- 			"- Steam",
+    --       -- "Settings",
+    --       -- "Properties",
+    --       -- "News",
+    --       -- "Login",
+    --       "Steam Guard"
+		-- 		}
+		-- 	},
+		-- 	properties = { 
+    --     tag = 'gaming',
+    --     screen = 1,
+    --     maximized = false,
+    --     floating = true,
+    --     hide_titlebars = false,
+		-- 	}
+		-- }
+
+		ruled.client.append_rule {
+			id         = "games",
+			rule_any   = {
+				class = {
+					"steam_app",
+				}
+			},
+			properties = { 
+        tag = 'gaming',
+        screen = 1,
+				skip_decoration = true,
+				maximized = false,
+				fullscreen = true,
+				hide_titlebars = true,
+				round_corners = false,
+				placement = awful.placement.centered
+			}
+		}
+
+    -- ░█▀▄░█▀▀░█░█░░░▀█▀░█▀█░█▀▀
+    -- ░█░█░█▀▀░▀▄▀░░░░█░░█▀█░█░█
+    -- ░▀▀░░▀▀▀░░▀░░░░░▀░░▀░▀░▀▀▀
+      
+		ruled.client.append_rule {
+			id         = "dev",
+			rule_any   = {
+        class = {
+          "Geany",
+          "Atom",
+          "Subl3",
+          "code-oss",
+          "Cypress",
+          "Oomox",
+          "Unity",
+          "UnityHub",
+          "jetbrains-studio"
+        },
+        name  = {
+          "LibreOffice",
+          "libreoffice",
+          "cypress"
+        }
+      },
+			properties = { 
+        tag = 'coding',
+        screen = 1,
+			}
+		}
+
+    -- ░█▀▀░█▀█░█▄█░█▀█░█░█░▀█▀░█▀▀░█▀▄░░░▀█▀░█▀█░█▀▀
+    -- ░█░░░█░█░█░█░█▀▀░█░█░░█░░█▀▀░█▀▄░░░░█░░█▀█░█░█
+    -- ░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░░▀░░▀▀▀░▀░▀░░░░▀░░▀░▀░▀▀▀
+          
+		ruled.client.append_rule {
+			id         = "computer",
+			rule_any   = {
+        class = {
+          "dolphin",
+          "ark",
+          "Nemo",
+          "File-roller",
+          "googledocs",
+          "keep",
+          "calendar"
+        }
+      },
+			properties = { 
+        tag = 'computer',
+        screen = 1,
+			}
+		}
+
+    -- ░█▄█░█░█░█░░░▀█▀░▀█▀░█▄█░█▀▀░█▀▄░▀█▀░█▀█░░░▀█▀░█▀█░█▀▀
+    -- ░█░█░█░█░█░░░░█░░░█░░█░█░█▀▀░█░█░░█░░█▀█░░░░█░░█▀█░█░█
+    -- ░▀░▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░▀░░░░▀░░▀░▀░▀▀▀
+              
+		ruled.client.append_rule {
+			id         = "multimedia",
+			rule_any   = {
+        class = {
+          "vlc",
+          "Spotify",
+          "Celluloid",
+          "youtubemusic"
+        },
+        name = { "Google Play Music" }
+      },
+			properties = { 
+        tag = 'multimedia',
+        screen = 1,
+			}
+		}
+
+    -- ░█▀▀░█▀▄░█▀█░█▀█░█░█░▀█▀░█▀▀░█▀▀░░░▀█▀░█▀█░█▀▀
+    -- ░█░█░█▀▄░█▀█░█▀▀░█▀█░░█░░█░░░▀▀█░░░░█░░█▀█░█░█
+    -- ░▀▀▀░▀░▀░▀░▀░▀░░░▀░▀░▀▀▀░▀▀▀░▀▀▀░░░░▀░░▀░▀░▀▀▀
+                  
+		ruled.client.append_rule {
+			id         = "graphics",
+			rule_any   = {
+        class = {
+          "Gimp-2.10",
+          "Inkscape",
+          "Flowblade",
+          "digikam",
+        }
+      },
+			properties = { 
+        tag = 'graphics',
+        screen = 1,
+        round_corners = false,
+        hide_titlebars = true,
+        skip_decoration = true
+			}
+		}
+    
+    -- ░█▀▀░█▀█░█▀█░█▀▄░█▀▄░█▀█░█░█░░░▀█▀░█▀█░█▀▀
+    -- ░▀▀█░█▀█░█░█░█░█░█▀▄░█░█░▄▀▄░░░░█░░█▀█░█░█
+    -- ░▀▀▀░▀░▀░▀░▀░▀▀░░▀▀░░▀▀▀░▀░▀░░░░▀░░▀░▀░▀▀▀
+                      
+		ruled.client.append_rule {
+			id         = "sandbox",
+			rule_any   = {
+        class = {
+          "VirtualBox Manage",
+          "VirtualBox Machine"
+        }
+      },
+			properties = { 
+        tag = 'sandbox',
+        screen = 1,
+			}
+		}
+    
+    -- ░█▀▀░█░█░█▀▀░▀█▀░█▀▀░█▄█
+    -- ░▀▀█░░█░░▀▀█░░█░░█▀▀░█░█
+    -- ░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀
+    
+    -- Image viewers with splash-like behaviour
 		ruled.client.append_rule {
 			id        = "splash_like",
 			rule_any  = {
@@ -341,17 +374,19 @@ ruled.client.connect_signal(
 				class = { "Wicd-client.py", "calendar.google.com" }
 			},
 			properties = { 
-				titlebars_enabled = true,
+        titlebars_enabled = true,
 				maximized = false,
 				floating = true,
 				above = true,
 				draw_backdrop = true,
 				skip_decoration = true,
-				shape = function(cr, width, height)
-							gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
-						end,
+        hide_titlebars = false,
+        round_corners = true,
 				placement = awful.placement.centered
-			}
+      },
+      callback = function (c)
+        c:move_to_tag(awful.screen.focused().selected_tag)
+      end,
 		}
 
 		-- Modals
