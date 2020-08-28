@@ -123,8 +123,8 @@ return {
     -- 'solaar -w hide',                         -- Logitech Unifying Receiver
     
     -- User
-    'terminator',                             -- Terminal
     'paplay ' .. sounds.startup,              -- Startup Sound
+    'terminator',                             -- Terminal
     'google-chrome-stable',                   -- Browser
     '/usr/bin/steam-runtime %U',              -- Steam
     '/opt/piavpn/bin/pia-client --quiet',     -- VPN

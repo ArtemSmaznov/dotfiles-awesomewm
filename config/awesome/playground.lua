@@ -37,9 +37,11 @@ local my_box = awful.popup {
 
 
 
--- awesome.connect_signal(
--- 	'debug',
--- 	function ()
--- 		require('naughty').notify { text = 'debug test' }
--- 	end
--- )
+awesome.connect_signal(
+	'debug',
+  function ()
+    local subresult = awful.tag.getidx()
+    local result = tostring(subresult)
+		require('naughty').notify { text = result }
+	end
+)

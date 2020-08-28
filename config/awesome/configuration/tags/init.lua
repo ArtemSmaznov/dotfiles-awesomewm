@@ -1,5 +1,6 @@
 local awful = require('awful')
 local beautiful = require('beautiful')
+local ruled = require("ruled")
 local apps = require('configuration.apps')
 local icons = require('theme.icons')
 
@@ -13,7 +14,7 @@ local tags = {
 		default_app = apps.default.terminal,
 		layout = awful.layout.suit.tile.bottom,
 		screen = 2,
-		selected = true
+		selected = true,
 	},
 	{
 		name = 'internet',
@@ -22,7 +23,7 @@ local tags = {
 		default_app = apps.default.web_browser,
 		layout = default_layout,
 		screen = 1,
-		selected = true
+		selected = true,
 	},
 	{
 		name = 'gaming',
@@ -30,7 +31,7 @@ local tags = {
 		type = 'game',
 		default_app = apps.default.game,
 		layout = awful.layout.suit.floating,
-		screen = 1
+		screen = 1,
 	},
 	{
 		name = 'coding',
@@ -38,7 +39,7 @@ local tags = {
 		type = 'code',
 		default_app = apps.default.ide,
 		layout = awful.layout.suit.max,
-		screen = 1
+		screen = 1,
 	},
 	{
 		name = 'computer',
@@ -46,7 +47,7 @@ local tags = {
 		type = 'files',
 		default_app = apps.default.file_manager,
 		layout = default_layout,
-		screen = 1
+		screen = 1,
 	},
 	{
 		name = 'multimedia',
@@ -54,7 +55,7 @@ local tags = {
 		type = 'music',
 		default_app = 'vlc',
 		layout = default_layout,
-		screen = 1
+		screen = 1,
 	},
 	{
 		name = 'graphics',
@@ -62,7 +63,7 @@ local tags = {
 		type = 'art',
 		default_app = apps.default.graphics_editor,
 		layout = default_layout,
-		screen = 1
+    screen = 1,
 	},
 	{
 		name = 'sandbox',
@@ -70,7 +71,7 @@ local tags = {
 		type = 'virtualbox',
 		default_app = apps.default.vm,
 		layout = default_layout,
-		screen = 1
+    screen = 1,
 	},
 }
 
@@ -79,50 +80,29 @@ tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
 			awful.layout.suit.tile,
 			awful.layout.suit.max,
-			-- awful.layout.suit.spiral.dwindle,
 			awful.layout.suit.tile.bottom
     })
 end)
 
-
--- Use this if you want to control which tags go to which screens
+-- Tag Creation
 for i, tag in pairs(tags) do
 	awful.tag.add(
-			tag.name,
-			{
-				icon = tag.icon,
-				icon_only = true,
-        layout = tag.layout,
-        default_layout = tag.layout,
-				gap_single_client = false,
-				gap = beautiful.useless_gap,
-				screen = tag.screen,
-				default_app = tag.default_app,
-				selected = tag.selected
-			}
-		)
+    tag.name,     -- independant tags for each screen
+    -- i,            -- screens have the same tags
+    {
+      icon = tag.icon,
+      icon_only = true,
+      layout = tag.layout,
+      default_layout = tag.layout,
+      gap_single_client = false,
+      gap = beautiful.useless_gap,
+      screen = tag.screen,
+      default_app = tag.default_app,
+      selected = tag.selected,      -- independant tags for each screen
+      -- selected = i == 1,            -- screens have the same tags
+    }
+  )
 end
-
--- Use this if you want all screens to have the same tags
--- screen.connect_signal("request::desktop_decoration", function(s)
--- 	for i, tag in pairs(tags) do
---  	awful.tag.add(
---  			i,
---  			{
---  				icon = tag.icon,
---  				icon_only = true,
---  				layout = tag.layout,
---          default_layout = tag.layout,
---  				gap_single_client = false,
---  				gap = beautiful.useless_gap,
---  				screen = s,
---  				default_app = tag.default_app,
---  				selected = i == 1
---  			}
---  		)
---  	end
---  end)
-
 
 tag.connect_signal(
 	'property::layout',
