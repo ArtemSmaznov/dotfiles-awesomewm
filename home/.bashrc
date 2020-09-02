@@ -330,12 +330,3 @@ editbash() {
     $EDITOR ~/development/ArtemSmaznov/dotfiles/home/.bashrc
   fi
 }
-
-getsshconfig() {
-  mkdir tmp
-  cd tmp
-  git clone git@github.com:ArtemSmaznov/.ssh.git
-  mv .ssh/config ~/.ssh/config
-  cd ../
-  yes | rm -r tmp
-}

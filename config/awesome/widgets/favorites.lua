@@ -39,6 +39,7 @@ for _, favs in pairs(favorites) do
     }
 
     tooltip(app_instance, app.command)
+
     app_instance:buttons(
       gears.table.join(
         awful.button(
@@ -46,6 +47,12 @@ for _, favs in pairs(favorites) do
           1,
           nil,
           function()
+            local focused = awful.screen.focused()
+
+            if focused.left_panel and focused.left_panel.opened then
+              focused.left_panel:toggle()
+            end
+
             awful.spawn(app.command)
           end
         )
