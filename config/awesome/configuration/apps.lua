@@ -89,6 +89,7 @@ return {
       category = 'System',
       apps = {
         {command = 'cinnamon-settings', icon = 'utilities-tweak-tool'},
+        {command = 'jstest-gtk', icon = 'sc-controller'},
       }
     }
 },
