@@ -115,6 +115,15 @@ awful.key(
 	end,
 	{description = 'toggle max', group = 'client'}
 ),
+-- toggle client sticky mode
+awful.key(
+	{modkey},
+	's',
+	function(c)
+		c.sticky = not c.sticky
+	end,
+	{description = 'toggle sticky', group = 'client'}
+),
 -- toggle client fullscreen mode
 awful.key(
 	{modkey},

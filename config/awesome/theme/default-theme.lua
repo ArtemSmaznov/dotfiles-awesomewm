@@ -211,7 +211,7 @@ local awesome_overrides = function(theme)
 	-- Tasklist
 
 	theme.tasklist_font = 'SF Pro Text Regular 10'
-	theme.tasklist_bg_normal = theme.background .. '99'
+	theme.tasklist_bg_normal = '#000000' .. '20'
 	theme.tasklist_bg_focus = theme.background
 	theme.tasklist_bg_urgent = "#E91E63" .. '99'
 	theme.tasklist_fg_focus = '#DDDDDD'
