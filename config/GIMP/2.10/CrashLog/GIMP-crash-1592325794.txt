@@ -1,5 +1,0 @@
-/usr/lib/libgimpbase-2.0.so.0(gimp_stack_trace_print+0x3b9)[0x7f9047235729]
-gimp-2.10(+0xd3624)[0x55a906f24624]
-gimp-2.10(+0xd3a88)[0x55a906f24a88]
-gimp-2.10(+0xd413b)[0x55a906f2513b]
-/usr/lib/libpthread.so.0(+0x14960)[0x7f9046729960]

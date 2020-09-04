@@ -1,4 +1,4 @@
-config/awesome/configuration/secrets.lua
-config/awesome/configuration/user-profile/
-config/awesome/configuration/apps.lua
-config/awesome/configuration/tags/init.lua
+configuration/secrets.lua
+configuration/user-profile/
+configuration/apps.lua
+configuration/tags/init.lua
