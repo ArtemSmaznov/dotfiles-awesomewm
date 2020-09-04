@@ -1,1 +1,1 @@
-# [Wiki](https://github.com/ArtemSmaznov/dotfiles/wiki)
+# [Wiki](https://github.com/ArtemSmaznov/awesome-config/wiki)
