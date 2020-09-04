@@ -1,4 +1,2 @@
-configuration/secrets.lua
-configuration/user-profile/
-configuration/apps.lua
-configuration/tags/init.lua
+# configuration/secrets.lua
+configuration/user-profile/*
