@@ -1,27 +1,20 @@
 -- User profile widget
 -- Optional dependency:
 --    mugshot (use to update profile picture and information)
-
 local awful = require('awful')
 local wibox = require('wibox')
 local gears = require('gears')
 local beautiful = require('beautiful')
 
 local dpi = beautiful.xresources.apply_dpi
-
-local apps = require('configuration.apps')
-
-local config_dir = gears.filesystem.get_configuration_dir()
-local widget_icon_dir = config_dir .. 'configuration/user-profile/'
-
-local user_icon_dir = '/var/lib/AccountsService/icons/'
+local icons = require('theme.icons')
 
 local profile_imagebox = wibox.widget {
 	{
 		id = 'icon',
 		forced_height = dpi(45),
 		forced_width = dpi(45),
-		image = widget_icon_dir .. 'default' .. '.svg',
+		image = icons.face,
 		clip_shape = function(cr, width, height) gears.shape.rounded_rect(cr, width, height, beautiful.groups_radius) end,
 		widget = wibox.widget.imagebox,
 		resize = true
@@ -60,22 +53,6 @@ local uptime_time = wibox.widget {
 	valign = 'center',
 	widget = wibox.widget.textbox
 }
-
-local update_profile_image = function()
-	awful.spawn.easy_async_with_shell(
-		apps.bins.update_profile,
-		function(stdout)
-			stdout = stdout:gsub('%\n','')
-			if not stdout:match("default") then
-				profile_imagebox.icon:set_image(stdout)
-			else
-				profile_imagebox.icon:set_image(widget_icon_dir .. 'default.svg')
-			end
-		end
-	)
-end
-
-update_profile_image()
 
 awful.spawn.easy_async_with_shell(
 	"printf \"$(whoami)@$(hostname)\"",

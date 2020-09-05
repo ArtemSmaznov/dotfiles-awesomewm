@@ -5,6 +5,7 @@ local naughty = require('naughty')
 local beautiful = require('beautiful')
 
 local dpi = beautiful.xresources.apply_dpi
+local icons = require('theme.icons')
 
 local filesystem = require('gears.filesystem')
 local config_dir = filesystem.get_configuration_dir()
@@ -94,36 +95,13 @@ local locker = function(s)
 
 	local profile_imagebox = wibox.widget {
 		id = 'user_icon',
-		image = widget_icon_dir .. 'default' .. '.svg',
+		image = icons.face,
 		resize = true,
 		forced_height = dpi(100),
 		forced_width = dpi(100),
 		clip_shape = gears.shape.circle,
 		widget = wibox.widget.imagebox
 	}
-
-	local update_profile_pic = function()
-		awful.spawn.easy_async_with_shell(
-			apps.bins.update_profile,
-			function(stdout)
-				stdout = stdout:gsub('%\n','')
-				if not stdout:match("default") then
-					profile_imagebox:set_image(stdout)
-				else
-					profile_imagebox:set_image(widget_icon_dir .. 'default.svg')
-				end
-
-			end
-		)
-	end
-
-	-- Update image
-	gears.timer.start_new(
-		2, 
-		function() 
-			update_profile_pic()
-		end
-	)
 	
 	local time = wibox.widget.textclock(
 		'<span font="SF Pro Display Bold 56">%l:%M %p</span>',
