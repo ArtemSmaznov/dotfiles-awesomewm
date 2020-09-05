@@ -284,6 +284,13 @@ awful.key(
   { description = 'select previous layout', group = 'layout' }
 ),
 awful.key(
+  { modkey, 'Control' }, 'space',
+  function()
+    awful.layout.set(awful.screen.focused().selected_tag.default_layout)
+  end,
+  { description = 'select default layout', group = 'layout' }
+),
+awful.key(
   { modkey }, 'Page_Up',
   awful.tag.viewprev,
   { description = 'view prev/next tag', group = 'tag' }
@@ -411,11 +418,9 @@ awful.key(
 awful.key(
   { modkey }, 'F2',
   function()
-      local focused = awful.screen.focused()
-
-          focused.left_panel:toggle()
+    screen.primary.left_panel:toggle()
   end,
-  { description = 'open today pane', group = 'launcher' }
+  { description = 'open favorites pane', group = 'launcher' }
 ),
 awful.key(
   { modkey }, 'F3',
