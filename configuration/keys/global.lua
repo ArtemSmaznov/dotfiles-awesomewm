@@ -564,8 +564,8 @@ for i = 1, 9 do
           '#' .. i + 9,
           function()
               local focused = awful.screen.focused()
-              local tag = focused.tags[i]
-              -- local tag = screen.primary.tags[i]
+              -- local tag = focused.tags[i]
+              local tag = screen.primary.tags[i]
               if tag then
                   tag:view_only()
               end
@@ -578,8 +578,8 @@ for i = 1, 9 do
           '#' .. i + 9,
           function()
               local focused = awful.screen.focused()
-              local tag = focused.tags[i]
-              -- local tag = screen.primary.tags[i]
+              -- local tag = focused.tags[i]
+              local tag = screen.primary.tags[i]
               if tag then
                   awful.tag.viewtoggle(tag)
               end
