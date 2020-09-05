@@ -1,6 +1,5 @@
 local filesystem = require('gears.filesystem')
 local config_dir = filesystem.get_configuration_dir()
-local bin_dir = config_dir .. 'binaries/'
 
 local sounds = require('theme.sounds')
 
@@ -130,10 +129,4 @@ return {
     '/usr/bin/steam-runtime %U',              -- Steam
     '/opt/piavpn/bin/pia-client --quiet',     -- VPN
 	},
-
-	-- List of binaries/shell scripts that will execute a certain task
-
-	bins = {
-		update_profile  = bin_dir .. 'profile-image'	-- Update profile picture
-	}
 }

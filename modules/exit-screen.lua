@@ -32,7 +32,7 @@ local profile_name = wibox.widget {
 }
 
 local profile_imagebox = wibox.widget {
-	image = widget_icon_dir .. 'default.svg',
+  image = icons.face,
 	resize = true,
 	forced_height = dpi(110),
 	clip_shape = gears.shape.circle,
@@ -46,22 +46,6 @@ local profile_imagebox_bg = wibox.widget {
     shape = gears.shape.circle,
     widget = wibox.container.background
 }
-
-local update_profile_pic = function()
-	awful.spawn.easy_async_with_shell(
-		apps.bins.update_profile,
-		function(stdout)
-			stdout = stdout:gsub('%\n','')
-			if not stdout:match("default") then
-				profile_imagebox:set_image(stdout)
-			else
-				profile_imagebox:set_image(widget_icon_dir .. 'default.svg')
-			end
-		end
-	)
-end
-
-update_profile_pic()
 
 local update_user_name = function()
 	awful.spawn.easy_async_with_shell(
