@@ -162,7 +162,7 @@ awful.key(
 	{modkey, 'Shift'},
 	'Left',
 	function(c)
-		c:move_to_screen(2)
+		c:move_to_screen(1)
 	end,
 	{description = 'move window to screen', group = 'client'}
 ),
@@ -170,7 +170,7 @@ awful.key(
 	{modkey, 'Shift'},
 	'Right',
 	function(c)
-		c:move_to_screen(1)
+		c:move_to_screen(2)
 	end,
 	{description = 'move window to screen', group = 'client'}
 )
