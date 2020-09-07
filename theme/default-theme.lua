@@ -5,6 +5,7 @@ local filesystem = require('gears.filesystem')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local theme_dir = filesystem.get_configuration_dir() .. '/theme'
+local wallpaper_dir = '/usr/share/backgrounds/'
 local system_dir = '/usr/share/awesome/themes/default/layouts/'
 
 local titlebar_theme = "stoplight"
@@ -32,8 +33,7 @@ local awesome_overrides = function(theme)
 	theme.icons = theme.dir .. '/icons/'
 
 	-- Wallpaper
-
-	theme.wallpaper = theme.dir .. '/usr/share/backgrounds/linuxmint-tricia/rbates_mam_tor.jpg'
+	-- theme.wallpaper = wallpaper_dir .. 'linuxmint-tricia/rbates_mam_tor.jpg'
 
 	-- Foreground
 
