@@ -16,7 +16,8 @@ return {
 		graphics_editor						= 'gimp-2.10',
 		photos_library						= 'digikam',
 		vm												= 'virtualbox',
-		video_player							= 'celluloid',
+    video_player							= 'celluloid',
+    torrent_client            = 'transmission-qt',
 
 		network_manager 					= 'nm-connection-editor',											-- Network manager
 		bluetooth_manager 				= 'blueman-manager',													-- Bluetooth manager
@@ -54,9 +55,9 @@ return {
     },{
       category = 'Gaming',
       apps = {
-        {command = 'obs', icon = 'obs'},
         {command = 'lutris', icon = 'lutris'},
         {command = 'steam-runtime', icon = 'steam'},
+        {command = 'obs', icon = 'obs'},
       }
     },{
       category = 'Development',
@@ -74,21 +75,19 @@ return {
     },{
       category = 'Multimedia',
       apps = {
+        {command = 'gimp-2.10', icon = 'gimp'},
+        {command = 'digikam', icon = 'digikam'},
+        {command = 'kdenlive', icon = 'kdenlive'},
         {command = 'vlc', icon = 'vlc'},
         {command = 'celluloid', icon = 'gnome-mpv'},
       }
     },{
-      category = 'Graphics',
-      apps = {
-        {command = 'gimp-2.10', icon = 'gimp'},
-        {command = 'digikam', icon = 'digikam'},
-        {command = 'kdenlive', icon = 'kdenlive'},
-      }
-    },{
       category = 'System',
       apps = {
-        {command = 'cinnamon-settings', icon = 'utilities-tweak-tool'},
+        {command = 'virtualbox', icon = 'virtualbox'},
+        {command = 'transmission-qt', icon = 'transmission'},
         {command = 'jstest-gtk', icon = 'sc-controller'},
+        {command = 'cinnamon-settings', icon = 'utilities-tweak-tool'},
       }
     }
 },
@@ -123,10 +122,10 @@ return {
     -- 'solaar -w hide',                         -- Logitech Unifying Receiver
     
     -- User
-    'paplay ' .. sounds.startup,              -- Startup Sound
-    'terminator',                             -- Terminal
-    'google-chrome-stable',                   -- Browser
-    '/usr/bin/steam-runtime %U',              -- Steam
-    '/opt/piavpn/bin/pia-client --quiet',     -- VPN
+    -- 'paplay ' .. sounds.startup,              -- Startup Sound
+    -- 'terminator',                             -- Terminal
+    -- 'google-chrome-stable',                   -- Browser
+    -- '/usr/bin/steam-runtime %U',              -- Steam
+    -- '/opt/piavpn/bin/pia-client --quiet',     -- VPN
 	},
 }
