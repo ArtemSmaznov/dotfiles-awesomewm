@@ -6,6 +6,7 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local apps = require('configuration.apps')
 local menubar = require("menubar")
+local system = require('modules.system-control')
 
 local hotkeys_popup = require('modules.hotkeys_popup').widget
 
@@ -75,7 +76,9 @@ local awesome_menu = {
 	},
 	{
 		"Quit",
-		function() awesome.quit() end,
+    function() 
+      system.logout()
+    end,
 		menubar.utils.lookup_icon("system-log-out")
 	}
 }
