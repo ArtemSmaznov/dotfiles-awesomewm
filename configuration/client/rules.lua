@@ -310,6 +310,7 @@ ruled.client.connect_signal(
 			rule_any   = {
         class = {
           "Gimp-2.10",
+          "Gimp",
           "Inkscape",
           "Flowblade",
           "digikam",
