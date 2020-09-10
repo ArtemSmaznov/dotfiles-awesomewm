@@ -10,8 +10,8 @@ return {
 		text_editor 							= 'xed',                      	            	-- GUI Text Editor
 		ide												= 'code',
 		game											= 'steam-runtime',
-		web_browser 							= 'google-chrome-stable',                   	-- Web browser
-		incognito_browser 				= 'google-chrome-stable --incognito',         -- Web browser
+		web_browser 							= 'chromium',                   	-- Web browser
+		incognito_browser 				= 'chromium --incognito',         -- Web browser
 		file_manager 							= 'dolphin',																	-- GUI File manager
 		graphics_editor						= 'gimp-2.10',
 		photos_library						= 'digikam',
@@ -46,7 +46,7 @@ return {
     {
       category = 'Generic',
       apps = {
-        {command = 'google-chrome-stable', icon = 'chrome'},
+        {command = 'chromium', icon = 'chrome'},
         {command = 'google-calendar-dark', icon = 'google-agenda'},
         {command = 'google-keep', icon = 'keep'},
         {command = 'youtubemusic-nativefier', icon = 'google-play-music-desktop-player'},
@@ -122,10 +122,10 @@ return {
     -- 'solaar -w hide',                         -- Logitech Unifying Receiver
     
     -- User
-    -- 'paplay ' .. sounds.startup,              -- Startup Sound
-    -- 'terminator',                             -- Terminal
-    -- 'google-chrome-stable',                   -- Browser
-    -- '/usr/bin/steam-runtime %U',              -- Steam
-    -- '/opt/piavpn/bin/pia-client --quiet',     -- VPN
+    'paplay ' .. sounds.startup,              -- Startup Sound
+    'terminator',                             -- Terminal
+    'chromium',                               -- Browser
+    '/usr/bin/steam-runtime %U',              -- Steam
+    '/opt/piavpn/bin/pia-client --quiet',     -- VPN
 	},
 }

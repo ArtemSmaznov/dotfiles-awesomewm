@@ -2,6 +2,7 @@ local awful = require('awful')
 local gears = require('gears')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
+local system = require('modules.system-control')
 
 local dpi = beautiful.xresources.apply_dpi
 
@@ -108,31 +109,31 @@ end
 
 local suspend_command = function()
 	awesome.emit_signal("module::exit_screen_hide")
-	awful.spawn.with_shell(apps.default.lock .. ' & systemctl suspend')
+  system.suspend()
 end
 
 local exit_command = function()
-	awesome.quit()
+  system.logout()
 end
 
 local lock_command = function()
 	awesome.emit_signal("module::exit_screen_hide")
-	awful.spawn.with_shell('sleep 1 && ' .. apps.default.lock)
+  system.lock()
 end
 
 local poweroff_command = function()
-	awful.spawn.with_shell('poweroff')
 	awesome.emit_signal("module::exit_screen_hide")
+  system.shutdown()
 end
 
 local reboot_command = function()
-	awful.spawn.with_shell('reboot')
-	awesome.emit_signal("module::exit_screen_hide")
+  awesome.emit_signal("module::exit_screen_hide")
+  system.reboot()
 end
 
 local windows_command = function()
-  awful.spawn.with_shell('sudo ' .. bin_dir .. 'winreboot')
-	awesome.emit_signal("module::exit_screen_hide")
+  awesome.emit_signal("module::exit_screen_hide")
+  system.reboot_to_windows()
 end
 
 local poweroff = build_button(icons.other.shutdown, 'Shutdown')
