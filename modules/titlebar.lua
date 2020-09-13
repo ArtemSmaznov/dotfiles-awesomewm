@@ -261,6 +261,10 @@ screen.connect_signal(
 						gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
           end
 
+        else
+          local error = 'Uncaught Tittle Bar situation. Check the "arrange" signal in "titlebar.lua"'
+          require('naughty').notify { text = error }
+
         end
 
       else
