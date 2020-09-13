@@ -104,7 +104,6 @@ awful.key(
 	end,
 	{description = 'toggle floating', group = 'client'}
 ),
-
 -- toggle client max mode
 awful.key(
 	{modkey},
@@ -119,6 +118,20 @@ awful.key(
 	end,
 	{description = 'toggle max', group = 'client'}
 ),
+-- toggle client fullscreen mode
+awful.key(
+	{modkey},
+	'F11',
+	function(c)
+    c.floating = false
+    c.maximized = false
+    c.maximized_vertical = false
+    c.maximized_horizontal = false
+		c.fullscreen = not c.fullscreen
+		c:raise()
+	end,
+	{description = 'toggle fullscreen', group = 'client'}
+),
 -- toggle client sticky mode
 awful.key(
 	{modkey},
@@ -127,19 +140,6 @@ awful.key(
 		c.sticky = not c.sticky
 	end,
 	{description = 'toggle sticky', group = 'client'}
-),
--- toggle client fullscreen mode
-awful.key(
-	{modkey},
-	'F11',
-	function(c)
-    c.maximized = false
-    c.maximized_vertical = false
-    c.maximized_horizontal = false
-		c.fullscreen = not c.fullscreen
-		c:raise()
-	end,
-	{description = 'toggle fullscreen', group = 'client'}
 ),
 
 -- Screen management
