@@ -96,7 +96,9 @@ awful.key(
 	'f',
 	function(c)
 		c.fullscreen = false
-		c.maximized = false
+    c.maximized = false
+    c.maximized_vertical = false
+    c.maximized_horizontal = false
 		c.floating = not c.floating
 		c:raise()
 	end,
@@ -110,7 +112,9 @@ awful.key(
 	function(c)
 		c.fullscreen = false
 		c.floating = false
-		c.maximized = not c.maximized
+    c.maximized = not c.maximized
+    c.maximized_vertical = c.maximized
+    c.maximized_horizontal = c.maximized
 		c:raise()
 	end,
 	{description = 'toggle max', group = 'client'}
@@ -129,7 +133,9 @@ awful.key(
 	{modkey},
 	'F11',
 	function(c)
-		c.maximized = false
+    c.maximized = false
+    c.maximized_vertical = false
+    c.maximized_horizontal = false
 		c.fullscreen = not c.fullscreen
 		c:raise()
 	end,

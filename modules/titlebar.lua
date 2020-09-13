@@ -12,11 +12,11 @@ awful.titlebar.fallback_name  = 'Client\'s name'
 local titlebar_size = beautiful.titlebar_size
 
 
---  ▄▄▄▄▄▄▄   ▀      ▄    ▀▀█           █                   
---     █    ▄▄▄    ▄▄█▄▄    █     ▄▄▄   █▄▄▄    ▄▄▄    ▄ ▄▄ 
+--  ▄▄▄▄▄▄▄   ▀      ▄    ▀▀█           █
+--     █    ▄▄▄    ▄▄█▄▄    █     ▄▄▄   █▄▄▄    ▄▄▄    ▄ ▄▄
 --     █      █      █      █    █▀  █  █▀ ▀█  ▀   █   █▀  ▀
---     █      █      █      █    █▀▀▀▀  █   █  ▄▀▀▀█   █    
---     █    ▄▄█▄▄    ▀▄▄    ▀▄▄  ▀█▄▄▀  ██▄█▀  ▀▄▄▀█   █  
+--     █      █      █      █    █▀▀▀▀  █   █  ▄▀▀▀█   █
+--     █    ▄▄█▄▄    ▀▄▄    ▀▄▄  ▀█▄▄▀  ██▄█▀  ▀▄▄▀█   █
 
 
 
@@ -26,10 +26,10 @@ function double_click_event_handler(double_click_event)
         double_click_timer = nil
 
         double_click_event()
-        
+
         return
     end
-  
+
     double_click_timer = gears.timer.start_new(0.20, function()
         double_click_timer = nil
         return false
@@ -40,11 +40,11 @@ end
 
 client.connect_signal("request::titlebars", function(c)
 
-	-- Buttons for moving/resizing functionality 
+	-- Buttons for moving/resizing functionality
 	local buttons = gears.table.join(
 		awful.button(
-			{}, 
-			1, 
+			{},
+			1,
 			function()
 				double_click_event_handler(function()
 					if c.floating then
@@ -61,8 +61,8 @@ client.connect_signal("request::titlebars", function(c)
 			end
 		),
 		awful.button(
-			{}, 
-			3, 
+			{},
+			3,
 			function()
 				c:activate {context = "titlebar", action = "mouse_resize"}
 			end
@@ -99,7 +99,7 @@ client.connect_signal("request::titlebars", function(c)
 					widget = wibox.container.margin
 				},
 				layout = wibox.layout.align.vertical
-				
+
 			}
 
 		elseif pos == 'top' or pos == 'bottom' then
@@ -126,7 +126,7 @@ client.connect_signal("request::titlebars", function(c)
 					margins = dpi(10),
 					widget = wibox.container.margin
 				},
-				layout = wibox.layout.align.horizontal			
+				layout = wibox.layout.align.horizontal
 			}
 
 		else
@@ -160,16 +160,16 @@ client.connect_signal("request::titlebars", function(c)
 
 	end
 
-	--     ▄▄▄                  ▄                    ▀                 
-	--   ▄▀   ▀ ▄   ▄   ▄▄▄   ▄▄█▄▄   ▄▄▄   ▄▄▄▄▄  ▄▄▄    ▄▄▄▄▄   ▄▄▄  
-	--   █      █   █  █   ▀    █    █▀ ▀█  █ █ █    █       ▄▀  █▀  █ 
-	--   █      █   █   ▀▀▀▄    █    █   █  █ █ █    █     ▄▀    █▀▀▀▀ 
-	--    ▀▄▄▄▀ ▀▄▄▀█  ▀▄▄▄▀    ▀▄▄  ▀█▄█▀  █ █ █  ▄▄█▄▄  █▄▄▄▄  ▀█▄▄▀ 
-	
+	--     ▄▄▄                  ▄                    ▀
+	--   ▄▀   ▀ ▄   ▄   ▄▄▄   ▄▄█▄▄   ▄▄▄   ▄▄▄▄▄  ▄▄▄    ▄▄▄▄▄   ▄▄▄
+	--   █      █   █  █   ▀    █    █▀ ▀█  █ █ █    █       ▄▀  █▀  █
+	--   █      █   █   ▀▀▀▄    █    █   █  █ █ █    █     ▄▀    █▀▀▀▀
+	--    ▀▄▄▄▀ ▀▄▄▀█  ▀▄▄▄▀    ▀▄▄  ▀█▄█▀  █ █ █  ▄▄█▄▄  █▄▄▄▄  ▀█▄▄▀
+
 	-- Generate a custom titlabar for each class, roles, type, etc., etc.
 	-- The titlebar's position can now be set differently
 
-	if c.class == 'dolphin' or c.class == 'firefox' or c.class == 'pavucontrol-qt' or 
+	if c.class == 'dolphin' or c.class == 'firefox' or c.class == 'pavucontrol-qt' or
 	c.instance == 'transmission-qt' or c.class == 'ark' or c.class == 'polkit-kde-authentication-agent-1' or
 	c.class == 'partitionmanager' or c.class == 'discord' or c.class == 'kdesu' then
 
@@ -185,7 +185,7 @@ client.connect_signal("request::titlebars", function(c)
 		-- Let's set the titlebar's position to top
 		-- Isn't it neat? lol
 		decorate_titlebar(c, 'top', beautiful.gtk.get_theme_variables().bg_color:sub(1,7) .. '66', titlebar_size)
-	
+
 	elseif c.class == "kitty" then
 
 		decorate_titlebar(c, 'left', '#000000AA', titlebar_size)
@@ -210,17 +210,17 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 
---    ▄▄▄▄    ▀                         ▀▀█          
---   █▀   ▀ ▄▄▄     ▄▄▄▄  ▄ ▄▄    ▄▄▄     █     ▄▄▄  
---   ▀█▄▄▄    █    █▀ ▀█  █▀  █  ▀   █    █    █   ▀ 
---       ▀█   █    █   █  █   █  ▄▀▀▀█    █     ▀▀▀▄ 
---   ▀▄▄▄█▀ ▄▄█▄▄  ▀█▄▀█  █   █  ▀▄▄▀█    ▀▄▄  ▀▄▄▄▀ 
---                  ▄  █                             
---                   ▀▀  
+--    ▄▄▄▄    ▀                         ▀▀█
+--   █▀   ▀ ▄▄▄     ▄▄▄▄  ▄ ▄▄    ▄▄▄     █     ▄▄▄
+--   ▀█▄▄▄    █    █▀ ▀█  █▀  █  ▀   █    █    █   ▀
+--       ▀█   █    █   █  █   █  ▄▀▀▀█    █     ▀▀▀▄
+--   ▀▄▄▄█▀ ▄▄█▄▄  ▀█▄▀█  █   █  ▀▄▄▀█    ▀▄▄  ▀▄▄▄▀
+--                  ▄  █
+--                   ▀▀
 
 
 client.connect_signal(
-	"manage", 
+	"manage",
 	function(c)
 
 		if not c.max and not c.hide_titlebars then
@@ -234,7 +234,7 @@ client.connect_signal(
 
 -- Catch the signal when a client's layout is changed
 screen.connect_signal(
-	"arrange", 
+	"arrange",
 	function(s)
 		for _, c in pairs(s.clients) do
 
@@ -243,7 +243,7 @@ screen.connect_signal(
 
 				if not c.hide_titlebars then
 					awful.titlebar.show(c, c.titlebar_position or 'left')
-				else 
+				else
 					awful.titlebar.hide(c, c.titlebar_position or 'left')
 				end
 
@@ -251,7 +251,7 @@ screen.connect_signal(
 					c.shape = function(cr, w, h)
 						gears.shape.rectangle(cr, w, h)
 					end
-				else 
+				else
 					c.shape = function(cr, width, height)
 						gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
 					end
