@@ -247,7 +247,7 @@ screen.connect_signal(
 						gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
           end
 
-        elseif (c.maximized or c.first_tag.layout.name == 'max' or #s.tiled_clients == 1) then
+        elseif (c.maximized or c.fullscreen or c.first_tag.layout.name == 'max' or #s.tiled_clients == 1) then
           awful.titlebar.hide(c, c.titlebar_position or 'left')
 
           c.shape = function(cr, w, h)
