@@ -236,36 +236,61 @@ client.connect_signal(
 screen.connect_signal(
 	"arrange",
 	function(s)
-		for _, c in pairs(s.clients) do
+    for _, c in pairs(s.clients) do
 
-			if (#s.tiled_clients > 1 or c.floating) then
-			-- if (#s.tiled_clients > 1 or c.floating) and c.first_tag.layout.name ~= 'max' then -- removing tag~=max to allow floating windows to have titlebars on max layouts
+      if (not c.hide_titlebars) then
+        if (c.floating) then
+          awful.titlebar.show(c, c.titlebar_position or 'left')
 
-				if not c.hide_titlebars then
-					awful.titlebar.show(c, c.titlebar_position or 'left')
-				else
-					awful.titlebar.hide(c, c.titlebar_position or 'left')
-				end
-
-				if c.maximized or not c.round_corners or c.fullscreen then
-					c.shape = function(cr, w, h)
-						gears.shape.rectangle(cr, w, h)
-					end
-				else
-					c.shape = function(cr, width, height)
+          c.shape = function(cr, width, height)
 						gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
-					end
-				end
+          end
 
-			elseif (#s.tiled_clients == 1 or c.first_tag.layout.name == 'max') and not c.fullscreen then
+        elseif (c.maximized) then
+          awful.titlebar.hide(c, c.titlebar_position or 'left')
 
-				awful.titlebar.hide(c, c.titlebar_position or 'left')
+          c.shape = function(cr, w, h)
+            gears.shape.rectangle(cr, w, h)
+          end
 
-				c.shape = function(cr, w, h)
+        elseif (c.first_tag.layout.name == 'floating') then
+          awful.titlebar.show(c, c.titlebar_position or 'left')
+
+          c.shape = function(cr, width, height)
+						gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
+          end
+
+        elseif (#s.tiled_clients == 1) then
+          awful.titlebar.hide(c, c.titlebar_position or 'left')
+
+          c.shape = function(cr, w, h)
+            gears.shape.rectangle(cr, w, h)
+          end
+
+        elseif (c.first_tag.layout.name == 'max') then
+          awful.titlebar.hide(c, c.titlebar_position or 'left')
+
+          c.shape = function(cr, w, h)
+            gears.shape.rectangle(cr, w, h)
+          end
+
+        elseif (#s.tiled_clients > 1) then
+          awful.titlebar.show(c, c.titlebar_position or 'left')
+
+          c.shape = function(cr, width, height)
+						gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
+          end
+
+        end
+
+      else
+        awful.titlebar.hide(c, c.titlebar_position or 'left')
+
+        c.shape = function(cr, w, h)
 					gears.shape.rectangle(cr, w, h)
 				end
 
-			end
+      end
 
 		end
 	end
