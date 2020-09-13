@@ -239,35 +239,15 @@ screen.connect_signal(
     for _, c in pairs(s.clients) do
 
       if (not c.hide_titlebars) then
-        if (c.floating) then
+
+        if (c.floating or c.first_tag.layout.name == 'floating' and not c.maximized) then
           awful.titlebar.show(c, c.titlebar_position or 'left')
 
           c.shape = function(cr, width, height)
 						gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
           end
 
-        elseif (c.maximized) then
-          awful.titlebar.hide(c, c.titlebar_position or 'left')
-
-          c.shape = function(cr, w, h)
-            gears.shape.rectangle(cr, w, h)
-          end
-
-        elseif (c.first_tag.layout.name == 'floating') then
-          awful.titlebar.show(c, c.titlebar_position or 'left')
-
-          c.shape = function(cr, width, height)
-						gears.shape.rounded_rect(cr, width, height, beautiful.client_radius)
-          end
-
-        elseif (#s.tiled_clients == 1) then
-          awful.titlebar.hide(c, c.titlebar_position or 'left')
-
-          c.shape = function(cr, w, h)
-            gears.shape.rectangle(cr, w, h)
-          end
-
-        elseif (c.first_tag.layout.name == 'max') then
+        elseif (c.maximized or c.first_tag.layout.name == 'max' or #s.tiled_clients == 1) then
           awful.titlebar.hide(c, c.titlebar_position or 'left')
 
           c.shape = function(cr, w, h)
