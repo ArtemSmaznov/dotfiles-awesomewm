@@ -5,7 +5,7 @@ local wibox = require("wibox")
 
 local dpi = beautiful.xresources.apply_dpi
 
-awful.titlebar.enable_tooltip = false
+awful.titlebar.enable_tooltip = true
 awful.titlebar.fallback_name  = 'Client\'s name'
 
 
@@ -52,9 +52,9 @@ client.connect_signal("request::titlebars", function(c)
 						return
 					end
 
-                    c.maximized = not c.maximized
-                    c:raise()
-                    return
+          c.maximized = not c.maximized
+          c:raise()
+          return
 				end)
 
 				c:activate {context = "titlebar", action = "mouse_move"}
@@ -78,8 +78,8 @@ client.connect_signal("request::titlebars", function(c)
 
 			-- Creates left or right titlebars
 			awful.titlebar(c, {position = pos, bg = bg, size = size or titlebar_size}) : setup {
-				{
-					{
+				{ -- Top Part of the Bar
+					{ -- Main Client Buttons
 						awful.titlebar.widget.closebutton(c),
 						awful.titlebar.widget.maximizedbutton(c),
 						awful.titlebar.widget.minimizebutton (c),
@@ -89,11 +89,11 @@ client.connect_signal("request::titlebars", function(c)
 					margins = dpi(10),
 					widget = wibox.container.margin
 				},
-				{
-					buttons = buttons,
+				{ -- Middle Part of the Bar
+          buttons = buttons,
 					layout = wibox.layout.flex.vertical
 				},
-				{
+				{ -- Bottom Part of the Bar
 					awful.titlebar.widget.floatingbutton (c),
 					margins = dpi(10),
 					widget = wibox.container.margin
@@ -106,17 +106,21 @@ client.connect_signal("request::titlebars", function(c)
 
 			-- Creates top or bottom titlebars
 			awful.titlebar(c, {position = pos, bg = bg, size = size or titlebar_size}) : setup {
-				{
+				{ -- Left Part of the Bar
 					awful.titlebar.widget.floatingbutton (c),
 					margins = dpi(10),
 					widget = wibox.container.margin
 				},
-				{
+				{ -- Middle Part of the Bar
+          { -- Title
+            align  = 'center',
+            widget = awful.titlebar.widget.titlewidget(c)
+          },
 					buttons = buttons,
 					layout = wibox.layout.flex.horizontal
 				},
-				{
-					{
+				{ -- Right Part of the Bar
+					{ -- Main Client Buttons
 						awful.titlebar.widget.minimizebutton (c),
 						awful.titlebar.widget.maximizedbutton(c),
 						awful.titlebar.widget.closebutton(c),
@@ -276,7 +280,7 @@ screen.connect_signal(
 
       end
 
-		end
+    end
 	end
 )
 
