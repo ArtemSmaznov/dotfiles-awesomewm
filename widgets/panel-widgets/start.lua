@@ -16,62 +16,62 @@ local icons = require('theme.icons')
 
 local return_button = function()
 
-	local widget = wibox.widget {
-		{
-			id = 'icon',
-			image = icons.other.distributor_logo,
-			widget = wibox.widget.imagebox,
-			resize = true
-		},
-		layout = wibox.layout.align.horizontal
-	}
+  local widget = wibox.widget {
+    {
+      id = 'icon',
+      image = icons.other.distributor_logo,
+      widget = wibox.widget.imagebox,
+      resize = true
+    },
+    layout = wibox.layout.align.horizontal
+  }
 
-	local widget_button = wibox.widget {
-		{
-			widget,
-			margins = dpi(2),
-			widget = wibox.container.margin
-		},
-		widget = clickable_container
-	}
+  local widget_button = wibox.widget {
+    {
+      widget,
+      margins = dpi(2),
+      widget = wibox.container.margin
+    },
+    widget = clickable_container
+  }
 
-	widget_button:buttons(
-		gears.table.join(
-			awful.button(
-				{},
-				1,
-				nil,
-				function()
-					if mymainmenu then
-						mymainmenu:toggle()
-					end
-				end
-			),
-			awful.button(
-				{},
-				3,
-				nil,
-				function()
-		            local focused = awful.screen.focused()
+  widget_button:buttons(
+    gears.table.join(
+      awful.button(
+        {},
+        1,
+        nil,
+        function()
+          if mymainmenu then
+            mymainmenu:toggle()
+          end
+        end
+      ),
+      awful.button(
+        {},
+        3,
+        nil,
+        function()
+                local focused = awful.screen.focused()
 
-		            if focused.left_panel then
-		                focused.left_panel:HideDashboard()
-		                focused.left_panel.opened = false
-		            end
-		            if focused.right_panel then
-		                focused.right_panel:HideDashboard()
-		            end
-					awful.spawn(apps.default.rofiappmenu, false)
-					if mymainmenu then
-						mymainmenu:hide()
-					end
-				end
-			)
-		)
-	)
+                if focused.left_panel then
+                    focused.left_panel:HideDashboard()
+                    focused.left_panel.opened = false
+                end
+                if focused.right_panel then
+                    focused.right_panel:HideDashboard()
+                end
+          awful.spawn(apps.default.rofiappmenu, false)
+          if mymainmenu then
+            mymainmenu:hide()
+          end
+        end
+      )
+    )
+  )
 
 
-	return widget_button
+  return widget_button
 end
 
 return return_button
