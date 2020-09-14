@@ -16,12 +16,12 @@ end
 
 local bash_keys = {
 
-	["git"] = {{
-		modifiers = {},
-		keys = {
+  ["git"] = {{
+    modifiers = {},
+    keys = {
       ['update-index --skip-worktree'] = 'ignore local changes',
       ['ls-files -v | grep ^S'] = 'list skipped files',
-		}
+    }
   }}
 }
 

@@ -21,14 +21,14 @@ local browser_keys = {
         keys = {
             t = "new tab",
             w = 'close tab',
-						['Tab'] = "next tab",
-						["1..9"] = "go to tab"
+            ['Tab'] = "next tab",
+            ["1..9"] = "go to tab"
         }
     }, {
         modifiers = { "Ctrl", "Shift" },
         keys = {
-					['Tab'] = "previous tab",
-					t = 'reopen last closed tab'
+          ['Tab'] = "previous tab",
+          t = 'reopen last closed tab'
         }
     }}
 }

@@ -13,8 +13,8 @@ local dpi = beautiful.xresources.apply_dpi
 local clickable_container = require('widgets.system-elements.clickable-container.with-background')
 
 local kbdcfg = require("widgets.panel-widgets.keyboard-layout.kbdcfg")({
-	type = "gui",
-	remember_layout = true
+  type = "gui",
+  remember_layout = true
 })
 
 
@@ -28,18 +28,18 @@ kbdcfg.bind()
 
 -- Mouse bindings
 kbdcfg.widget:buttons(
-	awful.util.table.join(
-		awful.button({ }, 1, function () kbdcfg.menu:toggle() end),
-		awful.button({ }, 3, function () kbdcfg.switch_next() end))
+  awful.util.table.join(
+    awful.button({ }, 1, function () kbdcfg.menu:toggle() end),
+    awful.button({ }, 3, function () kbdcfg.switch_next() end))
 )
 
 local widget_button = wibox.widget {
-	{
-		kbdcfg.widget,
-		margins = dpi(7),
-		widget = wibox.container.margin
-	},
-	widget = clickable_container
+  {
+    kbdcfg.widget,
+    margins = dpi(7),
+    widget = wibox.container.margin
+  },
+  widget = clickable_container
 }
 
 return awful.widget.only_on_screen(widget_button, 'primary')

@@ -12,7 +12,7 @@
 -- It checks the difference between the current time and the next scheduled time
 -- Then convert it to seconds to set it as a timeout value
 
--- Limitations: 
+-- Limitations:
 -- Timeout paused when laptop/pc is suspended or in sleep mode, and there's probably some bugs too so whatever
 
 local awful = require('awful')
@@ -22,8 +22,8 @@ local beautiful = require('beautiful')
 
 
 --  ========================================
--- 				Configuration
---	     Change your preference here
+--         Configuration
+--       Change your preference here
 --  ========================================
 
 -- Wallpaper directory. The default is:
@@ -60,14 +60,14 @@ local update_ls_cmd = 'mantablockscreen --image'
 
 
 --  ========================================
--- 				   Processes
---	    Don't touch it if it's working
+--            Processes
+--      Don't touch it if it's working
 --  ========================================
 
 
 -- Get current time
 local current_time = function()
-  	return os.date("%H:%M:%S")
+    return os.date("%H:%M:%S")
 end
 
 
@@ -81,23 +81,23 @@ the_countdown = nil
 -- Geez why the f is lua's array starts with `1`? lol
 -- Element 2 will have the wallpaper file name
 local wall_data = {}
--- > Why array, you say? 
+-- > Why array, you say?
 -- Because why not? I'm new to lua and I'm experimenting with it
 
 
 -- Parse HH:MM:SS to seconds
 local parse_to_seconds = function(time)
 
-  	-- Convert HH in HH:MM:SS
-  	hour_sec = tonumber(string.sub(time, 1, 2)) * 3600
+    -- Convert HH in HH:MM:SS
+    hour_sec = tonumber(string.sub(time, 1, 2)) * 3600
 
-  	-- Convert MM in HH:MM:SS
-  	min_sec = tonumber(string.sub(time, 4, 5)) * 60
+    -- Convert MM in HH:MM:SS
+    min_sec = tonumber(string.sub(time, 4, 5)) * 60
 
-	-- Get SS in HH:MM:SS
-	get_sec = tonumber(string.sub(time, 7, 8))
+  -- Get SS in HH:MM:SS
+  get_sec = tonumber(string.sub(time, 7, 8))
 
-	-- Return computed seconds
+  -- Return computed seconds
     return (hour_sec + min_sec + get_sec)
 
 end
@@ -105,8 +105,8 @@ end
 
 -- Get time difference
 local time_diff = function(current, schedule)
-	local diff = parse_to_seconds(current) - parse_to_seconds(schedule)
-	return diff
+  local diff = parse_to_seconds(current) - parse_to_seconds(schedule)
+  return diff
 end
 
 
@@ -116,80 +116,80 @@ end
 -- We need some delay.
 -- Hey it's working, so whatever
 local update_wallpaper = function(wall_name)
-	gears.timer.start_new(0, function()
+  gears.timer.start_new(0, function()
 
-		local wall_dir = wall_dir .. wall_name
+    local wall_dir = wall_dir .. wall_name
 
-		gears.wallpaper.maximized (wall_dir, s)
+    gears.wallpaper.maximized (wall_dir, s)
 
-		-- Overwrite the default wallpaper
-		-- This is important in case we add an extra monitor
-		beautiful.wallpaper = wall_dir
+    -- Overwrite the default wallpaper
+    -- This is important in case we add an extra monitor
+    beautiful.wallpaper = wall_dir
 
-		if update_ls_bg then
-			awful.spawn.easy_async_with_shell(update_ls_cmd .. ' ' .. wall_dir, function() 
-				--
-			end)
-		end
-	end)
+    if update_ls_bg then
+      awful.spawn.easy_async_with_shell(update_ls_cmd .. ' ' .. wall_dir, function()
+        --
+      end)
+    end
+  end)
 end
 
 -- Updates variables
 local manage_timer = function()
 
-	-- Get current time
-	local time_now = parse_to_seconds(current_time())
+  -- Get current time
+  local time_now = parse_to_seconds(current_time())
 
-	-- Parse the schedules to seconds
-	local parsed_morning = parse_to_seconds(morning_schedule)
-	local parsed_noon = parse_to_seconds(noon_schedule)
-	local parsed_night = parse_to_seconds(night_schedule)
-	local parsed_midnight = parse_to_seconds('00:00:00')
+  -- Parse the schedules to seconds
+  local parsed_morning = parse_to_seconds(morning_schedule)
+  local parsed_noon = parse_to_seconds(noon_schedule)
+  local parsed_night = parse_to_seconds(night_schedule)
+  local parsed_midnight = parse_to_seconds('00:00:00')
 
-	-- Note that we will use '00:00:00' instead of '24:00:00' as midnight
-	-- As the latter causes an error. The time_diff() returns a negative value
+  -- Note that we will use '00:00:00' instead of '24:00:00' as midnight
+  -- As the latter causes an error. The time_diff() returns a negative value
 
-	if time_now >= parsed_midnight and time_now < parsed_morning then
-		-- Midnight time
+  if time_now >= parsed_midnight and time_now < parsed_morning then
+    -- Midnight time
 
-		-- Update Wallpaper
-		update_wallpaper(wallpaper_midnight)
+    -- Update Wallpaper
+    update_wallpaper(wallpaper_midnight)
 
-		-- Set the data for the next scheduled time
-		wall_data = {morning_schedule, wallpaper_morning}
+    -- Set the data for the next scheduled time
+    wall_data = {morning_schedule, wallpaper_morning}
 
-	elseif time_now >= parsed_morning and time_now < parsed_noon then
-		-- Morning time
+  elseif time_now >= parsed_morning and time_now < parsed_noon then
+    -- Morning time
 
-		-- Update Wallpaper
-		update_wallpaper(wallpaper_morning)
+    -- Update Wallpaper
+    update_wallpaper(wallpaper_morning)
 
-		-- Set the data for the next scheduled time
-		wall_data = {noon_schedule, wallpaper_noon}
+    -- Set the data for the next scheduled time
+    wall_data = {noon_schedule, wallpaper_noon}
 
-	elseif time_now >= parsed_noon and time_now < parsed_night then
-		-- Noon time
+  elseif time_now >= parsed_noon and time_now < parsed_night then
+    -- Noon time
 
-		-- Update Wallpaper
-		update_wallpaper(wallpaper_noon)
+    -- Update Wallpaper
+    update_wallpaper(wallpaper_noon)
 
-		-- Set the data for the next scheduled time
-		wall_data = {night_schedule, wallpaper_night}
+    -- Set the data for the next scheduled time
+    wall_data = {night_schedule, wallpaper_night}
 
-	else
-		-- Night time
+  else
+    -- Night time
 
-		-- Update Wallpaper
-		update_wallpaper(wallpaper_night)
+    -- Update Wallpaper
+    update_wallpaper(wallpaper_night)
 
-		-- Set the data for the next scheduled time
-		wall_data = {midnight_schedule, wallpaper_midnight}
+    -- Set the data for the next scheduled time
+    wall_data = {midnight_schedule, wallpaper_midnight}
 
-	end
-  
-	
-	-- Get the time difference to set as timeout for the wall_updater timer below
-	the_countdown = time_diff(wall_data[1], current_time())
+  end
+
+
+  -- Get the time difference to set as timeout for the wall_updater timer below
+  the_countdown = time_diff(wall_data[1], current_time())
 
 end
 
@@ -199,31 +199,31 @@ manage_timer()
 
 
 local wall_updater = gears.timer {
-	-- The timeout is the difference of current time and the scheduled time we set above.
-	timeout   = the_countdown,
-	autostart = true,
-	call_now = true,
-	callback  = function()
+  -- The timeout is the difference of current time and the scheduled time we set above.
+  timeout   = the_countdown,
+  autostart = true,
+  call_now = true,
+  callback  = function()
 
-		-- Emit signal to update wallpaper
-    	awesome.emit_signal("module::change_wallpaper")
-  	
-  	end
+    -- Emit signal to update wallpaper
+      awesome.emit_signal("module::change_wallpaper")
+
+    end
 }
 
 -- Update wallpaper here and update the timeout for the next schedule
 awesome.connect_signal("module::change_wallpaper", function()
 
-	-- Update wallpaper based on the data in the array
-	gears.wallpaper.maximized (wall_dir .. wall_data[2], s)
+  -- Update wallpaper based on the data in the array
+  gears.wallpaper.maximized (wall_dir .. wall_data[2], s)
 
-	-- Update values for the next specified schedule
-	manage_timer()
+  -- Update values for the next specified schedule
+  manage_timer()
 
-	-- Update timer timeout for the next specified schedule
-	wall_updater.timeout = the_countdown
+  -- Update timer timeout for the next specified schedule
+  wall_updater.timeout = the_countdown
 
-	-- Restart timer
-	wall_updater:again()
+  -- Restart timer
+  wall_updater:again()
 
 end)
