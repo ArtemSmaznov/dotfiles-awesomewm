@@ -8,13 +8,13 @@
 
 
 local keys = {
-  vim 				= require("modules.hotkeys_popup.keys.vim"),
-  browser 		= require("modules.hotkeys_popup.keys.browser"),
-  tmux 				= require("modules.hotkeys_popup.keys.tmux"),
+  vim         = require("modules.hotkeys_popup.keys.vim"),
+  browser     = require("modules.hotkeys_popup.keys.browser"),
+  tmux        = require("modules.hotkeys_popup.keys.tmux"),
   qutebrowser = require("modules.hotkeys_popup.keys.qutebrowser"),
-	termite 		= require("modules.hotkeys_popup.keys.termite"),
-	bash 				= require('modules.hotkeys_popup.keys.bash'),
-	git 				= require('modules.hotkeys_popup.keys.git')
+  termite     = require("modules.hotkeys_popup.keys.termite"),
+  bash        = require('modules.hotkeys_popup.keys.bash'),
+  git         = require('modules.hotkeys_popup.keys.git')
 }
 return keys
 

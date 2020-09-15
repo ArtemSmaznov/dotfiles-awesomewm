@@ -38,7 +38,7 @@ local my_box = awful.popup {
 
 
 awesome.connect_signal(
-	'debug',
+  'debug',
   function ()
     local focused = awful.screen.focused()
     local clients = #focused.clients
@@ -46,6 +46,6 @@ awesome.connect_signal(
 
     local subresult = tiledclients
     local result = tostring(subresult)
-		require('naughty').notify { text = result }
-	end
+    require('naughty').notify { text = result }
+  end
 )

@@ -54,6 +54,6 @@ theme.awesome_icon = theme.icons .. 'awesome.svg'
 local awesome_overrides = function(theme) end
 
 return {
-	theme = theme,
- 	awesome_overrides = awesome_overrides
+  theme = theme,
+   awesome_overrides = awesome_overrides
 }

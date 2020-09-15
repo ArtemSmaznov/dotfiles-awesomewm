@@ -16,18 +16,18 @@ end
 
 local bash_keys = {
 
-	["Command Editing Shortcuts"] = {{
-		modifiers = { "Ctrl" },
-		keys = {
-				['u/k'] = 'delete from cursor to start/end of the command line',
-				w = 'delete from cursor to start of word',
-				y = 'paste word or text that was cut using one of the deletion shortcuts',
-				['xx'] = 'move between start of command line and current cursor position (and back again)',
-				t = 'swap character under cursor with the previous one'
-		}
-	}, {
-			modifiers = { "Alt" },
-			keys = {
+  ["Command Editing Shortcuts"] = {{
+    modifiers = { "Ctrl" },
+    keys = {
+        ['u/k'] = 'delete from cursor to start/end of the command line',
+        w = 'delete from cursor to start of word',
+        y = 'paste word or text that was cut using one of the deletion shortcuts',
+        ['xx'] = 'move between start of command line and current cursor position (and back again)',
+        t = 'swap character under cursor with the previous one'
+    }
+  }, {
+      modifiers = { "Alt" },
+  		keys = {
 					d = 'delete to end of word starting at cursor',
 					c = 'capitalize to end of word starting at cursor',
 					['u/l'] = 'make upper/lower case from cursor to end of word',
