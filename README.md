@@ -1,3 +1,9 @@
+<p align='center'>
+  <strong>
+    <a href="https://github.com/ArtemSmaznov/awesome-config/wiki">Wiki (Work in Progress)</a>
+  </strong>
+</p>
+
 # Goal
 The goal of this repository is to create a configuration for AwesomeWM that is very easy to modify, adapt and customize.
 
@@ -26,6 +32,3 @@ Right now I consider that config as a base and am currently just personalizing i
 I am still actively working on this repository and there is still a lot I want to do.
 
 The documentation on this is pretty much non existent but I am hoping to tidy it up at some point. Parts are just copy pasted from [manilarome](https://github.com/manilarome/the-glorious-dotfiles) and still list the dependencies I might have already removed.
-
-
-### [Wiki (Work in Progress)](https://github.com/ArtemSmaznov/awesome-config/wiki)
