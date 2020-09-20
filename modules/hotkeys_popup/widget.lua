@@ -588,7 +588,7 @@ function widget.new(args)
             border_width = self.border_width,
             border_color = self.border_color,
             shape = self.shape,
-            screen = 'primary',
+            screen = s,
             placement = place_func,
             minimum_width = wibox_width,
             minimum_height = wibox_height,

@@ -35,13 +35,13 @@ return function(mode)
 
 					awful.spawn('xclip -selection clipboard -t image/png -i ' .. file_loc)
 
-					local open_image = naughty.action {
-						name = 'Open',
-							icon_only = false,
-					}
-
 					local open_folder = naughty.action {
 						name = 'Folder',
+							icon_only = false,
+          }
+
+					local open_image = naughty.action {
+						name = 'View',
 							icon_only = false,
 					}
 
@@ -71,9 +71,13 @@ return function(mode)
 						timeout = 10,
 						title = '<b>Snap!</b>',
 						message = notif_message,
-						actions = { open_image, open_folder, delete_image }
+						actions = {
+              open_folder,
+              open_image,
+              delete_image
+            }
 					})
-					
+
 				end
 
 			end)

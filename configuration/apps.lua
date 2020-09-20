@@ -53,6 +53,7 @@ return {
         {command = 'google-calendar-dark', icon = 'google-agenda'},
         {command = 'google-keep', icon = 'keep'},
         {command = 'youtubemusic-nativefier', icon = 'google-play-music-desktop-player'},
+        {command = 'google-drive', icon = 'google-drive'},
         {command = 'GoogleDocs', icon = 'google-docs'},
       }
     },{
