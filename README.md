@@ -5,6 +5,7 @@
 </p>
 
 # Goal
+
 The goal of this repository is to create a configuration for AwesomeWM that is very easy to modify, adapt and customize.
 
 # Intro
@@ -15,15 +16,15 @@ I initially started with Cinnamon DE and was using it for a few years. I loved i
 
 > KDE
 
-Later I switched to KDE and I loved how it allowed to customize the looks but with all the customizations it allowed I found it to be more limiting than Cinnamon was. Things that annoyed me in KDE were too long Taskbar buttons, not being able to set a custom date format for the taskbar widget and navigating all the settings felt very unintuitive. I did like the flow that activities offered even though the implementation was a bit off for me.
+I tried KDE and loved how it allowed to customize the looks but with all the customizations it allowed I found it to be more limiting than Cinnamon was. Things that annoyed me in KDE were too long Taskbar buttons, not being able to set a custom date format for the taskbar widget and navigating all the settings felt very counterintuitive. I did like the flow that activities offered even though the implementation was a bit off for me.
 
 > AwesomeWM - Having a Taste
 
-Later I found an AwesomeWM config by [ChrisTitus](https://github.com/ChrisTitusTech/material-awesome) and immediately loved the tags flow it offered. I did find the customization quite lacking though and I couldn't use it as a full on replacement for Cinnamon (I switched back to Cinnamon from KDE at that time). I then tried writing my own config from scratch but found Lua and Awesome API too hard to understand and realized that writing something usable will take way too much time.
+Later, I found an AwesomeWM config by [ChrisTitus](https://github.com/ChrisTitusTech/material-awesome) and immediately loved the tags flow it offered. I did find the customization quite lacking though and I couldn't use it as a full on replacement for Cinnamon (I switched back to Cinnamon from KDE at that time). I then tried writing my own config from scratch but found Lua and Awesome API too hard to understand and realized that writing something usable will take way too much time.
 
 > AwesomeWM - Settling In
 
-Finally I found a config by [manilarome](https://github.com/manilarome/the-glorious-dotfiles) on UnixPorn sub-reddit and loved how it looked. After cloning it I mostly ditched Cinnamon and started spending more time in Awesome. I also started diggin deeper in the configs to modify things that I wanted differently and started to understand more and more of how it actually works.
+Finally, I stumbled upon a config by [manilarome](https://github.com/manilarome/the-glorious-dotfiles) on UnixPorn sub-reddit and loved how it looked. After cloning it I mostly ditched Cinnamon and started spending more time in Awesome. I also started digging deeper in the configs to modify things that I wanted differently and started to understand more and more of how it actually works.
 
 # Future of my Config
 

@@ -73,6 +73,8 @@ client.connect_signal("request::titlebars", function(c)
       awful.titlebar(c, {position = pos, bg = bg, size = size or titlebar_size}) : setup {
         { -- Top Part of the Bar
           { -- Main Client Buttons
+            awful.titlebar.widget.iconwidget(c),
+            require('widgets.system-elements.separator')('h'),
             awful.titlebar.widget.closebutton(c),
             awful.titlebar.widget.maximizedbutton(c),
             awful.titlebar.widget.minimizebutton (c),
@@ -100,15 +102,18 @@ client.connect_signal("request::titlebars", function(c)
       -- Creates top or bottom titlebars
       awful.titlebar(c, {position = pos, bg = bg, size = size or titlebar_size}) : setup {
         { -- Left Part of the Bar
-          awful.titlebar.widget.floatingbutton (c),
+          {
+            awful.titlebar.widget.iconwidget(c),
+            require('widgets.system-elements.separator')('v'),
+            awful.titlebar.widget.floatingbutton (c),
+            spacing = dpi(7),
+            layout  = wibox.layout.fixed.horizontal
+          },
           margins = dpi(10),
           widget = wibox.container.margin
         },
         { -- Middle Part of the Bar
-          { -- Title
-            align  = 'center',
-            widget = awful.titlebar.widget.titlewidget(c)
-          },
+          awful.titlebar.widget.titlewidget(c),
           buttons = buttons,
           layout = wibox.layout.flex.horizontal
         },
@@ -132,6 +137,7 @@ client.connect_signal("request::titlebars", function(c)
       awful.titlebar(c, {position = 'left', size = titlebar_size}) : setup {
         {
           {
+            awful.titlebar.widget.iconwidget(c),
             awful.titlebar.widget.closebutton(c),
             awful.titlebar.widget.maximizedbutton(c),
             awful.titlebar.widget.minimizebutton (c),
