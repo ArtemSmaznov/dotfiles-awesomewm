@@ -177,11 +177,6 @@ local awesome_overrides = function(theme)
 
   -- Layoutbox icons
 
-  -- theme.layout_max = theme.icons .. 'layouts/max.svg'
-  -- theme.layout_tile = theme.icons .. 'layouts/tile.svg'
-  -- theme.layout_dwindle = theme.icons .. 'layouts/dwindle.svg'
-  -- theme.layout_floating = theme.icons .. 'layouts/floating.svg'
-  -- theme.layout_fullscreen = theme.icons .. 'fullscreen.svg'
   theme.layout_max = system_dir .. 'maxw.png'
   theme.layout_tile = system_dir .. 'tilew.png'
   theme.layout_dwindle = system_dir .. 'dwindlew.png'

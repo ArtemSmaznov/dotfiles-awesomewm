@@ -12,7 +12,7 @@ local tags = {
 		icon = icons.tags.terminal,
 		type = 'terminal',
 		default_app = apps.default.terminal,
-		layout = awful.layout.suit.tile.bottom,
+    layout = require('layout.vertical'),
 		screen = 2,
 		selected = true,
 	},
