@@ -1,10 +1,11 @@
 local awful = require('awful')
 local beautiful = require('beautiful')
-local ruled = require("ruled")
 local apps = require('configuration.apps')
 local icons = require('theme.icons')
 
 local default_layout = awful.layout.suit.spiral
+
+local sideScreenIsPortrait = true
 
 local tags = {
 	{
@@ -12,9 +13,9 @@ local tags = {
 		icon = icons.tags.terminal,
 		type = 'terminal',
 		default_app = apps.default.terminal,
-    layout = require('layout.vertical'),
-		screen = 2,
-		selected = true,
+    layout = (sideScreenIsPortrait and screen:instances() > 1) and require('layout.vertical') or default_layout,
+		screen = screen:instances(),
+    selected = screen:instances() == 1 and false or true,
 	},
 	{
 		name = 'internet',
