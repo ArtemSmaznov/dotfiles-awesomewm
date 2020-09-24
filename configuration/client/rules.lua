@@ -62,7 +62,7 @@ ruled.client.connect_signal(
 			},
 			properties = {
         tag = 'terminal',
-        screen = screen:instances(),
+        screen = awful.tag.find_by_name(nil, 'terminal').screen,
 				size_hints_honor = false
 			}
 		}
