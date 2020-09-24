@@ -11,7 +11,7 @@ local current_tag
 ruled.client.connect_signal(
 	"request::rules",
   function()
-    
+
     -- ░█▀▀░█▀▀░█▀█░█▀▀░█▀▄░█▀█░█░░
     -- ░█░█░█▀▀░█░█░█▀▀░█▀▄░█▀█░█░░
     -- ░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀
@@ -35,35 +35,20 @@ ruled.client.connect_signal(
 				round_corners = true,
 				keys = client_keys,
 				buttons = client_buttons,
-				screen    = awful.screen.preferred,
+				screen    = 'primary', -- new clients default to primary screen
+				-- screen    = awful.screen.preferred, -- new clients default to focused screen
 				placement = awful.placement.no_overlap + awful.placement.no_offscreen + awful.placement.centered
-			}
-		}
-
-    -- ░█▀█░█▀█░░░▀█▀░█▀█░█▀▀
-    -- ░█░█░█░█░░░░█░░█▀█░█░█
-    -- ░▀░▀░▀▀▀░░░░▀░░▀░▀░▀▀▀
-        
-    ruled.client.append_rule {
-			id         = "no_tag",
-			rule_any   = {
-				class = {
-					"Xed"
-				},
-			},
-			properties = { 
-				screen = 1,
 			}
 		}
 
     -- ░▀█▀░█▀▀░█▀▄░█▄█░▀█▀░█▀█░█▀█░█░░░░░▀█▀░█▀█░█▀▀
     -- ░░█░░█▀▀░█▀▄░█░█░░█░░█░█░█▀█░█░░░░░░█░░█▀█░█░█
     -- ░░▀░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀░░░░▀░░▀░▀░▀▀▀
-                
+
 		ruled.client.append_rule {
 			id         = "terminals",
-			rule_any   = { 
-				class = { 
+			rule_any   = {
+				class = {
 					"URxvt",
 					"XTerm",
 					"UXTerm",
@@ -84,8 +69,8 @@ ruled.client.connect_signal(
 
 		ruled.client.append_rule {
 			id         = "sides",
-			rule_any   = { 
-				class = { 
+			rule_any   = {
+				class = {
           "whatsapp",
           "Slack",
           "obs",
@@ -103,7 +88,7 @@ ruled.client.connect_signal(
 
     ruled.client.append_rule {
 			id         = "web_browsers",
-			rule_any   = { 
+			rule_any   = {
 				class = {
 					"firefox",
 					"Tor Browser",
@@ -112,7 +97,7 @@ ruled.client.connect_signal(
 					"Google-chrome"
 				}
 			},
-			properties = { 
+			properties = {
         tag = 'internet',
         screen = 1,
         hide_titlebars = true,
@@ -124,10 +109,10 @@ ruled.client.connect_signal(
     -- ░█▀▀░█▀█░█▄█░▀█▀░█▀█░█▀▀░░░▀█▀░█▀█░█▀▀
     -- ░█░█░█▀█░█░█░░█░░█░█░█░█░░░░█░░█▀█░█░█
     -- ░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░░░░▀░░▀░▀░▀▀▀
-    
+
     ruled.client.append_rule {
 			id         = "gaming",
-			rule_any   = {  
+			rule_any   = {
 				class = {
 					"Wine",
 					"dolphin-emu",
@@ -146,7 +131,7 @@ ruled.client.connect_signal(
           "Steam Guard"
 				}
       },
-			properties = { 
+			properties = {
         tag = 'gaming',
         screen = 1,
         switchtotag = false,
@@ -164,7 +149,7 @@ ruled.client.connect_signal(
 					"Steam",
 				}
 			},
-			properties = { 
+			properties = {
         tag = 'gaming',
         screen = 1,
         round_corners = false,
@@ -180,7 +165,7 @@ ruled.client.connect_signal(
 					"Friends List",
 				}
 			},
-			properties = { 
+			properties = {
         width = 400,
         maximized_vertical = true,
         placement = awful.placement.right
@@ -199,7 +184,7 @@ ruled.client.connect_signal(
     --       "Steam Guard"
 		-- 		}
 		-- 	},
-		-- 	properties = { 
+		-- 	properties = {
     --     tag = 'gaming',
     --     screen = 1,
     --     maximized = false,
@@ -215,7 +200,7 @@ ruled.client.connect_signal(
 					"steam_app",
 				}
 			},
-			properties = { 
+			properties = {
         tag = 'gaming',
         screen = 1,
 				skip_decoration = true,
@@ -230,7 +215,7 @@ ruled.client.connect_signal(
     -- ░█▀▄░█▀▀░█░█░░░▀█▀░█▀█░█▀▀
     -- ░█░█░█▀▀░▀▄▀░░░░█░░█▀█░█░█
     -- ░▀▀░░▀▀▀░░▀░░░░░▀░░▀░▀░▀▀▀
-      
+
 		ruled.client.append_rule {
 			id         = "dev",
 			rule_any   = {
@@ -251,7 +236,7 @@ ruled.client.connect_signal(
           "cypress"
         }
       },
-			properties = { 
+			properties = {
         tag = 'coding',
         screen = 1,
 			}
@@ -260,7 +245,7 @@ ruled.client.connect_signal(
     -- ░█▀▀░█▀█░█▄█░█▀█░█░█░▀█▀░█▀▀░█▀▄░░░▀█▀░█▀█░█▀▀
     -- ░█░░░█░█░█░█░█▀▀░█░█░░█░░█▀▀░█▀▄░░░░█░░█▀█░█░█
     -- ░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░░▀░░▀▀▀░▀░▀░░░░▀░░▀░▀░▀▀▀
-          
+
 		ruled.client.append_rule {
 			id         = "computer",
 			rule_any   = {
@@ -274,7 +259,7 @@ ruled.client.connect_signal(
           "calendar"
         }
       },
-			properties = { 
+			properties = {
         tag = 'computer',
         screen = 1,
 			}
@@ -283,7 +268,7 @@ ruled.client.connect_signal(
     -- ░█▄█░█░█░█░░░▀█▀░▀█▀░█▄█░█▀▀░█▀▄░▀█▀░█▀█░░░▀█▀░█▀█░█▀▀
     -- ░█░█░█░█░█░░░░█░░░█░░█░█░█▀▀░█░█░░█░░█▀█░░░░█░░█▀█░█░█
     -- ░▀░▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░▀░░░░▀░░▀░▀░▀▀▀
-              
+
 		ruled.client.append_rule {
 			id         = "multimedia",
 			rule_any   = {
@@ -295,7 +280,7 @@ ruled.client.connect_signal(
         },
         name = { "Google Play Music" }
       },
-			properties = { 
+			properties = {
         tag = 'multimedia',
         screen = 1,
 			}
@@ -304,7 +289,7 @@ ruled.client.connect_signal(
     -- ░█▀▀░█▀▄░█▀█░█▀█░█░█░▀█▀░█▀▀░█▀▀░░░▀█▀░█▀█░█▀▀
     -- ░█░█░█▀▄░█▀█░█▀▀░█▀█░░█░░█░░░▀▀█░░░░█░░█▀█░█░█
     -- ░▀▀▀░▀░▀░▀░▀░▀░░░▀░▀░▀▀▀░▀▀▀░▀▀▀░░░░▀░░▀░▀░▀▀▀
-                  
+
 		ruled.client.append_rule {
 			id         = "graphics",
 			rule_any   = {
@@ -316,7 +301,7 @@ ruled.client.connect_signal(
           "digikam",
         }
       },
-			properties = { 
+			properties = {
         tag = 'graphics',
         screen = 1,
         round_corners = false,
@@ -324,11 +309,11 @@ ruled.client.connect_signal(
         skip_decoration = true
 			}
 		}
-    
+
     -- ░█▀▀░█▀█░█▀█░█▀▄░█▀▄░█▀█░█░█░░░▀█▀░█▀█░█▀▀
     -- ░▀▀█░█▀█░█░█░█░█░█▀▄░█░█░▄▀▄░░░░█░░█▀█░█░█
     -- ░▀▀▀░▀░▀░▀░▀░▀▀░░▀▀░░▀▀▀░▀░▀░░░░▀░░▀░▀░▀▀▀
-                      
+
 		ruled.client.append_rule {
 			id         = "sandbox",
 			rule_any   = {
@@ -337,16 +322,16 @@ ruled.client.connect_signal(
           "VirtualBox Machine"
         }
       },
-			properties = { 
+			properties = {
         tag = 'sandbox',
         screen = 1,
 			}
 		}
-    
+
     -- ░█▀▀░█░█░█▀▀░▀█▀░█▀▀░█▄█
     -- ░▀▀█░░█░░▀▀█░░█░░█▀▀░█░█
     -- ░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀
-    
+
     -- Image viewers with splash-like behaviour
 		ruled.client.append_rule {
 			id        = "splash_like",
@@ -358,7 +343,7 @@ ruled.client.connect_signal(
 				},
 				name = {"Discord Updater"}
 			},
-			properties = { 
+			properties = {
 				skip_decoration = true,
 				hide_titlebars = true,
 				floating = true,
@@ -370,11 +355,11 @@ ruled.client.connect_signal(
 		-- Dialogs
 		ruled.client.append_rule {
 			id         = "dialog",
-			rule_any   = { 
+			rule_any   = {
 				type  = { "dialog",  },
 				class = { "Wicd-client.py", "calendar.google.com" }
 			},
-			properties = { 
+			properties = {
         titlebars_enabled = true,
 				maximized = false,
 				floating = true,
@@ -394,7 +379,7 @@ ruled.client.connect_signal(
 		ruled.client.append_rule {
 			id         = "dialog",
 			rule_any   = {
-				type = { 
+				type = {
 					"modal",
 					"dialog"
 				},
@@ -403,7 +388,7 @@ ruled.client.connect_signal(
 					"Save File"
 				}
 			},
-			properties = { 
+			properties = {
 				titlebars_enabled = true,
 				floating = true,
 				above = true,
@@ -419,10 +404,10 @@ ruled.client.connect_signal(
 		-- Utilities
 		ruled.client.append_rule {
 			id         = "utility",
-			rule_any   = { 
+			rule_any   = {
 				type = { "utility" }
 			},
-			properties = { 
+			properties = {
 				titlebars_enabled = false,
 				floating = true,
 				hide_titlebars = true,
@@ -435,10 +420,10 @@ ruled.client.connect_signal(
 		-- Splash
 		ruled.client.append_rule {
 			id         = "splash",
-			rule_any   = { 
+			rule_any   = {
 				type = { "splash" }
 			},
-			properties = { 
+			properties = {
 				titlebars_enabled = false,
 				floating = true,
 				above = true,
@@ -461,13 +446,13 @@ ruled.client.connect_signal(
 					"Popup",
 					"nm-connection-editor",
 				},
-				class = { 
+				class = {
 					"scrcpy" ,
 					"Mugshot",
 					"Pulseeffects"
 				}
 			},
-				properties = { 
+				properties = {
 				skip_decoration = true,
 				round_corners = true,
 				ontop = true,
@@ -480,7 +465,7 @@ ruled.client.connect_signal(
 				placement = awful.placement.centered
 			}
 		}
-		
+
 		-- Fullsreen
 		ruled.client.append_rule {
 			id       = "fullscreen",
@@ -489,7 +474,7 @@ ruled.client.connect_signal(
 					"SuperTuxKart"
 				}
 			},
-			properties = { 
+			properties = {
 				skip_decoration = true,
 				round_corners = false,
 				ontop = true,
@@ -511,7 +496,7 @@ ruled.client.connect_signal(
 -- until after it starts up, so we need to catch that signal.
 
 -- If the application is fullscreen in its settings, make sure to set `c.fullscreen = false` first
--- before moving to the desired tag or else the tag where the program spawn will cause panels to hide. 
+-- before moving to the desired tag or else the tag where the program spawn will cause panels to hide.
 -- After moving the program to specified tag you can set `c.fullscreen = true` now
 -- See what I did in `SuperTuxKart`
 
