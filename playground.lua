@@ -35,7 +35,7 @@ local my_box = awful.popup {
   placement = awful.placement.centered
 }
 
-
+local monitor = require('modules.monitor')
 
 awesome.connect_signal(
   'debug',
@@ -44,7 +44,7 @@ awesome.connect_signal(
     local clients = #focused.clients
     local tiledclients = #focused.tiled_clients
 
-    local subresult = tiledclients
+    local subresult = monitor.screenOrientation(2)
     local result = tostring(subresult)
     require('naughty').notify { text = result }
   end

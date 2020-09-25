@@ -2,7 +2,7 @@ local awful = require('awful')
 local beautiful = require('beautiful')
 local apps = require('configuration.apps')
 local icons = require('theme.icons')
-local preferences = require('configuration.preferences')
+local monitor = require('modules.monitor')
 
 local tags = {
 	{
@@ -10,7 +10,6 @@ local tags = {
 		icon = icons.tags.terminal,
 		default_app = apps.default.terminal,
     layout = awful.layout.suit.tile,
-    master_count = preferences.sideScreenIsPortrait and 0 or nil,
 		screen = 2,
     selected = true,
 	},
@@ -54,7 +53,6 @@ local tags = {
 	},
 }
 
-
 tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
 			awful.layout.suit.tile,
@@ -75,7 +73,7 @@ for i, tag in pairs(tags) do
       default_layout      = tag.layout or awful.layout.suit.spiral,
       gap                 = tag.gap or beautiful.useless_gap,
       gap_single_client   = tag.single_client_gap or false,
-      master_count        = tag.master_count,
+      master_count        = monitor.orientation(tag.screen) == 'portrait' and 0 or nil,
       selected            = tag.screen ~= nil and tag.screen <= screen:instances() and tag.selected or false,
       screen              = tag.screen ~= nil and tag.screen <= screen:instances() and tag.screen or 'primary',
     }
