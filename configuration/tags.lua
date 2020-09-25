@@ -11,8 +11,8 @@ local tags = {
 		icon = icons.tags.terminal,
 		default_app = apps.default.terminal,
     layout = awful.layout.suit.tile,
-    master_count = (sideScreenIsPortrait and screen:instances() > 1) and 0 or nil,
-		screen = screen:instances(),
+    master_count = sideScreenIsPortrait and 0 or nil,
+		screen = 2,
     selected = screen:instances() == 1 and false or true,
 	},
 	{
@@ -70,15 +70,15 @@ for i, tag in pairs(tags) do
     tag.name,
     {
       icon                = tag.icon,
+      default_app         = tag.default_app,
       icon_only           = tag.icon_only or true,
       layout              = tag.layout or awful.layout.suit.spiral,
       default_layout      = tag.layout or awful.layout.suit.spiral,
-      gap_single_client   = tag.single_client_gap or false,
       gap                 = tag.gap or beautiful.useless_gap,
-      screen              = tag.screen or 'primary',
-      default_app         = tag.default_app,
-      selected            = tag.selected or false,
+      gap_single_client   = tag.single_client_gap or false,
       master_count        = tag.master_count,
+      selected            = tag.selected or false,
+      screen              = tag.screen ~= nil and tag.screen <= screen:instances() and tag.screen or 'primary',
     }
   )
 end
