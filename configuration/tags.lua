@@ -2,8 +2,7 @@ local awful = require('awful')
 local beautiful = require('beautiful')
 local apps = require('configuration.apps')
 local icons = require('theme.icons')
-
-local sideScreenIsPortrait = true
+local preferences = require('configuration.preferences')
 
 local tags = {
 	{
@@ -11,9 +10,9 @@ local tags = {
 		icon = icons.tags.terminal,
 		default_app = apps.default.terminal,
     layout = awful.layout.suit.tile,
-    master_count = sideScreenIsPortrait and 0 or nil,
+    master_count = preferences.sideScreenIsPortrait and 0 or nil,
 		screen = 2,
-    selected = screen:instances() == 1 and false or true,
+    selected = true,
 	},
 	{
 		name = 'internet',
@@ -77,7 +76,7 @@ for i, tag in pairs(tags) do
       gap                 = tag.gap or beautiful.useless_gap,
       gap_single_client   = tag.single_client_gap or false,
       master_count        = tag.master_count,
-      selected            = tag.selected or false,
+      selected            = tag.screen ~= nil and tag.screen <= screen:instances() and tag.selected or false,
       screen              = tag.screen ~= nil and tag.screen <= screen:instances() and tag.screen or 'primary',
     }
   )
