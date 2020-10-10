@@ -137,7 +137,7 @@ return {
 
     updates = {
       uptodate     = theme_path .. 'symbolic/status/' .. 'arch-uptodate-symbolic.svg',
-      available    = theme_path .. 'symbolic/status/' .. 'arch-updates-symbolic.svg',
+      available    = theme_path .. 'symbolic/status/' .. 'software-update-available-symbolic.svg',
       urgent       = theme_path .. 'symbolic/status/' .. 'software-update-urgent-symbolic.svg',
     },
 

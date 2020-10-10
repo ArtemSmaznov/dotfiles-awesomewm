@@ -94,12 +94,18 @@ local return_button = function()
     local icon_name
 
     if number_of_updates_available ~= nil then
-
       update_available = true
-      icon_name = 'available'
+      if stdout:match('linux')
+      or stdout:match('ucode')
+      or stdout:match('nvidia')
+      or stdout:match('xf86-video')
+      then
+        icon_name = 'urgent'
+      else
+        icon_name = 'available'
+      end
 
     else
-
       update_available = false
       icon_name = 'uptodate'
 
