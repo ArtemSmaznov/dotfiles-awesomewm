@@ -187,7 +187,6 @@ local TopPanel = function(s, offset)
 			require('widgets.panel-widgets.package-updater')(),
 			s.volume_widget,
 			require('widgets.panel-widgets.battery'),
-			require('widgets.panel-widgets.bluetooth')(),
 			require('widgets.panel-widgets.network')(),
 
 		},
