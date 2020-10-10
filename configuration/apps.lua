@@ -115,7 +115,7 @@ return {
     ]],
 
     -- System
-    'xfce4-power-manager',                    -- Power manager  
+    'xfce4-power-manager',                    -- Power manager
     'blueman-applet',                         -- Bluetooth tray icon
     'mpd',                                    -- Music Server
     'xrdb $HOME/.Xresources',                 -- Load X Colors

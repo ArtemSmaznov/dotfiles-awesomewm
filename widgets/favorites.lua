@@ -17,15 +17,15 @@ build.spacing = dpi(7)
 for _, favs in pairs(favorites) do
   local apps_list = wibox.layout.grid.vertical()
   apps_list.forced_num_cols = 5
-  
+
   local box_constructor = wibox.layout.fixed.vertical()
 
   box_constructor:add(box_with_header('header', favs.category))
-  
+
   for _, app in pairs(favs.apps) do
     local app_instance = wibox.widget {
       {
-        { 
+        {
           image = menubar.utils.lookup_icon(app.icon),
           resize = true,
           forced_width = dpi(50),
@@ -58,7 +58,7 @@ for _, favs in pairs(favorites) do
         )
       )
     )
-    
+
     apps_list:add(app_instance)
   end
 

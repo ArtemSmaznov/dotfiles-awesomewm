@@ -74,8 +74,8 @@ for i, tag in pairs(tags) do
       gap                 = tag.gap or beautiful.useless_gap,
       gap_single_client   = tag.single_client_gap or false,
       master_count        = monitor.orientation(tag.screen) == 'portrait' and 0 or nil,
-      selected            = tag.screen ~= nil and tag.screen <= screen:instances() and tag.selected or false,
-      screen              = tag.screen ~= nil and tag.screen <= screen:instances() and tag.screen or 'primary',
+      selected            = tag.selected or tag.screen ~= nil and tag.screen <= screen:instances() or false,
+      screen              = tag.screen or tag.screen ~= nil and tag.screen <= screen:instances() or 'primary',
     }
   )
 end
