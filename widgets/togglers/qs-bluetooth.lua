@@ -8,6 +8,7 @@ local beautiful = require('beautiful')
 
 local dpi = require('beautiful').xresources.apply_dpi
 
+local apps = require('configuration.apps')
 local icons = require('theme.icons')
 local tooltip = require('widgets.system-elements.tooltip')
 local qs_toggle = require('widgets.system-elements.quick-settings-toggle')
@@ -63,20 +64,28 @@ widget_button:buttons(
       function()
         widget:toggle()
       end
+    ),
+    awful.button(
+      {},
+      3,
+      nil,
+      function()
+        awful.spawn(apps.default.bluetooth_manager, false)
+      end
     )
   )
 )
 
 awesome.connect_signal(
-	'module::bluetooth:status:reply', 
-  function(state) 
+	'module::bluetooth:status:reply',
+  function(state)
     widget:update_toggle(state)
   end
 )
 
 awesome.connect_signal(
-	'modules:update', 
-  function() 
+	'modules:update',
+  function()
     awesome.emit_signal('module::bluetooth:status:request')
   end
 )
