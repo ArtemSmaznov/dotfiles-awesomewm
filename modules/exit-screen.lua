@@ -51,7 +51,7 @@ local profile_imagebox_bg = wibox.widget {
 local update_user_name = function()
 	awful.spawn.easy_async_with_shell(
 		"printf \"$(whoami)@$(hostname)\"",
-		function(stdout) 
+		function(stdout)
 			local stdout = stdout:gsub('%\n','')
 			local username = stdout:match("(.*)@")
 			username = username:sub(1, 1):upper() .. username:sub(2)
@@ -107,23 +107,18 @@ local build_button = function(icon, name)
 	return build_a_button
 end
 
-local suspend_command = function()
-	awesome.emit_signal("module::exit_screen_hide")
-  system.suspend()
-end
-
-local exit_command = function()
-  system.logout()
-end
+-- ░█▀▀░█▀█░█▄█░█▄█░█▀█░█▀█░█▀▄░█▀▀
+-- ░█░░░█░█░█░█░█░█░█▀█░█░█░█░█░▀▀█
+-- ░▀▀▀░▀▀▀░▀░▀░▀░▀░▀░▀░▀░▀░▀▀░░▀▀▀
 
 local lock_command = function()
 	awesome.emit_signal("module::exit_screen_hide")
   system.lock()
 end
 
-local poweroff_command = function()
+local suspend_command = function()
 	awesome.emit_signal("module::exit_screen_hide")
-  system.shutdown()
+  system.suspend()
 end
 
 local reboot_command = function()
@@ -131,58 +126,67 @@ local reboot_command = function()
   system.reboot()
 end
 
+local shutdown_command = function()
+	awesome.emit_signal("module::exit_screen_hide")
+  system.shutdown()
+end
+
 local windows_command = function()
   awesome.emit_signal("module::exit_screen_hide")
   system.reboot_to_windows()
 end
 
-local poweroff = build_button(icons.other.shutdown, 'Shutdown')
-poweroff:connect_signal(
-	'button::release',
-	function()
-		poweroff_command()
-	end
-)
+local logout_command = function()
+  system.logout()
+end
 
-local reboot = build_button(icons.other.restart, 'Restart')
-reboot:connect_signal(
-	'button::release',
-	function()
-		reboot_command()
-	end
-)
-
-local suspend = build_button(icons.other.sleep, 'Sleep')
-suspend:connect_signal(
-	'button::release',
-	function()
-		suspend_command()
-	end
-)
-
-local exit = build_button(icons.other.logout, 'Logout')
-exit:connect_signal(
-	'button::release',
-	function()
-		exit_command()
-	end
-)
+-- ░█▀▄░█░█░▀█▀░▀█▀░█▀█░█▀█░█▀▀
+-- ░█▀▄░█░█░░█░░░█░░█░█░█░█░▀▀█
+-- ░▀▀░░▀▀▀░░▀░░░▀░░▀▀▀░▀░▀░▀▀▀
 
 local lock = build_button(icons.other.lock, 'Lock')
-lock:connect_signal(
-	'button::release',
+lock:connect_signal('button::release',
 	function()
 		lock_command()
 	end
 )
 
-local windows = build_button(icons.other.windows, 'Windows')
-windows:connect_signal(
-	'button::release',
+local suspend = build_button(icons.other.sleep, '(S)leep')
+suspend:connect_signal('button::release',
+	function()
+		suspend_command()
+	end
+)
+
+local reboot = build_button(icons.other.restart, '(R)estart')
+reboot:connect_signal('button::release',
+	function()
+		reboot_command()
+	end
+)
+
+local poweroff = build_button(icons.other.shutdown, 'Shut(D)own')
+poweroff:connect_signal('button::release',
+	function()
+		shutdown_command()
+	end
+)
+
+local windows = build_button(icons.other.windows, '(W)indows')
+windows:connect_signal('button::release',
   function()
 		windows_command()
 	end
 )
+
+local logout = build_button(icons.other.logout, '(L)ogout')
+logout:connect_signal('button::release',
+	function()
+		logout_command()
+	end
+)
+
+------------------------------------
 
 screen.connect_signal(
 	"request::desktop_decoration",
@@ -204,46 +208,43 @@ screen.connect_signal(
 
 		local exit_screen_hide = function()
 			awesome.emit_signal("module::exit_screen_hide")
-
 		end
 
 
 		local exit_screen_grabber = awful.keygrabber {
-
 			auto_start          = true,
 			stop_event          = 'release',
-			keypressed_callback = function(self, mod, key, command) 
+			keypressed_callback = function(self, mod, key, command)
 
-				if key == 's' then
+-- ░█░█░█▀█░▀█▀░█░█░█▀▀░█░█░█▀▀
+-- ░█▀█░█░█░░█░░█▀▄░█▀▀░░█░░▀▀█
+-- ░▀░▀░▀▀▀░░▀░░▀░▀░▀▀▀░░▀░░▀▀▀
+
+        if key == 's' then
 					suspend_command()
 
-				elseif key == 'e' then
-					exit_command()
-
-				elseif key == 'l' then
-					lock_command()
-
-				elseif key == 'p' then
-					poweroff_command()
-
 				elseif key == 'r' then
-					reboot_command()
+          reboot_command()
+
+				elseif key == 'd' then
+					shutdown_command()
 
 				elseif key == 'w' then
           windows_command()
 
+				elseif key == 'l' then
+					logout_command()
+
 				elseif key == 'Escape' or key == 'q' or key == 'x' then
 					awesome.emit_signal("module::exit_screen_hide")
-
 				end
 
 			end
-
 		}
 
 		awesome.connect_signal(
 			"module::exit_screen_show",
-			function() 
+			function()
 				for s in screen do
 					s.exit_screen.visible = false
 				end
@@ -322,12 +323,12 @@ screen.connect_signal(
 							{
 								greeter_message,
 								{
-									exit,
+                  lock,
 									suspend,
 									reboot,
                   poweroff,
-                  lock,
                   windows,
+									logout,
 									layout = wibox.layout.fixed.horizontal
 								},
 								spacing = dpi(30),
