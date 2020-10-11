@@ -1,10 +1,11 @@
 local awful = require('awful')
 local wibox = require('wibox')
 
-local start_up = true
-
 local clickable_container = require('library.ui.clickable-container.no-background')
+
 local system_slider = require('theme.system.slider')
+
+local start_up = true
 
 local blur_slider = wibox.widget {
 	{

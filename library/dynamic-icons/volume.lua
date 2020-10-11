@@ -1,8 +1,7 @@
 local wibox = require("wibox")
-local awful = require('awful')
-local gears = require('gears')
 
 local clickable_container = require('library.ui.clickable-container.no-background')
+
 local icons = require('theme.icons')
 
 local mute_state = false
@@ -17,8 +16,6 @@ local volume_icon = wibox.widget{
 	},
 	widget = clickable_container
 }
-
-
 
 awesome.connect_signal(
 	'widget::volume_icon:update',

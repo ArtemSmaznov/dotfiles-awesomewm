@@ -2,8 +2,9 @@ local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
 
-local sounds = require('theme.sounds')
 local clickable_container = require('library.ui.clickable-container.no-background')
+
+local sounds = require('theme.sounds')
 local system_slider = require('theme.system.slider')
 
 local volume_slider = wibox.widget {

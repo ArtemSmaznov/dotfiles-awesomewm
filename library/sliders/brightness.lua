@@ -1,10 +1,10 @@
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
-
 local spawn = awful.spawn
 
 local clickable_container = require('library.ui.clickable-container.no-background')
+
 local system_slider = require('theme.system.slider')
 
 local brightness_slider = wibox.widget {
