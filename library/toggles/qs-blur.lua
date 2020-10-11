@@ -1,4 +1,4 @@
--- require('modules.airplane')
+require('modules.blur')
 
 local awful = require('awful')
 local gears = require('gears')
@@ -9,24 +9,24 @@ local beautiful = require('beautiful')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local icons = require('theme.icons')
-local tooltip = require('widgets.system-elements.tooltip')
-local qs_toggle = require('widgets.system-elements.quick-settings-toggle')
+local tooltip = require('library.ui.tooltip')
+local qs_toggle = require('library.ui.quick-settings-toggle')
 
 local widget = wibox.widget {
-		id = 'icon',
+    id = 'icon',
 		widget = wibox.widget.imagebox,
 		resize = true
 }
 
 local widget_button = qs_toggle(widget)
-tooltip(widget_button, 'Airplane Mode')
+tooltip(widget_button, 'Blur')
 
 function widget:update_toggle(module_is_on)
   if module_is_on then
-    self.image = icons.symbolic.network.airplane_mode_on
+    self.image = icons.symbolic.blur_on
     widget_button.bg = beautiful.system_black_light
   else
-    self.image = icons.symbolic.network.airplane_mode_off
+    self.image = icons.symbolic.blur_off
     widget_button.bg = beautiful.transparent
   end
   widget.on = module_is_on
@@ -35,13 +35,13 @@ end
 function widget:turn_on()
   self.on = true
   widget:update_toggle(true)
-  awesome.emit_signal('module::airplane:enable')
+  awesome.emit_signal('module::blur:enable')
 end
 
 function widget:turn_off()
   self.on = false
   widget:update_toggle(false)
-  awesome.emit_signal('module::airplane:disable')
+  awesome.emit_signal('module::blur:disable')
 end
 
 function widget:toggle()
@@ -54,6 +54,14 @@ end
 
 widget:update_toggle(widget.on)
 
+local popup = awful.popup {
+  widget = require('library.sliders.blur'),
+  ontop = true,
+  -- screen = 'primary',
+  maximum_width = dpi(300),
+  visible = false,
+} 
+
 widget_button:buttons(
   gears.table.join(
     awful.button(
@@ -63,12 +71,20 @@ widget_button:buttons(
       function()
         widget:toggle()
       end
+    ),
+    awful.button(
+      {},
+      3,
+      nil,
+      function()
+        awesome.emit_signal('widget::blur:slider:toggle')
+      end
     )
   )
 )
 
 awesome.connect_signal(
-	'module::airplane:status:reply', 
+	'module::blur:status:reply', 
   function(state) 
     widget:update_toggle(state)
   end
@@ -77,7 +93,7 @@ awesome.connect_signal(
 awesome.connect_signal(
 	'modules:update', 
   function() 
-    awesome.emit_signal('module::airplane:status:request')
+    awesome.emit_signal('module::blur:status:request')
   end
 )
 

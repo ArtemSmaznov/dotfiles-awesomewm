@@ -3,7 +3,7 @@ local beautiful = require('beautiful')
 local wibox = require('wibox')
 
 local dpi = beautiful.xresources.apply_dpi
-local clickable_container = require('widgets.system-elements.clickable-container.with-background')
+local clickable_container = require('library.ui.clickable-container.with-background')
 
 local menu_items = {}
 

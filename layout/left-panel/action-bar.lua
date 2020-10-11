@@ -7,7 +7,7 @@ local dpi = beautiful.xresources.apply_dpi
 local icons = require('theme.icons')
 
 local tag_list = require('widgets.panel-widgets.tag-list')
-local clickable_container = require('widgets.system-elements.clickable-container.with-background')
+local clickable_container = require('library.ui.clickable-container.with-background')
 
 return function(s, panel, action_bar_width)
 
@@ -64,11 +64,11 @@ return function(s, panel, action_bar_width)
 		forced_width = action_bar_width,
 		{
 			require('widgets.panel-widgets.start')(),
-			require('widgets.system-elements.separator')('h'),
+			require('library.ui.separator')('h'),
 			tag_list(s),
-			require('widgets.system-elements.separator')('h'),
+			require('library.ui.separator')('h'),
 			require("widgets.panel-widgets.xdg-folders"),
-			require('widgets.system-elements.separator')('h'),
+			require('library.ui.separator')('h'),
 			layout = wibox.layout.fixed.vertical,
 		},
 		nil,

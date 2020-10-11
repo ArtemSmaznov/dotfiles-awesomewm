@@ -8,7 +8,7 @@ local dpi = beautiful.xresources.apply_dpi
 
 local icons = require('theme.icons')
 local apps = require('configuration.apps')
-local clickable_container = require('widgets.system-elements.clickable-container.with-background')
+local clickable_container = require('library.ui.clickable-container.with-background')
 
 local filesystem = gears.filesystem
 local config_dir = filesystem.get_configuration_dir()

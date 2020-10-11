@@ -5,7 +5,7 @@ local beautiful = require('beautiful')
 
 local dpi = beautiful.xresources.apply_dpi
 
-local clickable_container = require('widgets.system-elements.clickable-container.with-background')
+local clickable_container = require('library.ui.clickable-container.with-background')
 
 local config_dir = gears.filesystem.get_configuration_dir()
 local widget_icon_dir = config_dir .. 'widgets/panel-widgets/screen-recorder/icons/'

@@ -33,7 +33,7 @@ return wibox.widget {
 		
 	},
 	{
-		require('widgets.meters.harddrive-root'),
+		require('library.meters.hdd-root'),
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)
 			gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius) 
@@ -42,7 +42,7 @@ return wibox.widget {
 		widget = wibox.container.background
 	},
 	{
-		require('widgets.meters.harddrive-home'),
+		require('library.meters.hdd-home'),
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)
 			gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius) 
@@ -51,7 +51,7 @@ return wibox.widget {
 		widget = wibox.container.background
 	},
 	{
-		require('widgets.meters.harddrive-windows'),
+		require('library.meters.hdd-windows'),
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)
 			gears.shape.partially_rounded_rect(cr, width, height, false, false, true, true, beautiful.groups_radius) 

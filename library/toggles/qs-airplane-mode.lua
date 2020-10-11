@@ -1,4 +1,4 @@
-require('modules.compositor')
+-- require('modules.airplane')
 
 local awful = require('awful')
 local gears = require('gears')
@@ -9,23 +9,24 @@ local beautiful = require('beautiful')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local icons = require('theme.icons')
-local tooltip = require('widgets.system-elements.tooltip')
-local qs_toggle = require('widgets.system-elements.quick-settings-toggle')
+local tooltip = require('library.ui.tooltip')
+local qs_toggle = require('library.ui.quick-settings-toggle')
 
 local widget = wibox.widget {
-    id = 'icon',
-    image = icons.other.effects,
+		id = 'icon',
 		widget = wibox.widget.imagebox,
 		resize = true
 }
 
 local widget_button = qs_toggle(widget)
-tooltip(widget_button, 'Compositor')
+tooltip(widget_button, 'Airplane Mode')
 
 function widget:update_toggle(module_is_on)
   if module_is_on then
+    self.image = icons.symbolic.network.airplane_mode_on
     widget_button.bg = beautiful.system_black_light
   else
+    self.image = icons.symbolic.network.airplane_mode_off
     widget_button.bg = beautiful.transparent
   end
   widget.on = module_is_on
@@ -34,13 +35,13 @@ end
 function widget:turn_on()
   self.on = true
   widget:update_toggle(true)
-  awesome.emit_signal('module::compositor:enable')
+  awesome.emit_signal('module::airplane:enable')
 end
 
 function widget:turn_off()
   self.on = false
   widget:update_toggle(false)
-  awesome.emit_signal('module::compositor:disable')
+  awesome.emit_signal('module::airplane:disable')
 end
 
 function widget:toggle()
@@ -67,7 +68,7 @@ widget_button:buttons(
 )
 
 awesome.connect_signal(
-	'module::compositor:status:reply', 
+	'module::airplane:status:reply', 
   function(state) 
     widget:update_toggle(state)
   end
@@ -76,7 +77,7 @@ awesome.connect_signal(
 awesome.connect_signal(
 	'modules:update', 
   function() 
-    awesome.emit_signal('module::compositor:status:request')
+    awesome.emit_signal('module::airplane:status:request')
   end
 )
 

@@ -1,21 +1,145 @@
 local awful = require('awful')
 local gears = require('gears')
 local wibox = require('wibox')
-local naughty = require('naughty')
 local beautiful = require('beautiful')
+local dpi = beautiful.xresources.apply_dpi
 
-local clickable_container = require('widgets.system-elements.clickable-container.with-background')
-local dpi = require('beautiful').xresources.apply_dpi
 local icons = require('theme.icons')
 
 local build = function(s)
+
   local panel_margins = dpi(0)
   local panel_height = s.geometry.height - 2 * panel_margins
-  
+
   local blur_slider_visible = false
   local panel_visible = false
 
-  s.blur_slider = require('widgets.sliders.blur-strength-slider')
+  -- ░█░█░█▀█░█░░░█░█░█▄█░█▀▀░░░█▀▀░█░░░▀█▀░█▀▄░█▀▀░█▀▄
+  -- ░▀▄▀░█░█░█░░░█░█░█░█░█▀▀░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄
+  -- ░░▀░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀░▀
+
+  s.volume_slider = wibox.widget {
+    {
+      {
+        id = 'icon',
+        require('library.dynamic-icons.volume'),
+        top = dpi(10),
+        bottom = dpi(10),
+        widget = wibox.container.margin
+      },
+      id = 'body',
+      require('library.sliders.volume'),
+      spacing = dpi(24),
+      layout = wibox.layout.fixed.horizontal
+    },
+    left = dpi(24),
+    right = dpi(24),
+    forced_height = dpi(48),
+    widget = wibox.container.margin
+  }
+
+  s.volume_slider.body.icon:buttons(
+    gears.table.join(
+      awful.button(
+        {},
+        1,
+        nil,
+        function()
+          awesome.emit_signal('widget::volume:mute', nil)
+        end
+      )
+    )
+  )
+
+  -- ░█▀▄░█▀▄░▀█▀░█▀▀░█░█░▀█▀░█▀█░█▀▀░█▀▀░█▀▀░░░█▀▀░█░░░▀█▀░█▀▄░█▀▀░█▀▄
+  -- ░█▀▄░█▀▄░░█░░█░█░█▀█░░█░░█░█░█▀▀░▀▀█░▀▀█░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄
+  -- ░▀▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀░▀
+
+  s.brightness_slider = wibox.widget {
+    {
+      {
+        {
+          image = icons.symbolic.brightness.high,
+          resize = true,
+          widget = wibox.widget.imagebox
+        },
+        top = dpi(10),
+        bottom = dpi(10),
+        widget = wibox.container.margin
+      },
+      require('library.sliders.brightness'),
+      spacing = dpi(24),
+      layout = wibox.layout.fixed.horizontal
+    },
+    left = dpi(24),
+    right = dpi(24),
+    forced_height = dpi(48),
+    widget = wibox.container.margin
+  }
+
+  -- ░█░█░█▀█░█░░░█░█░█▄█░█▀▀░░░█▀▀░█░░░▀█▀░█▀▄░█▀▀░█▀▄
+  -- ░▀▄▀░█░█░█░░░█░█░█░█░█▀▀░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄
+  -- ░░▀░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀░▀
+
+  s.volume_slider = wibox.widget {
+    {
+      {
+        id = 'icon',
+        require('library.dynamic-icons.volume'),
+        top = dpi(10),
+        bottom = dpi(10),
+        widget = wibox.container.margin
+      },
+      id = 'body',
+      require('library.sliders.volume'),
+      spacing = dpi(24),
+      layout = wibox.layout.fixed.horizontal
+    },
+    left = dpi(24),
+    right = dpi(24),
+    forced_height = dpi(48),
+    widget = wibox.container.margin
+  }
+
+  s.volume_slider.body.icon:buttons(
+    gears.table.join(
+      awful.button(
+        {},
+        1,
+        nil,
+        function()
+          awesome.emit_signal('widget::volume:mute', nil)
+        end
+      )
+    )
+  )
+
+  -- ░█▀▄░█░░░█░█░█▀▄░░░█▀▀░█░░░▀█▀░█▀▄░█▀▀░█▀▄
+  -- ░█▀▄░█░░░█░█░█▀▄░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄
+  -- ░▀▀░░▀▀▀░▀▀▀░▀░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀░▀
+
+  s.blur_slider = wibox.widget {
+    {
+      {
+        {
+          image = icons.symbolic.blur_on,
+          resize = true,
+          widget = wibox.widget.imagebox
+        },
+        top = dpi(10),
+        bottom = dpi(10),
+        widget = wibox.container.margin
+      },
+      require('library.sliders.blur'),
+      spacing = dpi(24),
+      layout = wibox.layout.fixed.horizontal
+    },
+    left = dpi(24),
+    right = dpi(24),
+    forced_height = dpi(48),
+    widget = wibox.container.margin
+  }
+
   s.blur_slider.visible = blur_slider_visible
 
   awesome.connect_signal(
@@ -31,11 +155,15 @@ local build = function(s)
     end
   )
 
+  -- ░█▀█░█▀█░█▀█░█▀▀░█░░░█▀▀
+  -- ░█▀▀░█▀█░█░█░█▀▀░█░░░▀▀█
+  -- ░▀░░░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
+
   local first_column = wibox.widget {
-    require('widgets.sliders.brightness-slider'),
+    s.brightness_slider,
     require('widgets.quick-settings'),
+    s.volume_slider,
     s.blur_slider,
-    require('widgets.sliders.volume-slider'),
     require('widgets.weather'),
     require('widgets.notif-center')(s),
     spacing = dpi(7),
@@ -53,18 +181,16 @@ local build = function(s)
     forced_width = dpi(300),
     layout = wibox.layout.fixed.vertical
   }
-  
-  local content = wibox.widget {
-    first_column,
-    second_column,
-    spacing = dpi(7),
-    layout = wibox.layout.fixed.horizontal
-  }
 
   local notif_tray = awful.popup {
     widget = {
       {
-        content,
+        {
+          first_column,
+          second_column,
+          spacing = dpi(7),
+          layout = wibox.layout.fixed.horizontal
+        },
         margins = dpi(16),
 		    widget = wibox.container.margin
       },
@@ -81,7 +207,7 @@ local build = function(s)
     placement = awful.placement.top
      + awful.placement.no_offscreen,
   }
- 
+
   s.backdrop_notif = wibox
 	{
 		ontop = true,
@@ -118,22 +244,13 @@ local build = function(s)
     end
     awesome.emit_signal('modules:update')
   end
-  
+
   s.backdrop_notif:connect_signal(
     'button::press',
     function()
       notif_tray:toggle()
     end
   )
-
-  awesome.connect_signal(
-    'debug',
-    function ()
-      
-    end
-  )
-
-
 
   return notif_tray
 end

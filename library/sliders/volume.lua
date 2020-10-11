@@ -2,13 +2,14 @@ local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
 
+local clickable_container = require('library.ui.clickable-container.no-background')
+
 local sounds = require('theme.sounds')
-local clickable_container = require('widgets.system-elements.clickable-container.no-background')
 local system_slider = require('theme.system.slider')
 
 local volume_slider = wibox.widget {
 	{
-		id 					= 'slider',
+		id = 'slider',
 		widget = system_slider
 	},
 	widget = clickable_container
@@ -44,7 +45,7 @@ local update_slider = function()
 	)
 end
 
--- Volume controll functions
+-- Volume Control functions
 
 local mute_volume = function (state)
 	if state == nil then
@@ -78,7 +79,7 @@ local set_volume = function (volume)
 	mute_volume(false)
 end
 
--- Controll the slider with direct clicking
+-- Control the slider with direct clicking
 volume_slider.slider:connect_signal(
 	'property::value',
 	function()
@@ -87,7 +88,7 @@ volume_slider.slider:connect_signal(
 	end
 )
 
--- Controll the slider with the scroll wheel
+-- Control the slider with the scroll wheel
 volume_slider.slider:buttons(
 	gears.table.join(
 		awful.button(

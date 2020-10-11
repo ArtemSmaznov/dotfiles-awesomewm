@@ -74,7 +74,7 @@ client.connect_signal("request::titlebars", function(c)
         { -- Top Part of the Bar
           { -- Main Client Buttons
             awful.titlebar.widget.iconwidget(c),
-            require('widgets.system-elements.separator')('h'),
+            require('library.ui.separator')('h'),
             awful.titlebar.widget.closebutton(c),
             awful.titlebar.widget.maximizedbutton(c),
             awful.titlebar.widget.minimizebutton (c),
@@ -104,7 +104,7 @@ client.connect_signal("request::titlebars", function(c)
         { -- Left Part of the Bar
           {
             awful.titlebar.widget.iconwidget(c),
-            require('widgets.system-elements.separator')('v'),
+            require('library.ui.separator')('v'),
             awful.titlebar.widget.floatingbutton (c),
             spacing = dpi(7),
             layout  = wibox.layout.fixed.horizontal

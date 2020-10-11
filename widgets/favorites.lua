@@ -7,9 +7,9 @@ local menubar = require("menubar")
 local dpi = beautiful.xresources.apply_dpi
 
 local favorites = require('configuration.apps').favorites
-local clickable_container = require('widgets.system-elements.clickable-container.with-background')
-local box_with_header = require('widgets.system-elements.box-with-header')
-local tooltip = require('widgets.system-elements.tooltip')
+local clickable_container = require('library.ui.clickable-container.with-background')
+local box_with_header = require('library.ui.box.with-header')
+local tooltip = require('library.ui.tooltip')
 
 local build = wibox.layout.fixed.vertical()
 build.spacing = dpi(7)

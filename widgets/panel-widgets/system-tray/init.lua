@@ -12,10 +12,10 @@ return function(s, action_bar_size)
 
   if vertical_orientation then
     rotation = 'east'
-    s.separator = require('widgets.system-elements.separator')('h')
+    s.separator = require('library.ui.separator')('h')
   else
     rotation = 'north'
-    s.separator = require('widgets.system-elements.separator')('v')
+    s.separator = require('library.ui.separator')('v')
   end
 
   s.systray = wibox.widget {

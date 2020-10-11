@@ -4,7 +4,7 @@ local dpi = require('beautiful').xresources.apply_dpi
 local capi = {button = _G.button}
 local gears = require('gears')
 
-local clickable_container = require('widgets.system-elements.clickable-container.with-background')
+local clickable_container = require('library.ui.clickable-container.with-background')
 local icons = require('theme.icons')
 
 --- sub string for utf8 format
