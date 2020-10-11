@@ -4,6 +4,8 @@ local wibox = require('wibox')
 local beautiful = require('beautiful')
 local dpi = require('beautiful').xresources.apply_dpi
 
+local icons = require('theme.icons')
+
 local build = function(s)
 
   local panel_margins = dpi(0)
@@ -16,7 +18,27 @@ local build = function(s)
   -- ░█▀▄░█▀▄░░█░░█░█░█▀█░░█░░█░█░█▀▀░▀▀█░▀▀█░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄
   -- ░▀▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀░▀
 
-  s.brightness_slider = require('library.sliders.brightness')
+  s.brightness_slider = wibox.widget {
+    {
+      {
+        {
+          image = icons.symbolic.brightness.high,
+          resize = true,
+          widget = wibox.widget.imagebox
+        },
+        top = dpi(10),
+        bottom = dpi(10),
+        widget = wibox.container.margin
+      },
+      require('library.sliders.brightness'),
+      spacing = dpi(24),
+      layout = wibox.layout.fixed.horizontal
+    },
+    left = dpi(24),
+    right = dpi(24),
+    forced_height = dpi(48),
+    widget = wibox.container.margin
+  }
 
   -- ░█░█░█▀█░█░░░█░█░█▄█░█▀▀░░░█▀▀░█░░░▀█▀░█▀▄░█▀▀░█▀▄
   -- ░▀▄▀░█░█░█░░░█░█░█░█░█▀▀░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄

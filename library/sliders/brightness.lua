@@ -1,33 +1,25 @@
-local wibox = require('wibox')
-local gears = require('gears')
-local awful = require('awful')
-local beautiful = require('beautiful')
+local awful = require("awful")
+local gears = require("gears")
+local wibox = require("wibox")
 
 local spawn = awful.spawn
 
-local dpi = beautiful.xresources.apply_dpi
-
+local clickable_container = require('library.ui.clickable-container.no-background')
 local system_slider = require('theme.system.slider')
-local icons = require('theme.icons')
 
-local slider = wibox.widget {
-	nil,
+local brightness_slider = wibox.widget {
 	{
-		id 					= 'brightness_slider',
+		id = 'slider',
 		widget = system_slider
 	},
-	nil,
-	expand = 'none',
-	layout = wibox.layout.align.vertical
+	widget = clickable_container
 }
 
-local brightness_slider = slider.brightness_slider
-
-brightness_slider:connect_signal(
+brightness_slider.slider:connect_signal(
 	'property::value',
 	function()
 
-		local brightness_level = brightness_slider:get_value()
+		local brightness_level = brightness_slider.slider:get_value()
 
 		spawn('light -S ' ..
 			math.max(brightness_level, 5),
@@ -42,18 +34,18 @@ brightness_slider:connect_signal(
 	end
 )
 
-brightness_slider:buttons(
+brightness_slider.slider:buttons(
 	gears.table.join(
 		awful.button(
 			{},
 			4,
 			nil,
 			function()
-				if brightness_slider:get_value() > 100 then
-					brightness_slider:set_value(100)
+				if brightness_slider.slider:get_value() > 100 then
+					brightness_slider.slider:set_value(100)
 					return
 				end
-				brightness_slider:set_value(brightness_slider:get_value() + 5)
+				brightness_slider.slider:set_value(brightness_slider.slider:get_value() + 5)
 			end
 		),
 		awful.button(
@@ -61,11 +53,11 @@ brightness_slider:buttons(
 			5,
 			nil,
 			function()
-				if brightness_slider:get_value() < 0 then
-					brightness_slider:set_value(0)
+				if brightness_slider.slider:get_value() < 0 then
+					brightness_slider.slider:set_value(0)
 					return
 				end
-				brightness_slider:set_value(brightness_slider:get_value() - 5)
+				brightness_slider.slider:set_value(brightness_slider.slider:get_value() - 5)
 			end
 		)
 	)
@@ -79,7 +71,7 @@ local update_slider = function()
 
 			local brightness = string.match(stdout, '(%d+)')
 
-			brightness_slider:set_value(tonumber(brightness))
+			brightness_slider.slider:set_value(tonumber(brightness))
 		end
 	)
 end
@@ -99,32 +91,8 @@ awesome.connect_signal(
 awesome.connect_signal(
 	'widget::brightness:update',
 	function(value)
-		 brightness_slider:set_value(tonumber(value))
+		 brightness_slider.slider:set_value(tonumber(value))
 	end
 )
 
-
-local brightness_setting = wibox.widget {
-	{
-		{
-			{
-				image = icons.symbolic.brightness.high,
-				resize = true,
-				widget = wibox.widget.imagebox
-			},
-			top = dpi(10),
-			bottom = dpi(10),
-			widget = wibox.container.margin
-		},
-		slider,
-		spacing = dpi(24),
-		layout = wibox.layout.fixed.horizontal
-
-	},
-	left = dpi(24),
-	right = dpi(24),
-	forced_height = dpi(48),
-	widget = wibox.container.margin
-}
-
-return brightness_setting
+return brightness_slider
