@@ -1,20 +1,63 @@
 local awful = require('awful')
 local gears = require('gears')
 local wibox = require('wibox')
-local naughty = require('naughty')
 local beautiful = require('beautiful')
-
-local clickable_container = require('library.ui.clickable-container.with-background')
 local dpi = require('beautiful').xresources.apply_dpi
-local icons = require('theme.icons')
-local volume_slider = require('library.sliders.volume')
 
 local build = function(s)
+
   local panel_margins = dpi(0)
   local panel_height = s.geometry.height - 2 * panel_margins
 
   local blur_slider_visible = false
   local panel_visible = false
+
+  -- ░█▀▄░█▀▄░▀█▀░█▀▀░█░█░▀█▀░█▀█░█▀▀░█▀▀░█▀▀░░░█▀▀░█░░░▀█▀░█▀▄░█▀▀░█▀▄
+  -- ░█▀▄░█▀▄░░█░░█░█░█▀█░░█░░█░█░█▀▀░▀▀█░▀▀█░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄
+  -- ░▀▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀░▀
+
+  s.brightness_slider = require('library.sliders.brightness')
+
+  -- ░█░█░█▀█░█░░░█░█░█▄█░█▀▀░░░█▀▀░█░░░▀█▀░█▀▄░█▀▀░█▀▄
+  -- ░▀▄▀░█░█░█░░░█░█░█░█░█▀▀░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄
+  -- ░░▀░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀░▀
+
+  s.volume_slider = wibox.widget {
+    {
+      {
+        id = 'icon',
+        require('library.dynamic-icons.volume'),
+        top = dpi(10),
+        bottom = dpi(10),
+        widget = wibox.container.margin
+      },
+      id = 'body',
+      require('library.sliders.volume'),
+      spacing = dpi(24),
+      layout = wibox.layout.fixed.horizontal
+    },
+    left = dpi(24),
+    right = dpi(24),
+    forced_height = dpi(48),
+    widget = wibox.container.margin
+  }
+
+  s.volume_slider.body.icon:buttons(
+    gears.table.join(
+      awful.button(
+        {},
+        1,
+        nil,
+        function()
+          awesome.emit_signal('widget::volume:mute', nil)
+        end
+      )
+    )
+  )
+
+  -- ░█▀▄░█░░░█░█░█▀▄░░░█▀▀░█░░░▀█▀░█▀▄░█▀▀░█▀▄
+  -- ░█▀▄░█░░░█░█░█▀▄░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄
+  -- ░▀▀░░▀▀▀░▀▀▀░▀░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀░▀
 
   s.blur_slider = require('library.sliders.blur')
   s.blur_slider.visible = blur_slider_visible
@@ -32,42 +75,12 @@ local build = function(s)
     end
   )
 
-  local volume_icon = wibox.widget {
-    require('library.dynamic-icons.volume'),
-    top = dpi(10),
-    bottom = dpi(10),
-    widget = wibox.container.margin
-  }
-
-  volume_icon:buttons(
-    gears.table.join(
-      awful.button(
-        {},
-        1,
-        nil,
-        function()
-          awesome.emit_signal('widget::volume:mute', nil)
-        end
-      )
-    )
-  )
-
-  s.volume_slider = wibox.widget {
-    {
-      volume_icon,
-      volume_slider,
-      spacing = dpi(24),
-      layout = wibox.layout.fixed.horizontal
-
-    },
-    left = dpi(24),
-    right = dpi(24),
-    forced_height = dpi(48),
-    widget = wibox.container.margin
-  }
+  -- ░█▀█░█▀█░█▀█░█▀▀░█░░░█▀▀
+  -- ░█▀▀░█▀█░█░█░█▀▀░█░░░▀▀█
+  -- ░▀░░░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
 
   local first_column = wibox.widget {
-    require('library.sliders.brightness'),
+    s.brightness_slider,
     require('widgets.quick-settings'),
     s.blur_slider,
     s.volume_slider,
@@ -89,17 +102,15 @@ local build = function(s)
     layout = wibox.layout.fixed.vertical
   }
 
-  local content = wibox.widget {
-    first_column,
-    second_column,
-    spacing = dpi(7),
-    layout = wibox.layout.fixed.horizontal
-  }
-
   local notif_tray = awful.popup {
     widget = {
       {
-        content,
+        {
+          first_column,
+          second_column,
+          spacing = dpi(7),
+          layout = wibox.layout.fixed.horizontal
+        },
         margins = dpi(16),
 		    widget = wibox.container.margin
       },
@@ -160,15 +171,6 @@ local build = function(s)
       notif_tray:toggle()
     end
   )
-
-  awesome.connect_signal(
-    'debug',
-    function ()
-
-    end
-  )
-
-
 
   return notif_tray
 end
