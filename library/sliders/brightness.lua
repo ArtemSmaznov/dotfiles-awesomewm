@@ -28,8 +28,8 @@ brightness_slider:connect_signal(
 	function()
 
 		local brightness_level = brightness_slider:get_value()
-		
-		spawn('light -S ' .. 
+
+		spawn('light -S ' ..
 			math.max(brightness_level, 5),
 			false
 		)
@@ -74,11 +74,11 @@ brightness_slider:buttons(
 
 local update_slider = function()
 	awful.spawn.easy_async_with_shell(
-		"light -G", 
+		"light -G",
 		function(stdout)
 
 			local brightness = string.match(stdout, '(%d+)')
-			
+
 			brightness_slider:set_value(tonumber(brightness))
 		end
 	)

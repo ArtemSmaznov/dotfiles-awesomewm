@@ -55,7 +55,7 @@ end
 widget:update_toggle(widget.on)
 
 local popup = awful.popup {
-  widget = require('library.sliders.blur-strength-slider'),
+  widget = require('library.sliders.blur'),
   ontop = true,
   -- screen = 'primary',
   maximum_width = dpi(300),

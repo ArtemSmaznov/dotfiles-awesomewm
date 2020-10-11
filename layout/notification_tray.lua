@@ -7,15 +7,16 @@ local beautiful = require('beautiful')
 local clickable_container = require('library.ui.clickable-container.with-background')
 local dpi = require('beautiful').xresources.apply_dpi
 local icons = require('theme.icons')
+local volume_slider = require('library.sliders.volume')
 
 local build = function(s)
   local panel_margins = dpi(0)
   local panel_height = s.geometry.height - 2 * panel_margins
-  
+
   local blur_slider_visible = false
   local panel_visible = false
 
-  s.blur_slider = require('library.sliders.blur-strength-slider')
+  s.blur_slider = require('library.sliders.blur')
   s.blur_slider.visible = blur_slider_visible
 
   awesome.connect_signal(
@@ -31,11 +32,45 @@ local build = function(s)
     end
   )
 
+  local volume_icon = wibox.widget {
+    require('library.dynamic-icons.volume'),
+    top = dpi(10),
+    bottom = dpi(10),
+    widget = wibox.container.margin
+  }
+
+  volume_icon:buttons(
+    gears.table.join(
+      awful.button(
+        {},
+        1,
+        nil,
+        function()
+          awesome.emit_signal('widget::volume:mute', nil)
+        end
+      )
+    )
+  )
+
+  s.volume_slider = wibox.widget {
+    {
+      volume_icon,
+      volume_slider,
+      spacing = dpi(24),
+      layout = wibox.layout.fixed.horizontal
+
+    },
+    left = dpi(24),
+    right = dpi(24),
+    forced_height = dpi(48),
+    widget = wibox.container.margin
+  }
+
   local first_column = wibox.widget {
-    require('library.sliders.brightness-slider'),
+    require('library.sliders.brightness'),
     require('widgets.quick-settings'),
     s.blur_slider,
-    require('library.sliders.volume-slider'),
+    s.volume_slider,
     require('widgets.weather'),
     require('widgets.notif-center')(s),
     spacing = dpi(7),
@@ -53,7 +88,7 @@ local build = function(s)
     forced_width = dpi(300),
     layout = wibox.layout.fixed.vertical
   }
-  
+
   local content = wibox.widget {
     first_column,
     second_column,
@@ -81,7 +116,7 @@ local build = function(s)
     placement = awful.placement.top
      + awful.placement.no_offscreen,
   }
- 
+
   s.backdrop_notif = wibox
 	{
 		ontop = true,
@@ -118,7 +153,7 @@ local build = function(s)
     end
     awesome.emit_signal('modules:update')
   end
-  
+
   s.backdrop_notif:connect_signal(
     'button::press',
     function()
@@ -129,7 +164,7 @@ local build = function(s)
   awesome.connect_signal(
     'debug',
     function ()
-      
+
     end
   )
 
