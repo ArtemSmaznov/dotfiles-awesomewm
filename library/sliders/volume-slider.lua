@@ -5,7 +5,7 @@ local gears = require('gears')
 
 local dpi = beautiful.xresources.apply_dpi
 
-local icon = require('widgets.system-elements.volume-icon')
+local icon = require('library.dynamic-icons.volume')
 local volume_slider = require('widgets.system-elements.volume-slider')
 
 local volume_icon = wibox.widget {

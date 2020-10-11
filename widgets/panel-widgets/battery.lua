@@ -10,7 +10,7 @@ local gears = require('gears')
 
 local apps = require('configuration.apps')
 
-local clickable_container = require('widgets.system-elements.clickable-container.with-background')
+local clickable_container = require('library.ui.clickable-container.with-background')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local icons = require('theme.icons')

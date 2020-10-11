@@ -4,7 +4,7 @@ local wibox = require('wibox')
 local naughty = require('naughty')
 local beautiful = require('beautiful')
 
-local clickable_container = require('widgets.system-elements.clickable-container.with-background')
+local clickable_container = require('library.ui.clickable-container.with-background')
 local dpi = require('beautiful').xresources.apply_dpi
 local icons = require('theme.icons')
 
@@ -15,7 +15,7 @@ local build = function(s)
   local blur_slider_visible = false
   local panel_visible = false
 
-  s.blur_slider = require('widgets.sliders.blur-strength-slider')
+  s.blur_slider = require('library.sliders.blur-strength-slider')
   s.blur_slider.visible = blur_slider_visible
 
   awesome.connect_signal(
@@ -32,10 +32,10 @@ local build = function(s)
   )
 
   local first_column = wibox.widget {
-    require('widgets.sliders.brightness-slider'),
+    require('library.sliders.brightness-slider'),
     require('widgets.quick-settings'),
     s.blur_slider,
-    require('widgets.sliders.volume-slider'),
+    require('library.sliders.volume-slider'),
     require('widgets.weather'),
     require('widgets.notif-center')(s),
     spacing = dpi(7),

@@ -33,7 +33,7 @@ return wibox.widget {
 		
 	},
 	{
-		require('widgets.meters.cpu-meter'),
+		require('library.meters.cpu-meter'),
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)
 			gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius) 
@@ -42,7 +42,7 @@ return wibox.widget {
 		widget = wibox.container.background
 	},
 	{
-		require('widgets.meters.ram-meter'),
+		require('library.meters.ram-meter'),
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)
 			gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius) 
@@ -51,7 +51,7 @@ return wibox.widget {
 		widget = wibox.container.background
 	},
 	{
-		require('widgets.meters.temperature-meter'),
+		require('library.meters.temperature-meter'),
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)
 			gears.shape.partially_rounded_rect(cr, width, height, false, false, true, true, beautiful.groups_radius) 

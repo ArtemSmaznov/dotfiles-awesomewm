@@ -2,15 +2,18 @@ local awful = require('awful')
 local wibox = require('wibox')
 local gears = require('gears')
 
+local filesystem = require('gears.filesystem')
+
 local dpi = require('beautiful').xresources.apply_dpi
-local clickable_container = require('widgets.system-elements.clickable-container.no-background')
+local clickable_container = require('library.ui.clickable-container.no-background')
 
 local icons = require('theme.icons')
+local config_dir = filesystem.get_configuration_dir()
 
 local toggle_state = nil
 
 local action_name = wibox.widget {
-	text = 'RedShift',
+	text = 'Compositor',
 	font = 'SF Pro Text Regular 11',
 	align = 'left',
 	widget = wibox.widget.textbox
@@ -36,7 +39,6 @@ local widget_button = wibox.widget {
 	widget = clickable_container
 }
 
-
 local update_imagebox = function()
 	local button_icon = button_widget.icon
 	if toggle_state then
@@ -49,17 +51,15 @@ end
 local getState = function ()
 	awful.spawn.easy_async_with_shell(
 		[[
-			if [ -z $(pgrep redshift) ];
-			then
-				echo 'OFF'
-			else
-				redshift -p 2> /dev/null | grep Period | awk '{print $2}'
-			fi
+		if [ -z $(pgrep picom) ];
+		then
+			echo 'OFF'
+		else
+			echo 'ON'
+		fi
 		]],
 		function(stdout)
-			if stdout:match('Night') then
-				toggle_state = true
-			elseif stdout:match('Transition') then
+			if stdout:match('ON') then
 				toggle_state = true
 			else
 				toggle_state = false
@@ -71,20 +71,10 @@ end
 
 local toggle_action = function()
 	if toggle_state then
-		awful.spawn.easy_async_with_shell(
-			'killall redshift',
-			function(stdout)
-				return
-			end
-		)
+    awesome.emit_signal('module::compositor:disable')
 		toggle_state = false
 	else
-		awful.spawn.easy_async_with_shell(
-			'redshift-gtk',
-			function(stdout)
-				return
-			end
-		)
+    awesome.emit_signal('module::compositor:enable')
 		toggle_state = true
 	end
 
@@ -121,7 +111,7 @@ local action_widget =  wibox.widget {
 }
 
 awesome.connect_signal(
-	'widget::blue_light:toggle',
+	'widget::compositor:toggle',
 	function() 
 		toggle_action()
 	end

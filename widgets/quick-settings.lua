@@ -7,12 +7,12 @@ local dpi = beautiful.xresources.apply_dpi
 
 
 local items = wibox.widget {
-  require('widgets.togglers.qs-wifi'),
-  require('widgets.togglers.qs-bluetooth'),
-  require('widgets.togglers.qs-redshift'),
-  require('widgets.togglers.qs-compositor'),
-  require('widgets.togglers.qs-blur'),
-  require('widgets.togglers.qs-airplane-mode'),
+  require('library.toggles.qs-wifi'),
+  require('library.toggles.qs-bluetooth'),
+  require('library.toggles.qs-redshift'),
+  require('library.toggles.qs-compositor'),
+  require('library.toggles.qs-blur'),
+  require('library.toggles.qs-airplane-mode'),
   -- require('widgets.panel-widgets.screen-recorder')(),
   spacing = dpi(7),
   forced_num_cols = 6,

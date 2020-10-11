@@ -4,7 +4,7 @@ local wibox = require("wibox")
 
 local dpi = require('beautiful').xresources.apply_dpi
 
-local volume_icon = require('widgets.system-elements.volume-icon')
+local volume_icon = require('library.dynamic-icons.volume')
 local volume_slider = require('widgets.system-elements.volume-slider')
 
 screen.connect_signal("request::desktop_decoration", function(s)

@@ -6,7 +6,7 @@ local gears = require('gears')
 local icons = require('theme.icons')
 local dpi = beautiful.xresources.apply_dpi
 
-local clickable_container = require('widgets.system-elements.clickable-container.with-background')
+local clickable_container = require('library.ui.clickable-container.with-background')
 local task_list = require('widgets.panel-widgets.task-list')
 
 local panelSize = dpi(40)
@@ -142,7 +142,7 @@ local TopPanel = function(s, offset)
 
 	s.volume_widget = wibox.widget {
 		{
-      require('widgets.system-elements.volume-icon'),
+      require('library.dynamic-icons.volume'),
       margins = dpi(7),
       widget = wibox.container.margin
 		},
@@ -162,7 +162,7 @@ local TopPanel = function(s, offset)
 		)
 	)
 
-  s.notif_launcher = require('widgets.system-elements.launcher-line')(120)
+  s.notif_launcher = require('library.ui.launcher-line')(120)
 
   s.notif_launcher:buttons(
     gears.table.join(

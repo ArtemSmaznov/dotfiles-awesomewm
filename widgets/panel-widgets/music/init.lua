@@ -15,7 +15,7 @@ local dpi = require('beautiful').xresources.apply_dpi
 local config_dir = gears.filesystem.get_configuration_dir()
 local widget_icon_dir = config_dir .. 'widgets/panel-widgets/music/icons/'
 
-local clickable_container = require('widgets.system-elements.clickable-container.with-background')
+local clickable_container = require('library.ui.clickable-container.with-background')
 local icons = require('theme.icons')
 
 local music_box = require('widgets.panel-widgets.music.music-box')
