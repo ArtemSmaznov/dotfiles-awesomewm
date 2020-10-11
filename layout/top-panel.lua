@@ -181,6 +181,7 @@ local TopPanel = function(s, offset)
 		{
 			layout = wibox.layout.fixed.horizontal,
 			spacing = dpi(2),
+			require('library.dynamic-icons.bluetooth'),
 			-- require('widgets.panel-widgets.system-tray')(s, panelSize),
 			require('widgets.panel-widgets.keyboard-layout'),
 			-- require('widgets.panel-widgets.music')(),

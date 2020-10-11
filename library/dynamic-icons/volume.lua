@@ -4,10 +4,10 @@ local clickable_container = require('library.ui.clickable-container.no-backgroun
 
 local icons = require('theme.icons')
 
-local mute_state = false
 local current_icon = icons.symbolic.volume.medium
+local mute_state = false
 
-local volume_icon = wibox.widget{
+local dynamic_icon = wibox.widget{
 	{
 		id = "icon",
 		image = current_icon,
@@ -29,8 +29,8 @@ awesome.connect_signal(
 		elseif value <= 0 then
 			current_icon = icons.symbolic.volume.muted
 		end
-		volume_icon.icon.image = current_icon
-end
+		dynamic_icon.icon.image = current_icon
+	end
 )
 
 awesome.connect_signal(
@@ -38,20 +38,20 @@ awesome.connect_signal(
 	function(state)
 		if state == nil then
 			if mute_state then
-				volume_icon.icon.image = current_icon
+				dynamic_icon.icon.image = current_icon
 				mute_state = false
 				else
-					volume_icon.icon.image = icons.symbolic.volume.muted
+					dynamic_icon.icon.image = icons.symbolic.volume.muted
 				mute_state = true
 				end
 		elseif state == true then
-			volume_icon.icon.image = icons.symbolic.volume.muted
+			dynamic_icon.icon.image = icons.symbolic.volume.muted
 			mute_state = true
 		elseif state == false then
-			volume_icon.icon.image = current_icon
+			dynamic_icon.icon.image = current_icon
 			mute_state = false
 		end
 	end
 )
 
-return volume_icon
+return dynamic_icon
