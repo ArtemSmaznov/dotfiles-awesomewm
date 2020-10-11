@@ -42,9 +42,8 @@ local return_button = function()
         1,
         nil,
         function()
-          if mymainmenu then
-            mymainmenu:toggle()
-          end
+          local focused = awful.screen.focused()
+          focused.left_panel:toggle()
         end
       ),
       awful.button(
@@ -62,9 +61,6 @@ local return_button = function()
                     focused.right_panel:HideDashboard()
                 end
           awful.spawn(apps.default.rofiappmenu, false)
-          if mymainmenu then
-            mymainmenu:hide()
-          end
         end
       )
     )

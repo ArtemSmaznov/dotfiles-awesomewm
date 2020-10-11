@@ -244,7 +244,12 @@ screen.connect_signal(
 
 		awesome.connect_signal(
 			"module::exit_screen_show",
-			function()
+      function()
+        local focused = awful.screen.focused()
+        if focused.left_panel and focused.left_panel.opened then
+          focused.left_panel:toggle()
+        end
+
 				for s in screen do
 					s.exit_screen.visible = false
 				end

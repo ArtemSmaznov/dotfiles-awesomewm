@@ -11,20 +11,17 @@ local clickable_container = require('widgets.system-elements.clickable-container
 
 return function(s, panel, action_bar_width)
 
-	local menu_icon = wibox.widget {
-		{
-			id = 'menu_btn',
-			image = icons.other.star,
-			resize = true,
-			widget = wibox.widget.imagebox
-		},
-		margins = dpi(10),
-		widget = wibox.container.margin
-	}
-	
 	local home_button = wibox.widget {
 		{
-			menu_icon,
+			{
+        {
+          image = icons.other.shutdown,
+          resize = true,
+          widget = wibox.widget.imagebox
+        },
+        margins = dpi(10),
+        widget = wibox.container.margin
+      },
 			widget = clickable_container
 		},
 		bg = beautiful.background .. '66',
@@ -37,8 +34,8 @@ return function(s, panel, action_bar_width)
 				{},
 				1,
 				nil,
-				function()
-          panel:toggle()
+        function()
+					awesome.emit_signal("module::exit_screen_show")
         end
 			)
 		)
@@ -47,7 +44,6 @@ return function(s, panel, action_bar_width)
 	panel:connect_signal(
 		'opened',
 		function()
-			menu_icon.menu_btn:set_image(gears.surface(icons.ui.close))
 			awesome.emit_signal('widget::toggles:update')
 			awesome.emit_signal('widget::sliders:update')
 		end
@@ -56,7 +52,6 @@ return function(s, panel, action_bar_width)
 	panel:connect_signal(
 		'closed',
 		function()
-			menu_icon.menu_btn:set_image(gears.surface(icons.other.star))
 			awesome.emit_signal('widget::toggles:update')
 			awesome.emit_signal('widget::sliders:update')
 		end
