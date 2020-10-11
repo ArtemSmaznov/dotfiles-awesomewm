@@ -1,28 +1,18 @@
-local wibox = require('wibox')
-local gears = require('gears')
 local awful = require('awful')
-local beautiful = require('beautiful')
-
-local dpi = beautiful.xresources.apply_dpi
+local wibox = require('wibox')
 
 local start_up = true
 
+local clickable_container = require('library.ui.clickable-container.no-background')
 local system_slider = require('theme.system.slider')
-local icons = require('theme.icons')
 
-local slider = wibox.widget {
-	nil,
+local blur_slider = wibox.widget {
 	{
-		id 					= 'blur_strength_slider',
+		id = 'slider',
 		widget = system_slider
 	},
-	nil,
-	expand = 'none',
-	layout = wibox.layout.align.vertical
+	widget = clickable_container
 }
-
-local blur_slider = slider.blur_strength_slider
-
 
 local update_slider_value = function()
 
@@ -34,7 +24,7 @@ local update_slider_value = function()
 		function(stdout, stderr)
 			local strength = stdout:match('%d+')
 			blur_strength = tonumber(strength) / 20 * 100
-			blur_slider:set_value(tonumber(blur_strength))
+			blur_slider.slider:set_value(tonumber(blur_strength))
 			start_up = false
 		end
 	)
@@ -52,11 +42,11 @@ local adjust_blur = function(power)
 	)
 end
 
-blur_slider:connect_signal(
+blur_slider.slider:connect_signal(
 	'property::value',
 	function()
 		if not start_up then
-			strength = blur_slider:get_value() / 50 * 10
+			strength = blur_slider.slider:get_value() / 50 * 10
 			adjust_blur(strength)
 		end
 	end
@@ -65,68 +55,45 @@ blur_slider:connect_signal(
 -- Adjust slider value to change blur strength
 awesome.connect_signal(
 	'widget::blur:increase',
-	function() 
+	function()
 
 		-- On startup, the slider.value returns nil so...
-		if blur_slider:get_value() == nil then
+		if blur_slider.slider:get_value() == nil then
 			return
 		end
-	 
-		local blur_value = blur_slider:get_value() + 10
+
+		local blur_value = blur_slider.slider:get_value() + 10
 
 		-- No more than 100!
 		if blur_value > 100 then
-			blur_slider:set_value(100)
+			blur_slider.slider:set_value(100)
 			return
 		end
 
-		blur_slider:set_value(blur_value)
+		blur_slider.slider:set_value(blur_value)
 	end
 )
 
 -- Decrease blur
 awesome.connect_signal(
 	'widget::blur:decrease',
-	function() 
-	
+	function()
+
 		-- On startup, the slider.value returns nil so...
-		if blur_slider:get_value() == nil then
+		if blur_slider.slider:get_value() == nil then
 			return
 		end
 
-		local blur_value = blur_slider:get_value() - 10
+		local blur_value = blur_slider.slider:get_value() - 10
 
 		-- No negatives!
 		if blur_value < 0 then
-			blur_slider:set_value(0)
+			blur_slider.slider:set_value(0)
 			return
 		end
 
-		blur_slider:set_value(blur_value)
+		blur_slider.slider:set_value(blur_value)
 	end
 )
 
-local blur_slider_setting = wibox.widget {
-	{
-		{
-			{
-				image = icons.symbolic.blur_on,
-				resize = true,
-				widget = wibox.widget.imagebox
-			},
-			top = dpi(10),
-			bottom = dpi(10),
-			widget = wibox.container.margin
-		},
-		slider,
-		spacing = dpi(24),
-		layout = wibox.layout.fixed.horizontal
-
-	},
-	left = dpi(24),
-	right = dpi(24),
-	forced_height = dpi(48),
-	widget = wibox.container.margin
-}
-
-return blur_slider_setting
+return blur_slider

@@ -2,7 +2,7 @@ local awful = require('awful')
 local gears = require('gears')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
-local dpi = require('beautiful').xresources.apply_dpi
+local dpi = beautiful.xresources.apply_dpi
 
 local icons = require('theme.icons')
 
@@ -13,6 +13,43 @@ local build = function(s)
 
   local blur_slider_visible = false
   local panel_visible = false
+
+  -- ░█░█░█▀█░█░░░█░█░█▄█░█▀▀░░░█▀▀░█░░░▀█▀░█▀▄░█▀▀░█▀▄
+  -- ░▀▄▀░█░█░█░░░█░█░█░█░█▀▀░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄
+  -- ░░▀░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀░▀
+
+  s.volume_slider = wibox.widget {
+    {
+      {
+        id = 'icon',
+        require('library.dynamic-icons.volume'),
+        top = dpi(10),
+        bottom = dpi(10),
+        widget = wibox.container.margin
+      },
+      id = 'body',
+      require('library.sliders.volume'),
+      spacing = dpi(24),
+      layout = wibox.layout.fixed.horizontal
+    },
+    left = dpi(24),
+    right = dpi(24),
+    forced_height = dpi(48),
+    widget = wibox.container.margin
+  }
+
+  s.volume_slider.body.icon:buttons(
+    gears.table.join(
+      awful.button(
+        {},
+        1,
+        nil,
+        function()
+          awesome.emit_signal('widget::volume:mute', nil)
+        end
+      )
+    )
+  )
 
   -- ░█▀▄░█▀▄░▀█▀░█▀▀░█░█░▀█▀░█▀█░█▀▀░█▀▀░█▀▀░░░█▀▀░█░░░▀█▀░█▀▄░█▀▀░█▀▄
   -- ░█▀▄░█▀▄░░█░░█░█░█▀█░░█░░█░█░█▀▀░▀▀█░▀▀█░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄
@@ -81,7 +118,28 @@ local build = function(s)
   -- ░█▀▄░█░░░█░█░█▀▄░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄
   -- ░▀▀░░▀▀▀░▀▀▀░▀░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀░▀
 
-  s.blur_slider = require('library.sliders.blur')
+  s.blur_slider = wibox.widget {
+    {
+      {
+        {
+          image = icons.symbolic.blur_on,
+          resize = true,
+          widget = wibox.widget.imagebox
+        },
+        top = dpi(10),
+        bottom = dpi(10),
+        widget = wibox.container.margin
+      },
+      require('library.sliders.blur'),
+      spacing = dpi(24),
+      layout = wibox.layout.fixed.horizontal
+    },
+    left = dpi(24),
+    right = dpi(24),
+    forced_height = dpi(48),
+    widget = wibox.container.margin
+  }
+
   s.blur_slider.visible = blur_slider_visible
 
   awesome.connect_signal(
@@ -104,8 +162,8 @@ local build = function(s)
   local first_column = wibox.widget {
     s.brightness_slider,
     require('widgets.quick-settings'),
-    s.blur_slider,
     s.volume_slider,
+    s.blur_slider,
     require('widgets.weather'),
     require('widgets.notif-center')(s),
     spacing = dpi(7),
