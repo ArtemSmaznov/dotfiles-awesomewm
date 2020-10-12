@@ -4,7 +4,7 @@ local wibox = require("wibox")
 local icons = require('theme.icons')
 local user_preferences = require('configuration.preferences')
 
-local fallback_icon = icons.symbolic.bluetooth_off
+local fallback_icon = icons.symbolic.network.wired_error
 
 local dynamic_icon = wibox.widget{
 	image = fallback_icon,
@@ -13,15 +13,17 @@ local dynamic_icon = wibox.widget{
 }
 
 awful.widget.watch(
-  'rfkill list bluetooth',
+  'nmcli con show --active',
   user_preferences.system.icons_update_interval,
   function(_, stdout)
-    if stdout:match('Soft blocked: no') then
-      dynamic_icon.image = icons.symbolic.bluetooth_on
+    if stdout:match('ethernet') then
+      dynamic_icon.image = icons.symbolic.network.wired
+    elseif stdout:match('wifi') then
+      dynamic_icon.image = icons.symbolic.network.wifi_on
     else
-      dynamic_icon.image = icons.symbolic.bluetooth_off
+      dynamic_icon.image = icons.symbolic.network.wired_off
     end
-  end
+end
 )
 
 return dynamic_icon

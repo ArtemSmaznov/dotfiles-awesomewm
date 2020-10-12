@@ -3,8 +3,8 @@ local awful = require('awful')
 local toggle_state
 
 awesome.connect_signal(
-	'module::bluetooth:enable', 
-	function() 
+	'module::bluetooth:enable',
+	function()
 		awful.spawn.easy_async_with_shell(
 			'rfkill unblock bluetooth',
 			function(stdout)
@@ -15,8 +15,8 @@ awesome.connect_signal(
 )
 
 awesome.connect_signal(
-	'module::bluetooth:disable', 
-	function() 
+	'module::bluetooth:disable',
+	function()
 		awful.spawn.easy_async_with_shell(
 			'rfkill block bluetooth',
 			function(stdout)
@@ -27,8 +27,8 @@ awesome.connect_signal(
 )
 
 awesome.connect_signal(
-	'module::bluetooth:status:request', 
-	function() 
+	'module::bluetooth:status:request',
+	function()
 		awful.spawn.easy_async_with_shell(
 		'rfkill list bluetooth',
 		function(stdout)

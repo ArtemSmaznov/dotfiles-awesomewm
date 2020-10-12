@@ -539,21 +539,28 @@ awful.key(
   function()
     awful.spawn(apps.default.file_manager)
   end,
-  { description = 'open default file manager', group = 'launcher' }
+  { description = 'open file manager', group = 'launcher' }
 ),
 awful.key(
   { modkey }, 'b',
   function()
     awful.spawn(apps.default.web_browser)
   end,
-  { description = 'open default web browser', group = 'launcher' }
+  { description = 'open web browser', group = 'launcher' }
+),
+awful.key(
+  { modkey }, 't',
+  function()
+    awful.spawn(apps.default.tor_browser)
+  end,
+  { description = 'open tor browser', group = 'launcher' }
 ),
 awful.key(
   { modkey }, 'i',
   function()
     awful.spawn(apps.default.incognito_browser)
   end,
-  { description = 'open default web browser in incognito mode', group = 'launcher' }
+  { description = 'open web browser in incognito mode', group = 'launcher' }
 ),
 awful.key(
   { modkey }, 'c',

@@ -1,3 +1,7 @@
+-- Most icons throughout configuration are picked up from this file
+-- menubar.utils.lookup_icon looks for icons in the system that match a particular application or just a file name
+-- One of the places it look sfor icons is ~/.local/share/icons
+
 local gears = require('gears')
 local menubar = require("menubar")
 

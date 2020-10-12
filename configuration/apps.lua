@@ -7,6 +7,7 @@ local default = {
   terminal            = 'terminator',                               -- Terminal Emulator
   text_editor         = 'xed',                                      -- GUI Text Editor
   web_browser         = 'chromium',                                 -- Web browser
+  tor_browser         = 'torbrowser-launcher',                      -- Tor browser
   incognito_browser   = 'chromium --incognito',                     -- Web browser Incognito Mode
   file_manager        = 'dolphin',                                  -- GUI File manager
   video_player        = 'celluloid',                                -- Video Player
@@ -45,14 +46,16 @@ return {
   default = default,
 
   -- Apps for the Favorites Widget
+  -- you can download any icon to ~/.local/share/icons and it will be picked up by file name minus the extension
   favorites = {
     {
       category = 'Generic',
       apps = {
         {command = default.web_browser, icon = 'chrome'},
+        {command = default.tor_browser, icon = 'tor'},
         {command = 'google-calendar-dark', icon = 'google-agenda'},
         {command = 'google-keep', icon = 'keep'},
-        {command = 'youtubemusic-nativefier', icon = 'google-play-music-desktop-player'},
+        {command = 'youtubemusic-nativefier', icon = 'youtube-music'},
         {command = 'google-drive', icon = 'google-drive'},
         {command = 'GoogleDocs', icon = 'google-docs'},
       }

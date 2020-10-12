@@ -177,11 +177,32 @@ local TopPanel = function(s, offset)
     )
   )
 
+  s.bluetooth_status = wibox.widget {
+    require('library.dynamic-icons.bluetooth'),
+    margins = dpi(7),
+    widget = wibox.container.margin
+  }
+
+  s.network_status = wibox.widget {
+    require('library.dynamic-icons.network'),
+    margins = dpi(7),
+    widget = wibox.container.margin
+  }
+
+  s.status_icons = wibox.widget {
+    {
+      s.bluetooth_status,
+      s.network_status,
+      layout = wibox.layout.fixed.horizontal,
+    },
+    require('library.ui.separator')('v'),
+    spacing = dpi(2),
+    layout = wibox.layout.fixed.horizontal,
+  }
+
 	local tray_widgets = wibox.widget {
 		{
-			layout = wibox.layout.fixed.horizontal,
-			spacing = dpi(2),
-			require('library.dynamic-icons.bluetooth'),
+      s.status_icons,
 			-- require('widgets.panel-widgets.system-tray')(s, panelSize),
 			require('widgets.panel-widgets.keyboard-layout'),
 			-- require('widgets.panel-widgets.music')(),
@@ -189,7 +210,8 @@ local TopPanel = function(s, offset)
 			s.volume_widget,
 			require('widgets.panel-widgets.battery'),
 			require('widgets.panel-widgets.network')(),
-
+			spacing = dpi(2),
+			layout = wibox.layout.fixed.horizontal,
 		},
 		margins = dpi(0),
 		widget = wibox.container.margin
