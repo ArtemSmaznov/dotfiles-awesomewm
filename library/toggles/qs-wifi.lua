@@ -3,13 +3,10 @@ require('modules.wifi')
 local awful = require('awful')
 local gears = require('gears')
 local wibox = require('wibox')
-local naughty = require('naughty')
 local beautiful = require('beautiful')
 
-local dpi = require('beautiful').xresources.apply_dpi
-
-local icons = require('theme.icons')
-local tooltip = require('library.ui.tooltip')
+local icon      = require('library.dynamic-icons.wifi')
+local tooltip   = require('library.ui.tooltip')
 local qs_toggle = require('library.ui.quick-settings-toggle')
 
 local widget = wibox.widget {
@@ -18,15 +15,13 @@ local widget = wibox.widget {
 		resize = true
 }
 
-local widget_button = qs_toggle(widget)
+local widget_button = qs_toggle(icon)
 tooltip(widget_button, 'Wifi')
 
 function widget:update_toggle(module_is_on)
   if module_is_on then
-    self.image = icons.symbolic.network.wifi_5
     widget_button.bg = beautiful.system_black_light
   else
-    self.image = icons.symbolic.network.wifi_off
     widget_button.bg = beautiful.transparent
   end
   widget.on = module_is_on
@@ -68,15 +63,15 @@ widget_button:buttons(
 )
 
 awesome.connect_signal(
-	'module::wifi:status:reply', 
-  function(state) 
+	'module::wifi:status:reply',
+  function(state)
     widget:update_toggle(state)
   end
 )
 
 awesome.connect_signal(
-	'modules:update', 
-  function() 
+	'modules:update',
+  function()
     awesome.emit_signal('module::wifi:status:request')
   end
 )

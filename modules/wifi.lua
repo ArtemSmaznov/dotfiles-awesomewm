@@ -30,7 +30,7 @@ awesome.connect_signal(
   'module::wifi:enable',
   function()
     awful.spawn.easy_async_with_shell(
-      'rfkill unblock wlan',
+      'nmcli radio wifi on',
       function(stdout)
         return
       end
@@ -42,7 +42,7 @@ awesome.connect_signal(
   'module::wifi:disable',
   function()
     awful.spawn.easy_async_with_shell(
-      'rfkill block wlan',
+      'nmcli radio wifi off',
       function(stdout)
         return
       end
