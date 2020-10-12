@@ -31,7 +31,7 @@ local colorize_slider = function(volume)
 		volume_slider.slider.handle_color = slider_color_default
 	end
 
-	awesome.emit_signal('widget::volume_icon:update', volume)
+	awesome.emit_signal('icon::volume:update', volume)
 end
 
 local update_slider = function()

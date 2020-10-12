@@ -12,15 +12,11 @@ local dynamic_icon = wibox.widget{
 	widget = wibox.widget.imagebox
 }
 
-awful.widget.watch(
-  [[
-    bash -c "nmcli -t -f active,ssid,signal dev wifi | grep '^yes:' | awk -F':' '{print $3}'"
-  ]],
-  user_preferences.system.icons_update_interval,
-  function(_, stdout)
-    local signal = tonumber(stdout)
-
+awesome.connect_signal(
+  'icon::wifi:update',
+  function (signal)
     if signal ~= nil then
+
       if signal >= 80 then
         dynamic_icon.image = icons.symbolic.network.wifi_5
       elseif signal >= 60 and signal < 80 then
@@ -34,11 +30,11 @@ awful.widget.watch(
       else
         dynamic_icon.image = icons.symbolic.network.wifi_error
       end
+
     else
       dynamic_icon.image = icons.symbolic.network.wifi_off
     end
-
-end
+  end
 )
 
 return dynamic_icon

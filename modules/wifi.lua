@@ -1,5 +1,6 @@
 local awful = require('awful')
-local naughty = require('naughty')
+
+local user_preferences = require('configuration.preferences')
 
 local wlan_interface = 'wlp0s20u10'
 
@@ -25,6 +26,23 @@ awful.spawn.easy_async_with_shell(
 )
 
 local toggle_state
+
+awful.widget.watch(
+  [[
+    bash -c "nmcli -t -f active,ssid,signal dev wifi | grep '^yes:' | awk -F':' '{print $3}'"
+  ]],
+  user_preferences.system.icons_update_interval,
+  function(_, stdout)
+    local signal = tonumber(stdout)
+    awesome.emit_signal('icon::wifi:update', signal)
+
+    if signal ~= nil then
+      awesome.emit_signal('toggle::wifi:update', true)
+    else
+      awesome.emit_signal('toggle::wifi:update', false)
+    end
+  end
+)
 
 awesome.connect_signal(
   'module::wifi:enable',

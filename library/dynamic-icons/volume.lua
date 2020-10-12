@@ -18,7 +18,7 @@ local dynamic_icon = wibox.widget{
 }
 
 awesome.connect_signal(
-	'widget::volume_icon:update',
+	'icon::volume:update',
 	function(value)
 		if value >= 70 then
 			current_icon = icons.symbolic.volume.high
