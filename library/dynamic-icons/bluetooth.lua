@@ -12,11 +12,10 @@ local dynamic_icon = wibox.widget{
 	widget = wibox.widget.imagebox
 }
 
-awful.widget.watch(
-  'rfkill list bluetooth',
-  user_preferences.system.icons_update_interval,
-  function(_, stdout)
-    if stdout:match('Soft blocked: no') then
+awesome.connect_signal(
+  'icon::bluetooth:update',
+  function (state)
+    if state then
       dynamic_icon.image = icons.symbolic.bluetooth_on
     else
       dynamic_icon.image = icons.symbolic.bluetooth_off

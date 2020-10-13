@@ -1,68 +1,64 @@
 require('modules.bluetooth')
-
 local awful = require('awful')
 local gears = require('gears')
-local wibox = require('wibox')
-local naughty = require('naughty')
 local beautiful = require('beautiful')
 
-local dpi = require('beautiful').xresources.apply_dpi
-
 local apps = require('configuration.apps')
-local icons = require('theme.icons')
-local tooltip = require('library.ui.tooltip')
-local qs_toggle = require('library.ui.quick-settings-toggle')
 
-local widget = wibox.widget {
-		id = 'icon',
-		widget = wibox.widget.imagebox,
-		resize = true
-}
+local icon      = require('library.dynamic-icons.bluetooth')
+local quick_setting = require('library.ui.quick-settings-toggle')(icon)
+require('library.ui.tooltip')(quick_setting, 'Bluetooth')
 
-local widget_button = qs_toggle(widget)
-tooltip(widget_button, 'Bluetooth')
-
-function widget:update_toggle(module_is_on)
-  if module_is_on then
-    self.image = icons.symbolic.bluetooth_on
-    widget_button.bg = beautiful.system_black_light
+local function set_toggle_state (state)
+  if state then
+    quick_setting.bg = beautiful.system_black_light
   else
-    self.image = icons.symbolic.bluetooth_off
-    widget_button.bg = beautiful.transparent
+    quick_setting.bg = beautiful.transparent
   end
-  widget.on = module_is_on
+  quick_setting.activated = state
 end
 
-function widget:turn_on()
-  self.on = true
-  widget:update_toggle(true)
-  awesome.emit_signal('module::bluetooth:enable')
-end
+awesome.connect_signal(
+  'module::bluetooth:enable',
+  function()
+    set_toggle_state(true)
+  end
+)
 
-function widget:turn_off()
-  self.on = false
-  widget:update_toggle(false)
-  awesome.emit_signal('module::bluetooth:disable')
-end
+awesome.connect_signal(
+  'module::bluetooth:disable',
+  function()
+    set_toggle_state(false)
+  end
+)
 
-function widget:toggle()
-  if not self.on then
-    widget:turn_on()
+awesome.connect_signal(
+  'toggle::bluetooth:update',
+  function (state)
+    if state then
+      set_toggle_state(true)
+    else
+      set_toggle_state(false)
+    end
+  end
+)
+
+function quick_setting:toggle ()
+  if not quick_setting.activated then
+    awesome.emit_signal('module::bluetooth:enable')
   else
-    widget:turn_off()
+    awesome.emit_signal('module::bluetooth:disable')
   end
 end
 
-widget:update_toggle(widget.on)
-
-widget_button:buttons(
+quick_setting:buttons(
   gears.table.join(
     awful.button(
       {},
       1,
       nil,
       function()
-        widget:toggle()
+        quick_setting:toggle()
       end
     ),
     awful.button(
@@ -76,18 +72,4 @@ widget_button:buttons(
   )
 )
 
-awesome.connect_signal(
-	'module::bluetooth:status:reply',
-  function(state)
-    widget:update_toggle(state)
-  end
-)
-
-awesome.connect_signal(
-	'modules:update',
-  function()
-    awesome.emit_signal('module::bluetooth:status:request')
-  end
-)
-
-return widget_button
+return quick_setting

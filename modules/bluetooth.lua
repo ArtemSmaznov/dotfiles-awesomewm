@@ -1,6 +1,22 @@
 local awful = require('awful')
 
+local user_preferences = require('configuration.preferences')
+
 local toggle_state
+
+awful.widget.watch(
+  [[
+    rfkill list bluetooth
+  ]],
+  user_preferences.system.icons_update_interval,
+  function(_, stdout)
+    if stdout:match('Soft blocked: no') then
+      awesome.emit_signal('icon::bluetooth:update', true)
+    else
+      awesome.emit_signal('icon::bluetooth:update', false)
+    end
+  end
+)
 
 awesome.connect_signal(
 	'module::bluetooth:enable',
@@ -27,19 +43,24 @@ awesome.connect_signal(
 )
 
 awesome.connect_signal(
-	'module::bluetooth:status:request',
+	'module::bluetooth:status_change',
 	function()
 		awful.spawn.easy_async_with_shell(
 		'rfkill list bluetooth',
 		function(stdout)
 			if stdout:match('Soft blocked: no') then
-				toggle_state = true
+        awesome.emit_signal('toggle::bluetooth:update', true)
       else
-        toggle_state = false
+        awesome.emit_signal('toggle::bluetooth:update', false)
 			end
-			awesome.emit_signal('module::bluetooth:status:reply', toggle_state)
 		end
 	)
 	end
 )
 
+awesome.connect_signal(
+  'notification_tray:opened',
+  function ()
+    awesome.emit_signal('module::bluetooth:status_change')
+  end
+)

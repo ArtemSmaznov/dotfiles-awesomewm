@@ -1,8 +1,9 @@
 require('modules.wifi')
 local awful = require('awful')
 local gears = require('gears')
-local wibox = require('wibox')
 local beautiful = require('beautiful')
+
+local apps = require('configuration.apps')
 
 local icon      = require('library.dynamic-icons.wifi')
 local quick_setting = require('library.ui.quick-settings-toggle')(icon)

@@ -47,3 +47,9 @@ awesome.connect_signal(
   end
 )
 
+awesome.connect_signal(
+  'notification_tray:opened',
+  function ()
+    awesome.emit_signal('module::wifi:status_change')
+  end
+)
