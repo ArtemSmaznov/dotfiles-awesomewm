@@ -19,24 +19,14 @@ awful.widget.watch(
 awesome.connect_signal(
 	'module::bluetooth:enable',
 	function()
-		awful.spawn.easy_async_with_shell(
-			'rfkill unblock bluetooth',
-			function(stdout)
-				return
-      end
-    )
+		awful.spawn('rfkill unblock bluetooth')
 	end
 )
 
 awesome.connect_signal(
 	'module::bluetooth:disable',
 	function()
-		awful.spawn.easy_async_with_shell(
-			'rfkill block bluetooth',
-			function(stdout)
-				return
-			end
-		)
+		awful.spawn('rfkill block bluetooth')
 	end
 )
 
