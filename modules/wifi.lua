@@ -17,6 +17,7 @@ awesome.connect_signal(
   'module::wifi:enable',
   function()
     awful.spawn('nmcli radio wifi on')
+    awesome.emit_signal('module::airplane_mode:disable')
   end
 )
 

@@ -2,8 +2,6 @@ local awful = require('awful')
 
 local user_preferences = require('configuration.preferences')
 
-local toggle_state
-
 awful.widget.watch(
   [[
     rfkill list bluetooth

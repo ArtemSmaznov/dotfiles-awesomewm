@@ -1,8 +1,6 @@
-local awful = require('awful')
 local wibox = require("wibox")
 
 local icons = require('theme.icons')
-local user_preferences = require('configuration.preferences')
 
 local fallback_icon = icons.symbolic.bluetooth_off
 

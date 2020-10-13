@@ -5,7 +5,7 @@ local beautiful = require('beautiful')
 
 local apps = require('configuration.apps')
 
-local icon      = require('library.dynamic-icons.wifi')
+local icon = require('library.dynamic-icons.wifi')
 local quick_setting = require('library.ui.quick-settings-toggle')(icon)
 require('library.ui.tooltip')(quick_setting, 'Wifi')
 
@@ -59,6 +59,14 @@ quick_setting:buttons(
       nil,
       function()
         quick_setting:toggle()
+      end
+    ),
+    awful.button(
+      {},
+      3,
+      nil,
+      function()
+        awful.spawn(apps.default.network_manager, false)
       end
     )
   )

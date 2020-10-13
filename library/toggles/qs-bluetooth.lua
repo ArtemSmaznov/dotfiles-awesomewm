@@ -5,7 +5,7 @@ local beautiful = require('beautiful')
 
 local apps = require('configuration.apps')
 
-local icon      = require('library.dynamic-icons.bluetooth')
+local icon = require('library.dynamic-icons.bluetooth')
 local quick_setting = require('library.ui.quick-settings-toggle')(icon)
 require('library.ui.tooltip')(quick_setting, 'Bluetooth')
 
