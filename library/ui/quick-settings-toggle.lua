@@ -19,6 +19,7 @@ local qs_toggle = function(widget)
       forced_height = dpi(72),
       widget = clickable_container
     },
+    activated = nil,
     bg = beautiful.transparent,
     shape = gears.shape.circle,
     widget = wibox.container.background
