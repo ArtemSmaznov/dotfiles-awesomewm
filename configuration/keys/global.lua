@@ -174,16 +174,6 @@ awful.key(
   end,
   { description = 'arandr', group = 'hotkeys' }
 ),
--- awful.key(
---     { modkey },
---     'm',
---     function()
---         if awful.screen.focused().musicpop then
---             awesome.emit_signal('widget::music', 'keyboard')
---         end
---     end,
---     { description = 'toggle music widget', group = 'launcher' }
--- ),
 
 -- ░█▀▀░█▀▀░█▀▄░█▀▀░█▀▀░█▀█░█▀▀░█░█░█▀█░▀█▀░█▀▀
 -- ░▀▀█░█░░░█▀▄░█▀▀░█▀▀░█░█░▀▀█░█▀█░█░█░░█░░▀▀█
@@ -568,6 +558,20 @@ awful.key(
     awful.spawn(apps.default.ide)
   end,
   { description = 'open default IDE', group = 'launcher' }
+),
+awful.key(
+  { modkey }, 'm',
+  function()
+    awful.spawn(apps.default.music_player)
+  end,
+  { description = 'open default music player', group = 'launcher' }
+),
+awful.key(
+  { modkey }, 'v',
+  function()
+    awful.spawn(apps.default.video_player)
+  end,
+  { description = 'open default video player', group = 'launcher' }
 ),
 
 -- ░█▀▀░█▀▀░█▀▀░█▀█░█▀█░█▀▄░█▀█░█▀▄░█░█

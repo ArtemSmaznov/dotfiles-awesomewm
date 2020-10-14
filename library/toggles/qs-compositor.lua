@@ -41,11 +41,7 @@ awesome.connect_signal(
 awesome.connect_signal(
   'toggle::compositor:update',
   function (state)
-    if state then
-      set_toggle_state(true)
-    else
-      set_toggle_state(false)
-    end
+    set_toggle_state(state)
   end
 )
 

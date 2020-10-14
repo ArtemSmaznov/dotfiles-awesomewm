@@ -23,13 +23,11 @@ awesome.connect_signal(
         then
           echo 'OFF'
         else
-          redshift -p 2> /dev/null | grep Period | awk '{print $2}'
+          echo 'ON'
         fi
       ]],
       function(stdout)
-        if stdout:match('Night') then
-          awesome.emit_signal('toggle::redshift:update', true)
-        elseif stdout:match('Transition') then
+        if stdout:match('ON') then
           awesome.emit_signal('toggle::redshift:update', true)
         else
           awesome.emit_signal('toggle::redshift:update', false)
