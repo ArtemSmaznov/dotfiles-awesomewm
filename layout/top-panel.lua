@@ -31,7 +31,7 @@ local TopPanel = function(s, offset)
 		bg = beautiful.background,
 		fg = beautiful.fg_normal
 	}
-	
+
 
 	panel:struts
 	{
@@ -41,7 +41,7 @@ local TopPanel = function(s, offset)
 
 	panel:connect_signal(
 		'mouse::enter',
-		function() 
+		function()
 			local w = mouse.current_wibox
 			if w then
 				w.cursor = 'left_ptr'
@@ -132,11 +132,11 @@ local TopPanel = function(s, offset)
 	s.month_calendar = require('modules.calendar')(s)
 
 	s.month_calendar:attach(
-		s.clock_widget, 
-		'tr', 
-		{ 
+		s.clock_widget,
+		'tr',
+		{
 			on_pressed = true,
-			on_hover = false 
+			on_hover = false
 		}
 	)
 
@@ -177,10 +177,39 @@ local TopPanel = function(s, offset)
     )
   )
 
+  s.bluetooth_status = wibox.widget {
+    require('library.dynamic-icons.bluetooth'),
+    margins = dpi(7),
+    widget = wibox.container.margin
+  }
+
+  s.network_status = wibox.widget {
+    require('library.dynamic-icons.network'),
+    margins = dpi(7),
+    widget = wibox.container.margin
+  }
+
+  s.wifi_status = wibox.widget {
+    require('library.dynamic-icons.wifi'),
+    margins = dpi(7),
+    widget = wibox.container.margin
+  }
+
+  s.status_icons = wibox.widget {
+    {
+      s.bluetooth_status,
+      s.network_status,
+      s.wifi_status,
+      layout = wibox.layout.fixed.horizontal,
+    },
+    require('library.ui.separator')('v'),
+    spacing = dpi(2),
+    layout = wibox.layout.fixed.horizontal,
+  }
+
 	local tray_widgets = wibox.widget {
 		{
-			layout = wibox.layout.fixed.horizontal,
-			spacing = dpi(2),
+      s.status_icons,
 			-- require('widgets.panel-widgets.system-tray')(s, panelSize),
 			require('widgets.panel-widgets.keyboard-layout'),
 			-- require('widgets.panel-widgets.music')(),
@@ -188,21 +217,22 @@ local TopPanel = function(s, offset)
 			s.volume_widget,
 			require('widgets.panel-widgets.battery'),
 			require('widgets.panel-widgets.network')(),
-
+			spacing = dpi(2),
+			layout = wibox.layout.fixed.horizontal,
 		},
 		margins = dpi(0),
 		widget = wibox.container.margin
 	}
 
 	panel : setup {
-    {    
+    {
       layout = wibox.layout.align.horizontal,
       expand = "none",
       {
         layout = wibox.layout.fixed.horizontal,
         require('widgets.panel-widgets.layouts')(s),
         task_list(s),
-        
+
         s.add_button
       },
       nil,

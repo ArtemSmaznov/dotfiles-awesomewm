@@ -39,7 +39,7 @@ local tags = {
 	{
 		name = 'multimedia',
 		icon = icons.tags.multimedia,
-		default_app = 'vlc',
+		default_app = apps.default.music_player,
 	},
 	{
 		name = 'graphics',

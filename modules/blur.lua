@@ -3,8 +3,6 @@ local awful = require('awful')
 local filesystem = require('gears.filesystem')
 local config_dir = filesystem.get_configuration_dir()
 
-local toggle_state
-
 awesome.connect_signal(
   'module::blur:enable',
   function()
@@ -58,23 +56,28 @@ awesome.connect_signal(
 )
 
 awesome.connect_signal(
-  'module::blur:status:request',
+	'module::blur:status_change',
   function()
-    awful.spawn.easy_async_with_shell(
-    [[
-      bash -c "
-        grep -F 'method = \"none\";' ]] .. config_dir .. [[/configuration/picom.conf | tr -d '[\"\;\=\ ]'
-      "
-    ]],
-    function(stdout)
-      if stdout:match('methodnone') then
-        toggle_state = false
-      else
-        toggle_state = true
+		awful.spawn.easy_async_with_shell(
+      [[
+        bash -c "
+          grep -F 'method = \"none\";' ]] .. config_dir .. [[/configuration/picom.conf | tr -d '[\"\;\=\ ]'
+        "
+      ]],
+      function(stdout)
+        if stdout:match('methodnone') then
+          awesome.emit_signal('toggle::blur:update', false)
+        else
+          awesome.emit_signal('toggle::blur:update', true)
+        end
       end
-      awesome.emit_signal('module::blur:status:reply', toggle_state)
-    end
-  )
-  end
+	  )
+	end
 )
 
+awesome.connect_signal(
+  'notification_tray:opened',
+  function ()
+    awesome.emit_signal('module::blur:status_change')
+  end
+)

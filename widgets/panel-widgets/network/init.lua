@@ -14,7 +14,7 @@
 local awful = require('awful')
 local wibox = require('wibox')
 local gears = require('gears')
-local naughty = require('naughty') 
+local naughty = require('naughty')
 
 local dpi = require('beautiful').xresources.apply_dpi
 
@@ -62,7 +62,7 @@ local return_button = function()
     },
     widget = clickable_container
   }
-  
+
   widget_button:buttons(
     gears.table.join(
       awful.button(
@@ -88,7 +88,7 @@ local return_button = function()
       icon =  icons.symbolic.network.wifi_off
     end
 
-    naughty.notification({ 
+    naughty.notification({
       message = message,
       title = title,
       app_name = 'System Notification',
@@ -100,9 +100,9 @@ local return_button = function()
 
   local update_disconnected = function()
     if conn_status == 'wireless' or conn_status == 'wired' then
-      
+
       local widget_icon_name = nil
-      
+
       connected_to_network = false
       notify_new_wifi_conn = true
       essid = nil
@@ -121,7 +121,7 @@ local return_button = function()
 
   local notify_no_access = function(strength)
     if conn_status == 'wireless' or conn_status == 'wired' then
-            
+
       local message = 'Internet may not be available or it is too slow right now'
 
       if conn_status == 'wireless' then
@@ -131,7 +131,7 @@ local return_button = function()
         icon = icons.symbolic.network.wired_off
       end
 
-      naughty.notification({ 
+      naughty.notification({
         message = message,
         title = 'Connection Status',
         app_name = 'System Notification',
@@ -178,7 +178,7 @@ local return_button = function()
     local app_name = "System Notification"
     local icon = icons.symbolic.network.wifi
 
-    naughty.notification({ 
+    naughty.notification({
       message = message,
       title = title,
       app_name = app_name,
@@ -245,7 +245,7 @@ local return_button = function()
   local update_wireless = function()
     conn_status = 'wireless'
     connected_to_network = true
-    
+
     awful.spawn.easy_async_with_shell(
       [[
       awk 'NR==3 {printf "%3.0f" ,($3/70)*100}' /proc/net/wireless
@@ -259,7 +259,7 @@ local return_button = function()
         local widget_icon_name = 'wifi_0'
 
         wifi_strength = tonumber(stdout)
-        
+
         local wifi_strength_rounded = math.floor(wifi_strength / 25 + 0.5)
 
         awful.spawn.easy_async_with_shell(
@@ -305,7 +305,7 @@ local return_button = function()
         widget.icon:set_image(widget_icon_name)
       end
     )
-    
+
   end
 
   awful.tooltip(
@@ -316,8 +316,8 @@ local return_button = function()
       timer_function = function()
         if connected_to_network then
           if conn_status == 'wireless' then
-            return 'Wireless Interface: <b>' .. wlan_interface .. 
-            '</b>\nConnected to: <b>' .. (essid or "*LOADING...*") .. 
+            return 'Wireless Interface: <b>' .. wlan_interface ..
+            '</b>\nConnected to: <b>' .. (essid or "*LOADING...*") ..
             '</b>\nWiFi-Strength: <b>' .. tostring(wifi_strength) .. '%' ..
             '</b>\nBit rate: <b>' .. tostring(net_speed) .. '</b>'
           else
@@ -368,8 +368,8 @@ local return_button = function()
             update_wired()
           end
         end
-      )    
-    end  
+      )
+    end
   }
 
   return widget_button

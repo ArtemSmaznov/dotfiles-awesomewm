@@ -7,8 +7,10 @@ local default = {
   terminal            = 'terminator',                               -- Terminal Emulator
   text_editor         = 'xed',                                      -- GUI Text Editor
   web_browser         = 'chromium',                                 -- Web browser
+  tor_browser         = 'torbrowser-launcher',                      -- Tor browser
   incognito_browser   = 'chromium --incognito',                     -- Web browser Incognito Mode
   file_manager        = 'dolphin',                                  -- GUI File manager
+  music_player        = 'youtubemusic-nativefier',                                -- Music Player
   video_player        = 'celluloid',                                -- Video Player
   game                = '/usr/bin/steam-runtime %U',                -- Gaming Library
   ide                 = 'code',                                     -- IDE
@@ -45,6 +47,7 @@ return {
   default = default,
 
   -- Apps for the Favorites Widget
+  -- you can download any icon to ~/.local/share/icons and it will be picked up by file name minus the extension
   favorites = {
     {
       category = 'Generic',
@@ -52,9 +55,9 @@ return {
         {command = default.web_browser, icon = 'chrome'},
         {command = 'google-calendar-dark', icon = 'google-agenda'},
         {command = 'google-keep', icon = 'keep'},
-        {command = 'youtubemusic-nativefier', icon = 'google-play-music-desktop-player'},
         {command = 'google-drive', icon = 'google-drive'},
         {command = 'GoogleDocs', icon = 'google-docs'},
+        {command = default.tor_browser, icon = 'tor'},
       }
     },{
       category = 'Gaming',
@@ -83,6 +86,7 @@ return {
         {command = default.photos_library, icon = default.photos_library},
         {command = default.video_editor, icon = default.video_editor},
         {command = default.video_player, icon = 'gnome-mpv'},
+        {command = default.music_player, icon = 'youtube-music'},
       }
     },{
       category = 'System',
