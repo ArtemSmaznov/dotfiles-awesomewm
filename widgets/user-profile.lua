@@ -1,12 +1,11 @@
 -- User profile widget
 -- Optional dependency:
---    mugshot (use to update profile picture and information)
 local awful = require('awful')
-local wibox = require('wibox')
 local gears = require('gears')
+local wibox = require('wibox')
 local beautiful = require('beautiful')
-
 local dpi = beautiful.xresources.apply_dpi
+
 local icons = require('theme.icons')
 
 local profile_imagebox = wibox.widget {
@@ -25,7 +24,7 @@ local profile_imagebox = wibox.widget {
 local profile_name = wibox.widget {
 	font = "SF Pro Text Bold 14",
 	markup = 'User',
-	align = 'left',
+	align = 'right',
 	valign = 'center',
 	widget = wibox.widget.textbox
 }
@@ -33,7 +32,7 @@ local profile_name = wibox.widget {
 local distro_name = wibox.widget {
 	font = "SF Pro Text Regular 11",
 	markup = 'GNU/Linux',
-	align = 'left',
+	align = 'right',
 	valign = 'center',
 	widget = wibox.widget.textbox
 }
@@ -41,7 +40,7 @@ local distro_name = wibox.widget {
 local kernel_version = wibox.widget {
 	font = "SF Pro Text Regular 10",
 	markup = 'Linux',
-	align = 'left',
+	align = 'right',
 	valign = 'center',
 	widget = wibox.widget.textbox
 }
@@ -49,14 +48,14 @@ local kernel_version = wibox.widget {
 local uptime_time = wibox.widget {
 	font = "SF Pro Text Regular 10",
 	markup = 'up 1 minute',
-	align = 'left',
+	align = 'right',
 	valign = 'center',
 	widget = wibox.widget.textbox
 }
 
 awful.spawn.easy_async_with_shell(
 	"printf \"$(whoami)@$(hostname)\"",
-	function(stdout) 
+	function(stdout)
 		local stdout = stdout:gsub('%\n', '')
 		-- stdout = stdout:sub(1,1):upper() .. stdout:sub(2)
 		profile_name:set_markup(stdout)
@@ -86,7 +85,7 @@ local update_uptime = function()
 		"uptime -p",
 		function(stdout)
 			local uptime = stdout:gsub('%\n','')
-			uptime_time:set_markup(uptime)		
+			uptime_time:set_markup(uptime)
 		end
 	)
 end
@@ -103,29 +102,34 @@ local uptime_updater_timer = gears.timer{
 local user_profile = wibox.widget {
 	{
 		{
-			layout = wibox.layout.fixed.horizontal,
-			spacing = dpi(10),
-			{
-				layout = wibox.layout.align.vertical,
-				expand = 'none',
-				nil,
-				profile_imagebox,
-				nil
-			},
-			{
-				layout = wibox.layout.align.vertical,
-				expand = 'none',
-				nil,
-				{
-					layout = wibox.layout.fixed.vertical,
-					profile_name,
-					distro_name,
-					kernel_version,
-					uptime_time
-				},
-				nil
-			}
-		},
+      nil,
+      nil,
+      {
+        {
+          layout = wibox.layout.align.vertical,
+          expand = 'none',
+          nil,
+          {
+            layout = wibox.layout.fixed.vertical,
+            profile_name,
+            distro_name,
+            kernel_version,
+            uptime_time
+          },
+          nil
+        },
+        {
+          layout = wibox.layout.align.vertical,
+          expand = 'none',
+          nil,
+          profile_imagebox,
+          nil
+        },
+        spacing = dpi(10),
+        layout = wibox.layout.fixed.horizontal
+      },
+      layout = wibox.layout.align.horizontal,
+    },
 		margins = dpi(10),
 		widget = wibox.container.margin
 	},
@@ -133,12 +137,11 @@ local user_profile = wibox.widget {
 	bg = beautiful.groups_bg,
 	shape = function(cr, width, height) gears.shape.rounded_rect(cr, width, height, beautiful.groups_radius) end,
 	widget = wibox.container.background
-	
 }
 
 user_profile:connect_signal(
 	'mouse::enter',
-	function() 
+	function()
 		update_uptime()
 	end
 )

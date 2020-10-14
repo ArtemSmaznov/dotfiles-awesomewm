@@ -4,15 +4,76 @@ local wibox = require('wibox')
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
 
+local clickable_container = require('library.ui.clickable-container.no-background')
+local user_preferences = require('configuration.preferences')
 local icons = require('theme.icons')
 
 local build = function(s)
 
-  local panel_margins = dpi(0)
-  local panel_height = s.geometry.height - 2 * panel_margins
-
   local blur_slider_visible = false
+  local user_profile_visible = false
   local panel_visible = false
+
+  -- ░█▀▀░▀█▀░█▀█░▀█▀░█░█░█▀▀
+  -- ░▀▀█░░█░░█▀█░░█░░█░█░▀▀█
+  -- ░▀▀▀░░▀░░▀░▀░░▀░░▀▀▀░▀▀▀
+
+  local profile_icon = wibox.widget {
+    {
+      {
+        image = icons.face,
+        widget = wibox.widget.imagebox
+      },
+      widget = clickable_container
+    },
+    shape = gears.shape.circle,
+    widget = wibox.container.background
+  }
+
+  local date = wibox.widget {
+    format = '<span font="SF Pro Text Bold 11">'
+    .. user_preferences.system.date_long
+    ..'</span>',
+    widget = wibox.widget.textclock
+  }
+
+  local time = wibox.widget {
+    format = '<span font="SF Pro Text Bold 11">'
+    .. user_preferences.system.time_short
+    ..'</span>',
+    widget = wibox.widget.textclock
+  }
+
+  s.status = wibox.widget {
+    {
+      date,
+      nil,
+      {
+        time,
+        profile_icon,
+        spacing = dpi(8),
+        layout = wibox.layout.fixed.horizontal
+      },
+      layout = wibox.layout.align.horizontal
+    },
+    left = dpi(12),
+    right = dpi(12),
+    forced_height = dpi(32),
+    widget = wibox.container.margin
+  }
+
+  profile_icon:buttons(
+    gears.table.join(
+      awful.button(
+        {},
+        1,
+        nil,
+        function()
+          awesome.emit_signal('widget::user_profile:toggle')
+        end
+      )
+    )
+  )
 
   -- ░█░█░█▀█░█░░░█░█░█▄█░█▀▀░░░█▀▀░█░░░▀█▀░█▀▄░█▀▀░█▀▄
   -- ░▀▄▀░█░█░█░░░█░█░█░█░█▀▀░░░▀▀█░█░░░░█░░█░█░█▀▀░█▀▄
@@ -155,11 +216,34 @@ local build = function(s)
     end
   )
 
+  -- ░█▀█░█▀▄░█▀█░█▀▀░▀█▀░█░░░█▀▀
+  -- ░█▀▀░█▀▄░█░█░█▀▀░░█░░█░░░█▀▀
+  -- ░▀░░░▀░▀░▀▀▀░▀░░░▀▀▀░▀▀▀░▀▀▀
+
+  s.user_profile = require('widgets.user-profile')
+
+  s.user_profile.visible = user_profile_visible
+
+  awesome.connect_signal(
+    'widget::user_profile:toggle',
+    function()
+      if not user_profile_visible then
+        user_profile_visible = true
+        s.user_profile.visible = user_profile_visible
+      else
+        user_profile_visible = false
+        s.user_profile.visible = user_profile_visible
+      end
+    end
+  )
+
   -- ░█▀█░█▀█░█▀█░█▀▀░█░░░█▀▀
   -- ░█▀▀░█▀█░█░█░█▀▀░█░░░▀▀█
   -- ░▀░░░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
 
   local first_column = wibox.widget {
+    s.status,
+    s.user_profile,
     s.brightness_slider,
     require('widgets.quick-settings'),
     s.volume_slider,
@@ -172,7 +256,6 @@ local build = function(s)
   }
 
   local second_column = wibox.widget {
-    require('widgets.user-profile'),
     require('widgets.hardware-monitor'),
     require('widgets.disk-usage'),
     -- require('widgets.social-media'),
