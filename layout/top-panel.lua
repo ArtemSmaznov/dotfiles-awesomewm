@@ -1,10 +1,11 @@
 local awful = require('awful')
-local beautiful = require('beautiful')
-local wibox = require('wibox')
 local gears = require('gears')
-
-local icons = require('theme.icons')
+local wibox = require('wibox')
+local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
+
+local user_preferences = require('configuration.preferences')
+local icons = require('theme.icons')
 
 local clickable_container = require('library.ui.clickable-container.with-background')
 local task_list = require('widgets.panel-widgets.task-list')
@@ -93,7 +94,9 @@ local TopPanel = function(s, offset)
 	)
 
 	s.clock_widget = wibox.widget.textclock(
-		'<span font="SF Pro Text Bold 11">%l:%M %p</span>',
+    '<span font="SF Pro Text Bold 11">'
+    .. user_preferences.system.time_short
+    ..'</span>',
 		1
 	)
 
