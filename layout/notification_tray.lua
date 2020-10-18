@@ -32,14 +32,14 @@ local build = function(s)
 
   local date = wibox.widget {
     format = '<span font="SF Pro Text Bold 11">'
-    .. user_preferences.system.date_long
+    .. user_preferences.formatting.date_long
     ..'</span>',
     widget = wibox.widget.textclock
   }
 
   local time = wibox.widget {
     format = '<span font="SF Pro Text Bold 11">'
-    .. user_preferences.system.time_short
+    .. user_preferences.formatting.time_short
     ..'</span>',
     widget = wibox.widget.textclock
   }
