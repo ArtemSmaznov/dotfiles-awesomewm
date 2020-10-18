@@ -6,7 +6,7 @@
 -- @submodule awful.hotkeys_popup
 ---------------------------------------------------------------------------
 
-local hotkeys_popup = require("modules.hotkeys_popup.widget")
+local hotkeys_popup = require("awful.hotkeys_popup.widget")
 local fire_rule = { class = { "code" } }
 for group_name, group_data in pairs({
     ["git"] = { color = "#f34f29", rule_any = fire_rule }
