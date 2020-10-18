@@ -14,13 +14,13 @@ local keyboard_layout = require('widgets.panel-widgets.keyboard-layout.kbdcfg')
 -- Key bindings
 local globalKeys = awful.util.table.join(
 
---  ▄▄▄▄                  ▄                 
--- █▀   ▀ ▄   ▄   ▄▄▄   ▄▄█▄▄   ▄▄▄   ▄▄▄▄▄ 
--- ▀█▄▄▄  ▀▄ ▄▀  █   ▀    █    █▀  █  █ █ █ 
---     ▀█  █▄█    ▀▀▀▄    █    █▀▀▀▀  █ █ █ 
--- ▀▄▄▄█▀  ▀█    ▀▄▄▄▀    ▀▄▄  ▀█▄▄▀  █ █ █ 
---         ▄▀                               
---        ▀▀                                
+--  ▄▄▄▄                  ▄
+-- █▀   ▀ ▄   ▄   ▄▄▄   ▄▄█▄▄   ▄▄▄   ▄▄▄▄▄
+-- ▀█▄▄▄  ▀▄ ▄▀  █   ▀    █    █▀  █  █ █ █
+--     ▀█  █▄█    ▀▀▀▄    █    █▀▀▀▀  █ █ █
+-- ▀▄▄▄█▀  ▀█    ▀▄▄▄▀    ▀▄▄  ▀█▄▄▀  █ █ █
+--         ▄▀
+--        ▀▀
 
 -- ░█░█░█▀▀░█░█░█▀▄░█▀█░█▀█░█▀▄░█▀▄
 -- ░█▀▄░█▀▀░░█░░█▀▄░█░█░█▀█░█▀▄░█░█
@@ -241,13 +241,13 @@ awful.key(
   { description = 'lock the screen', group = 'Utility' }
 ),
 
--- ▄                                    ▄   
--- █       ▄▄▄   ▄   ▄   ▄▄▄   ▄   ▄  ▄▄█▄▄ 
--- █      ▀   █  ▀▄ ▄▀  █▀ ▀█  █   █    █   
--- █      ▄▀▀▀█   █▄█   █   █  █   █    █   
--- █▄▄▄▄▄ ▀▄▄▀█   ▀█    ▀█▄█▀  ▀▄▄▀█    ▀▄▄ 
---                ▄▀                        
---               ▀▀                  
+-- ▄                                    ▄
+-- █       ▄▄▄   ▄   ▄   ▄▄▄   ▄   ▄  ▄▄█▄▄
+-- █      ▀   █  ▀▄ ▄▀  █▀ ▀█  █   █    █
+-- █      ▄▀▀▀█   █▄█   █   █  █   █    █
+-- █▄▄▄▄▄ ▀▄▄▀█   ▀█    ▀█▄█▀  ▀▄▄▀█    ▀▄▄
+--                ▄▀
+--               ▀▀
 awful.key(
   { modkey, altkey}, 'Left',
   function()
@@ -382,11 +382,11 @@ awful.key(
   { description = 'restore minimized', group = 'screen' }
 ),
 
--- ▄    ▄ ▄▄▄▄▄ 
--- █    █   █   
--- █    █   █   
--- █    █   █   
--- ▀▄▄▄▄▀ ▄▄█▄▄ 
+-- ▄    ▄ ▄▄▄▄▄
+-- █    █   █
+-- █    █   █
+-- █    █   █
+-- ▀▄▄▄▄▀ ▄▄█▄▄
 awful.key(
   { 'Control' }, 'Escape',
   function ()
@@ -468,13 +468,13 @@ awful.key(
   { description = 'open notification center', group = 'launcher' }
 ),
 
---   ▄▄                       
---   ██   ▄▄▄▄   ▄▄▄▄    ▄▄▄  
---  █  █  █▀ ▀█  █▀ ▀█  █   ▀ 
---  █▄▄█  █   █  █   █   ▀▀▀▄ 
--- █    █ ██▄█▀  ██▄█▀  ▀▄▄▄▀ 
---        █      █            
---        ▀      ▀            
+--   ▄▄
+--   ██   ▄▄▄▄   ▄▄▄▄    ▄▄▄
+--  █  █  █▀ ▀█  █▀ ▀█  █   ▀
+--  █▄▄█  █   █  █   █   ▀▀▀▄
+-- █    █ ██▄█▀  ██▄█▀  ▀▄▄▄▀
+--        █      █
+--        ▀      ▀
 
 -- ░▀█▀░█▀▀░█▀▄░█▄█░▀█▀░█▀█░█▀█░█░░
 -- ░░█░░█▀▀░█▀▄░█░█░░█░░█░█░█▀█░█░░
@@ -559,24 +559,17 @@ awful.key(
   end,
   { description = 'open default IDE', group = 'launcher' }
 ),
-awful.key(
-  { modkey }, 'm',
-  function()
-    awful.spawn(apps.default.music_player)
-  end,
-  { description = 'open default music player', group = 'launcher' }
-),
-awful.key(
-  { modkey }, 'v',
-  function()
-    awful.spawn(apps.default.video_player)
-  end,
-  { description = 'open default video player', group = 'launcher' }
-),
 
 -- ░█▀▀░█▀▀░█▀▀░█▀█░█▀█░█▀▄░█▀█░█▀▄░█░█
 -- ░▀▀█░█▀▀░█░░░█░█░█░█░█░█░█▀█░█▀▄░░█░
 -- ░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀░░▀░▀░▀░▀░░▀░
+awful.key(
+  { modkey, 'Shift' }, 'm',
+  function()
+    awful.spawn(apps.default.music_player)
+  end,
+  { description = 'open default Music player', group = 'launcher' }
+),
 awful.key(
 	{ modkey, 'Shift' }, 'v',
 	function()

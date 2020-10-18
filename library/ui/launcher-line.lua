@@ -1,8 +1,6 @@
-local awful = require('awful')
 local gears = require('gears')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
-
 local dpi = require('beautiful').xresources.apply_dpi
 
 local build = function(size)
@@ -14,7 +12,7 @@ local build = function(size)
       shape = gears.shape.rounded_bar,
       widget = wibox.container.background
     },
-    margins = dpi(5),
+    top = dpi(2),
     widget = wibox.container.margin
   }
 
@@ -28,7 +26,7 @@ local build = function(size)
 			end
 		end
   )
-  
+
   widget:connect_signal(
 		'mouse::leave',
 		function()

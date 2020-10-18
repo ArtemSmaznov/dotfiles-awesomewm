@@ -4,10 +4,10 @@ local wibox = require('wibox')
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
 
+local clickable_container = require('library.ui.clickable-container.with-background')
 local user_preferences = require('configuration.preferences')
 local icons = require('theme.icons')
 
-local clickable_container = require('library.ui.clickable-container.with-background')
 local task_list = require('widgets.panel-widgets.task-list')
 
 local panelSize = dpi(40)
@@ -95,7 +95,7 @@ local TopPanel = function(s, offset)
 
 	s.clock_widget = wibox.widget.textclock(
     '<span font="SF Pro Text Bold 11">'
-    .. user_preferences.system.time_short
+    .. user_preferences.formatting.time_short
     ..'</span>',
 		1
 	)
@@ -213,7 +213,7 @@ local TopPanel = function(s, offset)
 	local tray_widgets = wibox.widget {
 		{
       s.status_icons,
-			-- require('widgets.panel-widgets.system-tray')(s, panelSize),
+      -- require('widgets.panel-widgets.system-tray')(s, panelSize, 'horizontal'),
 			require('widgets.panel-widgets.keyboard-layout'),
 			-- require('widgets.panel-widgets.music')(),
 			require('widgets.panel-widgets.package-updater')(),

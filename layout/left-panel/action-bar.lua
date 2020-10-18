@@ -1,13 +1,14 @@
 local awful = require('awful')
-local beautiful = require('beautiful')
-local wibox = require('wibox')
 local gears = require('gears')
-
+local wibox = require('wibox')
+local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
+
+local clickable_container = require('library.ui.clickable-container.with-background')
+local user_preferences = require('configuration.preferences')
 local icons = require('theme.icons')
 
 local tag_list = require('widgets.panel-widgets.tag-list')
-local clickable_container = require('library.ui.clickable-container.with-background')
 
 return function(s, panel, action_bar_width)
 
@@ -73,7 +74,7 @@ return function(s, panel, action_bar_width)
 		},
 		nil,
 		{
-			require('widgets.panel-widgets.system-tray')(s, action_bar_width),
+      require('widgets.panel-widgets.system-tray')(s, action_bar_width, 'vertical'),
 			home_button,
 			layout = wibox.layout.fixed.vertical,
 		}
