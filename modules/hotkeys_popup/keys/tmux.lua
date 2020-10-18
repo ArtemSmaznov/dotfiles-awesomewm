@@ -6,7 +6,7 @@
 -- @submodule  awful.hotkeys_popup
 ---------------------------------------------------------------------------
 
-local hotkeys_popup = require("modules.hotkeys_popup.widget")
+local hotkeys_popup = require("awful.hotkeys_popup.widget")
 
 local tmux = {}
 
@@ -31,6 +31,8 @@ function tmux.add_rules_for_terminal(rule)
         hotkeys_popup.add_group_rules(group_name, group_data)
     end
 end
+
+tmux.add_rules_for_terminal({ rule = { name = { "tmux" }}})
 
 local tmux_keys = {
     ["tmux: sessions"] = {{

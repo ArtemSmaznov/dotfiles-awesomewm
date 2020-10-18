@@ -8,7 +8,6 @@
 
 
 local keys = {
-  vim         = require("modules.hotkeys_popup.keys.vim"),
   browser     = require("modules.hotkeys_popup.keys.browser"),
   tmux        = require("modules.hotkeys_popup.keys.tmux"),
   qutebrowser = require("modules.hotkeys_popup.keys.qutebrowser"),

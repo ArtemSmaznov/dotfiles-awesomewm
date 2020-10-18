@@ -6,7 +6,7 @@
 -- @submodule awful.hotkeys_popup
 ---------------------------------------------------------------------------
 
-local hotkeys_popup = require("modules.hotkeys_popup.widget")
+local hotkeys_popup = require("awful.hotkeys_popup.widget")
 local fire_rule = { class = { "Firefox", "Google-chrome", "Chromium" } }
 for group_name, group_data in pairs({
     ["Browser: tabs"] = { color = "#009F00", rule_any = fire_rule }

@@ -6,7 +6,7 @@
 -- @submodule awful.hotkeys_popup
 ---------------------------------------------------------------------------
 
-local hotkeys_popup = require("modules.hotkeys_popup.widget")
+local hotkeys_popup = require("awful.hotkeys_popup.widget")
 
 local qutebrowser_rule = {class="qutebrowser"}
 for group_name, group_data in pairs({
