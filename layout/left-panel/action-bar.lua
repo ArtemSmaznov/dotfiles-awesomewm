@@ -74,7 +74,7 @@ return function(s, panel, action_bar_width)
 		},
 		nil,
 		{
-      require('widgets.panel-widgets.system-tray')(s, action_bar_width, 'vertical'),
+      require('widgets.panel-widgets.system-tray')(s, 'vertical'),
 			home_button,
 			layout = wibox.layout.fixed.vertical,
 		}

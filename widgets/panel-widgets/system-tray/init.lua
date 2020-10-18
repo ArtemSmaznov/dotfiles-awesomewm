@@ -1,7 +1,3 @@
--- TODO
--- Calling widget from the top bar overwrites the size in the side bar
--- Might be better to move the bar sizes to the preferences file
-
 local wibox = require('wibox')
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
@@ -9,23 +5,26 @@ local dpi = beautiful.xresources.apply_dpi
 local user_preferences = require('configuration.preferences')
 
 local widgets_dpi = dpi(4)
-local rotation
+local rotation, size
 
-local build = function(s, size, orientation)
+local build = function(s, orientation)
   local vertical_orientation
 
   if user_preferences.system_tray.orientation == 'vertical' then
     rotation = 'east'
     vertical_orientation = true
+    size = user_preferences.panels.size_side
     s.separator = require('library.ui.separator')('h')
   elseif user_preferences.system_tray.orientation == 'horizontal' then
     rotation = 'north'
     vertical_orientation = false
+    size = user_preferences.panels.size_top
     s.separator = require('library.ui.separator')('v')
   else
     require('naughty').notify { text = 'System Tray widget called with wrong orientation' }
     rotation = 'north'
     vertical_orientation = false
+    size = user_preferences.panels.size_top
     s.separator = require('library.ui.separator')('v')
   end
 

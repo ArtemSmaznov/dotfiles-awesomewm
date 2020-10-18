@@ -10,13 +10,19 @@ local icons = require('theme.icons')
 
 local task_list = require('widgets.panel-widgets.task-list')
 
-local panelSize = dpi(40)
+local panelSize = user_preferences.panels.size_top
 
 local TopPanel = function(s, offset)
 
+  if s.index == 1 then
+    s.sys_tray = require('widgets.panel-widgets.system-tray')(s, 'horizontal')
+  else
+    s.sys_tray = nil
+  end
+
 	local offsetx = 0
 	if offset == true then
-		offsetx = dpi(45)
+		offsetx = user_preferences.panels.size_side
 	end
 
 	local panel = wibox
@@ -33,12 +39,10 @@ local TopPanel = function(s, offset)
 		fg = beautiful.fg_normal
 	}
 
-
 	panel:struts
 	{
 		top = panelSize
 	}
-
 
 	panel:connect_signal(
 		'mouse::enter',
@@ -50,7 +54,6 @@ local TopPanel = function(s, offset)
 		end
 
 	)
-
 
 	s.add_button = wibox.widget {
 		{
@@ -213,7 +216,7 @@ local TopPanel = function(s, offset)
 	local tray_widgets = wibox.widget {
 		{
       s.status_icons,
-      -- require('widgets.panel-widgets.system-tray')(s, panelSize, 'horizontal'),
+      s.sys_tray,
 			require('widgets.panel-widgets.keyboard-layout'),
 			-- require('widgets.panel-widgets.music')(),
 			require('widgets.panel-widgets.package-updater')(),

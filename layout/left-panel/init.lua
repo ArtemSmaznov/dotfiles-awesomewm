@@ -1,12 +1,14 @@
 local awful = require('awful')
-local beautiful = require('beautiful')
 local wibox = require('wibox')
+local beautiful = require('beautiful')
+local dpi = beautiful.xresources.apply_dpi
+
 local apps = require('configuration.apps')
-local dpi = require('beautiful').xresources.apply_dpi
+local user_preferences = require('configuration.preferences')
 
 local left_panel = function(screen)
-	
-	local action_bar_width = dpi(45)
+
+	local action_bar_width = user_preferences.panels.size_side
 	local panel_content_width = dpi(350)
 
 	local panel =
@@ -52,7 +54,7 @@ local left_panel = function(screen)
 				panel:toggle()
 			end
 		)
-		
+
 		-- Hide panel content if rofi global search is opened
 		panel:get_children_by_id('panel_content')[1].visible = false
 	end
