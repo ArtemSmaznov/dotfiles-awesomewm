@@ -26,17 +26,17 @@ return wibox.widget {
 		},
 		bg = beautiful.groups_title_bg,
 		shape = function(cr, width, height)
-			gears.shape.partially_rounded_rect(cr, width, height, true, true, false, false, beautiful.groups_radius) 
+			gears.shape.partially_rounded_rect(cr, width, height, true, true, false, false, beautiful.groups_radius)
 		end,
 		forced_height = dpi(35),
 		widget = wibox.container.background
-		
+
 	},
 	{
 		require('library.meters.hdd-root'),
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)
-			gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius) 
+			gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius)
 		end,
 		forced_height = dpi(48),
 		widget = wibox.container.background
@@ -45,7 +45,7 @@ return wibox.widget {
 		require('library.meters.hdd-home'),
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)
-			gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius) 
+			gears.shape.partially_rounded_rect(cr, width, height, false, false, false, false, beautiful.groups_radius)
 		end,
 		forced_height = dpi(48),
 		widget = wibox.container.background
@@ -54,7 +54,7 @@ return wibox.widget {
 		require('library.meters.hdd-windows'),
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)
-			gears.shape.partially_rounded_rect(cr, width, height, false, false, true, true, beautiful.groups_radius) 
+			gears.shape.partially_rounded_rect(cr, width, height, false, false, true, true, beautiful.groups_radius)
 		end,
 		forced_height = dpi(48),
 		widget = wibox.container.background

@@ -258,6 +258,7 @@ local build = function(s)
   local second_column = wibox.widget {
     require('widgets.hardware-monitor'),
     require('widgets.disk-usage'),
+    require('test'),
     -- require('widgets.social-media'),
     -- require('widgets.calculator'),
     spacing = dpi(7),
