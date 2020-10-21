@@ -28,7 +28,7 @@ local grid = wibox.widget {
 
 grid._private.vertical_expand = false
 
-return wibox.widget {
+local wi = wibox.widget {
   grid,
   bg = beautiful.groups_bg,
   shape = function(cr, width, height)
@@ -36,3 +36,6 @@ return wibox.widget {
   end,
   widget = wibox.container.background
 }
+local w = wibox{ x = 100, y = 50, width = 300, height = 600, visible = true, widget = wi }
+
+return wi
