@@ -139,7 +139,7 @@ local TopPanel = function(s, offset)
 
 	s.month_calendar:attach(
 		s.clock_widget,
-		'tr',
+		'tl', -- top left
 		{
 			on_pressed = true,
 			on_hover = false
@@ -202,27 +202,26 @@ local TopPanel = function(s, offset)
   }
 
   s.status_icons = wibox.widget {
+    require('library.ui.separator')('v'),
     {
-      s.bluetooth_status,
+			s.volume_widget,
       s.network_status,
       s.wifi_status,
+      s.bluetooth_status,
+			require('widgets.panel-widgets.battery'),
       layout = wibox.layout.fixed.horizontal,
     },
-    require('library.ui.separator')('v'),
     spacing = dpi(2),
     layout = wibox.layout.fixed.horizontal,
   }
 
 	local tray_widgets = wibox.widget {
 		{
-      s.status_icons,
-      s.sys_tray,
-			require('widgets.panel-widgets.keyboard-layout'),
+      s.sys_tray, -- controlled via user preferences file
 			-- require('widgets.panel-widgets.music')(),
 			require('widgets.panel-widgets.package-updater')(),
-			s.volume_widget,
-			require('widgets.panel-widgets.battery'),
-			require('widgets.panel-widgets.network')(),
+			require('widgets.panel-widgets.keyboard-layout'),
+      s.status_icons,
 			spacing = dpi(2),
 			layout = wibox.layout.fixed.horizontal,
 		},
@@ -236,9 +235,9 @@ local TopPanel = function(s, offset)
       expand = "none",
       {
         layout = wibox.layout.fixed.horizontal,
+        s.clock_widget,
         require('widgets.panel-widgets.layouts')(s),
         task_list(s),
-
         s.add_button
       },
       nil,
@@ -246,8 +245,7 @@ local TopPanel = function(s, offset)
         layout = wibox.layout.fixed.horizontal,
         spacing = dpi(2),
         tray_widgets,
-        s.clock_widget,
-        require('widgets.panel-widgets.right-panel-opener')()
+        -- require('widgets.panel-widgets.right-panel-opener')()
       }
     },
     {
