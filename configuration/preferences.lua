@@ -18,5 +18,10 @@ return {
   panels = {
     size_top = dpi(40),
     size_side = dpi(45),
+  },
+  theme = {
+    wallpaper_path = '/usr/share/backgrounds/',
+    wallpaper = 'linuxmint-tricia/rbates_mam_tor.jpg',
+    icons = 'Papirus-Dark'
   }
 }
