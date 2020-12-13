@@ -21,7 +21,8 @@ return {
   },
   theme = {
     wallpaper_path = '/usr/share/backgrounds/',
-    wallpaper = 'linuxmint-tricia/rbates_mam_tor.jpg',
+    wallpaper = 'linuxmint-tessa/bfantinatti_small_leaves.jpg',
+    -- wallpaper = 'linuxmint-tricia/rbates_mam_tor.jpg',
     icons = 'Papirus-Dark'
   }
 }

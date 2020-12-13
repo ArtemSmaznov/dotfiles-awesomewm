@@ -7,6 +7,8 @@ local clickable_container = require('library.ui.clickable-container.no-backgroun
 local sounds = require('theme.sounds')
 local system_slider = require('theme.system.slider')
 
+local volume_level
+
 local volume_slider = wibox.widget {
 	{
 		id = 'slider',
@@ -59,20 +61,23 @@ local mute_volume = function (state)
 end
 
 local increase_volume = function ()
-	awful.spawn('amixer -D pulse sset Master 5%+', false)
+  volume_level = volume_level + 5
+	awful.spawn('amixer -D pulse sset Master ' .. volume_level .. '%', false)
 	awful.spawn('paplay ' .. sounds.volume, false)
 	mute_volume(false)
 	update_slider()
 end
 
 local decrease_volume = function ()
-	awful.spawn('amixer -D pulse sset Master 5%-', false)
+  volume_level = volume_level - 5
+	awful.spawn('amixer -D pulse sset Master ' .. volume_level .. '%', false)
 	awful.spawn('paplay ' .. sounds.volume, false)
 	mute_volume(false)
 	update_slider()
 end
 
 local set_volume = function (volume)
+  volume_level = volume
 	awful.spawn('amixer -D pulse sset Master ' .. volume .. '%', false)
 	-- awful.spawn('paplay ' .. sounds.volume, false)
 	colorize_slider(volume)
