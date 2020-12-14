@@ -24,6 +24,7 @@ local default = {
   network_manager     = 'nm-connection-editor',                     -- Network manager
   bluetooth_manager   = 'blueman-manager',                          -- Bluetooth manager
   power_manager       = 'xfce4-power-manager-settings',             -- Power manager
+  audio_manager       = 'cinnamon-settings sound',             -- Audio manager
   package_manager     = 'pamac-manager',                            -- GUI Package manager
   lock                = 'cinnamon-screensaver-command -l',          -- Lockscreen
   -- lock                 = 'awesome-client "awesome.emit_signal(\'module::lockscreen_show\')"',  -- Lockscreen
@@ -42,6 +43,9 @@ local default = {
   -- You can add more default applications here
 }
 
+local tool = {
+  bashtop = default.terminal .. ' -e bashtop',
+}
 
 return {
   default = default,
@@ -131,7 +135,7 @@ return {
 
     -- User
     'paplay ' .. sounds.startup,              -- Startup Sound
-    default.terminal,
+    tool.bashtop,
     default.web_browser,
     default.game,
     default.vpn,

@@ -1,6 +1,6 @@
 local filesystem = require('gears.filesystem')
 local theme_dir = filesystem.get_configuration_dir() .. '/theme'
-local wallpaper_dir = '/usr/share/backgrounds/'
+local user_preferences = require('configuration.preferences')
 
 local theme = {}
 
@@ -8,10 +8,10 @@ theme.icons = theme_dir .. '/icons/'
 theme.font = 'SF Pro Text Regular 10'
 theme.font_bold = 'SF Pro Text Bold 10'
 
-theme.icon_theme = 'Papirus-Dark'
+theme.icon_theme = user_preferences.theme.icons
 
 -- Wallpaper
-theme.wallpaper = wallpaper_dir .. 'linuxmint-tricia/rbates_mam_tor.jpg'
+theme.wallpaper = user_preferences.theme.wallpaper_path .. user_preferences.theme.wallpaper
 
 -- Colorscheme
 theme.system_black_dark = '#3D4C5F'
