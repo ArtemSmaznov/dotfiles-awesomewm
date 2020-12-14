@@ -6,6 +6,7 @@ local dpi = beautiful.xresources.apply_dpi
 
 local clickable_container = require('library.ui.clickable-container.with-background')
 local user_preferences = require('configuration.preferences')
+local apps = require('configuration.apps')
 local icons = require('theme.icons')
 
 local task_list = require('widgets.panel-widgets.task-list')
@@ -154,15 +155,14 @@ local TopPanel = function(s, offset)
 		},
 		widget = clickable_container
 	}
-
 	s.volume_widget:buttons(
 		gears.table.join(
 			awful.button(
 				{},
-				3,
+				1,
 				nil,
 				function()
-					awful.spawn('cinnamon-settings sound')
+					awful.spawn(apps.default.audio_manager)
 				end
 			)
 		)
