@@ -7,8 +7,6 @@ local clickable_container = require('library.ui.clickable-container.no-backgroun
 local sounds = require('theme.sounds')
 local system_slider = require('theme.system.slider')
 
-local volume_level
-
 local volume_slider = wibox.widget {
 	{
 		id = 'slider',
@@ -32,7 +30,6 @@ local colorize_slider = function(volume)
 		volume_slider.slider.bar_active_color = slider_color_default
 		volume_slider.slider.handle_color = slider_color_default
 	end
-
 	awesome.emit_signal('icon::volume:update', volume)
 end
 
@@ -41,8 +38,8 @@ local update_slider = function()
 		[[bash -c "amixer -D pulse sget Master"]],
 		function(stdout)
 			local volume = tonumber(string.match(stdout, '(%d?%d?%d)%%'))
-			volume_slider.slider:set_value(volume)
-			colorize_slider(volume)
+      volume_slider.slider:set_value(volume)
+      CurrentVolume = volume
 		end
 	)
 end
@@ -60,36 +57,30 @@ local mute_volume = function (state)
 	awesome.emit_signal('widget::volume_icon:mute', state)
 end
 
-local increase_volume = function ()
-  volume_level = volume_level + 5
-	awful.spawn('amixer -D pulse sset Master ' .. volume_level .. '%', false)
-	awful.spawn('paplay ' .. sounds.volume, false)
+local set_volume = function (volume)
+  CurrentVolume = volume
+	awful.spawn('amixer -D pulse sset Master ' .. CurrentVolume .. '%', false)
 	mute_volume(false)
+end
+
+local increase_volume = function ()
+  set_volume(CurrentVolume + 5)
+  awful.spawn('paplay ' .. sounds.volume, false)
 	update_slider()
 end
 
 local decrease_volume = function ()
-  volume_level = volume_level - 5
-	awful.spawn('amixer -D pulse sset Master ' .. volume_level .. '%', false)
-	awful.spawn('paplay ' .. sounds.volume, false)
-	mute_volume(false)
+  set_volume(CurrentVolume - 5)
+  awful.spawn('paplay ' .. sounds.volume, false)
 	update_slider()
-end
-
-local set_volume = function (volume)
-  volume_level = volume
-	awful.spawn('amixer -D pulse sset Master ' .. volume .. '%', false)
-	-- awful.spawn('paplay ' .. sounds.volume, false)
-	colorize_slider(volume)
-	mute_volume(false)
 end
 
 -- Control the slider with direct clicking
 volume_slider.slider:connect_signal(
 	'property::value',
 	function()
-		local volume = volume_slider.slider:get_value()
-		set_volume(volume)
+		local level = volume_slider.slider:get_value()
+		set_volume(level)
 	end
 )
 
@@ -101,12 +92,12 @@ volume_slider.slider:buttons(
 			4,
 			nil,
 			function()
-				local volume = volume_slider.slider:get_value()
-				if volume > 100 then
+				local level = volume_slider.slider:get_value()
+				if level > 100 then
 					volume_slider.slider:set_value(100)
 					return
 				end
-				volume_slider.slider:set_value(volume + 5)
+				volume_slider.slider:set_value(level + 5)
 			end
 		),
 		awful.button(
@@ -114,12 +105,12 @@ volume_slider.slider:buttons(
 			5,
 			nil,
 			function()
-				local volume = volume_slider.slider:get_value()
-				if volume < 0 then
+				local level = volume_slider.slider:get_value()
+				if level < 0 then
 					volume_slider.slider:set_value(0)
 					return
 				end
-				volume_slider.slider:set_value(volume - 5)
+				volume_slider.slider:set_value(level - 5)
 			end
 		)
 	)
