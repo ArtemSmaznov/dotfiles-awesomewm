@@ -134,10 +134,10 @@ return {
     -- 'solaar -w hide',                         -- Logitech Unifying Receiver
 
     -- User
-    -- 'paplay ' .. sounds.startup,              -- Startup Sound
-    -- tool.bashtop,
-    -- default.web_browser,
-    -- default.game,
-    -- default.vpn,
+    'paplay ' .. sounds.startup,              -- Startup Sound
+    tool.bashtop,
+    default.web_browser,
+    default.game,
+    default.vpn,
   },
 }
