@@ -225,7 +225,7 @@ awful.key(
 			c:relative_move(-resizingStep, 0, 2*resizingStep, 0)
 		end
 	end,
-	{description = 'increase floating client horizontal size', group = 'client'}
+	{description = 'resize floating client', group = 'client'}
 ),
 awful.key(
 	{modkey, 'Control'}, 'Left',
@@ -234,25 +234,25 @@ awful.key(
 			c:relative_move(resizingStep, 0, -2*resizingStep, 0)
 		end
 	end,
-	{description = 'decrease floating client horizontal size', group = 'client'}
+	{description = 'resize floating client', group = 'client'}
 ),
 awful.key(
-	{modkey, 'Control'}, 'Down',
+	{modkey, 'Control'}, 'Up',
 	function(c)
 		if c.floating then
 			c:relative_move(0, -resizingStep, 0, 2*resizingStep)
 		end
 	end,
-	{description = 'increase floating client vertical size', group = 'client'}
+	{description = 'resize floating client', group = 'client'}
 ),
 awful.key(
-	{modkey, 'Control'}, 'Up',
+	{modkey, 'Control'}, 'Down',
 	function(c)
 		if c.floating and c.height > 10 then
 			c:relative_move(0, resizingStep, 0, -2*resizingStep)
 		end
 	end,
-	{description = 'decrease floating client vertical size', group = 'client'}
+	{description = 'resize floating client', group = 'client'}
 )
 
 )

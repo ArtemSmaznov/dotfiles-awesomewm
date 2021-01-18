@@ -32,7 +32,7 @@ ruled.client.connect_signal(
 				sticky = false,
 				maximized_horizontal = false,
 				maximized_vertical = false,
-				round_corners = true,
+				round_corners = false,
 				keys = client_keys,
 				buttons = client_buttons,
 				screen    = 'primary', -- new clients default to primary screen
