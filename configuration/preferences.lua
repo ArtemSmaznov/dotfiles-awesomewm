@@ -20,9 +20,7 @@ return {
     size_side = dpi(45),
   },
   theme = {
-    wallpaper_path = '/usr/share/backgrounds/',
-    wallpaper = 'linuxmint-tessa/bfantinatti_small_leaves.jpg',
-    -- wallpaper = 'linuxmint-tricia/rbates_mam_tor.jpg',
+    wallpaper = '/usr/share/backgrounds/linuxmint-ulyssa/rbooth_floral.jpg',
     icons = 'Papirus-Dark'
   }
 }

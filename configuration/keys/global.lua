@@ -25,18 +25,20 @@ local globalKeys = awful.util.table.join(
 -- ░█░█░█▀▀░█░█░█▀▄░█▀█░█▀█░█▀▄░█▀▄
 -- ░█▀▄░█▀▀░░█░░█▀▄░█░█░█▀█░█▀▄░█░█
 -- ░▀░▀░▀▀▀░░▀░░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░
--- awful.key(
--- 		{ 'Shift' },
--- 		'Alt_L',
--- 		function () keyboard_layout.switch_next() end
--- ),
 awful.key(
-  { altkey },
-  'Shift_L',
-  function ()
-    keyboard_layout.switch_next()
-  end
+		{ 'Shift' },
+		'Alt_L',
+    function ()
+      keyboard_layout.switch_next()
+    end
 ),
+-- awful.key(
+--   { altkey },
+--   'Shift_L',
+--   function ()
+--     keyboard_layout.switch_next()
+--   end
+-- ),
 awful.key(
   { altkey },
   'F4',
@@ -80,8 +82,7 @@ awful.key(
     awful.spawn('light -U 10', false)
     awesome.emit_signal('widget::brightness')
     awesome.emit_signal('module::brightness_osd:show', true)
-  end,
-  { description = 'decrease brightness by 10%', group = 'hotkeys' }
+  end
 ),
 awful.key(
 	{}, 'XF86MonBrightnessUp',
@@ -89,8 +90,7 @@ awful.key(
     awful.spawn('light -A 10', false)
     awesome.emit_signal('widget::brightness')
     awesome.emit_signal('module::brightness_osd:show', true)
-	end,
-	{ description = 'increase brightness by 10%', group = 'hotkeys' }
+	end
 ),
 
 -- ░█▄█░█▀▀░█▀▄░▀█▀░█▀█
@@ -101,53 +101,46 @@ awful.key(
   function()
     awesome.emit_signal('widget::volume:decrease')
     awesome.emit_signal('module::volume_osd:show', true)
-  end,
-  { description = 'change volume up by 5%', group = 'hotkeys' }
+  end
 ),
 awful.key(
   {}, 'XF86AudioRaiseVolume',
   function()
     awesome.emit_signal('widget::volume:increase')
     awesome.emit_signal('module::volume_osd:show', true)
-  end,
-  { description = 'change volume up by 5%', group = 'hotkeys' }
+  end
 ),
 awful.key(
   {}, 'XF86AudioMute',
   function()
     awesome.emit_signal('widget::volume:mute', nil)
     awesome.emit_signal('module::volume_osd:show', true)
-  end,
-  { description = 'toggle mute', group = 'hotkeys' }
+  end
 ),
 awful.key(
   {}, 'XF86AudioPrev',
   function()
     awful.spawn('mpc prev', false)
-  end,
-  { description = 'switch music track', group = 'hotkeys' }
+  end
 ),
 awful.key(
   {}, 'XF86AudioNext',
   function()
     awful.spawn('mpc next', false)
-  end,
-  { description = 'switch music track', group = 'hotkeys' }
+  end
 ),
 awful.key(
   {}, 'XF86AudioPlay',
   function()
     awful.spawn('mpc toggle', false)
-  end,
-  { description = 'play/pause music', group = 'hotkeys' }
+  end
 
 ),
 awful.key(
   {}, 'XF86AudioMicMute',
   function()
     awful.spawn('amixer set Capture toggle', false)
-  end,
-  { description = 'mute microphone', group = 'hotkeys' }
+  end
 ),
 
 -- ░█▀█░█▀█░█░█░█▀▀░█▀▄
@@ -157,22 +150,19 @@ awful.key(
   {}, 'XF86PowerDown',
   function()
     --
-  end,
-  { description = 'shutdown skynet', group = 'hotkeys' }
+  end
 ),
 awful.key(
   {}, 'XF86PowerOff',
   function()
     system.suspend()
-  end,
-  { description = 'toggle exit screen', group = 'hotkeys' }
+  end
 ),
 awful.key(
   {}, 'XF86Display',
   function()
     awful.spawn.single_instance('arandr', false)
-  end,
-  { description = 'arandr', group = 'hotkeys' }
+  end
 ),
 
 -- ░█▀▀░█▀▀░█▀▄░█▀▀░█▀▀░█▀█░█▀▀░█░█░█▀█░▀█▀░█▀▀
@@ -249,46 +239,46 @@ awful.key(
 --                ▄▀
 --               ▀▀
 awful.key(
-  { modkey, altkey}, 'Left',
+  { modkey}, 'Left',
   function()
     awful.tag.incmwfact(-0.05)
   end,
   { description = 'increase/decrease master width factor', group = 'layout' }
 ),
 awful.key(
-  { modkey, altkey}, 'Right',
+  { modkey}, 'Right',
   function()
     awful.tag.incmwfact(0.05)
   end,
   { description = 'increase/decrease master width factor', group = 'layout' }
 ),
 awful.key(
-  { modkey, altkey}, 'KP_Subtract',
-  function()
-    awful.tag.incnmaster(-1, nil, true)
-  end,
-  { description = 'increase/decrease the number of master clients', group = 'layout' }
-),
-awful.key(
-  { modkey, altkey}, 'KP_Add',
-  function()
-    awful.tag.incnmaster(1, nil, true)
-  end,
-  { description = 'increase/decrease the number of master clients', group = 'layout' }
-),
-awful.key(
-  { modkey, altkey}, 'Up',
+  { modkey}, 'Up',
   function()
     awful.tag.incncol(1, nil, true)
   end,
   { description = 'increase/decrease the number of columns', group = 'layout' }
 ),
 awful.key(
-  { modkey, altkey}, 'Down',
+  { modkey}, 'Down',
   function()
     awful.tag.incncol(-1, nil, true)
   end,
   { description = 'increase/decrease the number of columns', group = 'layout' }
+),
+awful.key(
+  { modkey}, 'KP_Add',
+  function()
+    awful.tag.incnmaster(1, nil, true)
+  end,
+  { description = 'increase/decrease the number of master clients', group = 'layout' }
+),
+awful.key(
+  { modkey}, 'KP_Subtract',
+  function()
+    awful.tag.incnmaster(-1, nil, true)
+  end,
+  { description = 'increase/decrease the number of master clients', group = 'layout' }
 ),
 awful.key(
   { modkey }, 'space',
@@ -312,20 +302,19 @@ awful.key(
   { description = 'select default layout', group = 'layout' }
 ),
 awful.key(
+  { modkey }, 'Tab',
+  awful.tag.history.restore,
+  { description = 'alternate between current and previous tag', group = 'tag' }
+),
+awful.key(
   { modkey }, 'Page_Up',
   awful.tag.viewprev,
   { description = 'view prev/next tag', group = 'tag' }
 ),
-
 awful.key(
   { modkey }, 'Page_Down',
   awful.tag.viewnext,
   { description = 'view prev/next tag', group = 'tag' }
-),
-awful.key(
-  { modkey }, 'Escape',
-  awful.tag.history.restore,
-  { description = 'alternate between current and previous tag', group = 'tag' }
 ),
 awful.key(
   { modkey, 'Control' }, 'Page_Up',
@@ -356,21 +345,14 @@ awful.key(
   { description = 'view next non-empty tag', group = 'tag' }
 ),
 awful.key(
-  { modkey, 'Shift' }, 'F1',
-  function()
-    awful.screen.focus_relative(-1)
-  end,
-  { description = 'focus other screen', group = 'screen' }
-),
-awful.key(
-  { modkey, 'Shift' }, 'F2',
+  { modkey, altkey }, 'Tab',
   function()
     awful.screen.focus_relative(1)
   end,
   { description = 'focus other screen', group = 'screen' }
 ),
 awful.key(
-  { modkey, 'Control' }, 'n',
+  { modkey, 'Shift' }, 'd',
   function()
     local c = awful.client.restore()
     -- Focus restored client
@@ -379,7 +361,7 @@ awful.key(
         c:raise()
     end
   end,
-  { description = 'restore minimized', group = 'screen' }
+  { description = 'restore minimized', group = 'client' }
 ),
 
 -- ▄    ▄ ▄▄▄▄▄
@@ -479,13 +461,13 @@ awful.key(
 -- ░▀█▀░█▀▀░█▀▄░█▄█░▀█▀░█▀█░█▀█░█░░
 -- ░░█░░█▀▀░█▀▄░█░█░░█░░█░█░█▀█░█░░
 -- ░░▀░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀
-awful.key(
-  { modkey }, '`',
-  function()
-    _G.toggle_quake()
-  end,
-  { description = 'dropdown application', group = 'launcher' }
-),
+-- awful.key(
+--   { modkey }, '`',
+--   function()
+--     _G.toggle_quake()
+--   end,
+--   { description = 'dropdown application', group = 'launcher' }
+-- ),
 awful.key(
   { modkey }, 'Return',
   function()
