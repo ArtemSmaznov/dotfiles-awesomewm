@@ -9,12 +9,13 @@ local default = {
   web_browser         = 'chromium',                                 -- Web browser
   tor_browser         = 'torbrowser-launcher',                      -- Tor browser
   incognito_browser   = 'chromium --incognito',                     -- Web browser Incognito Mode
-  file_manager        = 'dolphin',                                  -- GUI File manager
+  file_manager        = 'nemo',                                  -- GUI File manager
   music_player        = 'youtubemusic-nativefier',                                -- Music Player
   video_player        = 'celluloid',                                -- Video Player
   game                = '/usr/bin/steam-runtime %U',                -- Gaming Library
   ide                 = 'code',                                     -- IDE
   graphics_editor     = 'gimp',                                     -- Graphics Editor
+  vector_editor       = 'inkscape',                                     -- Graphics Editor
   video_editor        = 'kdenlive',                                 -- Graphics Editor
   photos_library      = 'digikam',                                  -- Photo Management
   torrent_client      = 'transmission-qt',                          -- Torrent Client
@@ -86,6 +87,7 @@ return {
     },{
       category = 'Multimedia',
       apps = {
+        {command = default.vector_editor, icon = default.vector_editor},
         {command = default.graphics_editor, icon = default.graphics_editor},
         {command = default.photos_library, icon = default.photos_library},
         {command = default.video_editor, icon = default.video_editor},
@@ -135,7 +137,7 @@ return {
 
     -- User
     'paplay ' .. sounds.startup,              -- Startup Sound
-    tool.bashtop,
+    default.terminal,
     default.web_browser,
     default.game,
     default.vpn,

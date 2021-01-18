@@ -11,7 +11,7 @@ theme.font_bold = 'SF Pro Text Bold 10'
 theme.icon_theme = user_preferences.theme.icons
 
 -- Wallpaper
-theme.wallpaper = user_preferences.theme.wallpaper_path .. user_preferences.theme.wallpaper
+theme.wallpaper = user_preferences.theme.wallpaper
 
 -- Colorscheme
 theme.system_black_dark = '#3D4C5F'
