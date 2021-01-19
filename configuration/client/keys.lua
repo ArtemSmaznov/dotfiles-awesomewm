@@ -8,7 +8,8 @@ require('awful.autofocus')
 local modkey = require('configuration.keys.mod').modKey
 local altkey = require('configuration.keys.mod').altKey
 
-local resizingStep = dpi(40)
+-- increment for moving and resizing floting windows
+local step = dpi(50)
 
 local clientKeys = awful.util.table.join(
 -- close client
@@ -222,7 +223,7 @@ awful.key(
 	{modkey, 'Control'}, 'Right',
 	function(c)
 		if c.floating then
-			c:relative_move(-resizingStep, 0, 2*resizingStep, 0)
+			c:relative_move(-step, 0, 2*step, 0)
 		end
 	end,
 	{description = 'resize floating client', group = 'client'}
@@ -231,7 +232,7 @@ awful.key(
 	{modkey, 'Control'}, 'Left',
 	function(c)
 		if c.floating and c.width > 10 then
-			c:relative_move(resizingStep, 0, -2*resizingStep, 0)
+			c:relative_move(step, 0, -2*step, 0)
 		end
 	end,
 	{description = 'resize floating client', group = 'client'}
@@ -240,7 +241,7 @@ awful.key(
 	{modkey, 'Control'}, 'Up',
 	function(c)
 		if c.floating then
-			c:relative_move(0, -resizingStep, 0, 2*resizingStep)
+			c:relative_move(0, -step, 0, 2*step)
 		end
 	end,
 	{description = 'resize floating client', group = 'client'}
@@ -249,10 +250,48 @@ awful.key(
 	{modkey, 'Control'}, 'Down',
 	function(c)
 		if c.floating and c.height > 10 then
-			c:relative_move(0, resizingStep, 0, -2*resizingStep)
+			c:relative_move(0, step, 0, -2*step)
 		end
 	end,
 	{description = 'resize floating client', group = 'client'}
+),
+
+-- Move floating clients
+awful.key(
+	{modkey, 'Control', 'Shift'}, 'Right',
+	function(c)
+		if c.floating then
+			c:relative_move(step, 0, 0, 0)
+		end
+	end,
+	{description = 'move floating client', group = 'client'}
+),
+awful.key(
+	{modkey, 'Control', 'Shift'}, 'Left',
+	function(c)
+		if c.floating and c.width > 10 then
+			c:relative_move(-step, 0, 0, 0)
+		end
+	end,
+	{description = 'move floating client', group = 'client'}
+),
+awful.key(
+	{modkey, 'Control', 'Shift'}, 'Up',
+	function(c)
+		if c.floating then
+			c:relative_move(0, -step, 0, 0)
+		end
+	end,
+	{description = 'move floating client', group = 'client'}
+),
+awful.key(
+	{modkey, 'Control', 'Shift'}, 'Down',
+	function(c)
+		if c.floating and c.height > 10 then
+			c:relative_move(0, step, 0, 0)
+		end
+	end,
+	{description = 'move floating client', group = 'client'}
 )
 
 )
