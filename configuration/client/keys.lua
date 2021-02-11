@@ -1,5 +1,4 @@
 local awful = require('awful')
-local gears = require('gears')
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
 
@@ -8,7 +7,7 @@ require('awful.autofocus')
 local modkey = require('configuration.keys.mod').modKey
 local altkey = require('configuration.keys.mod').altKey
 
--- increment for moving and resizing floting windows
+-- increment for moving and resizing floating windows
 local step = dpi(50)
 
 local clientKeys = awful.util.table.join(
@@ -87,7 +86,7 @@ awful.key(
 
 -- toggle client floating mode
 awful.key(
-	{modkey}, 'f',
+	{modkey}, 'w',
 	function(c)
 		c.fullscreen = false
     c.maximized = false
@@ -111,9 +110,9 @@ awful.key(
 	end,
 	{description = 'toggle max', group = 'client'}
 ),
--- toggle client fullscreen mode
+-- toggle client full screen mode
 awful.key(
-	{modkey}, 'F11',
+	{modkey}, 'f',
 	function(c)
     c.floating = false
     c.maximized = false
@@ -122,7 +121,7 @@ awful.key(
 		c.fullscreen = not c.fullscreen
 		c:raise()
 	end,
-	{description = 'toggle fullscreen', group = 'client'}
+	{description = 'toggle full screen', group = 'client'}
 ),
 -- toggle client sticky mode
 awful.key(

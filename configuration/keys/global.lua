@@ -1,5 +1,4 @@
 local awful = require('awful')
-local beautiful = require('beautiful')
 local system = require('modules.system-control')
 
 require('awful.autofocus')
