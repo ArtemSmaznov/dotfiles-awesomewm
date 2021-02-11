@@ -25,9 +25,10 @@ local function render_client(client, mode)
     end
   elseif client.rendering_mode ~= 'maximized' then
     client.border_width = beautiful.border_width
-    client.shape = function(cr, w, h)
-      gears.shape.rounded_rect(cr, w, h, beautiful.client_radius)
-    end
+    -- disable rounded corners on newly spawned clients
+    -- client.shape = function(cr, w, h)
+      -- gears.shape.rounded_rect(cr, w, h, beautiful.client_radius)
+    -- end
   end
 
 end
