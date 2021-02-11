@@ -18,26 +18,26 @@ ruled.client.connect_signal(
     -- All clients will match this rule.
 
 		ruled.client.append_rule {
-			id         = "global",
-			rule       = { },
-			properties = {
-        focus     = awful.client.focus.filter,
-        switchtotag = true,
-				raise     = true,
-				floating = false,
-				maximized = false,
-				above = false,
-				below = false,
-				ontop = false,
-				sticky = false,
+			id                     = "global",
+			rule                   = { },
+			properties             = {
+        focus                = awful.client.focus.filter,
+        switchtotag          = true,
+				raise                = true,
+				floating             = false,
+				maximized            = false,
+				above                = false,
+				below                = false,
+				ontop                = false,
+				sticky               = false,
 				maximized_horizontal = false,
-				maximized_vertical = false,
-				round_corners = false,
-				keys = client_keys,
-				buttons = client_buttons,
-				screen    = 'primary', -- new clients default to primary screen
-				-- screen    = awful.screen.preferred, -- new clients default to focused screen
-				placement = awful.placement.no_overlap + awful.placement.no_offscreen + awful.placement.centered
+				maximized_vertical   = false,
+				round_corners        = false,
+				keys                 = client_keys,
+				buttons              = client_buttons,
+				screen               = 'primary', -- new clients default to primary screen
+				-- screen            = awful.screen.preferred, -- new clients default to focused screen
+				placement            = awful.placement.no_overlap + awful.placement.no_offscreen + awful.placement.centered
 			}
 		}
 
@@ -61,8 +61,9 @@ ruled.client.connect_signal(
 				instance = { "QuakeTerminal" }
 			},
 			properties = {
-        tag = 'terminal',
-        screen = awful.tag.find_by_name(nil, 'terminal').screen,
+        tag = 'coding',
+        hide_titlebars = true,
+        -- screen = awful.tag.find_by_name(nil, 'terminal').screen,
 				size_hints_honor = false
 			}
 		}
