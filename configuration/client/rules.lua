@@ -63,7 +63,6 @@ ruled.client.connect_signal(
 			properties = {
         tag = 'coding',
         hide_titlebars = true,
-        -- screen = awful.tag.find_by_name(nil, 'terminal').screen,
 				size_hints_honor = false
 			}
 		}
@@ -75,11 +74,13 @@ ruled.client.connect_signal(
           "whatsapp",
           "Slack",
           "obs",
+          "Spotify",
+          "youtubemusic"
           }
 			},
 			properties = {
-        tag = 'terminal',
-        screen = awful.tag.find_by_name(nil, 'terminal').screen,
+        tag = 'misc',
+        screen = awful.tag.find_by_name(nil, 'misc').screen,
 			}
 		}
 
@@ -262,11 +263,8 @@ ruled.client.connect_signal(
 			rule_any   = {
         class = {
           "vlc",
-          "Spotify",
           "Celluloid",
-          "youtubemusic"
-        },
-        name = { "Google Play Music" }
+        }
       },
 			properties = {
         tag = 'multimedia',

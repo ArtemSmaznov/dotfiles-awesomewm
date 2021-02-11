@@ -6,9 +6,9 @@ local monitor = require('modules.monitor')
 
 local tags = {
 	{
-		name = 'terminal',
+		name = 'misc',
 		icon = icons.tags.terminal,
-		default_app = apps.default.terminal,
+		default_app = apps.default.music_player,
     layout = awful.layout.suit.tile,
 		screen = 2,
     selected = true,
