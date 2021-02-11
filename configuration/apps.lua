@@ -1,6 +1,6 @@
 local filesystem = require('gears.filesystem')
 local config_dir = filesystem.get_configuration_dir()
-local sounds = require('theme.sounds')
+local sounds     = require('theme.sounds')
 
 -- The default applications that we will use in keybindings and widgets
 local default = {

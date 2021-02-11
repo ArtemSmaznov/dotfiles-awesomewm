@@ -162,6 +162,11 @@ else
 
     items = {
       {
+        "Terminal",
+        apps.default.terminal,
+        menubar.utils.lookup_icon("utilities-terminal")
+      },
+      {
         "Instructions",
         function()
           local naughty = require('naughty')

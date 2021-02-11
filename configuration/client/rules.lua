@@ -172,34 +172,21 @@ ruled.client.connect_signal(
 			}
 		}
 
-		-- ruled.client.append_rule {
-		-- 	id         = "steam_dialogs",
-		-- 	rule_any   = {
-		-- 		name = {
-		-- 			"- Steam",
-    --       -- "Settings",
-    --       -- "Properties",
-    --       -- "News",
-    --       -- "Login",
-    --       "Steam Guard"
-		-- 		}
-		-- 	},
-		-- 	properties = {
-    --     tag = 'gaming',
-    --     screen = 1,
-    --     maximized = false,
-    --     floating = true,
-    --     hide_titlebars = false,
-		-- 	}
-		-- }
-
 		ruled.client.append_rule {
 			id         = "games",
 			rule_any   = {
 				class = {
 					"steam_app",
+        },
+        name = {
+					"Witcher",
 				}
-			},
+      },
+      except_any = {
+        name = {
+					"Steam",
+				}
+      },
 			properties = {
         tag = 'gaming',
         screen = 1,
