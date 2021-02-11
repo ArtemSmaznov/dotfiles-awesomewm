@@ -6,9 +6,9 @@ local monitor = require('modules.monitor')
 
 local tags = {
 	{
-		name = 'terminal',
+		name = 'misc',
 		icon = icons.tags.terminal,
-		default_app = apps.default.terminal,
+		default_app = apps.default.music_player,
     layout = awful.layout.suit.tile,
 		screen = 2,
     selected = true,
@@ -29,7 +29,6 @@ local tags = {
 		name = 'coding',
 		icon = icons.tags.text_editor,
 		default_app = apps.default.ide,
-    layout = awful.layout.suit.max,
 	},
 	{
 		name = 'computer',
@@ -72,7 +71,7 @@ for i, tag in pairs(tags) do
       layout              = tag.layout or awful.layout.suit.tile,
       default_layout      = tag.layout or awful.layout.suit.tile,
       gap                 = tag.gap or beautiful.useless_gap,
-      gap_single_client   = tag.single_client_gap or false,
+      gap_single_client   = tag.single_client_gap or true,
       master_count        = monitor.orientation(tag.screen) == 'portrait' and 0 or nil,
       selected            = tag.selected or tag.screen ~= nil and tag.screen <= screen:instances() or false,
       screen              = tag.screen or tag.screen ~= nil and tag.screen <= screen:instances() or 'primary',
