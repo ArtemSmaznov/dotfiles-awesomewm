@@ -7,7 +7,7 @@
 ---------------------------------------------------------------------------
 
 local hotkeys_popup = require("awful.hotkeys_popup.widget")
-local fire_rule = { class = { "Terminator" } }
+local fire_rule = { class = { "Terminator", "Alacritty" } }
 for group_name, group_data in pairs({
     ["Command Editing Shortcuts"] = { color = "#009F00", rule_any = fire_rule }
 }) do

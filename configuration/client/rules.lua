@@ -54,7 +54,8 @@ ruled.client.connect_signal(
 					"UXTerm",
 					"kitty",
 					"K3rmit",
-					"Terminator"
+					"Terminator",
+					"Alacritty"
 				}
 			},
 			except_any = {

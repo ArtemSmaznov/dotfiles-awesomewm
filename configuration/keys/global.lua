@@ -408,7 +408,7 @@ awful.key(
   { description = 'open application drawer', group = 'launcher' }
 ),
 awful.key(
-  { modkey, 'Shift' }, 'r',
+  { modkey, altkey}, 'F2',
   function()
     local focused = awful.screen.focused()
 
@@ -545,28 +545,28 @@ awful.key(
 -- ░▀▀█░█▀▀░█░░░█░█░█░█░█░█░█▀█░█▀▄░░█░
 -- ░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀░░▀░▀░▀░▀░░▀░
 awful.key(
-  { modkey, 'Shift' }, 'm',
+  { 'Control', altkey }, 'm',
   function()
     awful.spawn(apps.default.music_player)
   end,
   { description = 'open default Music player', group = 'launcher' }
 ),
 awful.key(
-	{ modkey, 'Shift' }, 'v',
+	{ 'Control', altkey }, 'v',
 	function()
 		awful.spawn(apps.default.video_player)
 	end,
 	{ description = 'open default Video Player', group = 'launcher' }
 ),
 awful.key(
-	{ modkey, 'Shift' }, 'g',
+	{ 'Control', altkey }, 'g',
 	function()
 		awful.spawn(apps.default.graphics_editor)
 	end,
 	{ description = 'open default Graphics Editor', group = 'launcher' }
 ),
 awful.key(
-	{ modkey, 'Shift' }, 'p',
+	{ 'Control', altkey }, 'p',
 	function()
 		awful.spawn(apps.default.photos_library)
 	end,

@@ -4,7 +4,7 @@ local sounds     = require('theme.sounds')
 
 -- The default applications that we will use in keybindings and widgets
 local default = {
-  terminal            = 'terminator',                               -- Terminal Emulator
+  terminal            = 'alacritty',                                -- Terminal Emulator
   text_editor         = 'xed',                                      -- GUI Text Editor
   web_browser         = 'chromium',                                 -- Web browser
   tor_browser         = 'torbrowser-launcher',                      -- Tor browser
@@ -140,6 +140,6 @@ return {
     default.terminal,
     default.web_browser,
     default.game,
-    default.vpn,
+    default.vpn
   },
 }
