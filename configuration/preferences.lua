@@ -20,8 +20,7 @@ return {
     size_side = dpi(45),
   },
   theme = {
-    -- theme = 'sakura',
+    theme = 'sakura',
     -- wallpaper = '/usr/share/backgrounds/linuxmint-ulyssa/rranwa_india.jpg',
-    -- icons = 'Papirus-Dark'
   }
 }

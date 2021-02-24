@@ -1,17 +1,25 @@
+local gears = require('gears')
+local beautiful = require('beautiful')
+
 local filesystem = require('gears.filesystem')
+local dpi = require('beautiful').xresources.apply_dpi
+
 local theme_dir = filesystem.get_configuration_dir() .. '/theme'
+local system_dir = '/usr/share/awesome/themes/default/layouts/'
+
+local titlebar_theme = "stoplight"
+local titlebar_icon_path = theme_dir .. "/icons/titlebar/" .. titlebar_theme .. '/'
+local tip = titlebar_icon_path
+
 local user_preferences = require('configuration.preferences')
 
 local theme = {}
 
 -- Defaults
-theme.icons = 'Papirus-Dark'
-theme.font = 'SF Pro Text Regular 10'
-theme.font_bold = 'SF Pro Text Bold 10'
-theme.default_wallpaper = '/usr/share/backgrounds/linuxmint-ulyssa/rbooth_floral.jpg'
-
-theme.wallpaper = user_preferences.theme.wallpaper or theme.default_wallpaper
-theme.icon_theme = user_preferences.theme.icons or theme.icons
+theme.font = user_preferences.theme.font or 'SF Pro Text Regular 10'
+theme.font_bold = user_preferences.theme.font_bold or 'SF Pro Text Bold 10'
+theme.icon_theme = user_preferences.theme.icons or 'Papirus-Dark'
+theme.wallpaper = user_preferences.theme.wallpaper or '/usr/share/backgrounds/linuxmint-ulyssa/rbooth_floral.jpg'
 
 -- Colorscheme
 theme.system_black_dark = '#3D4C5F'
@@ -51,9 +59,11 @@ theme.transparent = '#00000000'
 -- Awesome icon
 theme.awesome_icon = theme_dir .. '/icons/awesome.svg'
 
-local awesome_overrides = function(theme) end
+local awesome_overrides = function(theme)
+
+end
 
 return {
   theme = theme,
-   awesome_overrides = awesome_overrides
+  awesome_overrides = awesome_overrides
 }

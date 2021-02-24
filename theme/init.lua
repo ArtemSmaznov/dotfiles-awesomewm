@@ -1,5 +1,5 @@
 local gtable = require('gears.table')
-local default_theme = require('theme.default-theme')
+local default_theme = require('theme.default')
 local user_preferences = require('configuration.preferences')
 
 local def_theme = user_preferences.theme.theme or 'sakura'
