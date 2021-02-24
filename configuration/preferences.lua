@@ -20,7 +20,8 @@ return {
     size_side = dpi(45),
   },
   theme = {
-    wallpaper = '/usr/share/backgrounds/linuxmint-ulyssa/rbooth_floral.jpg',
-    icons = 'Papirus-Dark'
+    -- theme = 'sakura',
+    -- wallpaper = '/usr/share/backgrounds/linuxmint-ulyssa/rranwa_india.jpg',
+    -- icons = 'Papirus-Dark'
   }
 }

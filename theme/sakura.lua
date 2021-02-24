@@ -4,14 +4,14 @@ local user_preferences = require('configuration.preferences')
 
 local theme = {}
 
-theme.icons = theme_dir .. '/icons/'
+-- Defaults
+theme.icons = 'Papirus-Dark'
 theme.font = 'SF Pro Text Regular 10'
 theme.font_bold = 'SF Pro Text Bold 10'
+theme.default_wallpaper = '/usr/share/backgrounds/linuxmint-ulyssa/rbooth_floral.jpg'
 
-theme.icon_theme = user_preferences.theme.icons
-
--- Wallpaper
-theme.wallpaper = user_preferences.theme.wallpaper
+theme.wallpaper = user_preferences.theme.wallpaper or theme.default_wallpaper
+theme.icon_theme = user_preferences.theme.icons or theme.icons
 
 -- Colorscheme
 theme.system_black_dark = '#3D4C5F'
@@ -49,7 +49,7 @@ theme.background = '#000000' .. '66'
 theme.transparent = '#00000000'
 
 -- Awesome icon
-theme.awesome_icon = theme.icons .. 'awesome.svg'
+theme.awesome_icon = theme_dir .. '/icons/awesome.svg'
 
 local awesome_overrides = function(theme) end
 
