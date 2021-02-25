@@ -11,6 +11,7 @@ local titlebar_theme = "stoplight"
 local titlebar_icon_path = theme_dir .. "/icons/titlebar/" .. titlebar_theme .. '/'
 local tip = titlebar_icon_path
 
+local color = require('theme.colors.current')
 local user_preferences = require('configuration.preferences')
 
 local theme = {}
@@ -22,33 +23,33 @@ theme.icon_theme = user_preferences.theme.icons or 'Papirus-Dark'
 theme.wallpaper = user_preferences.theme.wallpaper or '/usr/share/backgrounds/linuxmint-ulyssa/rbooth_floral.jpg'
 
 -- Colorscheme
-theme.system_black_dark = '#3D4C5F'
-theme.system_black_light = '#56687E'
+theme.system_black_dark = color.black_dark
+theme.system_black_light = color.black_light
 
-theme.system_red_dark = '#EE4F84'
-theme.system_red_light = '#F48FB1'
+theme.system_red_dark = color.red_dark
+theme.system_red_light = color.red_light
 
-theme.system_green_dark = '#53E2AE'
-theme.system_green_light = '#A1EFD3'
+theme.system_green_dark = color.green_dark
+theme.system_green_light = color.green_light
 
-theme.system_yellow_dark = '#F1FF52'
-theme.system_yellow_light = '#F1FA8C'
+theme.system_yellow_dark = color.yellow_dark
+theme.system_yellow_light = color.yellow_light
 
-theme.system_blue_dark = '#6498EF' 
-theme.system_blue_light = '#92B6F4'
+theme.system_blue_dark = color.blue_dark
+theme.system_blue_light = color.blue_light
 
-theme.system_magenta_dark = '#985EFF'
-theme.system_magenta_light = '#BD99FF'
+theme.system_magenta_dark = color.magenta_dark
+theme.system_magenta_light = color.magenta_light
 
-theme.system_cyan_dark = '#24D1E7'
-theme.system_cyan_light = '#87DFEB'
+theme.system_cyan_dark = color.cyan_dark
+theme.system_cyan_light = color.cyan_light
 
-theme.system_white_dark = '#E5E5E5'
-theme.system_white_light = '#F8F8F2'
+theme.system_white_dark = color.white_dark
+theme.system_white_light = color.white_light
 
 
 -- Accent color
-theme.accent = theme.system_white_dark
+theme.accent = color.white_dark
 
 -- Background color
 theme.background = '#000000' .. '66'
@@ -87,7 +88,7 @@ local awesome_overrides = function(theme)
   -- System tray
 
   theme.bg_systray = theme.background
-  theme.systray_icon_spacing = dpi(5)
+  theme.systray_icon_spacing = dpi(2)
 
   -- Titlebar
 
