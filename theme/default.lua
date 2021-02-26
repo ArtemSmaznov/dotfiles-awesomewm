@@ -12,6 +12,7 @@ local titlebar_icon_path = theme_dir .. "/icons/titlebar/" .. titlebar_theme .. 
 local tip = titlebar_icon_path
 
 local color = require('theme.colors.current')
+local material = require('theme.colors.material')
 local user_preferences = require('configuration.preferences')
 
 local theme = {}
@@ -23,8 +24,8 @@ theme.icon_theme = user_preferences.theme.icons or 'Papirus-Dark'
 theme.wallpaper = user_preferences.theme.wallpaper or '/usr/share/backgrounds/linuxmint-ulyssa/rbooth_floral.jpg'
 
 -- Colorscheme
-theme.system_black_dark = color.black_dark
-theme.system_black_light = color.black_light
+theme.system_black_dark = material.black.dark
+theme.system_black_light = material.black.light
 
 theme.system_red_dark = color.red_dark
 theme.system_red_light = color.red_light
@@ -44,15 +45,15 @@ theme.system_magenta_light = color.magenta_light
 theme.system_cyan_dark = color.cyan_dark
 theme.system_cyan_light = color.cyan_light
 
-theme.system_white_dark = color.white_dark
-theme.system_white_light = color.white_light
+theme.system_white_dark = material.white.dark
+theme.system_white_light = material.white.light
 
 
 -- Accent color
-theme.accent = color.white_dark
+theme.accent = material.white.dark
 
 -- Background color
-theme.background = '#000000' .. '66'
+theme.background = material.black.pure .. '66'
 
 -- Transparent
 theme.transparent = '#00000000'
