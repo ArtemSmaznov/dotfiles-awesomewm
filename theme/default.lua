@@ -24,36 +24,13 @@ theme.icon_theme = user_preferences.theme.icons or 'Papirus-Dark'
 theme.wallpaper = user_preferences.theme.wallpaper or '/usr/share/backgrounds/linuxmint-ulyssa/rbooth_floral.jpg'
 
 -- Colorscheme
-theme.system_black_dark = material.black.dark
-theme.system_black_light = material.black.light
-
-theme.system_red_dark = color.red_dark
-theme.system_red_light = color.red_light
-
-theme.system_green_dark = color.green_dark
-theme.system_green_light = color.green_light
-
-theme.system_yellow_dark = color.yellow_dark
-theme.system_yellow_light = color.yellow_light
-
-theme.system_blue_dark = color.blue_dark
-theme.system_blue_light = color.blue_light
-
-theme.system_magenta_dark = color.magenta_dark
-theme.system_magenta_light = color.magenta_light
-
-theme.system_cyan_dark = color.cyan_dark
-theme.system_cyan_light = color.cyan_light
-
-theme.system_white_dark = material.white.dark
-theme.system_white_light = material.white.light
-
+theme.toggle = '#CC9393'
 
 -- Accent color
-theme.accent = material.white.dark
+theme.accent = material.grey.hue_300
 
 -- Background color
-theme.background = material.black.pure .. '66'
+theme.background = material.black .. '66'
 
 -- Transparent
 theme.transparent = '#00000000'

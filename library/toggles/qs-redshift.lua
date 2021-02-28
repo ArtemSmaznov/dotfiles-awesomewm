@@ -17,7 +17,7 @@ require('library.ui.tooltip')(quick_setting, 'Redshift')
 
 local function set_toggle_state (state)
   if state then
-    quick_setting.bg = beautiful.system_black_light
+    quick_setting.bg = beautiful.toggle
   else
     quick_setting.bg = beautiful.transparent
   end

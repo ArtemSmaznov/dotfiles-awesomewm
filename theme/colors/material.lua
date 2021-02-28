@@ -1,4 +1,6 @@
 return {
+  white = '#FFFFFF',
+  black = '#000000',
   -- Red
   red = {
     hue_50 = '#FFEBEE',
@@ -309,17 +311,5 @@ return {
     hue_700 = '#455A64',
     hue_800 = '#37474F',
     hue_900 = '#263238'
-  },
-  -- Black
-  black = {
-    pure = '#000000',
-    dark = '#3D4C5F',
-    light = '#56687e'
-  },
-  -- White
-  white = {
-    pure = '#FFFFFF',
-    dark = '#E5E5E5',
-    light = '#F8F8F2'
   },
 }
