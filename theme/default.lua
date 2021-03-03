@@ -25,6 +25,7 @@ theme.wallpaper = user_preferences.theme.wallpaper or '/usr/share/backgrounds/li
 
 -- Colorscheme
 theme.toggle = material.blue_grey.hue_700
+theme.system_elements = material.grey.hue_100
 
 -- Accent color
 theme.accent = material.grey.hue_300
