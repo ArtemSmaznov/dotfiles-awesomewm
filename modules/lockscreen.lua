@@ -6,7 +6,7 @@ local beautiful = require('beautiful')
 
 local dpi = beautiful.xresources.apply_dpi
 local icons = require('theme.icons')
-local colors = require('theme.colors.current')
+local material = require('theme.colors.material')
 
 local filesystem = require('gears.filesystem')
 local config_dir = filesystem.get_configuration_dir()
@@ -298,10 +298,10 @@ local locker = function(s)
 	local rotation_direction = {"north", "west", "south", "east"}
 
 	-- Red, Green, Yellow, Blue
-  local red = colors.red_dark
-  local green = colors.green_dark
-	local yellow = colors.yellow_dark
-	local blue = colors.blue_dark
+  local red = material.red.hue_500
+  local green = material.green.hue_500
+	local yellow = material.yellow.hue_500
+	local blue = material.blue.hue_500
 	
 	-- Color table
 	local arc_color = {red, green, yellow, blue}

@@ -2,8 +2,7 @@ local gtable = require('gears.table')
 local default_theme = require('theme.default')
 local user_preferences = require('configuration.preferences')
 
-local def_theme = user_preferences.theme.theme or 'sakura'
-local theme = require('theme.' .. def_theme)
+local theme = require('theme.' .. user_preferences.theme.theme)
 
 local final_theme = {}
 gtable.crush(final_theme, default_theme.theme)
