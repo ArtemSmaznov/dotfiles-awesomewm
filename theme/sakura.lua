@@ -15,11 +15,6 @@ theme.wallpaper = user_preferences.theme.wallpaper or default_wallpaper
 
 theme.toggle = material.pink.hue_400
 
-local awesome_overrides = function(theme)
-
-end
-
 return {
   theme = theme,
-  awesome_overrides = awesome_overrides
 }

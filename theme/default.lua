@@ -39,8 +39,6 @@ theme.transparent = '#00000000'
 -- Awesome icon
 theme.awesome_icon = theme_dir .. '/icons/awesome.svg'
 
-local awesome_overrides = function(theme)
-
   theme.dir = theme_dir
 
   theme.icons = theme.dir .. '/icons/'
@@ -242,9 +240,6 @@ local awesome_overrides = function(theme)
   theme.hotkeys_bg = theme.background
   theme.hotkeys_group_margin = dpi(20)
 
-end
-
 return {
   theme = theme,
-  awesome_overrides = awesome_overrides
 }
