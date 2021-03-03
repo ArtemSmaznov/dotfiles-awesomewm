@@ -1,7 +1,7 @@
+-- https://www.materialui.co/colors
 return {
   white = '#FFFFFF',
   black = '#000000',
-  -- Red
   red = {
     hue_50 = '#FFEBEE',
     hue_100 = '#FFCDD2',
@@ -18,7 +18,6 @@ return {
     hue_A400 = '#FF1744',
     hue_A700 = '#D50000'
   },
-  -- Pink
   pink = {
     hue_50 = '#FCE4EC',
     hue_100 = '#F8BBD0',
@@ -35,7 +34,6 @@ return {
     hue_A400 = '#F50057',
     hue_A700 = '#C51162'
   },
-  -- Purple
   purle = {
     hue_50 = '#F3E5F5',
     hue_100 = '#E1BEE7',
@@ -52,8 +50,7 @@ return {
     hue_A400 = '#D500F9',
     hue_A700 = '#AA00FF'
   },
-  -- Deep Purple
-  hue_purple = {
+  deep_purple = {
     hue_50 = '#EDE7F6',
     hue_100 = '#D1C4E9',
     hue_200 = '#B39DDB',
@@ -69,7 +66,6 @@ return {
     hue_A400 = '#651FFF',
     hue_A700 = '#6200EA'
   },
-  -- Indigo
   indigo = {
     hue_50 = '#E8EAF6',
     hue_100 = '#C5CAE9',
@@ -86,7 +82,6 @@ return {
     hue_A400 = '#3D5AFE',
     hue_A700 = '#304FFE'
   },
-  -- Blue
   blue = {
     hue_50 = '#E3F2FD',
     hue_100 = '#BBDEFB',
@@ -103,8 +98,7 @@ return {
     hue_A400 = '#2979FF',
     hue_A700 = '#2962FF'
   },
-  -- Light Blue
-  hue_blue = {
+  light_blue = {
     hue_50 = '#E1F5FE',
     hue_100 = '#B3E5FC',
     hue_200 = '#81D4FA',
@@ -120,7 +114,6 @@ return {
     hue_A400 = '#00B0FF',
     hue_A700 = '#0091EA'
   },
-  -- Cyan
   cyan = {
     hue_50 = '#E0F7FA',
     hue_100 = '#B2EBF2',
@@ -137,7 +130,6 @@ return {
     hue_A400 = '#00E5FF',
     hue_A700 = '#00B8D4'
   },
-  -- Teal
   teal = {
     hue_50 = '#E0F2F1',
     hue_100 = '#B2DFDB',
@@ -154,7 +146,6 @@ return {
     hue_A400 = '#1DE9B6',
     hue_A700 = '#00BFA5'
   },
-  -- Green
   green = {
     hue_50 = '#E8F5E9',
     hue_100 = '#C8E6C9',
@@ -171,8 +162,7 @@ return {
     hue_A400 = '#00E676',
     hue_A700 = '#00C853'
   },
-  -- Light Green
-  hue_green = {
+  light_green = {
     hue_50 = '#F1F8E9',
     hue_100 = '#DCEDC8',
     hue_200 = '#C5E1A5',
@@ -188,7 +178,6 @@ return {
     hue_A400 = '#76FF03',
     hue_A700 = '#64DD17'
   },
-  -- Lime
   lime = {
     hue_50 = '#F9FBE7',
     hue_100 = '#F0F4C3',
@@ -205,7 +194,6 @@ return {
     hue_A400 = '#C6FF00',
     hue_A700 = '#AEEA00'
   },
-  -- Yellow
   yellow = {
     hue_50 = '#FFFDE7',
     hue_100 = '#FFF9C4',
@@ -222,7 +210,6 @@ return {
     hue_A400 = '#FFEA00',
     hue_A700 = '#FFD600'
   },
-  -- Amber
   amber = {
     hue_50 = '#FFF8E1',
     hue_100 = '#FFECB3',
@@ -239,7 +226,6 @@ return {
     hue_A400 = '#FFC400',
     hue_A700 = '#FFAB00'
   },
-  -- Orange
   orange = {
     hue_50 = '#FFF3E0',
     hue_100 = '#FFE0B2',
@@ -256,7 +242,6 @@ return {
     hue_A400 = '#FF9100',
     hue_A700 = '#FF6D00'
   },
-  -- Deep Orange
   deep_orange = {
     hue_50 = '#FBE9E7',
     hue_100 = '#FFCCBC',
@@ -273,7 +258,6 @@ return {
     hue_A400 = '#FF3D00',
     hue_A700 = '#DD2C00'
   },
-  -- Brown
   brown = {
     hue_50 = '#EFEBE9',
     hue_100 = '#D7CCC8',
@@ -286,7 +270,6 @@ return {
     hue_800 = '#4E342E',
     hue_900 = '#3E2723'
   },
-  -- Grey
   grey = {
     hue_50 = '#FAFAFA',
     hue_100 = '#F5F5F5',
@@ -299,7 +282,6 @@ return {
     hue_800 = '#424242',
     hue_900 = '#212121'
   },
-  -- Blue Grey
   blue_grey = {
     hue_50 = '#ECEFF1',
     hue_100 = '#CFD8DC',

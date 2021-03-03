@@ -16,8 +16,8 @@ return {
     date_long = '%a, %d %b %Y',
   },
   panels = {
-    size_top = dpi(40),
-    size_side = dpi(45),
+    size_top = dpi(35),
+    size_side = dpi(40),
   },
   theme = {
     theme = 'sakura',

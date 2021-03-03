@@ -11,7 +11,6 @@ local titlebar_theme = "stoplight"
 local titlebar_icon_path = theme_dir .. "/icons/titlebar/" .. titlebar_theme .. '/'
 local tip = titlebar_icon_path
 
-local color = require('theme.colors.current')
 local material = require('theme.colors.material')
 local user_preferences = require('configuration.preferences')
 
@@ -20,11 +19,12 @@ local theme = {}
 -- Defaults
 theme.font = user_preferences.theme.font or 'SF Pro Text Regular 10'
 theme.font_bold = user_preferences.theme.font_bold or 'SF Pro Text Bold 10'
+theme.title_font = 'SF Pro Text Bold 14'
 theme.icon_theme = user_preferences.theme.icons or 'Papirus-Dark'
 theme.wallpaper = user_preferences.theme.wallpaper or '/usr/share/backgrounds/linuxmint-ulyssa/rbooth_floral.jpg'
 
 -- Colorscheme
-theme.toggle = '#CC9393'
+theme.toggle = material.blue_grey.hue_700
 
 -- Accent color
 theme.accent = material.grey.hue_300
@@ -44,24 +44,16 @@ local awesome_overrides = function(theme)
 
   theme.icons = theme.dir .. '/icons/'
 
-  -- Wallpaper
-  -- theme.wallpaper = wallpaper_dir .. 'linuxmint-tricia/rbates_mam_tor.jpg'
 
-  -- Foreground
+  theme.fg_normal = material.white .. 'de'
+  theme.fg_focus = material.grey.hue_300
+  theme.fg_urgent = material.red.hue_200
 
-  theme.font = 'SF Pro Text Regular 10'
-  theme.title_font = 'SF Pro Text Bold 14'
-
-
-  theme.fg_normal = '#ffffffde'
-  theme.fg_focus = '#e4e4e4'
-  theme.fg_urgent = '#CC9393'
-
-  theme.bat_fg_critical = '#232323'
+  theme.bat_fg_critical = material.grey.hue_900
 
   theme.bg_normal = theme.background
-  theme.bg_focus = '#5a5a5a'
-  theme.bg_urgent = '#3F3F3F'
+  theme.bg_focus = material.grey.hue_700
+  theme.bg_urgent = material.grey.hue_800
 
   -- System tray
 
@@ -142,8 +134,8 @@ local awesome_overrides = function(theme)
 
   -- UI Groups
 
-  theme.groups_title_bg = "#ffffff" .. "15"
-  theme.groups_bg = "#ffffff" .. "10"
+  theme.groups_title_bg = material.white .. "15"
+  theme.groups_bg = material.white .. "10"
   theme.groups_radius = dpi(9)
 
   -- Client Decorations
@@ -151,7 +143,7 @@ local awesome_overrides = function(theme)
   -- Borders
   theme.border_focus = beautiful.gtk.get_theme_variables().bg_color
   theme.border_normal = beautiful.gtk.get_theme_variables().base_color
-  theme.border_marked = '#CC9393'
+  theme.border_marked = material.red.hue_200
   theme.border_width = dpi(0)
   theme.border_radius = dpi(0)
 
@@ -169,8 +161,8 @@ local awesome_overrides = function(theme)
   theme.menu_bg_focus = theme.accent .. 'CC'
 
   theme.menu_bg_normal =  theme.background:sub(1,7) .. '33'
-  theme.menu_fg_normal = '#ffffff'
-  theme.menu_fg_focus = '#ffffff'
+  theme.menu_fg_normal = material.white
+  theme.menu_fg_focus = material.white
   theme.menu_border_color = theme.background:sub(1,7) .. '5C'
 
   -- Tooltips
@@ -185,7 +177,7 @@ local awesome_overrides = function(theme)
 
   -- Separators
 
-  theme.separator_color = '#f2f2f244'
+  theme.separator_color = material.grey.hue_100 .. '44'
 
   -- Layoutbox icons
 
@@ -210,20 +202,20 @@ local awesome_overrides = function(theme)
   -- Taglist
 
   theme.taglist_bg_empty = theme.background .. '99'
-  theme.taglist_bg_occupied =  '#ffffff' .. '1A'
-  theme.taglist_bg_urgent = "#E91E63" .. '99'
+  theme.taglist_bg_occupied =  material.white .. '1A'
+  theme.taglist_bg_urgent = material.pink.hue_500 .. '99'
   theme.taglist_bg_focus = theme.background
   theme.taglist_spacing = dpi(0)
 
   -- Tasklist
 
   theme.tasklist_font = 'SF Pro Text Regular 10'
-  theme.tasklist_bg_normal = '#000000' .. '20'
+  theme.tasklist_bg_normal = material.white .. '20'
   theme.tasklist_bg_focus = theme.background
-  theme.tasklist_bg_urgent = "#E91E63" .. '99'
-  theme.tasklist_fg_focus = '#DDDDDD'
-  theme.tasklist_fg_urgent = "#ffffff"
-  theme.tasklist_fg_normal = '#AAAAAA'
+  theme.tasklist_bg_urgent = material.pink.hue_500 .. '99'
+  theme.tasklist_fg_focus = material.grey.hue_300
+  theme.tasklist_fg_urgent = material.white
+  theme.tasklist_fg_normal = material.grey.hue_500
 
   -- Notification
 
