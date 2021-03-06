@@ -74,6 +74,7 @@ ruled.client.connect_signal(
 				class = {
           "whatsapp",
           "Slack",
+          "discord",
           "obs",
           "Spotify",
           "youtubemusic"
@@ -95,7 +96,6 @@ ruled.client.connect_signal(
 				class = {
 					"firefox",
 					"Tor Browser",
-					"discord",
 					"Chromium",
 					"Google-chrome"
 				}

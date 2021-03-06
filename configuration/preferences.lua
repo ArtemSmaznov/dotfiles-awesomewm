@@ -16,11 +16,11 @@ return {
     date_long = '%a, %d %b %Y',
   },
   panels = {
-    size_top = dpi(40),
-    size_side = dpi(45),
+    size_top = dpi(35),
+    size_side = dpi(40),
   },
   theme = {
-    wallpaper = '/usr/share/backgrounds/linuxmint-ulyssa/rbooth_floral.jpg',
-    icons = 'Papirus-Dark'
+    theme = 'sakura',
+    -- wallpaper = '/usr/share/backgrounds/linuxmint-ulyssa/rranwa_india.jpg',
   }
 }

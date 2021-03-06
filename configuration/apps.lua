@@ -74,7 +74,7 @@ return {
     },{
       category = 'Development',
       apps = {
-        {command = default.terminal, icon = default.terminal},
+        {command = default.terminal, icon = 'terminal'},
         {command = default.text_editor, icon = default.text_editor},
         {command = default.ide, icon = default.ide},
       }
@@ -82,6 +82,7 @@ return {
       category = 'Social',
       apps = {
         {command = 'slack', icon = 'slack'},
+        {command = 'discord', icon = 'discord'},
         {command = 'whatsapp-nativefier-dark', icon = 'whatsapp'},
       }
     },{
@@ -133,10 +134,10 @@ return {
     'pulseeffects --gapplication-service',    -- Sound Equalizer
     'redshift-gtk',                           -- Blue light Filter
     'ckb-next -b',                            -- Corsair Keyboard Utility
-    -- 'solaar -w hide',                         -- Logitech Unifying Receiver
 
     -- User
     'paplay ' .. sounds.startup,              -- Startup Sound
+    'solaar -w hide',                         -- Logitech Unifying Receiver
     default.terminal,
     default.web_browser,
     default.game,
