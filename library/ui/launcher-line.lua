@@ -6,7 +6,7 @@ local dpi = require('beautiful').xresources.apply_dpi
 local build = function(size)
   local widget = wibox.widget {
     {
-      bg = beautiful.fg_normal,
+      bg = beautiful.system_elements,
       forced_width = dpi(size),
       forced_height = dpi(5),
       shape = gears.shape.rounded_bar,

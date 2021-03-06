@@ -34,7 +34,7 @@ return {
     hue_A400 = '#F50057',
     hue_A700 = '#C51162'
   },
-  purle = {
+  purple = {
     hue_50 = '#F3E5F5',
     hue_100 = '#E1BEE7',
     hue_200 = '#CE93D8',
