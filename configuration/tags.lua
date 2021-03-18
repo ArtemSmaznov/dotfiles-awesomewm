@@ -35,15 +35,15 @@ local tags = {
 		icon = icons.tags.file_manager,
 		default_app = apps.default.file_manager,
 	},
+  {
+    name = 'graphics',
+    icon = icons.tags.graphics,
+    default_app = apps.default.graphics_editor,
+  },
 	{
 		name = 'multimedia',
 		icon = icons.tags.multimedia,
 		default_app = apps.default.music_player,
-	},
-	{
-		name = 'graphics',
-		icon = icons.tags.graphics,
-		default_app = apps.default.graphics_editor,
 	},
 	{
 		name = 'sandbox',
