@@ -4,6 +4,10 @@
   </strong>
 </p>
 
+# Unmaintained
+
+I have recently moved to qtile so this config remains mostly _unmaintained_
+
 # Goal
 
 The goal of this repository is to create a configuration for AwesomeWM that is very easy to modify, adapt and customize.
