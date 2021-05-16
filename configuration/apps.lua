@@ -109,38 +109,36 @@ return {
   -- List of apps to start once on start-up
   -- auto-start.lua module will start these
   run_on_start_up = {
+    '~/.config/autostart-scripts/autostart.sh'
     -- Set browser as system default
-    'xdg-settings set default-web-browser chromium.desktop' .. default.web_browser,
+    -- 'xdg-settings set default-web-browser chromium.desktop' .. default.web_browser,
 
-    'picom -b --experimental-backends --dbus --config ' ..
-    config_dir .. '/configuration/picom.conf',
+    -- -- Credential manager
+    -- '/usr/lib/polkit-kde-authentication-agent-1 &' ..
+    -- ' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
 
-    -- Credential manager
-    '/usr/lib/polkit-kde-authentication-agent-1 &' ..
-    ' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
+    -- -- Auto lock timer
+    -- [[
+    -- xidlehook --not-when-fullscreen --not-when-audio --timer 600 \
+    -- "awesome-client 'awesome.emit_signal(\"module::lockscreen_show\")'" ""
+    -- ]],
 
-    -- Auto lock timer
-    [[
-    xidlehook --not-when-fullscreen --not-when-audio --timer 600 \
-    "awesome-client 'awesome.emit_signal(\"module::lockscreen_show\")'" ""
-    ]],
+    -- -- System
+    -- 'xfce4-power-manager',                    -- Power manager
+    -- 'blueman-applet',                         -- Bluetooth tray icon
+    -- 'mpd',                                    -- Music Server
+    -- 'xrdb $HOME/.Xresources',                 -- Load X Colors
+    -- 'nm-applet',                              -- NetworkManager Applet
+    -- 'pulseeffects --gapplication-service',    -- Sound Equalizer
+    -- 'redshift-gtk',                           -- Blue light Filter
 
-    -- System
-    'xfce4-power-manager',                    -- Power manager
-    'blueman-applet',                         -- Bluetooth tray icon
-    'mpd',                                    -- Music Server
-    'xrdb $HOME/.Xresources',                 -- Load X Colors
-    'nm-applet',                              -- NetworkManager Applet
-    'pulseeffects --gapplication-service',    -- Sound Equalizer
-    'redshift-gtk',                           -- Blue light Filter
-    'ckb-next -b',                            -- Corsair Keyboard Utility
+    -- -- User
+    -- 'paplay ' .. sounds.startup,              -- Startup Sound
+    -- 'solaar -w hide',                         -- Logitech Unifying Receiver
+    -- default.terminal,
+    -- default.web_browser,
+    -- default.game,
+    -- default.vpn
 
-    -- User
-    'paplay ' .. sounds.startup,              -- Startup Sound
-    'solaar -w hide',                         -- Logitech Unifying Receiver
-    default.terminal,
-    default.web_browser,
-    default.game,
-    default.vpn
   },
 }

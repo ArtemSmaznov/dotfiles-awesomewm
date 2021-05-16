@@ -28,7 +28,7 @@ local tags = {
 	{
 		name = 'coding',
 		icon = icons.tags.text_editor,
-		default_app = apps.default.ide,
+		default_app = apps.default.terminal,
 	},
 	{
 		name = 'computer',

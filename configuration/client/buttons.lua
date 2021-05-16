@@ -1,7 +1,6 @@
 local awful = require('awful')
 
-local modkey = require('configuration.keys.mod').modKey
-local altkey = require('configuration.keys.mod').altKey
+local mod = require('configuration.keys.mod').mod
 
 return awful.util.table.join(
 	awful.button(
@@ -12,17 +11,17 @@ return awful.util.table.join(
 			c:raise()
 		end
 	),
-	awful.button({modkey}, 1, awful.mouse.client.move),
-	awful.button({modkey}, 3, awful.mouse.client.resize),
+	awful.button({mod}, 1, awful.mouse.client.move),
+	awful.button({mod}, 3, awful.mouse.client.resize),
 	awful.button(
-		{modkey},
+		{mod},
 		4,
 		function()
 			awful.layout.inc(1)
 		end
 	),
 	awful.button(
-		{modkey},
+		{mod},
 		5,
 		function()
 			awful.layout.inc(-1)
