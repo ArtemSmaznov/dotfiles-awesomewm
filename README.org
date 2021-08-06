@@ -1,4 +1,4 @@
-#+TITLE: AwesomeWM Config (Unmaintained)
+#+TITLE: AwesomeWM (Unmaintained)
 #+AUTHOR: Artem Smaznov
 
 * Useless Personal Intro
