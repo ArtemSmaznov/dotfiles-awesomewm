@@ -3,6 +3,9 @@
 #+DESCRIPTION: Extremely customizable window manager written in Lua
 #+STARTUP: overview
 
+I have moved over to =qtile= so this config is no longer maintained.
+I am going to make minor updates now and then, but not focusing on anything bigger than keybindings updates
+
 * Useless Personal Intro
 ** Cinnamon
 I initially started with Cinnamon DE and was using it for a few years. I loved it but I found the lack of good widgets quite troublesome. Additionally I wanted something more intuitive when it comes to Virtual Desktops as well as some blurs for eye candy.
