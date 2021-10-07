@@ -98,16 +98,16 @@ awful.key({}, 'XF86Display', function()
 -- ░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░░▀░░
 
 awful.key({ctrl}, 'Print', function()
-    awful.spawn('/home/artem/.local/bin/dmscripts/dmscreenshot full')
+    awful.spawn('/home/artem/.local/bin/dmscripts/dm-screenshot full')
   end, {description='Full Desktop Screenshot', group='Screenshots'}),
 awful.key({}, 'Print', function()
-    awful.spawn('/home/artem/.local/bin/dmscripts/dmscreenshot screen')
+    awful.spawn('/home/artem/.local/bin/dmscripts/dm-screenshot screen')
   end, {description='Fullscreen Screenshot', group='Screenshots'}),
 awful.key({mod, shift}, 'Print', function()
-    awful.spawn('/home/artem/.local/bin/dmscripts/dmscreenshot area')
+    awful.spawn('/home/artem/.local/bin/dmscripts/dm-screenshot area')
   end, {description='Selection Area Screenshot', group='Screenshots'}),
 awful.key({alt}, 'Print', function()
-    awful.spawn('/home/artem/.local/bin/dmscripts/dmscreenshot window')
+    awful.spawn('/home/artem/.local/bin/dmscripts/dm-screenshot window')
   end, {description='Current Window Screenshot', group='Screenshots'}),
 
 
