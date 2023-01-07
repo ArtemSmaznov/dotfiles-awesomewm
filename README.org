@@ -1,7 +1,8 @@
-#+TITLE: AwesomeWM (Unmaintained)
-#+AUTHOR: Artem Smaznov
-#+DESCRIPTION: Extremely customizable window manager written in Lua
-#+STARTUP: overview
+#+title:       AwesomeWM (Unmaintained)
+#+author:      Artem Smaznov
+#+description: Extremely customizable window manager written in Lua
+#+startup:     overview
+#+auto_tangle: t
 
 I have moved over to =qtile= so this config is no longer maintained.
 I am going to make minor updates now and then, but not focusing on anything bigger than keybindings updates
