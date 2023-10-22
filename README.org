@@ -1,31 +1,34 @@
-#+title:       AwesomeWM (Unmaintained)
+:PROPERTIES:
+:ID:       08a28fe4-e317-4577-be6d-eaa8e6bfe713
+:END:
+#+title:       AwesomeWM
 #+author:      Artem Smaznov
-#+description: Extremely customizable window manager written in Lua
+#+description: (Unmaintained) Extremely customizable window manager written in Lua
 #+startup:     overview
 #+auto_tangle: t
 
-I have moved over to =qtile= so this config is no longer maintained.
-I am going to make minor updates now and then, but not focusing on anything bigger than keybindings updates
-
-* Useless Personal Intro
-** Cinnamon
-I initially started with Cinnamon DE and was using it for a few years. I loved it but I found the lack of good widgets quite troublesome. Additionally I wanted something more intuitive when it comes to Virtual Desktops as well as some blurs for eye candy.
-
-** KDE
-I tried KDE and loved how it allowed to customize the looks but with all the customizations it allowed I found it to be more limiting than Cinnamon was. Things that annoyed me in KDE were too long Taskbar buttons, not being able to set a custom date format for the taskbar widget and navigating all the settings felt very counterintuitive. I did like the flow that activities offered even though the implementation was a bit off for me.
-
-** AwesomeWM - Having a Taste
-Later, I found an AwesomeWM config by [[https://github.com/ChrisTitusTech/material-awesome][ChrisTitus]] and immediately loved the tags flow it offered. I did find the customization quite lacking though and I couldn't use it as a full on replacement for Cinnamon (I switched back to Cinnamon from KDE at that time). I then tried writing my own config from scratch but found Lua and Awesome API too hard to understand and realized that writing something usable will take way too much time.
-
-** AwesomeWM - Settling In
-Finally, I stumbled upon a config by [[https://github.com/manilarome/the-glorious-dotfiles][manilarome]] on UnixPorn sub-reddit and loved how it looked. After cloning it I mostly ditched Cinnamon and started spending more time in Awesome. I also started digging deeper in the configs to modify things that I wanted differently and started to understand more and more of how it actually works.
-
-** Future of my Config
-Right now I consider that config as a base and am currently just personalizing it according to my preferences generalizing the code along the way. I want to make it easy to move things around for anyone picking this after me with all the widgets being independent and all the configs being placed in as little files as possible. want to make it easy to move things around for anyone picking this after me.
-
-I am still actively working on this repository and there is still a lot I want to do.
-
-The documentation on this is pretty much non existent but I am hoping to tidy it up at some point. Parts are just copy pasted from [[https://github.com/manilarome/the-glorious-dotfiles][manilarome]] and still list the dependencies I might have already removed.
+* Table of Contents :toc:
+- [[#based-on][Based on]]
+  - [[#added-components][Added components:]]
+- [[#dependencies][Dependencies]]
+  - [[#additional-dependencies][Additional dependencies:]]
+- [[#screenshots][Screenshots]]
+- [[#imports][Imports]]
+- [[#main][Main]]
+- [[#hooks][Hooks]]
+- [[#general-settings][General Settings]]
+- [[#strt-apps][STRT Apps]]
+- [[#theme][Theme]]
+- [[#windows][Windows]]
+- [[#workspaces][Workspaces]]
+- [[#scratchpads][Scratchpads]]
+- [[#layouts][Layouts]]
+- [[#strt-keybindings][STRT Keybindings]]
+  - [[#imports-1][Imports]]
+  - [[#mod-keys][Mod Keys]]
+  - [[#keybindings][Keybindings]]
+  - [[#mouse-bindings][Mouse Bindings]]
+- [[#bar][Bar]]
 
 * Based on
 - *Floppy* theme from [[https://github.com/manilarome/the-glorious-dotfiles][manilarome]]
@@ -61,19 +64,6 @@ The documentation on this is pretty much non existent but I am hoping to tidy it
 | FantasqueSansMono Nerd Font             | Rofi unicode font                                    |
 | xdg-user-dirs                           | Manage user directories                              |
 |-----------------------------------------+------------------------------------------------------|
-
-* My Apps
-|--------------+----------------------|
-| Role         | App                  |
-|--------------+----------------------|
-| Distro       | Arch Linux           |
-| Terminal     | terminator           |
-| Text Editor  | xed                  |
-| Web Browser  | chromium             |
-| File Manager | dolphin / nemo       |
-| Video Player | celluloid            |
-| Lockscreen   | cinnamon-screensaver |
-|--------------+----------------------|
 
 * Screenshots
 [[https://raw.githubusercontent.com/ArtemSmaznov/screenshots/master/AwesomeWM/awesome-desktop.png]]
